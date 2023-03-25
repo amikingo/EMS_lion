@@ -13,12 +13,7 @@ a:hover {
     text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: "Nunito", sans-serif;
 }
 
@@ -31,12 +26,10 @@ h6 {
 .header .logo {
     line-height: 0;
 }
-
 .header .logo img {
     max-height: 40px;
     margin-right: 6px;
 }
-
 .header .logo span {
     font-size: 30px;
     font-weight: 700;
@@ -49,7 +42,6 @@ h6 {
 .navbarr {
     padding: 0;
 }
-
 .navbarr ul {
     margin: 0;
     padding: 0;
@@ -57,13 +49,10 @@ h6 {
     list-style: none;
     align-items: center;
 }
-
 .navbarr li {
     position: relative;
 }
-
-.navbarr a,
-.navbarr a:focus {
+.navbarr a, .navbarr a:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,14 +75,12 @@ h6 {
     background: url(../images/getstartbg.png) top center no-repeat;
     background-size: cover;
 }
-
 .hero h1 {
     margin: 0;
     font-size: 48px;
     font-weight: 700;
     color: #012970;
 }
-
 .hero h2 {
     color: #444444;
     margin: 15px 0 0 0;
@@ -105,62 +92,31 @@ h6 {
     font-size: 18px;
     transition: 0.3s;
 }
-
 .hero .btn-get-started:hover i {
     transform: translateX(5px);
 }
-
 .hero .hero-img {
     text-align: right;
 }
 
-
 /* ---------------------------------------- */
 
-.height-100-percentage {
-    height: 100%;
-}
-
-.width-100-percentage {
-    width: 100%;
-}
-
-.padding-top-15px {
-    padding-top: 15px;
-}
-
-.padding-10px {
-    padding: 10px;
-}
-
-.padding-30px {
-    padding: 30px;
-}
-
-.padding-40px {
-    padding: 40px;
-}
-
-.margin-bottom-30px {
-    margin-bottom: 30px;
-}
-
-.max-width-400 {
-    max-width: 400px;
-}
-
-.margin-0-auto {
-    margin: 0 auto;
-}
-
-.login-form-slider {
+.height-100-percentage{height: 100%;}
+.width-100-percentage{width: 100%;}
+.padding-top-15px{padding-top: 15px;}
+.padding-10px{padding: 10px;}
+.padding-30px{padding: 30px;}
+.padding-40px{padding: 40px;}
+.margin-bottom-30px{margin-bottom: 30px;}
+.max-width-400{max-width: 400px;}
+.margin-0-auto{margin: 0 auto;}
+.login-form-slider{
     position: relative;
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
-
-.login-form-slider .slide {
+.login-form-slider .slide{
     position: absolute;
     left: 0;
     top: 0;
@@ -168,35 +124,60 @@ h6 {
     height: 100%;
     display: none;
 }
+.login-form-slider .slide.login-slide{display: block;}
+.login-form-slider .slide.signup-slide{}
+.login-form-slider .slide.forgot-password-slide{}
 
-.login-form-slider .slide.login-slide {
-    display: block;
-}
-
-.login-form-slider .slide.signup-slide {}
-
-.login-form-slider .slide.forgot-password-slide {}
-
-.style2 .login-box {
+.style2 .login-box{
     max-width: 400px;
     margin: 0 auto;
     width: 100%;
     background: #ffffff;
     height: 500px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     position: relative;
     -webkit-box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
     -moz-box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
     box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
 }
-
-.style2 .login-form-slider .slide {
-    padding: 40px;
+.style2 .login-box:before{
+    content: "";
+    width: 90%;
+    height: 10px;
+    background: rgba(255,255,255,0.5);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -10px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px;
+    -webkit-box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
+    -moz-box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
+    box-shadow: 0px 13px 84px 7px rgba(0, 0, 0, .30);
+}
+.style2 .login-box:after{
+    content: "";
+    width: 80%;
+    height: 10px;
+    background: rgba(255,255,255,0.4);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -20px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px;
 }
 
-.style2 h3 {
+.style2 .login-form-slider .slide{
+    padding: 40px;
+}
+.style2 h3{
     font-size: 25px;
     text-transform: uppercase;
     text-align: center;
@@ -205,12 +186,10 @@ h6 {
     margin-bottom: 30px;
     font-family: 'Nunito', sans-serif;
 }
-
-.style2 .form-group {
+.style2 .form-group{
     position: relative;
 }
-
-.style2 .form-control {
+.style2 .form-control{
     height: 50px;
     padding-left: 40px;
     border: 0;
@@ -224,12 +203,10 @@ h6 {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-
-.style2 .forgot-password-field .form-control {
+.style2 .forgot-password-field .form-control{
     padding-right: 70px;
 }
-
-.style2 .forgot-password-field .forgot-password-click {
+.style2 .forgot-password-field .forgot-password-click{
     position: absolute;
     right: 10px;
     top: 15px;
@@ -240,7 +217,7 @@ h6 {
     font-weight: 600;
 }
 
-.style2 .field-icon {
+.style2 .field-icon{
     position: absolute;
     font-size: 20px;
     left: 10px;
@@ -248,7 +225,7 @@ h6 {
     color: #333;
 }
 
-.style2 .sign-in-btn .submit {
+.style2 .sign-in-btn .submit{
     position: relative;
     margin: 0 auto;
     display: block;
@@ -262,27 +239,23 @@ h6 {
     text-transform: uppercase;
     font-family: 'Nunito', sans-serif;
 }
-
-.style2 .sign-up-txt {
+.style2 .sign-up-txt{
     padding-top: 40px;
     text-align: center;
     font-family: 'Nunito', sans-serif;
     color: #868582;
     font-size: 17px;
 }
-
-.style2 .sign-up-txt a {
+.style2 .sign-up-txt a{
     color: #012970;
     font-size: 18px;
     display: inline-block;
     padding-left: 6px;
     font-weight: 600;
 }
-
-.style2 .signup-slide .sign-up-txt {
+.style2 .signup-slide .sign-up-txt{
     padding-top: 10px;
 }
-
 
 /*** btns - and inputs ***/
 
@@ -307,7 +280,9 @@ button {
     background: hsl(0deg 0% 0% / 0.25);
     will-change: transform;
     transform: translateY(2px);
-    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
 }
 
 .edge {
@@ -317,7 +292,13 @@ button {
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    background: linear-gradient( to left, hsl(258deg 70% 46%) 0%, hsl(241deg 96% 56%) 8%, hsl(246deg 93% 56%) 92%, hsl(252deg 72% 49%) 100%)
+    background: linear-gradient(
+        to left,
+        hsl(258deg 70% 46%) 0%,
+        hsl(241deg 96% 56%) 8%,
+        hsl(246deg 93% 56%) 92%,
+        hsl(252deg 72% 49%) 100%
+        )
 }
 
 .front {
@@ -330,7 +311,9 @@ button {
     background: hsl(217deg 89% 51%);
     will-change: transform;
     transform: translateY(-4px);
-    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+    transition: transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
 }
 
 button:hover {
@@ -339,7 +322,9 @@ button:hover {
 
 button:hover .front {
     transform: translateY(-6px);
-    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
 }
 
 button:active .front {
@@ -349,7 +334,9 @@ button:active .front {
 
 button:hover .shadow {
     transform: translateY(4px);
-    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    transition: transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
 }
 
 button:active .shadow {
@@ -361,14 +348,7 @@ button:focus:not(:focus-visible) {
     outline: none;
 }
 
-.error {
-    color: red;
-}
+.error{color: red;}
+.toast-top-center{ margin-top: 20px !important; }
 
-.toast-top-center {
-    margin-top: 20px !important;
-}
-
-select:hover {
-    cursor: pointer;
-}
+select:hover{cursor: pointer;}
