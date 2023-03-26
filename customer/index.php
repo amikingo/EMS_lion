@@ -89,7 +89,7 @@ echo "<script>window.location.href ='index.php'</script>";
 								<label style="padding-bottom: 10px;">Phone Number</label>
 								<input type="text" placeholder="Phone Number" class="form-control" name="mobnum" required="true" maxlength="10" pattern="[0-9]+">
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<label style="padding-bottom: 10px;">Requirement Number<small style="color:red;">(Number of Guards)</small></label>
 								<input type="text" placeholder="Requirement Number" name="reqnum" class="form-control" required="true">
 							</div>

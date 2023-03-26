@@ -134,7 +134,7 @@ $cnt=$cnt+1;
 	</section>
 	<!-- Trainers Section end -->
 
-	
+	<br><br>
 	<!-- Footer Section -->
 	<footer id="footer">
 
