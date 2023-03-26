@@ -7,7 +7,7 @@ error_reporting(0);
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Online Security Gauard Hiring System |Search Request</title>	
+	<title>lion security services |Search Request</title>	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>

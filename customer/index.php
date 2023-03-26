@@ -41,7 +41,7 @@ echo "<script>window.location.href ='index.php'</script>";
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Online Security Gauard Hiring System |Guard Hiring</title>	
+	<title>lion security services |Request Guard</title>	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
