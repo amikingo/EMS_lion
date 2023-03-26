@@ -113,7 +113,7 @@ echo "<script>window.location.href ='index.php'</script>";
 								</select>
 							</div>
 							<br>
-							<div class="col-md-8">
+							<div class="col-md-12">
 								<label style="padding-top: 10px;">Address</label>
 								<textarea placeholder="Enter Address" name="add" required="true"></textarea>
 								 <input type="submit" class="btn btn-primary" value="send" name="submit">
