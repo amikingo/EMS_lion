@@ -404,8 +404,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>customers</h2>
-          <p>Our customers</p>
+          <h2>services</h2>
+          <p>Our services</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
