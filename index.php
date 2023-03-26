@@ -430,7 +430,7 @@
             </div>
           </div>
           <!-- End Course Item -->
-
+                  
            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
              
@@ -469,6 +469,7 @@
               </div>
             </div>
           </div> <!--End Course Item -->
+          
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="course-item">
               
