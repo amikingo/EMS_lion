@@ -334,7 +334,7 @@
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="assets/img/LOGO.png"style="width: 900px;height: 40px;">     
+      <img alt="logo" src="assets/img/LOGO.png" style="width: 800px;height: 50px;">     
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
         <ul>
