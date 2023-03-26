@@ -64,7 +64,7 @@ echo "<script>window.location.href ='index.php'</script>";
 
 	<!-- Contact Section -->
 	<section class="contact-page-section spad overflow-hidden">
-		<div class="container"  !important;>
+		<div class="container">
 			
 			<div class="row">
 		
