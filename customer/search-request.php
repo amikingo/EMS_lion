@@ -135,16 +135,48 @@ $cnt=$cnt+1;
 
 	
 	<!-- Footer Section -->
-	<div class="footer-bottom">
-				<div class="row">
-				
-					<div class="col-md-8 text-md-right">
-						<div class="copyright">
-							<p style="color: red">Online Security Gauard Hiring System</p>
-						</div>
-					</div>
-				</div>
-			</div>
+	<footer id="footer">
+
+<div class="footer-top">
+  <div class="container">
+	<div class="row">
+
+	<div class="col-lg-9 col-md-6 footer-contact">
+		<h3>Lion Security Services</h3>
+		<p>
+		  Ethiopia Addis Ababa,<br>
+		  Mekanisa,<br><br>
+		  <strong>Phone:</strong> +251 116 683333 , +251 930 519202<br>
+		  <strong>Email:</strong> www.lionsecurityservices.com<br>
+		</p>
+	  </div>
+	  <div class="col-lg-2 col-md-6 footer-links">
+		<h4>Useful Links</h4>
+		<ul>
+		  <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
+		</ul>
+	  </div>
+	
+<div class="container d-md-flex py-4">
+
+  <div class="mr-md-auto text-center text-md-left">
+	<div class="copyright">
+	  &copy; <strong><span>Lion Security Services PLC</span></strong> - <?php echo date('Y');?> - Developed By REHA TECH
+	</div>
+	<div class="credits">
+	</div>
+  </div>
+  <div class="social-links text-center text-md-right pt-3 pt-md-0">
+	<a href="#" class="twitter"><i  style="color:#fff;" class="bx bxl-twitter"></i></a>
+	<a href="https://www.facebook.com/admasuniversityethiopia/?ref=pages_you_manage" class="facebook"><i style="color:#fff;" class="bx bxl-facebook"></i></a>
+	<a href="#" class="instagram"><i style="color:#fff;" class="bx bxl-instagram"></i></a>
+	<a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
+	<a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
+  </div>
+</div>
+</footer>
 	<!-- Footer Section end -->
 	
 	<div class="back-to-top"><img src="img/icons/up-arrow.png" alt=""></div>
