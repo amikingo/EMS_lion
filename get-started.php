@@ -27,7 +27,7 @@ if(isset($_SESSION["user_id"])) redirect_to("index.php");
 
       <span class="logo d-flex align-items-center">
         <img src="images/logo.png" alt="">
-        <span><img alt="logo" src="https://www.lionsecurityet.com/images/LOGO.jpg" ></span>
+        <span><img alt="logo" src="assets/img/LOGO.png"></span>
       </span>
 
       <nav id="navbarr" class="navbarr">
