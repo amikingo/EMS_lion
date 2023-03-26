@@ -1,14 +1,6 @@
+<!DOCTYPE html>
+<head>
 <style>
-<<<<<<< HEAD
-#header {
-    background: #fff;
-    transition: all 0.5s;
-    z-index: 997;
-    padding: 15px 0;
-    box-shadow: 0px 0 18px rgba(55, 66, 59, 0.08);
-}
-
-=======
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -140,7 +132,6 @@ h6 {
     box-shadow: 0px 0 18px rgba(55, 66, 59, 0.08);
 }
 
->>>>>>> 9d0d88a5ece1686f0285ed8b2eab8da138f36617
 #header .logo {
     font-size: 32px;
     margin: 0;
@@ -165,8 +156,6 @@ h6 {
         font-size: 28px;
     }
 }
-<<<<<<< HEAD
-=======
 
 
 /*--------------------------------------------------------------
@@ -1469,9 +1458,9 @@ section {
     color: #fff;
     text-decoration: none;
 }
->>>>>>> 9d0d88a5ece1686f0285ed8b2eab8da138f36617
 
 </style>
+</head>
    <!-- ======= Header ======= -->
    <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
@@ -1483,7 +1472,7 @@ section {
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
         <ul>
           <li class="active"><a href="index.php">Home</a></li>
-          <li><a href="About us.php">About-us</a></li>         
+          <li><a href="About us.php">About us</a></li>         
           <li><a href="contact us.php">Contact</a></li>
           <li><a href="index.php">Hiring Form</a></li>
           <li><a href="search-request.php">Request Status</a>
