@@ -13,6 +13,7 @@ error_reporting(0);
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/nice-select.css"/>
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
 </head>
