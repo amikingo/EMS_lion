@@ -370,7 +370,7 @@
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="assets/img/LOGO.png" style="width: 900px;height: 40px;">
+      <img alt="logo" src="assets/img/LOGO.png" style="width: 800px;height: 50px;">
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
@@ -404,8 +404,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>customers</h2>
-          <p>Our customers</p>
+          <h2>services</h2>
+          <p>Our services</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
@@ -419,7 +419,8 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">Security</a></h3><br>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
                 <span>We Provide the best well trained guarde with Professional controlling system and advance surveillance.</span><br>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
@@ -429,7 +430,7 @@
             </div>
           </div>
           <!-- End Course Item -->
-
+                  
            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
              
@@ -439,8 +440,9 @@
                  
                 </div>
 
-                <h3><a href="course-details.html">Residential</a></h3>
-                <p>lion security since its inception has been providing residential security for its customers.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span> security since its inception has been providing residential security for its customers.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
@@ -458,14 +460,16 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">Escort</a></h3>
-                <p>security Escort is one of or fields of ooperation we provide Escorts with our own latest cars.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>security Escort is one of or fields of ooperation we provide Escorts with our own latest cars.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
               </div>
             </div>
           </div> <!--End Course Item -->
+          
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="course-item">
               
@@ -475,8 +479,9 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">International</a></h3>
-                <p>Lion is providing security service for international organization country wide.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>Lion is providing security service for international organization country wide.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
@@ -492,8 +497,9 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">Hospitals</a></h3>
-                <p>We provide the best well trained guards for hospitals and similar organization.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>We provide the best well trained guards for hospitals and similar organization.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
@@ -510,8 +516,9 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">UN</a></h3>
-                <p>Lion security provides protection services for United Nations Organizations.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>Lion security provides protection services for United Nations Organizations.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
@@ -529,8 +536,9 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">Hotels</a></h3>
-                <p>Lion security provides protection services for hotels and guest houses.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>Lion security provides protection services for hotels and guest houses.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
@@ -548,8 +556,9 @@
                   
                 </div>
 
-                <h3><a href="course-details.html">Embasies</a></h3>
-                <p>Lion Security is providing security services for embasies residing in Addis Ababa, Ethiopia.</p>
+                <img src="assets/img/stud2.jpg"width="300" height="300">
+                 <br><br>
+                <span>Lion Security is providing security services for embasies residing in Addis Ababa, Ethiopia.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   
                 </div>
