@@ -641,7 +641,7 @@
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
         <a href="#" class="twitter"><i style="color:#fff;"class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/admasuniversityethiopia/?ref=pages_you_manage" class="facebook"><i style="color:#fff;"class="bx bxl-facebook"></i></a>
+        <a href="#" class="facebook"><i style="color:#fff;"class="bx bxl-facebook"></i></a>
         <a href="#" class="instagram"><i style="color:#fff;"class="bx bxl-instagram"></i></a>
         <a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
