@@ -31,7 +31,7 @@
 #hero {
     width: 100%;
     height: 505px;
-    background-image:url('assets/img/amiro squer.jpg') !important;
+    
     background-size:contain;
     position:relative;
   
@@ -392,7 +392,7 @@
   <section id="hero" class="d-flex justify-content-center align-items-center" >
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>Lion Security Services PLC</h1>
-       <h2>Learning Today, Leading Tomorrow.</h2> 
+       <h2>Welcome to Lion security services PLC</h2> 
       <a href="About us.php" class="btn-get-started">Read More</a>
     </div>
   </section>
@@ -419,7 +419,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/top1.jpg"width="300" height="300">
                  <br><br>
                 <span>We Provide the best well trained guarde with Professional controlling system and advance surveillance.</span><br>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -440,7 +440,7 @@
                  
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/top2.jpg"width="360" height="300">
                  <br><br>
                 <span> security since its inception has been providing residential security for its customers.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -460,7 +460,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/top3.jpg"width="360" height="300">
                  <br><br>
                 <span>security Escort is one of or fields of ooperation we provide Escorts with our own latest cars.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -479,7 +479,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/top4.jpg"width="360" height="300">
                  <br><br>
                 <span>Lion is providing security service for international organization country wide.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -497,7 +497,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/1 marestops.jpg"width="360" height="300">
                  <br><br>
                 <span>We provide the best well trained guards for hospitals and similar organization.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -516,7 +516,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/1 un.jpg"width="360" height="300">
                  <br><br>
                 <span>Lion security provides protection services for United Nations Organizations.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -536,7 +536,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/1 ambassador.jpg"width="360" height="300">
                  <br><br>
                 <span>Lion security provides protection services for hotels and guest houses.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -556,7 +556,7 @@
                   
                 </div>
 
-                <img src="assets/img/stud2.jpg"width="300" height="300">
+                <img src="assets/img/1 Embasies.jpg"width="360" height="300">
                  <br><br>
                 <span>Lion Security is providing security services for embasies residing in Addis Ababa, Ethiopia.</span>
                 <div class="trainer d-flex justify-content-between align-items-center">
@@ -643,20 +643,20 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Security Personnel</h2>
-          <p>Our Professional Security Personnel</p>
+          <h2>Our team</h2>
+          <p>Meet Our Team</p>
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-              <img alt="logo" src="https://www.lionsecurityet.com/images/LOGO.jpg" onclick="window.document.location.href='https://www.lionsecurityet.com/'">
+              <img src="assets/img/employee3.jpg" class="img-fluid" alt="">
+              
               <div class="member-content">
-                <h4>Fekadu Tesema</h4>
-                <span>Advisorate</span>
+                <h4>Asnaku Legesse</h4>
+                <span>Human Resource Manager</span>
                 <p>
-                  "He is the advisorate for the company through legal means"
+                Asnaku Legesse directs Lion Security service Private Limited company's Human capital. Our human resources is well organized and computerized with an up to date ERP. She has vast experience in the field.
                 </p>
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
@@ -670,12 +670,12 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+              <img src="assets/img/employee1.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Dawit Melkamu</h4>
-                <span>CO</span>
+                <h4>Abel Werku</h4>
+                <span>Managing Director of Lion Security</span>
                 <p>
-                  "He is a CO of the Company."
+                Abel is the founding member and managing director of lion security service Private Limited Company. He is a visionary, highly motivated person with high punctuality and accuracy in his works.
                 </p>
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>
@@ -689,12 +689,12 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
-              <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+              <img src="assets/img/employee2.jpg" class="img-fluid" alt="">
               <div class="member-content">
-                <h4>Sarah Mulugeta</h4>
-                <span>Seniour Security Advisor</span>
+                <h4>Getachew Arage</h4>
+                <span>General Manager</span>
                 <p>
-                  "A senior Security Advisor at Lion Security Head quarter."
+                Getachew is talented and well educated to lead a big security firm like Lion. Lion security service PLC has been benefited from Getachew's vast knowledge in the area.  
                 </p>
                 <div class="social">
                   <a href=""><i class="icofont-twitter"></i></a>

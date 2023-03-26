@@ -371,7 +371,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2> About Admas University</h2>
+          <h2> About Lion Security</h2>
           <p>About us</p>
         </div>
         <div class="row">
