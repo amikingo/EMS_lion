@@ -82,7 +82,7 @@ foreach($results as $row)
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Secuirty Gauard
+                Secuirty Guard
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
@@ -91,13 +91,13 @@ foreach($results as $row)
               <li class="nav-item">
                 <a href="add-security-guard.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Security Gaurd</p>
+                  <p>Add Security Guard</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="manage-security-guard.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Security Gaurd</p>
+                  <p>Manage Security Guard</p>
                 </a>
               </li>
              </ul>

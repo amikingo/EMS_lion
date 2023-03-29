@@ -52,7 +52,7 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System | Add Security Guard</title>
+  <title>Lion Security Services | Add Security Guard</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

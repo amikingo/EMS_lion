@@ -7,7 +7,7 @@ include('includes/dbconnection.php');
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Dashboard</title>
+  <title>Lion Security Services | Dashboard</title>
  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

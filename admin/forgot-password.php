@@ -35,7 +35,7 @@ echo "<script>alert('Email id or Mobile no is invalid');</script>";
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Forgot Password</title>
+  <title>Lion Security Services | Forgot Password</title>
  
 
   <!-- Font Awesome -->

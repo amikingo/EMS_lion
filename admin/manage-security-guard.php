@@ -20,7 +20,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Security Guard</title>
+  <title>Security Guard</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 

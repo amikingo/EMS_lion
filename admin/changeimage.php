@@ -37,7 +37,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System | Update Image</title>
+  <title>Lion Security Services | Update Image</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
