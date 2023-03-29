@@ -62,7 +62,7 @@ include('includes/dbconnection.php');
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-6 col-6">
+          <div class="col-lg-4 col-6">
            <?php 
 $sql ="SELECT ID from tblguard ";
 $query = $dbh -> prepare($sql);
@@ -85,7 +85,7 @@ $totalguard=$query->rowCount();
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-6 col-6">
+          <div class="col-lg-4 col-6">
             <?php 
 $sql ="SELECT ID from tblhiring where Status is null ";
 $query = $dbh -> prepare($sql);
@@ -105,7 +105,7 @@ $newbooking=$query->rowCount();
               <a href="new-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-         <div class="col-lg-6 col-6">
+         <div class="col-lg-4 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring where Status='Accepted'";
 $query = $dbh -> prepare($sql);
@@ -127,7 +127,7 @@ $accbooking=$query->rowCount();
               <a href="accepted-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-6 col-6">
+          <div class="col-lg-4 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring where Status='Rejected'";
 $query = $dbh -> prepare($sql);
@@ -151,7 +151,7 @@ $rejbooking=$query->rowCount();
           </div>
 
 
-     <div class="col-lg-6 col-6">
+     <div class="col-lg-4 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring";
 $query = $dbh -> prepare($sql);

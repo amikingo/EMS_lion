@@ -99,8 +99,8 @@ foreach($results as $row)
 {               ?>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Profile Pics</label>
-                    <img src="images/<?php echo $row->Profilepic;?>" width="100" height="100" value="<?php  echo $row->Profilepic;?>">
+                    <label for="exampleInputEmail1">Profile Pics</label><br>
+                    <img src="images/<?php echo $row->Profilepic;?>"class="img circle" width="100" height="100" value="<?php  echo $row->Profilepic;?>"><br>
                     <a href="changeimage.php?editid=<?php echo $row->ID;?>"> &nbsp; Edit Image</a>
                   </div>
                      <div class="form-group">

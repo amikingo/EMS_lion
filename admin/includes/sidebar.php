@@ -1,10 +1,10 @@
  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-8">
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
 
-      <span class="brand-text font-weight-light">OSGHS | Admin</span>
+      <span class="brand-text font-weight-light">Lion security services</span>
     </a>
 
     <!-- Sidebar -->
@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/download.png" class="img-circle elevation-2" alt="User Image">
+          <img src="dist/img/download.png" class="img-circle elevation-" alt="User Image">
         </div>
         <div class="info">
 <?php
@@ -108,7 +108,7 @@ foreach($results as $row)
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Hiring Booking Request
+                Booking Request
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -144,7 +144,7 @@ foreach($results as $row)
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Hiring B/W Report
+                B/W Report
                </p>
             </a>
         
