@@ -28,7 +28,7 @@ if (isset($_POST["resetPassword"])) {
     $data = mysqli_fetch_assoc($check_email);
 
     $to = $email;
-    $subject = "Reset Password - Pure Coding YouTube";
+    $subject = "Reset Password";
 
     $message = "
     <html>
@@ -67,7 +67,8 @@ if (isset($_POST["resetPassword"])) {
       $mail->Body    = $message;
 
       $mail->send();
-      echo "<script>alert('We have sent a reset password link to your email - {$email}.');</script>";
+
+      echo "<script>alert('We have sent a reset password link to your email  - {$email}.');</script>";
     } catch (Exception $e) {
       echo "<script>alert('Mail not sent. Please try again.');</script>";
     }
@@ -85,7 +86,7 @@ if (isset($_POST["resetPassword"])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <title>Sign in & Sign up Form - Pure Coding</title>
+  <title>Sign in & Sign up Form</title>
 </head>
 
 <body>

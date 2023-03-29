@@ -324,7 +324,9 @@ h6 {
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
         <ul>
           <li class="active"><a href="../index.php">Home</a></li>
+
           <li class="active"><a href="index.php">Request page</a></li>
+
           <li><a href="search-request.php">Request Status</a>
                      </li>
                      <li><a href="../login/logout.php">Logout</a>
