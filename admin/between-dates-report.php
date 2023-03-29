@@ -37,12 +37,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Between Dates Hiring Report</h1>
+            <h1>Between Dates  Report</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Between Dates Hiring Report</li>
+              <li class="breadcrumb-item active">Between Dates Report</li>
             </ol>
           </div>
         </div>
