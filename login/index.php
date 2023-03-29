@@ -16,7 +16,11 @@ session_start();
 error_reporting(0);
 
 if (isset($_SESSION["user_id"])) {
+<<<<<<< HEAD
   header("Location: ../customer/index.php");
+=======
+  header("Location:../customer/index.php");
+>>>>>>> 5c22153bfe8cf1d013ad6d1fd6f6f281332b3bcf
 }
 
 if (isset($_POST["signup"])) {
