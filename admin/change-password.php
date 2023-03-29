@@ -43,7 +43,7 @@ echo '<script>alert("Your current password is wrong")</script>';
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System | Change Password</title>
+  <title>Lion Security Services | Change Password</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

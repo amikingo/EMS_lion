@@ -1,5 +1,5 @@
 <footer class="main-footer">
     
-    Online Security Gauard Hiring System.
+    Lion Security Services PLC.
     
   </footer>

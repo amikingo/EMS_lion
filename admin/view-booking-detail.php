@@ -31,7 +31,7 @@ echo "<script type='text/javascript'> document.location ='all-booking-request.ph
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System | View Booking Detail</title>
+  <title>View Booking Detail</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

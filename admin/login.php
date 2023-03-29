@@ -6,7 +6,7 @@ include('includes/dbconnection.php');
 if(isset($_POST['login'])) 
   {
     $username=$_POST['username'];
-    $password=md5($_POST['password']);
+    $password=($_POST['password']);
     $sql ="SELECT ID FROM tbladmin WHERE UserName=:username and Password=:password";
     $query=$dbh->prepare($sql);
     $query-> bindParam(':username', $username, PDO::PARAM_STR);
@@ -45,7 +45,7 @@ echo "<script>alert('Invalid Details');</script>";
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Log in</title>
+  <title>Log in</title>
  
 
   <!-- Font Awesome -->
@@ -62,7 +62,7 @@ echo "<script>alert('Invalid Details');</script>";
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="login.php"><b>Admin</b> | OSGHS</a>
+    <a href="login.php"><b>Admin</b> | Login</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -105,10 +105,7 @@ echo "<script>alert('Invalid Details');</script>";
 
       
 
-      <p class="mb-1">
-        <a href="forgot-password.php">I forgot my password</a>
-        </p>
-        <p><a href="../index.php">Back Home!!</a></p>
+    
      
     </div>
     <!-- /.login-card-body -->

@@ -27,7 +27,7 @@ echo '<script>alert("Your profile has been updated")</script>';
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System  | Admin Profile</title>
+  <title>Lion Security Services  | Admin Profile</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

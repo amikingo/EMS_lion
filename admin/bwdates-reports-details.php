@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Between dates reports of hiring guards</title>
+  <title>Lion Security Services | Between dates reports of hiring guards</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 

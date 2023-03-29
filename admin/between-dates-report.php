@@ -12,7 +12,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
   
-  <title>Online Security Gauard Hiring System | Between Dates Report</title>
+  <title>Lion Security Services | Between Dates Report</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">

@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>Online Security Gauard Hiring System | Rejected Booking Request</title>
+  <title>Rejected Booking Request</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
