@@ -56,6 +56,7 @@ error_reporting(0);
 					</form>
 				</div>
 <div class="form-body">
+	<br><br><br>
                   <?php
 if(isset($_POST['search']))
 { 
