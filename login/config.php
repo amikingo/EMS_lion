@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "user";
+$database = "osghsdb";
 
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 ?>
