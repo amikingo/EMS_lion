@@ -342,7 +342,7 @@
           <li><a href="index.php">Home</a></li>
           <li class="active"><a href="About us.php">About</a></li>         
           <li><a href="contact us.php">Contact</a></li>
-          <li><a href="/login/index.php">Login </a> 
+          <li><a href="login/index.php">Login </a> 
           
           </li>
 
