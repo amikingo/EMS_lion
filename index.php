@@ -378,7 +378,7 @@
           <li class="active"><a href="index.php">Home</a></li>
           <li><a href="About us.php">About</a></li>         
           <li><a href="contact us.php">Contact</a></li>
-          <li class="drop-down"><a href="get-started.php">Login </a> 
+          <li class="drop-down"><a href="/login/index.php">Login </a> 
           
           </li>
 
