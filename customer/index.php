@@ -1,11 +1,7 @@
 <?php
 include('dbconnection.php');
-
 session_start();
 error_reporting(0);
-if (strlen($_SESSION['osghsaid']==1)) {
-	header('location:logout.php');
-	} else{
  if(isset($_POST['submit']))
   {
 
@@ -192,4 +188,3 @@ echo "<script>window.location.href ='index.php'</script>";
 
 	</body>
 </html>
-<?php }?>
