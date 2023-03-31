@@ -20100,7 +20100,7 @@ html.maximized-card {
 .register-page {
     -ms-flex-align: center;
     align-items: center;
-    background: #e9ecef;
+    background: #a9d3ff;
     display: -ms-flexbox;
     display: flex;
     height: 100vh;
@@ -20126,7 +20126,9 @@ html.maximized-card {
     background: #fff;
     border-top: 0;
     color: #666;
-    padding: 20px
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .login-card-body .input-group .form-control,
@@ -29589,4 +29591,6 @@ a.text-muted:hover {
 }
 
 
-/*# sourceMappingURL=adminlte.min.css.map */
+/*# sourceMappingURL=adminlte.min.css.map *
+
+/*# sourceMappingURL=adminlte.min.css.map *
