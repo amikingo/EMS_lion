@@ -84,6 +84,7 @@ if (isset($_POST["signin"])) {
           </div>
           <input type="submit" value="Login" name="signin" class="btn solid" />
           <p style="display: flex;justify-content: center;align-items: center;margin-top: 20px;"><a href="forgot-password.php" style="color: #4590ef;">Forgot Password?</a></p>
+          <a href="../index.php"><i class="fa fa-home"></i> Back Home</a>
         </form>
         <form action="" class="sign-up-form" method="post">
           <h2 class="title">Sign up</h2>
@@ -104,6 +105,7 @@ if (isset($_POST["signin"])) {
             <input type="password" placeholder="Confirm Password" name="signup_cpassword" value="<?php echo $_POST["signup_cpassword"]; ?>" required />
           </div>
           <input type="submit" class="btn" name="signup" value="Sign up" />
+          <a href="../index.php"><i class="fa fa-home"></i> Back Home</a>
         </form>
       </div>
     </div>
