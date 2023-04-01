@@ -82,8 +82,10 @@ echo '<script>alert("Your profile has been updated")</script>';
                             <div class="card-body card-block">
  <?php
 
-$sql="SELECT * from  tbladmin";
+$aid=$_SESSION['osghsaid'];
+$sql="SELECT * from  tbladmin where ID=:aid";
 $query = $dbh -> prepare($sql);
+$query->bindParam(':aid',$aid,PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;

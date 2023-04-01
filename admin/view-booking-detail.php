@@ -23,6 +23,14 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 
    $query->execute();
 
+
+   for($i = 0 ; $i < count($_POST['guards']); $i++){
+      $sql="update tblguard set isAssigned=:val";
+      $query=$dbh->prepare($sql);
+      $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
+      $query->execute();
+   }
+
     echo '<script>alert("Booking status has been updated")</script>';
 echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
   }
@@ -203,9 +211,11 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $row1)
-{               ?>
+{
+    if($row1->isAssigned == 0){
+               ?>
      <option value="<?php echo htmlentities ($row1->Name);?>"> <?php echo htmlentities ($row1->Name);?></option>
-          <?php $cnt=$cnt+1;}} ?>
+          <?php $cnt=$cnt+1;}}} ?>
      
    </select></td>
   </tr>
