@@ -96,12 +96,14 @@ echo "<script>window.location.href ='index.php'</script>";
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">Shift Requirement</label>
 							
-								<select name="shift" required="true" class="form-control">
+								<!-- <select name="shift" required="true" class="form-control">
 									<option value="">Choose Shift</option>
 									<option value="Day">Day</option>
 									<option value="Night">Night</option>
 									<option value="24hrs">24hrs</option>
-								</select>
+								</select> -->
+								<input type = "hidden" name="shift" value="123">
+								<input type="file" name="lis">
 							</div>
 							<div class="col-md-6">
 								<label style="padding-top: 10px;">Gender</label>

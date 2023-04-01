@@ -83,7 +83,7 @@ $new_booking_row_count = $query->rowCount();
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Booking Request
-                <span class="notify-badge"> <?= $new_booking_row_count ?> </span>
+                <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -98,7 +98,7 @@ $new_booking_row_count = $query->rowCount();
                 <a href="new-booking-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Booking</p>
-                  <span class="notify-badge"> <?= $new_booking_row_count ?> </span>
+                  <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
                 </a>
               </li>
               <li class="nav-item">
