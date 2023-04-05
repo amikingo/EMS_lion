@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>About Us-Admas University Grading system </title>
+  <title>About Us-Lion Security Services PLC </title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
