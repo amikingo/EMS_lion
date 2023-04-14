@@ -12,8 +12,8 @@ if(isset($_POST['submit'])){
 
   $firstname=$_POST['firstname'];
   $lastname=$_POST['lastname'];
-  $email=$_POST['email'];
-  $phoneNumber=$_POST['phoneNumber'];
+  $othername=$_POST['othername'];
+  $matricNo=$_POST['matricNo'];
   $levelId=$_POST['levelId'];
     $sessionId=$_POST['sessionId'];
 
@@ -22,7 +22,7 @@ $departmentId=$_POST['departmentId'];
 $facultyId=$_POST['facultyId'];
   $dateCreated = date("Y-m-d");
 
-    $query=mysqli_query($con,"select * from tblstudent where phoneNumber='$phoneNumber'");
+    $query=mysqli_query($con,"select * from tblstudent where matricno ='$matricNo'");
     $ret=mysqli_fetch_array($query);
     if($ret > 0){
 
@@ -32,13 +32,12 @@ $facultyId=$_POST['facultyId'];
     }
     else{
 
-    $query=mysqli_query($con,"insert into tblstudent(firstName,lastName,otherName,matricNo,password,levelId,facultyId,departmentId,sessionId,dateCreated) value('$firstname','$lastname','$email','$phoneNumber','878cd5b7460225fd87094d2b73775cbc','$levelId','$facultyId','$departmentId','$sessionId','$dateCreated')");
-    //The Defined Password for the Customer is cus@123
+    $query=mysqli_query($con,"insert into tblstudent(firstName,lastName,otherName,matricNo,password,levelId,facultyId,departmentId,sessionId,dateCreated) value('$firstname','$lastname','$othername','$matricNo','cd41287b93a9317b6b2d1da8bec1def1','$levelId','$facultyId','$departmentId','$sessionId','$dateCreated')");
 
     if ($query) {
 
       $alertStyle ="alert alert-success";
-      $statusMsg="Customer Added Successfully!";
+      $statusMsg="Student Added Successfully!";
   }
   else
     {
@@ -175,8 +174,8 @@ function showValues(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
 													
-                                                        <label for="cc-exp" class="control-label mb-1">Email</label>
-                                                        <input id="" name="Email" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid Email" placeholder="Enter Email">
+                                                        <label for="cc-exp" class="control-label mb-1">Other Name</label>
+                                                        <input id="" name="othername" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Other Name">
                                                     </div>
                                                 </div>
                                             <div class="col-6">
@@ -251,7 +250,7 @@ function showValues(str) {
                                                 </div>
                                              </div>
 										
-                                             <p><small><i>Note: By default student's password is set to "<b>cus@123</b>"</i></small></p>
+                                             <p><small><i>Note: By default student's password is set to "<b>Student@123</b>"</i></small></p>
                                                 <button type="submit" name="submit" class="btn btn-success">Add New Student</button>
                                             </div>
                                         </form>

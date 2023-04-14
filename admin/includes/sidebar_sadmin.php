@@ -73,44 +73,6 @@ foreach($results as $row)
               </li>
              </ul>
           </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Manage Teacher
-                <i class="fas fa-angle-left right"></i>
-                
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="createClassTeacher.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create Class Teachers</p>
-                </a>
-              </li>
-             </ul>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Manage Student
-                <i class="fas fa-angle-left right"></i>
-                
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="add-security-guard.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create Student</p>
-                </a>
-              </li>
-             </ul>
-          </li>
            
        
 <li class="nav-item has-treeview">

@@ -134,15 +134,6 @@ $new_booking_row_count = $query->rowCount();
             </a>
         
           </li>
-          <li class="nav-item">
-            <a href="createCustomer.php" class="nav-link">
-              <i class="nav-icon fa fa-plus"></i>
-              <p>
-                ADD Customer
-               </p>
-            </a>
-        
-          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>
