@@ -21,6 +21,9 @@ foreach($results as $row)
   else if ($row->adminTypeId == 2){
     include_once('includes/sidebar_HR.php');
   }
+  else if($row->adminTypeId == 3){
+    include_once('includes/sidebar_Trainer.php');
+  }
   
 }
 }

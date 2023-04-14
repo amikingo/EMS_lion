@@ -49,99 +49,61 @@ foreach($results as $row)
         
           </li>
           
-<?php
-
-$sql="SELECT * from tblhiring where Status is null";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-
-$new_booking_row_count = $query->rowCount();
-
-?>
-          
- 
-<style type="text/css">
-.notify-badge {
-    height: 5;
-    background: red;
-    color: white;
-    border-radius: 100px;
-    /* padding: 5px; */
-    width: 20px;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    height: 20px;
-    vertical-align: middle;
-    font-size: 13px;
-}
-</style>          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Manage Trainnee
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="add-security-guard.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>view Students</p>
+                </a>
+              </li>
+             </ul>
+          </li>
+           
        
 <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Booking Request
-                <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
+                Manage Attendance
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="all-booking-request.php" class="nav-link">
+                <a href="admin-profile.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>All Booking Request</p>
+                  <p>Take Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="new-booking-request.php" class="nav-link">
+                <a href="change-password.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Booking</p>
-                  <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
+                  <p>View Class Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="accepted-booking-request.php" class="nav-link">
+                <a href="logout.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted Booking</p>
+                  <p>View Student Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="rejected-booking-request.php" class="nav-link">
+                <a href="logout.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected Booking</p>
+                  <p>Todays Report XLS</p>
                 </a>
               </li>
-            </ul>
+             </ul>
           </li>
-
-          <li class="nav-item">
-            <a href="between-dates-report.php" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                B/W Report
-               </p>
-            </a>
-        
-          </li>
-      <li class="nav-item">
-            <a href="search.php" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
-              <p>
-                search request
-               </p>
-            </a>
-        
-          </li>
-          <li class="nav-item">
-            <a href="createCustomer.php" class="nav-link">
-              <i class="nav-icon fa fa-plus"></i>
-              <p>
-                ADD Customer
-               </p>
-            </a>
-        
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
