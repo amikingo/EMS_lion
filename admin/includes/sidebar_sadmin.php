@@ -84,33 +84,14 @@ foreach($results as $row)
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="all-booking-request.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Booking Request</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="new-booking-request.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>New Booking</p>
-                </a>
-              </li>
+             
               <li class="nav-item">
                 <a href="accepted-booking-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Accepted Booking</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="rejected-booking-request.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected Booking</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
+            
           <li class="nav-item">
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
