@@ -72,14 +72,14 @@ $totalguard=$query->rowCount();
 ?>
 
        
-            <div class="small-box bg-info">
+            <div class="small-box bg-info " style="background-color: #a9b189 !important;">
               <div class="inner">
                 <h3><?php echo htmlentities($totalguard);?></h3>
 
                 <p>Total Guard</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person"></i>
+                <i class="ion ion-person-stalker"></i>
               </div>
               <a href="manage-security-guard.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -93,16 +93,16 @@ $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $newbooking=$query->rowCount();
 ?>
-            <div class="small-box bg-warning">
-              <div class="inner">
+            <div class="small-box bg-warning"style="background-color:#9f7858 !important;">
+              <div class="inner" style="color: white !important;">
                 <h3><?php echo htmlentities($newbooking);?><sup style="font-size: 20px"></sup></h3>
 
                 <p>New Booking Request</p>
               </div>
               <div class="icon">
-                <i class="ion ion-document"></i>
+                <i class="ion ion-chatboxes"></i>
               </div>
-              <a href="new-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="new-booking-request.php" class="small-box-footer" style="color: white !important;">More info <i class="fas fa-arrow-circle-right" style="color: white !important;"></i></a>
             </div>
           </div>
          <div class="col-lg-4 col-6">
@@ -115,14 +115,14 @@ $accbooking=$query->rowCount();
 ?>
 
        
-            <div class="small-box bg-success">
+            <div class="small-box bg-success"style="background-color: #7c9cb8 !important;">
               <div class="inner">
                 <h3><?php echo htmlentities($accbooking);?></h3>
 
                 <p>Total Accepted Booking</p>
               </div>
               <div class="icon">
-                <i class="ion ion-document"></i>
+                <i class="ion ion-document-text "></i>
               </div>
               <a href="accepted-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -137,7 +137,7 @@ $rejbooking=$query->rowCount();
 ?>
 
        
-            <div class="small-box bg-danger">
+            <div class="small-box bg-danger" style="background-color: #5fa6f2 !important;">
               <div class="inner">
                 <h3><?php echo htmlentities($rejbooking);?></h3>
 
@@ -161,14 +161,14 @@ $totalbooking=$query->rowCount();
 ?>
 
        
-            <div class="small-box bg-info">
+            <div class="small-box bg-info" style="background-color: #629b96 !important;">
               <div class="inner">
                 <h3><?php echo htmlentities($totalbooking);?></h3>
 
                 <p>Total  Booking</p>
               </div>
               <div class="icon">
-                <i class="ion ion-document"></i>
+                <i class="ion ion-clipboard"></i>
               </div>
               <a href="all-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

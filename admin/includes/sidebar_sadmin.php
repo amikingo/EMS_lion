@@ -4,16 +4,14 @@
     <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
 
-      <span class="brand-text font-weight-light">Lion security services</span>
+    <span class="brand-text font-weight-light"><img alt="logo" src="../assets/img/LOGO.png" style="width: 235px;height: 40px;"></span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="dist/img/download.png" class="img-circle elevation-" alt="User Image">
-        </div>
+       
         <div class="info">
 <?php
 $aid=$_SESSION['osghsaid'];
@@ -55,7 +53,7 @@ foreach($results as $row)
               <p>
                 Secuirty Guard
                 <i class="fas fa-angle-left right"></i>
-                
+   
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -73,7 +71,42 @@ foreach($results as $row)
               </li>
              </ul>
           </li>
-           
+ 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+              Create Teacher
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="createClassTeacher.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Create Teacher </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+              Create Student 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="createStudents.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Student </p>
+                </a>
+              </li>
+            </ul>
+          </li>
        
 <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -100,7 +133,6 @@ foreach($results as $row)
                 B/W Report
                </p>
             </a>
-        
           </li>
       <li class="nav-item">
             <a href="search.php" class="nav-link">
