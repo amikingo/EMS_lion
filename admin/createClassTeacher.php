@@ -284,6 +284,7 @@ if(isset($_POST['save'])){
                         <th>Class</th>
                         <th>Class Arm</th>
                         <th>Date Created</th>
+                        <th>Edit</th>
                         <th>Delete</th>
                       </tr>
                     </thead>
@@ -315,6 +316,7 @@ if(isset($_POST['save'])){
                                 <td>".$rows['className']."</td>
                                 <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
+                                 <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
                                 <td><a href='?action=delete&Id=".$rows['Id']."&classArmId=".$rows['classArmId']."'><i class='fas fa-fw fa-trash'></i></a></td>
                               </tr>";
                           }

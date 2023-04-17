@@ -12,23 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
        
-        <div class="info">
-<?php
-$aid=$_SESSION['osghsaid'];
-$sql="SELECT AdminName from  tbladmin where ID=:aid";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':aid',$aid,PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-          <a href="admin-profile.php" class="d-block">Welcome : <?php  echo $row->AdminName;?></a>
-          <?php $cnt=$cnt+1;}} ?>
-        </div>
-      </div>
+     
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
