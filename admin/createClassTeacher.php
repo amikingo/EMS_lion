@@ -175,7 +175,7 @@ if(isset($_POST['save'])){
 <body class="hold-transition sidebar-mini" id="page-top">
   <div class="wrapper" id="wrapper">
     <!-- Sidebar -->
-     <?php include "ncludes/sidebar_sadmin.php";?> 
+     <?php include "includes/sidebar_sadmin.php";?> 
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
