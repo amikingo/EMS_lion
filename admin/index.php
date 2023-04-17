@@ -54,7 +54,7 @@ echo "<script>alert('Invalid Details');</script>";
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
 </head>
 
 <body class="bg-gradient-login">
@@ -91,17 +91,7 @@ echo "<script>alert('Invalid Details');</script>";
                         <input type="submit"  class="btn btn-primary btn-block" value="Login" name="login" />
                     </div>
                      </form>
-
-
-
-                    <!-- <hr>
-                    <a href="index.html" class="btn btn-google btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a> -->
-                  
+    
                   </div>
                 </div>
               </div>
