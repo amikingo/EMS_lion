@@ -14,7 +14,7 @@ if(isset($_POST['save'])){
 
   $phoneNo=$_POST['phoneNo'];
   $classId=$_POST['classId'];
-  $classArmId=$_POST['classArmId'];
+  $classArmId=6;
   $dateCreated = date("Y-m-d");
    
     $query=mysqli_query($conn,"select * from tblclassteacher where emailAddress ='$emailAddress'");
@@ -30,7 +30,7 @@ if(isset($_POST['save'])){
     else{
 
     $query=mysqli_query($conn,"INSERT into tblclassteacher(firstName,lastName,emailAddress,password,phoneNo,classId,classArmId,dateCreated) 
-    value('$firstName','$lastName','$emailAddress','$sampPass_2','$phoneNo','$classId','$classArmId','$dateCreated')");
+    value('$firstName','$lastName','$emailAddress','$sampPass_2','$phoneNo','$classId',$classArmId,'$dateCreated')");
 
     if ($query) {
         
@@ -77,7 +77,7 @@ if(isset($_POST['save'])){
 
               $phoneNo=$_POST['phoneNo'];
               $classId=$_POST['classId'];
-              $classArmId=$_POST['classArmId'];
+              $classArmId=6;
               $dateCreated = date("Y-m-d");
 
     $query=mysqli_query($conn,"update tblclassteacher set firstName='$firstName', lastName='$lastName',
@@ -181,10 +181,10 @@ if(isset($_POST['save'])){
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Create Class Teachers</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create Trainers</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create Class Teachers</li>
+              <li class="breadcrumb-item active" aria-current="page">Create Trainers</li>
             </ol>
           </div>
           </div>
@@ -197,7 +197,7 @@ if(isset($_POST['save'])){
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Create Class Teachers</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Create Trainers</h6>
                     <!-- <?// echo $statusMsg; ?> -->
                 </div>
                 <div class="card-body">
@@ -241,8 +241,7 @@ if(isset($_POST['save'])){
                             ?>  
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
-                         <input type="text" class="form-control" name="classArmId" value="<?php echo $row['classArmId'];?>" id="exampleInputFirstName" >
+                   
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -282,7 +281,6 @@ if(isset($_POST['save'])){
                         <th>Email Address</th>
                         <th>Phone No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
                         <th>Date Created</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -314,7 +312,6 @@ if(isset($_POST['save'])){
                                 <td>".$rows['emailAddress']."</td>
                                 <td>".$rows['phoneNo']."</td>
                                 <td>".$rows['className']."</td>
-                                <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
                                  <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
                                 <td><a href='?action=delete&Id=".$rows['Id']."&classArmId=".$rows['classArmId']."'><i class='fas fa-fw fa-trash'></i></a></td>

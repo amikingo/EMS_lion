@@ -16,7 +16,7 @@ if(isset($_POST['save'])){
 
   $admissionNumber=$_POST['admissionNumber'];
   $classId=$_POST['classId'];
-  $classArmId=$_POST['classArmId'];
+  $classArmId=6;
   $dateCreated = date("Y-m-d");
    
     $query=mysqli_query($conn,"select * from tblstudents where admissionNumber ='$admissionNumber'");
@@ -69,11 +69,11 @@ if(isset($_POST['save'])){
 
   $admissionNumber=$_POST['admissionNumber'];
   $classId=$_POST['classId'];
-  $classArmId=$_POST['classArmId'];
+  $classArmId=6;
   $dateCreated = date("Y-m-d");
 
  $query=mysqli_query($conn,"update tblstudents set firstName='$firstName', lastName='$lastName',
-    otherName='$otherName', admissionNumber='$admissionNumber',classId='$classId'
+    otherName='$otherName', admissionNumber='$admissionNumber',password='12345', classId='$classId',classArmId='$classArmId'
     where Id='$Id'");
             if ($query) {
                 
@@ -213,7 +213,6 @@ if(isset($_POST['save'])){
                             ?>  
                         </div>
                         <div class="col-xl-6">
-                        <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
@@ -253,7 +252,6 @@ if(isset($_POST['save'])){
                         <th>Other Name</th>
                         <th>Admission No</th>
                         <th>Class</th>
-                        <th>Class Arm</th>
                         <th>Date Created</th>
                          <th>Edit</th>
                         <th>Delete</th>
@@ -285,7 +283,6 @@ if(isset($_POST['save'])){
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
                                 <td>".$rows['className']."</td>
-                                <td>".$rows['classArmName']."</td>
                                  <td>".$rows['dateCreated']."</td>
                                 <td><a href='?action=edit&Id=".$rows['Id']."'><i class='fas fa-fw fa-edit'></i></a></td>
                                 <td><a href='?action=delete&Id=".$rows['Id']."'><i class='fas fa-fw fa-trash'></i></a></td>
