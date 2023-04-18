@@ -73,7 +73,7 @@ if(isset($_POST['save'])){
   $dateCreated = date("Y-m-d");
 
  $query=mysqli_query($conn,"update tblstudents set firstName='$firstName', lastName='$lastName',
-    otherName='$otherName', admissionNumber='$admissionNumber',password='12345', classId='$classId',classArmId='$classArmId'
+    otherName='$otherName', admissionNumber='$admissionNumber',classId='$classId'
     where Id='$Id'");
             if ($query) {
                 
