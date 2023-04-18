@@ -1,7 +1,8 @@
 
 <?php 
 error_reporting(0);
-include '../attendance-php/Includes/dbcon.php';
+include 'includes/dbconnection.php';
+//include '../attendance-php/Includes/dbcon.php';
 // include '../attendance-php/Includes/session.php';
 session_start();
 
