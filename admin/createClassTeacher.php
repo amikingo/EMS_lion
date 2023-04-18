@@ -1,5 +1,5 @@
 <?php 
-//error_reporting(0);
+error_reporting(0);
 include '../attendance-php/Includes/dbcon.php';
 //  include '../attendance-php/Includes/session.php';
 
@@ -160,19 +160,20 @@ if(isset($_POST['save'])){
 
 
 
-<body class="hold-transition sidebar-mini" id="page-top">
-  <div class="wrapper" id="wrapper">
+<body class="hold-transition sidebar-mini" >
+  <div class="wrapper" >
     <!-- Sidebar -->
+    <?php include "includes/header.php";?>
+       <!-- <div > <h5>Teacher</h5></div> -->
+       <?php include "includes/sidebar_sadmin.php";?> 
     <!-- Sidebar -->
-    <div id="content-wrapper" > 
+    <div class="content-wrapper" > 
       <!-- class="d-flex flex-column" -->
       <div id="content">
         <!-- TopBar -->
-       <?php include "includes/header.php";?>
-       <!-- <div > <h5>Teacher</h5></div> -->
-       <?php include "includes/sidebar_sadmin.php";?> 
+      
  
-<!-- <?php// include_once('includes/sidebar.php');?> -->
+<!-- <?// include_once('includes/sidebar.php');?> -->
         <!-- Topbar -->
 <!-- </div> -->
 
@@ -187,14 +188,16 @@ if(isset($_POST['save'])){
           </div>
           </div>
           <!-- </div> -->
-
+      </div>
+    <section  class="content">
+      <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Create Class Teachers</h6>
-                    <!-- <?php// echo $statusMsg; ?> -->
+                    <!-- <?// echo $statusMsg; ?> -->
                 </div>
                 <div class="card-body">
 
@@ -347,6 +350,8 @@ if(isset($_POST['save'])){
 
         </div>
         <!---Container Fluid-->
+     
+    </section>
       </div>
       <!-- Footer -->
        <?php include "includes/footer.php";?>

@@ -137,16 +137,19 @@ if(isset($_POST['save'])){
 
 
 
-<body id="page-top">
-  <div id="wrapper">
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+  <?php include "includes/header.php";?>
     <!-- Sidebar -->
       <?php include "includes/sidebar_sadmin.php";?>
     <!-- Sidebar -->
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content">
-        <!-- TopBar -->
-       <?php include "includes/header.php";?>
+      <!-- TopBar -->
+   
         <!-- Topbar -->
+    <div class="content-wrapper" >
+    <!-- class="d-flex flex-column" -->
+      <div id="content">
+      
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
@@ -157,7 +160,10 @@ if(isset($_POST['save'])){
               <li class="breadcrumb-item active" aria-current="page">Create Students</li>
             </ol>
           </div>
-
+        </div>
+      </div>
+          <section class="content">
+      <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
               <!-- Form Basic -->
@@ -316,6 +322,8 @@ if(isset($_POST['save'])){
 
         </div>
         <!---Container Fluid-->
+     
+          </section>
       </div>
       <!-- Footer -->
        <?php include "includes/footer.php";?>
