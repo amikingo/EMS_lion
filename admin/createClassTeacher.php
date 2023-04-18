@@ -81,7 +81,7 @@ if(isset($_POST['save'])){
               $dateCreated = date("Y-m-d");
 
     $query=mysqli_query($conn,"update tblclassteacher set firstName='$firstName', lastName='$lastName',
-    emailAddress='$emailAddress', password='$password',phoneNo='$phoneNo', classId='$classId',classArmId='$classArmId'
+    emailAddress='$emailAddress', phoneNo='$phoneNo', classId='$classId',classArmId='$classArmId'
     where Id='$Id'");
             if ($query) {
                 
@@ -242,6 +242,7 @@ if(isset($_POST['save'])){
                         </div>
                         <div class="col-xl-6">
                         <label class="form-control-label">Class Arm<span class="text-danger ml-2">*</span></label>
+                         <input type="text" class="form-control" name="classArmId" value="<?php echo $row['classArmId'];?>" id="exampleInputFirstName" >
                             <?php
                                 echo"<div id='txtHint'></div>";
                             ?>
