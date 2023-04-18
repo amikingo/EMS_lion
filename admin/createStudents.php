@@ -134,7 +134,7 @@ if(isset($_POST['save'])){
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!-- <link href="css/ruang-admin.min.css" rel="stylesheet"> -->
-
+</head>
 
 
 <body class="hold-transition sidebar-mini">
@@ -351,6 +351,17 @@ if(isset($_POST['save'])){
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
+
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
   
   <script>
     function classArmDropdown(str) {
