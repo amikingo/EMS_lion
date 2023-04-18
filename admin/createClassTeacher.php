@@ -1,6 +1,5 @@
-
 <?php 
-error_reporting(0);
+//error_reporting(0);
 include '../attendance-php/Includes/dbcon.php';
 //  include '../attendance-php/Includes/session.php';
 
@@ -130,58 +129,52 @@ if(isset($_POST['save'])){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+
   <link href="img/logo/attnlg.jpg" rel="icon">
-  <?php include 'includes/title.php';?>
+  
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
 
-
-
-   <script>
-    function classArmDropdown(str) {
-    if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","ajaxClassArms.php?cid="+str,true);
-        xmlhttp.send();
-    }
-}
-</script>
 </head>
+
+
+
+
+
+
 
 <body class="hold-transition sidebar-mini" id="page-top">
   <div class="wrapper" id="wrapper">
     <!-- Sidebar -->
-     <?php include "includes/sidebar_sadmin.php";?> 
     <!-- Sidebar -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" > 
+      <!-- class="d-flex flex-column" -->
       <div id="content">
         <!-- TopBar -->
        <?php include "includes/header.php";?>
+       <!-- <div > <h5>Teacher</h5></div> -->
+       <?php include "includes/sidebar_sadmin.php";?> 
+ 
+<!-- <?php// include_once('includes/sidebar.php');?> -->
         <!-- Topbar -->
+<!-- </div> -->
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
@@ -192,6 +185,8 @@ if(isset($_POST['save'])){
               <li class="breadcrumb-item active" aria-current="page">Create Class Teachers</li>
             </ol>
           </div>
+          </div>
+          <!-- </div> -->
 
           <div class="row">
             <div class="col-lg-12">
@@ -199,7 +194,7 @@ if(isset($_POST['save'])){
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Create Class Teachers</h6>
-                    <?php echo $statusMsg; ?>
+                    <!-- <?php// echo $statusMsg; ?> -->
                 </div>
                 <div class="card-body">
 
@@ -379,6 +374,56 @@ if(isset($_POST['save'])){
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
     });
   </script>
+
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+
+<script>
+    function classArmDropdown(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajaxClassArms.php?cid="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
 </body>
 
 </html>

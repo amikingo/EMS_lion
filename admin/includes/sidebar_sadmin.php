@@ -1,5 +1,6 @@
  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-8">
+
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
@@ -10,9 +11,26 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-       
-     
+       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+<?php
+//   session_start();
+//   include 'dbconnection.php';
+// $aid=$_SESSION['osghsaid'];
+// $sql="SELECT AdminName from  tbladmin where ID=:aid";
+// $query = $dbh -> prepare($sql);
+// $query->bindParam(':aid',$aid,PDO::PARAM_STR);
+// $query->execute();
+// $results=$query->fetchAll(PDO::FETCH_OBJ);
+// $cnt=1;
+// if($query->rowCount() > 0)
+// {
+// foreach($results as $row)
+// {               ?>
+          <!-- <a href="admin-profile.php" class="d-block">Welcome : <?php // echo $row->AdminName;?></a> -->
+          <?php// $cnt=$cnt+1;}} ?>
+        </div>
+      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
