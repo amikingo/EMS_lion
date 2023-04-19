@@ -28,7 +28,7 @@
 // foreach($results as $row)
 // {               ?>
           <!-- <a href="admin-profile.php" class="d-block">Welcome : <?php // echo $row->AdminName;?></a> -->
-          <?php// $cnt=$cnt+1;}} ?>
+          <?// $cnt=$cnt+1;}} ?>
         </div>
       </div>
 
@@ -78,7 +78,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-              Create Teacher
+              Create Trainer
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -86,7 +86,7 @@
               <li class="nav-item">
                 <a href="createClassTeacher.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> Create Teacher </p>
+                  <p> Create Trainer </p>
                 </a>
               </li>
             </ul>
@@ -96,7 +96,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
-              Create Student 
+              Create Trainee 
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -104,7 +104,7 @@
               <li class="nav-item">
                 <a href="createStudents.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Student </p>
+                  <p>Create Trainee</p>
                 </a>
               </li>
             </ul>
