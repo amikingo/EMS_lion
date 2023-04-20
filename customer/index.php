@@ -12,10 +12,9 @@ $booknum=mt_rand(100000000, 999999999);
     $mobnum=$_POST['mobnum'];
     $add=$_POST['add'];
    $reqnum=$_POST['reqnum'];
-   $shift=$_POST['shift'];
    $gender=$_POST['gender'];
  
-$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Shift,Gender)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:shift,:gender)";
+$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Gender)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:gender)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':booknum',$booknum,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
@@ -24,7 +23,6 @@ $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':mobnum',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':add',$add,PDO::PARAM_STR);
 $query->bindParam(':reqnum',$reqnum,PDO::PARAM_STR);
-$query->bindParam(':shift',$shift,PDO::PARAM_STR);
 $query->bindParam(':gender',$gender,PDO::PARAM_STR);
  $query->execute();
    $LastInsertId=$dbh->lastInsertId();
@@ -93,18 +91,18 @@ echo "<script>window.location.href ='index.php'</script>";
 								<label style="padding-bottom: 10px;">Requirement Number<small style="color:red;">(Number of Guards)</small></label>
 								<input type="text" placeholder="Requirement Number" name="reqnum" class="form-control" required="true">
 							</div>
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<label style="padding-bottom: 10px;">Shift Requirement</label>
 							
-								<!-- <select name="shift" required="true" class="form-control">
+								<select name="shift" required="true" class="form-control">
 									<option value="">Choose Shift</option>
 									<option value="Day">Day</option>
 									<option value="Night">Night</option>
 									<option value="24hrs">24hrs</option>
 								</select> -->
-								<input type = "hidden" name="shift" value="123">
-								<input type="file" name="lis">
-							</div>
+								<!-- <input type = "hidden" name="shift" value="123"> -->
+								<!-- <input type="file" name="lis"> -->
+							<!-- </div> -->
 							<div class="col-md-6">
 								<label style="padding-top: 10px;">Gender</label>
 								<select name="gender" required="true" class="form-control">

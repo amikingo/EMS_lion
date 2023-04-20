@@ -10,7 +10,7 @@
 ?>
 <nav class="navbar navbar-expand navbar-light light-primary topbar mb-4 static-top">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars" style="color:black"></i>
           </button>
         <div class="text-white big" style="margin-left:100px;"></div>
           <ul class="navbar-nav ml-auto">

@@ -55,6 +55,9 @@ error_reporting(0);
 						</div>
 					</form>
 				</div>
+				
+				
+			</div>
 <div class="form-body">
 	<br><br><br>
                   <?php

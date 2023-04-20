@@ -17,7 +17,7 @@ include '../Includes/session.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/attnlg.jpg" rel="icon">
+ 
   <title>Dashboard</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -63,10 +63,10 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">View Student Attendance</h1>
+            <h1 class="h3 mb-0 text-gray-800">View Trainee Attendance</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">View Student Attendance</li>
+              <li class="breadcrumb-item active" aria-current="page">View Trainee Attendance</li>
             </ol>
           </div>
 
@@ -75,14 +75,14 @@ include '../Includes/session.php';
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">View Student Attendance</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">View Trainee Attendance</h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
                   <form method="post">
                     <div class="form-group row mb-3">
                         <div class="col-xl-6">
-                        <label class="form-control-label">Select Student<span class="text-danger ml-2">*</span></label>
+                        <label class="form-control-label">Select Trainee<span class="text-danger ml-2">*</span></label>
                         <?php
                         $qry= "SELECT * FROM tblstudents where classId = '$_SESSION[classId]' and classArmId = '$_SESSION[classArmId]' ORDER BY firstName ASC";
                         $result = $conn->query($qry);
