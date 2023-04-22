@@ -119,7 +119,7 @@ if(isset($_POST['save'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Create Trainee</title>
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
@@ -130,7 +130,6 @@ if(isset($_POST['save'])){
   <!-- Google Font: Source Sans Pro -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
 
-  <link href="img/logo/attnlg.jpg" rel="icon">
   
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -155,10 +154,10 @@ if(isset($_POST['save'])){
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Create Students</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create Trainee </h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Create Students</li>
+              <li class="breadcrumb-item active" aria-current="page">Create Trainee </li>
             </ol>
           </div>
         </div>
@@ -170,7 +169,7 @@ if(isset($_POST['save'])){
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Create Students</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Create Trainee </h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
@@ -240,7 +239,7 @@ if(isset($_POST['save'])){
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">All Student</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">All Trainee</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
