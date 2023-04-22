@@ -100,7 +100,7 @@ foreach($results as $row)
                                             <span class="badge badge-danger"><?php  echo htmlentities($row->Status);?></span>
                                         </td>
 
-                    <td><a href="view-booking-detail.php?bookingid=<?php echo htmlentities ($row->BookingNumber);?>" class="btn btn-primary"> View </a></td>
+                    <td><a href="view-booking-detail.php?bookingid=<?php echo htmlentities ($row->BookingNumber);?>" class="btn btn-primary"> More </a></td>
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>

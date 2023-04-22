@@ -95,7 +95,7 @@ foreach($results as $row)
                     <td> <?php  echo htmlentities($row->MobileNumber);?></td>
                   
 
-                    <td><a href="view-booking-detail.php?bookingid=<?php echo htmlentities ($row->BookingNumber);?>" class="btn btn-primary"> More </a></td>
+                    <td><a href="edit-guard-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"></td>
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
