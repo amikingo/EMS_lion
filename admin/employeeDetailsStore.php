@@ -34,7 +34,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
 <html>
 <head>
   
-  <title>Lion Security Services | Update Security Guard</title>
+  <title>Lion Security Services | View More</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -59,12 +59,12 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Update Security Guard</h1>
+            <h1>View More About Security Guard</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Update Security Guard</li>
+              <li class="breadcrumb-item active">View More About Security Guard</li>
             </ol>
           </div>
         </div>
@@ -80,7 +80,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Update Security Guard</h3>
+                <h3 class="card-title">View More About Security Guard</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -101,24 +101,24 @@ foreach($results as $row)
                   <div class="form-group">
                     <label for="exampleInputEmail1">Profile Pics</label><br>
                     <img src="images/<?php echo $row->Profilepic;?>"class="img circle" width="100" height="100" value="<?php  echo $row->Profilepic;?>"><br>
-                    <a href="changeimage.php?editid=<?php echo $row->ID;?>"> &nbsp; Edit Image</a>
+
                   </div>
                      <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true">
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true" readonly>
                   </div>
                   
                   <div class="form-group">
                     <label for="exampleInputEmail1">Mobile Number</label>
-                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->MobileNumber);?>" maxlength="10" pattern="[0-9]+" required="true">
+                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->MobileNumber);?>" maxlength="10" pattern="[0-9]+" required="true" readonly>
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
-                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true"><?php echo htmlentities($row->Address);?></textarea>
+                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" readonly><?php echo htmlentities($row->Address);?></textarea>
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Type</label>
-                     <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
+                     <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true" readonly>
 <option value="<?php echo htmlentities($row->IDtype);?>"><?php echo htmlentities($row->IDtype);?></option>
                                                         
 <option value="Adhar Card">Adhar Card</option>
@@ -130,16 +130,16 @@ foreach($results as $row)
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Number</label>
-                    <input type="text" class="form-control" id="idnum" name="idnum" required="true" value="<?php echo htmlentities($row->IDnumber);?>">
+                    <input type="text" class="form-control" id="idnum" name="idnum" required="true" value="<?php echo htmlentities($row->IDnumber);?>"readonly>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Registration Date</label>
-                    <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>">
+                    <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
                   </div>
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+
                 </div>
               </form>
             </div>
