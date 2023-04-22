@@ -77,7 +77,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isAssigned='1' AND UniformAssigned='0'";
+$sql="SELECT * from tblguard where isAssigned='1' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -95,7 +95,7 @@ foreach($results as $row)
                     <td> <?php  echo htmlentities($row->MobileNumber);?></td>
                   
 
-                    <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"></td>
+                    <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"> View</td>
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>

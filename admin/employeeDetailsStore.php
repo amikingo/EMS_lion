@@ -10,6 +10,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 
 $eid=$_GET['editid'];
 $name=$_POST['name'];
+$UniformAssigned=$_POST['UniformAssigned'];
 $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
@@ -18,6 +19,7 @@ $idnum=$_POST['idnum'];
 $sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':UniformAssigned',$UniformAssigned,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
@@ -106,6 +108,15 @@ foreach($results as $row)
                      <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true" readonly>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Is Uniform Assigned</label>
+                    <input type="text" class="form-control" id="UniformAssigned" name="UniformAssigned" value="<?php
+  $uniformAssigned = htmlentities($row->UniformAssigned);
+  $isUniformAssigned = ($uniformAssigned == 0) ? 'not Assigned' : 'is Assigned';
+  echo $isUniformAssigned;
+?>" required="true" readonly>
                   </div>
                   
                   <div class="form-group">
