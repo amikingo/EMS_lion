@@ -89,7 +89,7 @@ include '../Includes/session.php';
                         $num = $result->num_rows;		
                         if ($num > 0){
                           echo ' <select required name="admissionNumber" class="form-control mb-3">';
-                          echo'<option value="">--Select Student--</option>';
+                          echo'<option value="">--Select Trainee--</option>';
                           while ($rows = $result->fetch_assoc()){
                           echo'<option value="'.$rows['admissionNumber'].'" >'.$rows['firstName'].' '.$rows['lastName'].'</option>';
                               }
@@ -130,7 +130,7 @@ include '../Includes/session.php';
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Class Attendance</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Attendance</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">

@@ -38,10 +38,10 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">View Class Attendance</h1>
+            <h1 class="h3 mb-0 text-gray-800">View Attendance</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">View Class Attendance</li>
+              <li class="breadcrumb-item active" aria-current="page">View Attendance</li>
             </ol>
           </div>
 
@@ -50,7 +50,7 @@ include '../Includes/session.php';
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">View Class Attendance</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">View Attendance</h6>
                     <?php echo $statusMsg; ?>
                 </div>
                 <div class="card-body">
@@ -75,7 +75,7 @@ include '../Includes/session.php';
               <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Class Attendance</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Attendance</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">

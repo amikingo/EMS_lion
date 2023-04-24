@@ -80,35 +80,44 @@ $new_booking_row_count = $query->rowCount();
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Booking Request
+                Customer Request
                 <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="all-booking-request.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Booking Request</p>
-                </a>
-              </li>
+            <li class="nav-item">
+            <a href="search.php" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search request
+               </p>
+            </a>
+          </li>
+             
               <li class="nav-item">
                 <a href="new-booking-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Booking</p>
+                  <p>Approve Requests</p>
                   <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="accepted-booking-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted Booking</p>
+                  <p>Accepted Requests</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="rejected-booking-request.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected Booking</p>
+                  <p>Rejected Requests</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="all-booking-request.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Requests</p>
                 </a>
               </li>
             </ul>
@@ -118,12 +127,12 @@ $new_booking_row_count = $query->rowCount();
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                B/W Report
+                Generate Report
                </p>
             </a>
         
           </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
             <a href="search.php" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
@@ -131,7 +140,7 @@ $new_booking_row_count = $query->rowCount();
                </p>
             </a>
         
-          </li>
+          </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>
