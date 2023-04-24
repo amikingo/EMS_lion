@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>New Order</title>
+  <title>All Employee List</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -42,7 +42,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New Ordert</h1>
+            <h1>Employee List</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -35,7 +35,7 @@ if (isset($_SESSION["user_id"])) {
 if (isset($_POST["signup"])) {
   $full_name = mysqli_real_escape_string($conn, $_POST["f_name" + "fl_name"]);
   $email = mysqli_real_escape_string($conn, $_POST["f_email"]);
-  $password = mysqli_real_escape_string($conn, md5($_POST["form_pass"]));
+  $password = mysqli_real_escape_string($conn, md5($_POST["form_pass"]);
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["form_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
@@ -48,7 +48,7 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', 'file', 'companyName')";
+    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', 'companyName', 'file')";
     $result = mysqli_query($conn, $sql);
     }}
 
@@ -130,10 +130,10 @@ if (isset($_POST["signin"])) {
                             <br>
                             <div class="form-group sign-in-btn my-3">
 
-                              <button type="submit" id="login-submit" class="submit sign-in-btn" >
+                              <button type="submit" id="login-submit" class="submit sign-in-btn">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
-                                <span class="front text" > Sign in
+                                <span class="front text"> Sign in
                                 </span>
                               </button>
                             </div>
@@ -142,7 +142,7 @@ if (isset($_POST["signin"])) {
 
 
                           <div class="sign-up-txt">
-                            Don't have an account? <a href="javascript:;" name="signup"class="sign-up-click">Signup</a>
+                            Don't have an account? <a href="javascript:;" class="sign-up-click">Signup</a>
                           </div>
                         </div>
                       </div>
@@ -211,7 +211,7 @@ if (isset($_POST["signin"])) {
 
                             <div class="form-group sign-in-btn my-3">
 
-                              <button type="submit" class="submit sign-in-btn" name="signup">
+                              <button type="submit" class="submit sign-in-btn">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <span class="front text"> Sign up

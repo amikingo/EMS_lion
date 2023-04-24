@@ -49,12 +49,12 @@ foreach($results as $row)
           
 <?php
 
-$sql="SELECT * from tblhiring where Status is null";
+$sql="SELECT * from tblguard where uniformAssigned='0' AND isAssigned= '1' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 
-$new_booking_row_count = $query->rowCount();
+$new_uniform_row_count = $query->rowCount();
 
 ?>
           
@@ -81,7 +81,7 @@ $new_booking_row_count = $query->rowCount();
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Order
-                <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
+                <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -90,13 +90,14 @@ $new_booking_row_count = $query->rowCount();
                 <a href="newOrderLists.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Orders</p>
+                  <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="employeeList.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee Lists</p>
-                  <?php if($new_booking_row_count) {  echo "<span class='notify-badge'>" . $new_booking_row_count . "</span>"; } ?>
+                  
                 </a>
               </li>
             </ul>

@@ -129,15 +129,13 @@ foreach($results as $row)
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Type</label>
-                     <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true" readonly>
-<option value="<?php echo htmlentities($row->IDtype);?>"><?php echo htmlentities($row->IDtype);?></option>
+
                                                         
-<option value="Adhar Card">Adhar Card</option>
-<option value="Voter Card">Voter Card</option>
+                    <textarea type="text" class="form-control" id="idtype"   required="true" readonly><?php echo htmlentities($row->IDtype);?></textarea>
 
             
                                                         
-                                                    </select>
+                                                  
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Number</label>
