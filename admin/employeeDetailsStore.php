@@ -10,13 +10,13 @@ if (strlen($_SESSION['osghsaid']==0)) {
 
 $eid=$_GET['editid'];
 $name=$_POST['name'];
-$UniformAssigned=$_POST['UniformAssigned'];
+$UniformAssigned=1;
 $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
 
-$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
+$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':UniformAssigned',$UniformAssigned,PDO::PARAM_STR);
@@ -145,10 +145,11 @@ foreach($results as $row)
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
                   </div>
+
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
-
+                  <button type="submit" class="btn btn-primary" name="submit">Order Uniform</button>
                 </div>
               </form>
             </div>
