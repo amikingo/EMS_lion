@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 09:06 AM
+-- Generation Time: Apr 25, 2023 at 02:55 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -231,7 +231,7 @@ CREATE TABLE `tblguard` (
 
 INSERT INTO `tblguard` (`ID`, `Profilepic`, `Name`, `MobileNumber`, `Address`, `IDtype`, `IDnumber`, `RegistrationDate`, `isAssigned`, `UniformAssigned`) VALUES
 (2, 'ad04ad2d96ae326a9ca9de47d9e2fc741666330795.jpg', 'Rakesh Chandra', 4554646545, 'J&K block Laxmi nagar', 'Adhar Card', '6464kjkjk', '2022-10-21 05:39:55', 1, 1),
-(3, 'b64810fde7027715e614449aff1d595f1666676176.png', 'Harish Rawat', 1324546578, 'H-900, Vbghjg,\r\njhuiy,\r\nkjoujio', 'Voter Card', '689gj8h789', '2022-10-21 06:34:23', 1, 0),
+(3, 'b64810fde7027715e614449aff1d595f1666676176.png', 'Harish Rawat', 1324546578, 'H-900, Vbghjg,\r\njhuiy,\r\nkjoujio', 'Voter Card', '689gj8h789', '2022-10-21 06:34:23', 1, 1),
 (4, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334112.jpg', 'Kunal Singh', 6446464654, 'oiuoumnkjh\r\nkoiujio\r\nkoijiouo', 'Adhar Card', '9798ioui', '2022-10-21 06:35:12', 1, 0),
 (5, 'ecebbecf28c2692aeb021597fbddb1741666334145.jpg', 'John', 9798787987, 'yuiyuiyuiyuiyiuyu\r\njhjjkjhkhhkjljljlklkl;k;l\'\r\nljiuiouoiuio', 'Adhar Card', 'hkhkjh799898', '2022-10-21 06:35:45', 0, 0),
 (6, 'ecebbecf28c2692aeb021597fbddb1741666334189.jpg', 'Karuna Devi', 8979979879, 'tuytuytuytuytuytuytu\r\nyiutufukhk', 'Voter Card', 'khjhkjhkjhkj1235', '2022-10-21 06:36:29', 0, 0),
@@ -368,22 +368,23 @@ INSERT INTO `tblterm` (`Id`, `termName`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `full_name` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `id` int(11) DEFAULT NULL,
+  `full_name` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
-  `photo` varchar(255) NOT NULL
+  `file` varchar(255) NOT NULL,
+  `companyName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `token`, `status`, `photo`) VALUES
-(0, 'amir', 'amikingo201@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'dfada981c8e34b3410438a1327fa563e', 1, ''),
-(0, 'yab muluegta', 'yeabsira582@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'a15c1bec38036a6831f56dc020e21199', 1, '');
+INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `token`, `status`, `file`, `companyName`) VALUES
+(NULL, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '406273b44311eba080f9262a7a584583', 1, '', ''),
+(NULL, 'Abenezer', 'abenrahel@gmail.com', '25f9e794323b453885f5181f1b624d0b', '7127a3fe8cb276a9bbd5761789bca307', 1, '01 LOGIN DETAILS & PROJECT INFO.txt', 'abena');
 
 --
 -- Indexes for dumped tables
