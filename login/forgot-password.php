@@ -108,10 +108,7 @@ if (isset($_POST["resetPassword"])) {
       <div class="panel left-panel">
         <div class="content">
           <h3>Forgot Password ?</h3>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-            ex ratione. Aliquid!
-          </p>
+         
         </div>
         <img src="img/log.svg" class="image" alt="" />
       </div>

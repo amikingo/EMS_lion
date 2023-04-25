@@ -46,7 +46,7 @@ include '../Includes/session.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Class Teacher Dashboard (<?php echo $rrw['className'].' - '.$rrw['classArmName'];?>)</h1>
+            <h1 class="h3 mb-0 text-gray-800">Trainer Dashboard </h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -64,7 +64,7 @@ $students = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Students</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Trainees</div>
                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $students;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
@@ -115,7 +115,7 @@ $totAttendance = mysqli_num_rows($query1);
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Student Attendance</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Trainee Attendance</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totAttendance;?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <!-- <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
