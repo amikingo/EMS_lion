@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-error_reporting(0);
+// error_reporting(1);
 
 if (isset($_SESSION["user_id"])) {
 
@@ -33,10 +33,10 @@ if (isset($_SESSION["user_id"])) {
 }
 
 if (isset($_POST["signup"])) {
-  $full_name = mysqli_real_escape_string($conn, $_POST["f_name" + "fl_name"]);
+  $full_name = mysqli_real_escape_string($conn, $_POST["f_name"]);
   $email = mysqli_real_escape_string($conn, $_POST["f_email"]);
-  $password = mysqli_real_escape_string($conn, md5($_POST["form_pass"]));
-  $cpassword = mysqli_real_escape_string($conn, md5($_POST["form_cpass"]));
+  $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
+  $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
   $token = md5(rand());
@@ -117,9 +117,9 @@ if (isset($_POST["signin"])) {
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
-                          <form id="login-form">
+                          <form id="login-form" method="post">
                             <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="username" placeholder="Username">
+                              <input type="text" class="form-control" name="email" placeholder="Username">
                               <div class="field-icon"><i class="fas fa-user"></i></div>
                             </div>
                             <div class="form-group forgot-password-field my-3">
@@ -130,7 +130,7 @@ if (isset($_POST["signin"])) {
                             <br>
                             <div class="form-group sign-in-btn my-3">
 
-                              <button type="submit" id="login-submit" class="submit sign-in-btn" >
+                              <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin" >
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <span class="front text" > Sign in
@@ -152,7 +152,7 @@ if (isset($_POST["signin"])) {
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign up</b></h3>
-                          <form id="sign-up-form">
+                          <form id="sign-up-form" method="post">
 
                             <div class="row">
                               <div class="col">
@@ -241,8 +241,7 @@ if (isset($_POST["signin"])) {
                               <button type="submit" id="forget-pass-btn" class="submit sign-in-btn">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
-                                <span class="front text"> Submit
-                                </span>
+                                <span class="front text"> Submit</span>
                               </button>
                             </div>
                           </form>

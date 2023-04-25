@@ -29,7 +29,7 @@ $(document).ready(function() {
         'progressBar': true
     }
 
-    $("#login-form").validate({
+    $("#login-formm").validate({
         errorElement: "span",
         rules: {
             username: "required",
@@ -57,7 +57,7 @@ $(document).ready(function() {
         return $("#form_cpass").val() == $("#form_pass").val();
     });
 
-    $("#sign-up-form").validate({
+    $("#sign-up-formm").validate({
         errorElement: "span",
         rules: {
             f_name: "required",
