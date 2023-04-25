@@ -47,7 +47,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">New Ordert</li>
+              <li class="breadcrumb-item active">New Order</li>
             </ol>
           </div>
         </div>
