@@ -60,53 +60,6 @@ h6 {
 }
 
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
-
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    overflow: hidden;
-    background: #fff;
-}
-
-#preloader:before {
-    content: "";
-    position: fixed;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    border: 6px solid #007bff !important;
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: animate-preloader 1s linear infinite;
-    animation: animate-preloader 1s linear infinite;
-}
-
-@-webkit-keyframes animate-preloader {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes animate-preloader {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 
 /*--------------------------------------------------------------
@@ -195,6 +148,66 @@ h6 {
 .nav-menu .active>a,
 .nav-menu li:hover>a {
     color: #007bff !important;
+}
+.nav-menu .drop-down ul {
+    display: block;
+    position: absolute;
+    left: 24px;
+    top: calc(100% + 30px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    padding: 10px 0;
+    background: #fff;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.nav-menu .drop-down:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+.nav-menu .drop-down li {
+    min-width: 180px;
+    position: relative;
+}
+
+.nav-menu .drop-down ul a {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    color: #37423b;
+}
+
+.nav-menu .drop-down ul a:hover,
+.nav-menu .drop-down ul .active>a,
+.nav-menu .drop-down ul li:hover>a {
+    color: #007bff !important;
+}
+.nav-menu .drop-down .drop-down ul {
+    top: 0;
+    left: calc(100% - 30px);
+}
+
+.nav-menu .drop-down .drop-down:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+}
+
+.nav-menu .drop-down .drop-down>a {
+    padding-right: 35px;
+}
+
+.nav-menu .drop-down .drop-down>a:after {
+    /* content: "\eaa0";
+  font-family: IcoFont; */
+    position: absolute;
+    right: 15px;
 }
 
 
@@ -318,22 +331,21 @@ h6 {
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="../assets/img/LOGO.png" style="width: 350px;height: 50px;">
+      <img alt="logo" src="../assets/img/LOGO.png" style="width: 300px;height: 50px;">
       
 
-      <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
         <ul>
           <li class="active"><a href="../index.php">Home</a></li>
-
-          <li class="active"><a href="index.php">Request page</a></li>
-
-          <li><a href="search-request.php">Request Status</a>
-                     </li>
-                     <li><a href="../login/logout.php">Logout</a>
-                     </li>
-          
+          <li><a href="../customer/index.php">Request Page</a></li>         
+          <li><a href="../customer/search-request.php">Request-Status</a></li>
+          <li class="drop-down">
+            <a href="">My Account </a> 
+            <ul >
+              <li><a href=" ">Profile</a></li>
+              <li><a href="../login/logout.php">Logout</a></li>
+            </ul>
           </li>
-
         </ul>
       </nav>
     </div>

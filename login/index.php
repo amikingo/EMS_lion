@@ -1,3 +1,12 @@
+<!-- <?php
+//include "funcs.php";
+//connect_db();
+//session_start();
+
+//if(isset($_SESSION["user_id"])) redirect_to("index.php");
+
+?> -->
+
 <?php
 
 include 'config.php';
@@ -13,7 +22,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-error_reporting(0);
+// error_reporting(1);
 
 if (isset($_SESSION["user_id"])) {
 
@@ -24,10 +33,12 @@ if (isset($_SESSION["user_id"])) {
 }
 
 if (isset($_POST["signup"])) {
-  $full_name = mysqli_real_escape_string($conn, $_POST["signup_full_name"]);
-  $email = mysqli_real_escape_string($conn, $_POST["signup_email"]);
-  $password = mysqli_real_escape_string($conn, md5($_POST["signup_password"]));
-  $cpassword = mysqli_real_escape_string($conn, md5($_POST["signup_cpassword"]));
+  $full_name = mysqli_real_escape_string($conn, $_POST["f_name"]);
+  $email = mysqli_real_escape_string($conn, $_POST["f_email"]);
+  $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
+  $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
+  $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
+  $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
   $token = md5(rand());
 
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
@@ -37,7 +48,7 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    $sql = "INSERT INTO users (full_name, email, password, token, status) VALUES ('$full_name', '$email', '$password', '$token', '1')";
+    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', 'file', 'companyName')";
     $result = mysqli_query($conn, $sql);
     }}
 
@@ -57,89 +68,210 @@ if (isset($_POST["signin"])) {
 }
 
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Sign in & Sign up Form</title>
+
+  <title>Welcome</title>
+
+  <link rel="shortcut icon" href="images/logo.png">
+  <link href="lib/bootstrap5/css/bootstrap.css" rel="stylesheet">
+  <link href="css/get-started.css" rel="stylesheet">
+  <link href="lib/mdb-ui-kit/css/mdb.min.css" rel="stylesheet">
+  <link href="css/fontawesome6/css/all.min.css" rel="stylesheet">
+  <link href="lib/toastr/toastr.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-  <div class="container">
-    <div class="forms-container">
-      <div class="signin-signup">
-        <form action="" method="post" class="sign-in-form">
-          <h2 class="title">Sign in</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Email Address" name="email" value="<?php echo $_POST['email']; ?>" required />
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required />
-          </div>
-          <input type="submit" value="Login" name="signin" class="btn solid" />
-          <p style="display: flex;justify-content: center;align-items: center;margin-top: 20px;"><a href="forgot-password.php" style="color: #4590ef;">Forgot Password?</a></p>
-          <a href="../index.php"><i class="fa fa-home"></i> Back Home</a>
-        </form>
-        <form action="" class="sign-up-form" method="post">
-          <h2 class="title">Sign up</h2>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Full Name" name="signup_full_name" value="<?php echo $_POST["signup_full_name"]; ?>" required />
-          </div>
-          <div class="input-field">
-            <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email Address" name="signup_email" value="<?php echo $_POST["signup_email"]; ?>" required />
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" name="signup_password" value="<?php echo $_POST["signup_password"]; ?>" required />
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirm Password" name="signup_cpassword" value="<?php echo $_POST["signup_cpassword"]; ?>" required />
-          </div>
-          <input type="submit" class="btn" name="signup" value="Sign up" />
-          <a href="../index.php"><i class="fa fa-home"></i> Back Home</a>
-        </form>
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <span class="logo d-flex align-items-center">
+        <img src="images/logo.png" alt="">
+        
+      </span>
+
+      <nav id="navbarr" class="navbarr">
+        <ul>
+          <li><a class="nav-link login-form-slider login-click" href="javascript:;">Signin</a></li>
+          <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;">Signup</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <section id="hero" class="hero d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 hero-img">
+          <main class="cd-main">
+            <section class="cd-section index2 visible">
+              <div class="cd-content style2">
+                <div class="login-box">
+                  <div class="login-form-slider">
+                    <div class="login-slide slide">
+                      <div class="d-flex height-100-percentage">
+                        <div class="align-self-center width-100-percentage">
+                          <h3><b>Sign In</b></h3>
+                          <form id="login-form" method="post">
+                            <div class="form-group user-name-field my-3">
+                              <input type="text" class="form-control" name="email" placeholder="Username">
+                              <div class="field-icon"><i class="fas fa-user"></i></div>
+                            </div>
+                            <div class="form-group forgot-password-field my-3">
+                              <input type="password" class="form-control" name="password" placeholder="Password">
+                              <div class="field-icon"><i class="fas fa-key"></i></div>
+                            </div>
+                            <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
+                            <br>
+                            <div class="form-group sign-in-btn my-3">
+
+                              <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin" >
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <span class="front text" > Sign in
+                                </span>
+                              </button>
+                            </div>
+
+                          </form>
+
+
+                          <div class="sign-up-txt">
+                            Don't have an account? <a href="javascript:;" name="signup"class="sign-up-click">Signup</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="signup-slide slide">
+                      <div class="d-flex height-100-percentage">
+                        <div class="align-self-center width-100-percentage">
+                          <h3><b>Sign up</b></h3>
+                          <form id="sign-up-form" method="post">
+
+                            <div class="row">
+                              <div class="col">
+
+                                <div class="form-group user-name-field my-3">
+                                  <input type="text" class="form-control" name="f_name" placeholder="First Name">
+                                  <div class="field-icon"><i class="fas fa-user"></i></div>
+                                </div>
+
+                                <div class="form-group user-name-field my-3">
+                                  <input type="text" class="form-control" name="f_lname" placeholder="Last Name">
+                                  <div class="field-icon"><i class="fas fa-user"></i></div>
+                                </div>
+
+
+                                <div class="form-group user-name-field my-3">
+                                  <input type="text" class="form-control" name="f_username" placeholder="Username">
+                                  <div class="field-icon"><i class="fas fa-user"></i></div>
+                                </div>
+
+                                <div class="form-group user-name-field my-3">
+                                  <input type="text" class="form-control" name="f_email" placeholder="Email">
+                                  <div class="field-icon"><i class="fas fa-envelope"></i></div>
+                                </div>
+
+
+                              </div>
+                              <div class="col">
+                                <div class="form-group user-name-field my-3">
+                                  <input type="text" class="form-control" name="f_company" placeholder="company Name">
+                                  <div class="field-icon"><i class="fas fa-university"></i></div>
+                                  <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
+                                </div>
+
+                                <div class="form-group user-name-field my-3">
+                                  <!-- attach file input  -->
+                                  <input type="file" class="form-control" name="f_file" placeholder="Logo">
+                                  <div class="field-icon"><i class="fas fa-paperclip"></i></div>
+                                  <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
+                                  
+                                <!-- end attach file input  -->
+                                  
+                                </div>
+
+
+                                <div class="form-group my-3">
+                                  <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password">
+                                  <div class="field-icon"><i class="fas fa-key"></i></div>
+                                </div>
+                                <div class="form-group my-3">
+                                  <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password">
+                                  <div class="field-icon"><i class="fas fa-key"></i></div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group sign-in-btn my-3">
+
+                              <button type="submit" class="submit sign-in-btn" name="signup">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <span class="front text"> Sign up
+                                </span>
+                              </button>
+                            </div>
+                          </form>
+                          <div class="sign-up-txt">
+                            if you have an account? <a href="javascript:;" class="login-click">login</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="forgot-password-slide slide">
+                      <div class="d-flex height-100-percentage">
+                        <div class="align-self-center width-100-percentage">
+                          <h3><b>Forgot password</b></h3>
+                          <form id="forget-pass-form">
+                            <label class="label" style="text-align: left">Enter your email address to reset your password</label>
+                            <div class="form-group user-name-field my-3">
+                              <input type="text" id="forget-pass-input" class="form-control" placeholder="Email" required>
+                              <div class="field-icon"><i class="fas fa-envelope"></i></div> 
+                            </div>
+                            <div class="form-group sign-in-btn my-5">
+
+                              <button type="submit" id="forget-pass-btn" class="submit sign-in-btn">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <span class="front text"> Submit</span>
+                              </button>
+                            </div>
+                          </form>
+                          <div class="sign-up-txt">
+                            if you remember your password? <a href="javascript:;" class="login-click">login</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+
+        </div>
       </div>
     </div>
 
-    <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <h3> Lion security service</h3>
-          <p>
-          
-          </p>
-          <button class="btn transparent" id="sign-up-btn">
-            Sign up
-          </button>
-        </div>
-        <img src="img/log.svg" class="image" alt="" />
-      </div>
-      <div class="panel right-panel">
-        <div class="content">
-          <h3> Lion security service</h3>
-          <p>
-           
-          </p>
-          <button class="btn transparent" id="sign-in-btn">
-            Sign in
-          </button>
-        </div>
-        <img src="img/register.svg" class="image" alt="" />
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/jquery.validate.min.js"></script>
+  <script src="lib/bootstrap5/js/bootstrap.min.js"></script>
+  <script src="lib/mdb-ui-kit/js/mdb.min.js"></script>
+  <script src="lib/velocity.min.js"></script>
+  <script src="lib/toastr/toastr.min.js"></script>
+  <script src="js/get-started.js"></script>
 </body>
 
 </html>

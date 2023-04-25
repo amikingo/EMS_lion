@@ -123,27 +123,21 @@ foreach($results as $row)
   <tr>
     <th>Address</th>
     <td><?php  echo htmlentities($row->Address);?></td>
-    <th> Guard Requirement Number</th>
+    <th> Required Employee Number</th>
     <td><?php  echo htmlentities($row->RequirementNumber);?></td>
-  </tr>
-   <tr>
-    <th>Shift</th>
-    <td><?php  echo htmlentities($row->Shift);?></td>
-    <th> Guard Gender Requirement</th>
-    <td><?php  echo htmlentities($row->Gender);?></td>
   </tr>
   <tr>
     <th>Booking Status</th>
     <td><?php $status= $row->Status;
 if($row->Status=="Accepted")
 {
-  echo "Guard Hiring Requirement Accepted";
+  echo "Requirement Accepted";
 }
 
 
 if($row->Status=="Rejected")
 {
-  echo "Guard Hiring Requirement Rejected";
+  echo "Requirement Rejected";
 }
 
 if($row->Status=="")
