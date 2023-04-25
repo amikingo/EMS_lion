@@ -22,13 +22,12 @@ require 'vendor/autoload.php';
 
 session_start();
 
-// error_reporting(1);
+//error_reporting(0);
 
 if (isset($_SESSION["user_id"])) {
 
   header("Location: ../customer/index.php");
 
-  header("Location:../customer/index.php");
 
 }
 
@@ -40,15 +39,15 @@ if (isset($_POST["signup"])) {
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
   $token = md5(rand());
-
+//move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
-
+  
   if ($password !== $cpassword) {
     echo "<script>alert('Password did not match.');</script>";
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', 'file', 'companyName')";
+    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
     }}
 

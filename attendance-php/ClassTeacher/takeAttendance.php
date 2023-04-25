@@ -178,7 +178,7 @@ if(isset($_POST['save'])){
                         <th>Last Name</th>
                         <th>Other Name</th>
                         <th>Admission No</th>
-                        <th>Class</th>
+                        <!-- <th>Class</th> -->
                         <th>Class Arm</th>
                         <th>Check</th>
                       </tr>
@@ -209,7 +209,7 @@ if(isset($_POST['save'])){
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
+                             
                                 <td>".$rows['classArmName']."</td>
                                 <td><input name='check[]' type='checkbox' value=".$rows['admissionNumber']." class='form-control'></td>
                               </tr>";

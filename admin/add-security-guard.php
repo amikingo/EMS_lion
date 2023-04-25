@@ -125,8 +125,8 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
 <option value="">Choose ID Type</option>
                                                         
-<option value="Adhar Card">Adhar Card</option>
-<option value="Voter Card">Voter Card</option>
+<option value="Adhar Card">ID Card</option>
+
 
             
                                                         

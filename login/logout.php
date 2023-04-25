@@ -1,8 +1,6 @@
 <?php
-
+include "funcs.php";
 session_start();
-session_unset();
 session_destroy();
-header("Location: index.php");
-
+redirect_to("index.php");
 ?>

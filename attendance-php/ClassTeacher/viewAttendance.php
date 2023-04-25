@@ -86,7 +86,7 @@ include '../Includes/session.php';
                         <th>Last Name</th>
                         <th>Other Name</th>
                         <th>Admission No</th>
-                        <th>Class</th>
+                        <!-- <th>Class</th> -->
                         <th>Class Arm</th>
                         <th>Session</th>
                         <th>Term</th>
@@ -130,7 +130,7 @@ include '../Includes/session.php';
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
+                                
                                 <td>".$rows['classArmName']."</td>
                                 <td>".$rows['sessionName']."</td>
                                 <td>".$rows['termName']."</td>

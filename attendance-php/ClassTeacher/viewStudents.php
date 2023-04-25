@@ -100,7 +100,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                         <th>Last Name</th>
                         <th>Other Name</th>
                         <th>Admission No</th>
-                        <th>Class</th>
+                        <!-- <th>Class</th> -->
                         <th>Class Arm</th>
                       </tr>
                     </thead>
@@ -130,7 +130,7 @@ $query = "SELECT tblclass.className,tblclassarms.classArmName
                                 <td>".$rows['lastName']."</td>
                                 <td>".$rows['otherName']."</td>
                                 <td>".$rows['admissionNumber']."</td>
-                                <td>".$rows['className']."</td>
+                                
                                 <td>".$rows['classArmName']."</td>
                               </tr>";
                           }
