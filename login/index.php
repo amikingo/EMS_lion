@@ -116,29 +116,29 @@ if (isset($_POST["signin"])) {
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
-                          <form id="login-form" method="post">
-                            <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="email" placeholder="Username">
-                              <div class="field-icon"><i class="fas fa-user"></i></div>
-                            </div>
-                            <div class="form-group forgot-password-field my-3">
-                              <input type="password" class="form-control" name="password" placeholder="Password">
-                              <div class="field-icon"><i class="fas fa-key"></i></div>
-                            </div>
-                            <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
-                            <br>
-                            <div class="form-group sign-in-btn my-3">
-
-                              <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin" >
-                                <span class="shadow"></span>
-                                <span class="edge"></span>
-                                <span class="front text" > Sign in
-                                </span>
-                              </button>
-                            </div>
-
-                          </form>
-
+                      
+                           <form id="login-form" method="post">
+                             <div class="form-group user-name-field my-3">
+                                 <input type="text" class="form-control" name="email" placeholder="Username">
+                                     <span class="error-message"></span>
+                                       <div class="field-icon"><i class="fas fa-user"></i></div>
+                                       </div>
+                                       <div class="form-group forgot-password-field my-3">
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                        <span class="error-message"></span>
+                                         <div class="field-icon"><i class="fas fa-key"></i></div>
+                                        </div>
+                                        <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
+                                        <br>
+                                        <div class="form-group sign-in-btn my-3">
+                                          <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin">
+                                            <span class="shadow"></span>
+                                            <span class="edge"></span>
+                                            <span class="front text"> Sign in
+                                            </span>
+                                          </button>
+                                        </div>
+                                      </form>
 
                           <div class="sign-up-txt">
                             Don't have an account? <a href="javascript:;" name="signup"class="sign-up-click">Signup</a>
@@ -158,22 +158,26 @@ if (isset($_POST["signin"])) {
 
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_name" placeholder="First Name">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_lname" placeholder="Last Name">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
 
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_username" placeholder="Username">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_email" placeholder="Email">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
 
@@ -182,6 +186,7 @@ if (isset($_POST["signin"])) {
                               <div class="col">
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_company" placeholder="company Name">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-university"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
                                 </div>
@@ -189,6 +194,7 @@ if (isset($_POST["signin"])) {
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
                                   <input type="file" class="form-control" name="f_file" placeholder="Logo">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-paperclip"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
                                   
@@ -199,10 +205,12 @@ if (isset($_POST["signin"])) {
 
                                 <div class="form-group my-3">
                                   <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                                 <div class="form-group my-3">
                                   <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password">
+                                  <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                               </div>
@@ -271,6 +279,96 @@ if (isset($_POST["signin"])) {
   <script src="lib/velocity.min.js"></script>
   <script src="lib/toastr/toastr.min.js"></script>
   <script src="js/get-started.js"></script>
+
+  <script>
+  document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var isValid = true;
+
+    var fields = [
+      { name: "email", required: true, type: "email" },
+      { name: "password", required: true }
+    ];
+
+    fields.forEach(function(field) {
+      var input = document.getElementsByName(field.name)[0];
+      var errorMessage = input.nextElementSibling;
+      errorMessage.textContent = "";
+
+      if (field.required && !input.value) {
+        errorMessage.textContent = "This field is required.";
+        isValid = false;
+      } else if (field.type === "email" && !validateEmail(input.value)) {
+        errorMessage.textContent = "Please enter a valid email address.";
+        isValid = false;
+      }
+    });
+
+    if (isValid) {
+      this.submit();
+    }
+  });
+
+  function validateEmail(email) {
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  }
+</script>
+
+<script>
+  document.getElementById("sign-up-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var isValid = true;
+
+    var fields = [
+      { name: "f_name", required: true },
+      { name: "f_lname", required: true },
+      { name: "f_username", required: true, minLength: 3 },
+      { name: "f_email", required: true, type: "email" },
+      { name: "f_company", required: true },
+      { name: "f_file", required: true },
+      { name: "f_pass", required: true, minLength: 8 },
+      { name: "f_cpass", required: true }
+    ];
+
+    fields.forEach(function(field) {
+      var input = document.getElementsByName(field.name)[0];
+      var errorMessage = input.nextElementSibling;
+      errorMessage.textContent = "";
+
+      if (field.required && !input.value) {
+        errorMessage.textContent = "This field is required.";
+        isValid = false;
+      } else if (field.type === "email" && !validateEmail(input.value)) {
+        errorMessage.textContent = "Please enter a valid email address.";
+        isValid = false;
+      } else if (field.minLength && input.value.length < field.minLength) {
+        errorMessage.textContent = "Must be at least " + field.minLength + " characters.";
+        isValid = false;
+      }
+    });
+
+    var password = document.getElementsByName("f_pass")[0].value;
+    var confirmPassword = document.getElementsByName("f_cpass")[0].value;
+    var confirmPasswordErrorMessage = document.getElementsByName("f_cpass")[0].nextElementSibling;
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      confirmPasswordErrorMessage.textContent = "Passwords do not match.";
+      isValid = false;
+    }
+
+    if (isValid) {
+      this.submit();
+    }
+  });
+
+  function validateEmail(email) {
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  }
+</script>
 </body>
 
 </html>
