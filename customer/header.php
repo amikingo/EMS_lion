@@ -342,8 +342,8 @@ h6 {
           <li class="drop-down">
             <a href="">My Account </a> 
             <ul >
-              <li><a href=" ">Profile</a></li>
-              <li><a href="../login/logout.php" >Logout</a></li>
+              <li><a href="../login/profile.php">Profile</a></li>
+              <!-- <li><a href="../login/logout.php" >Logout</a></li> -->
             </ul>
           </li>
         </ul>
