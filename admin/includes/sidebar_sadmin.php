@@ -86,33 +86,33 @@
             </ul>
           </li>
        
-<!-- <li class="nav-item has-treeview">
+<li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Booking Request
+              create admin
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="accepted-booking-request.php" class="nav-link">
+                <a href="createAdmin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted Booking</p>
+                  <p>create admin</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="between-dates-report.php" class="nav-link">
+           <li class="nav-item"> 
+            <a href="viewAdmin.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                B/W Report
+                view Admin
                </p>
             </a>
           </li>
-      <li class="nav-item">
+    <!-- <--  <li class="nav-item">
             <a href="search.php" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
@@ -120,7 +120,7 @@
                </p>
             </a>
         
-          </li> -->
+          </li> --> 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>
