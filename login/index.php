@@ -39,7 +39,7 @@ if (isset($_POST["signup"])) {
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
-  $token = md5(rand());
+  //$token = md5(rand());
   //move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
   
@@ -48,8 +48,9 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    $sql = "INSERT INTO users (first_name,last_name, email, password, token, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$token', '1', '$file', '$companyName')";
+    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
+    echo "<script>alert('SUCCESS');</script>";
     }}
 
 
@@ -59,7 +60,7 @@ if (isset($_POST["signin"])) {
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
 
-  if (mysqli_num_rows($check_email) >1) {
+  if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
     header("Location: ../customer/index.php");
@@ -282,7 +283,7 @@ if (isset($_POST["signin"])) {
   <script src="js/get-started.js"></script>
 
   <script>
-  document.getElementById("login-form").addEventListener("submit", function(event) {
+  document.getElementById("signin").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var isValid = true;
@@ -318,7 +319,7 @@ if (isset($_POST["signin"])) {
 </script>
 
 <script>
-  document.getElementById("sign-up-form").addEventListener("submit", function(event) {
+  document.getElementById("signup").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var isValid = true;
