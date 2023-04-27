@@ -50,7 +50,7 @@ if (isset($_POST["signup"])) {
   } else {
     $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
-    echo "<script>alert('SUCCESS');</script>";
+
     }}
 
 
@@ -220,7 +220,7 @@ if (isset($_POST["signin"])) {
 
                             <div class="form-group sign-in-btn my-3">
 
-                              <button type="submit" class="submit sign-in-btn" name="signup">
+                              <button id = "signup" type="submit" class="submit sign-in-btn" name="signup">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <span class="front text"> Sign up
@@ -283,7 +283,7 @@ if (isset($_POST["signin"])) {
   <script src="js/get-started.js"></script>
 
   <script>
-  document.getElementById("signin").addEventListener("submit", function(event) {
+  document.getElementById("login-submit").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var isValid = true;
