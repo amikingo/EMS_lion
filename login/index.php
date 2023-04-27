@@ -32,15 +32,15 @@ if (isset($_SESSION["user_id"])) {
 }
 
 if (isset($_POST["signup"])) {
-  $full_name = mysqli_real_escape_string($conn, $_POST["f_name"]);
-  
+  $first_name = mysqli_real_escape_string($conn, $_POST["f_name"]);
+  $last_name= mysqli_real_escape_string($conn, $_POST["f_lname"]);
   $email = mysqli_real_escape_string($conn, $_POST["f_email"]);
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
   $token = md5(rand());
-  move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
+  //move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
   
   if ($password !== $cpassword) {
@@ -48,7 +48,7 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', '$file', '$companyName')";
+    $sql = "INSERT INTO users (first_name,last_name, email, password, token, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$token', '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
     }}
 
@@ -59,7 +59,7 @@ if (isset($_POST["signin"])) {
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
 
-  if (mysqli_num_rows($check_email) > 0) {
+  if (mysqli_num_rows($check_email) >1) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
     header("Location: ../customer/index.php");
@@ -176,28 +176,21 @@ if (isset($_POST["signin"])) {
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
-
-                                <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_username" placeholder="Username">
-                                  <span class="error-message"></span>
-                                  <div class="field-icon"><i class="fas fa-user"></i></div>
-                                </div>
-
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_email" placeholder="Email">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
-
-
-                              </div>
-                              <div class="col">
                                 <div class="form-group user-name-field my-3">
                                   <input type="text" class="form-control" name="f_company" placeholder="company Name">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-university"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
                                 </div>
+
+                              </div>
+                              <div class="col">
+                              
 
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
@@ -289,7 +282,7 @@ if (isset($_POST["signin"])) {
   <script src="js/get-started.js"></script>
 
   <script>
-  document.getElementById("login-form").addEventListener("signin", function(event) {
+  document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var isValid = true;
@@ -325,7 +318,7 @@ if (isset($_POST["signin"])) {
 </script>
 
 <script>
-  document.getElementById("sign-up-form").addEventListener("signup", function(event) {
+  document.getElementById("sign-up-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var isValid = true;
@@ -333,7 +326,6 @@ if (isset($_POST["signin"])) {
     var fields = [
       { name: "f_name", required: true },
       { name: "f_lname", required: true },
-      { name: "f_username", required: true, minLength: 3 },
       { name: "f_email", required: true, type: "email" },
       { name: "f_company", required: true },
       { name: "f_file", required: true },
