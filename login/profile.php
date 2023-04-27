@@ -1,4 +1,5 @@
 <?php
+//error_reporting(0);
 // Start the session
 session_start();
 
@@ -16,12 +17,14 @@ $password = "";
 $database = "osghsdb";
 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
+
 
 // Get the user's current profile information
 $user_id = $_SESSION["user_id"];

@@ -33,13 +33,14 @@ if (isset($_SESSION["user_id"])) {
 
 if (isset($_POST["signup"])) {
   $full_name = mysqli_real_escape_string($conn, $_POST["f_name"]);
+  
   $email = mysqli_real_escape_string($conn, $_POST["f_email"]);
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
   $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
   $token = md5(rand());
-//move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
+  move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
   
   if ($password !== $cpassword) {
@@ -50,6 +51,7 @@ if (isset($_POST["signup"])) {
     $sql = "INSERT INTO users (full_name, email, password, token, status, file, companyName) VALUES ('$full_name', '$email', '$password', '$token', '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
     }}
+
 
 if (isset($_POST["signin"])) {
   $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -79,7 +81,13 @@ if (isset($_POST["signin"])) {
   <link href="lib/mdb-ui-kit/css/mdb.min.css" rel="stylesheet">
   <link href="css/fontawesome6/css/all.min.css" rel="stylesheet">
   <link href="lib/toastr/toastr.min.css" rel="stylesheet">
-
+<style>
+  .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+</style>
 </head>
 
 <body>
@@ -281,7 +289,7 @@ if (isset($_POST["signin"])) {
   <script src="js/get-started.js"></script>
 
   <script>
-  document.getElementById("login-form").addEventListener("submit", function(event) {
+  document.getElementById("login-form").addEventListener("signin", function(event) {
     event.preventDefault();
 
     var isValid = true;
@@ -317,7 +325,7 @@ if (isset($_POST["signin"])) {
 </script>
 
 <script>
-  document.getElementById("sign-up-form").addEventListener("submit", function(event) {
+  document.getElementById("sign-up-form").addEventListener("signup", function(event) {
     event.preventDefault();
 
     var isValid = true;
@@ -370,5 +378,4 @@ if (isset($_POST["signin"])) {
   }
 </script>
 </body>
-
 </html>
