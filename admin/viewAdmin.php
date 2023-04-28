@@ -44,7 +44,7 @@
       <div id="content">
         <!-- TopBar -->
 
-        <div class="breadcrumbs">
+        <!-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -66,7 +66,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">View  All Administrator</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">View  All Administrator</li>
+            </ol>
+          </div>
+          </div>
         </div>
 <section class="content">
         <div class="content">
@@ -80,15 +89,15 @@
                     </div><!--/.col-->
                 </div>
             </div>
-               
+               <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title"><h2 align="center">All Administrator</h2></strong>
                             </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
+                            <div class="table-responsive p-3">
+                                <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
                                             <th>Staff ID</th>
@@ -140,7 +149,7 @@
                     </div>
 <!-- end of datatable -->
 
-        
+               </div>
         </div>
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -173,6 +182,17 @@
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
+    <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
 
     <script type="text/javascript">
         $(document).ready(function() {

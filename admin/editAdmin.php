@@ -134,7 +134,7 @@ function showRole(str) {
       <!-- class="d-flex flex-column" -->
       <div id="content">
 
-        <div class="breadcrumbs">
+        <!-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -147,7 +147,7 @@ function showRole(str) {
                     <div class="col-sm-8">
                         <div class="page-header float-right">
                             <div class="page-title">
-                                <ol class="breadcrumb text-right">
+                                <ol class="breadcrumb">
                                     <li><a href="#">Dashboard</a></li>
                                     <li><a href="#">Administrator</a></li>
                                     <li class="active">Edit Administrator</li>
@@ -158,6 +158,16 @@ function showRole(str) {
                 </div>
             </div>
         </div>
+      </div> -->
+      <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Edit Administrator</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Administrator</li>
+            </ol>
+          </div>
+          </div>
       </div>
       <section class="content">
         <div class="content">
@@ -261,9 +271,9 @@ function showRole(str) {
                             <div class="card-header">
                                 <strong class="card-title"><h2 align="center">All Administrator</h2></strong>
                             </div>
-                            <div class="card-body">
+                            <div class="table-responsive p-3">
                                 <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
                                             <th>Staff ID</th>
@@ -344,6 +354,17 @@ function showRole(str) {
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
+    <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
 
     <script type="text/javascript">
         $(document).ready(function() {
