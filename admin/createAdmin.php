@@ -235,6 +235,8 @@ function showRole(str) {
         }
         
         echo '</select>'; 
+    }
+?>
                                           
                                                      </div>
                                                 </div>
