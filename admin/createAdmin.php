@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create System Users</title>
+  <title>Create Users</title>
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
@@ -146,10 +146,10 @@ function showRole(str) {
             </div> -->
             <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add Administrator</h1>
+            <h1 class="h3 mb-0 text-gray-800">Add User</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Add Administrator</li>
+              <li class="breadcrumb-item active" aria-current="page">Add User</li>
             </ol>
           </div>
           </div>
@@ -161,7 +161,7 @@ function showRole(str) {
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">Add New Administrator</h2></strong>
+                                <strong class="card-title"><h2 align="center">Add New User</h2></strong>
                             </div>
                             <div class="card-body">
                                 <!-- Credit Card -->
@@ -231,7 +231,7 @@ function showRole(str) {
                                                      </div>
                                                 </div>
                                             </div>
-                                            <p><small><i>Note: By default ADMIN'S password is set to "<b>Admas@123</b>"</i></small></p>
+                                            <p><small><i>Note: By default Users password is set to "<b>123456789</b>"</i></small></p>
                                                 <button type="submit" name="submit" class="btn btn-success">Add Admin</button>
                                             </div>
                                         </form>
@@ -248,7 +248,7 @@ function showRole(str) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">All Administrator</h2></strong>
+                                <strong class="card-title"><h2 align="center">All Users</h2></strong>
                             </div>
                             <div class="table-responsive p-3">
                                 <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
@@ -278,7 +278,16 @@ function showRole(str) {
                 <td><?php  echo $row['UserName'];?></td>
                 <td><?php  echo $row['MobileNumber'];?></td>
                 <td><?php  echo $row['Email'];?></td>
-                <td><?php  echo $row['adminTypeId'];?></td>
+                <td><?php if($row['adminTypeId'] == 1){
+                                echo 'Adminstrator';
+
+                        }else if($row['adminTypeId'] == 2){
+                                echo 'HR';
+
+                        }else if($row['adminTypeId'] == 3){
+                                echo 'Store Keeper';
+                        }
+                 ?></td>
                 <td><?php  echo $row['AdminRegdate'];?></td>
                  <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
                 <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>

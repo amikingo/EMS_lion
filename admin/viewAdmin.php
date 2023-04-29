@@ -124,7 +124,16 @@
                 <td><?php  echo $row['UserName'];?></td>
                 <td><?php  echo $row['MobileNumber'];?></td>
                 <td><?php  echo $row['Email'];?></td>
-                <td><?php  echo $row['adminTypeId'];?></td>
+                <td><?php if($row['adminTypeId'] == 1){
+                                echo 'Adminstrator';
+
+                        }else if($row['adminTypeId'] == 2){
+                                echo 'HR';
+
+                        }else if($row['adminTypeId'] == 3){
+                                echo 'Store Keeper';
+                        }
+                 ?></td>
                 <td><?php  echo $row['AdminRegdate'];?></td>
                  <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
                 <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>

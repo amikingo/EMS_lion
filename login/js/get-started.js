@@ -28,6 +28,7 @@ $(document).ready(function() {
         'positionClass': 'toast-top-center',
         'progressBar': true
     }
+}
 
 //     $("#login-formm").validate({
 //         errorElement: "span",
