@@ -231,12 +231,14 @@ function showRole(str) {
             echo '<option value="'.$admin_type_id.'" '.$selected.'>'.$ad_row['adminType'].'</option>';
             
             // Reset the $count_query pointer to the beginning
+
             mysqli_data_seek($count_query, 0);
         }
         
         echo '</select>'; 
     }
 ?>
+</div>
                                           
                                                      </div>
                                                 </div>
