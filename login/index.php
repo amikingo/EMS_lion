@@ -51,7 +51,8 @@ if (isset($_POST["signup"])) {
     $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
 
-    }}
+    }
+  }
 
 
 if (isset($_POST["signin"])) {
@@ -285,6 +286,7 @@ if (isset($_POST["signin"])) {
   <script>
   document.getElementById("login-submit").addEventListener("submit", function(event) {
     event.preventDefault();
+
 
     var isValid = true;
 
