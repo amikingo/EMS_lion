@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 02:55 PM
+-- Generation Time: Apr 29, 2023 at 08:27 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbladmin` (
   `ID` int(10) NOT NULL,
   `AdminName` varchar(120) DEFAULT NULL,
-  `UserName` varchar(120) DEFAULT NULL,
+  `UserName` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Email` varchar(200) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL,
@@ -45,7 +45,11 @@ CREATE TABLE `tbladmin` (
 INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`, `adminTypeId`) VALUES
 (1, 'kingo', 'admin', 8979555558, 'admin@gmail.com', '123456789', '2022-10-27 04:36:52', 1),
 (2, 'abene', 'HR', 123456789, 'admin222@gmail.com', '123456789', '2023-04-01 12:08:05', 2),
-(3, 'yab', 'store', 123456789, 'store@gmail.com', '123456789', '0000-00-00 00:00:00', 3);
+(3, 'yab', 'store', 123456789, 'store@gmail.com', '123456789', '0000-00-00 00:00:00', 3),
+(4, 'Abenezer Lulseged', 'st', 913491283, 'abenrahel@gmail.com', '123456789', '2023-04-28 21:00:00', 3),
+(5, 'Abenezer Lulseged Wube', 'is', 7070707, 'amikingo201@gmail.com', '123456789', '2023-04-28 21:00:00', 2),
+(6, 'yabu', 'ismeabena', 913491283, 'abenrahel@gmail.com', '123456789', '2023-04-28 21:00:00', 3),
+(7, 'amiro', 'itsmeabena', 7070707, 'abenrahel@gmail.com', '123456789', '2023-04-28 21:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -55,16 +59,17 @@ INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, 
 
 CREATE TABLE `tbladmintype` (
   `Id` int(20) NOT NULL,
-  `adminTypeName` varchar(255) NOT NULL
+  `adminType` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbladmintype`
 --
 
-INSERT INTO `tbladmintype` (`Id`, `adminTypeName`) VALUES
-(1, 'Super Administrator'),
-(2, 'Administrator');
+INSERT INTO `tbladmintype` (`Id`, `adminType`) VALUES
+(1, 'Administrator'),
+(2, 'HR'),
+(3, 'Store Keeper');
 
 -- --------------------------------------------------------
 
@@ -368,23 +373,23 @@ INSERT INTO `tblterm` (`Id`, `termName`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) DEFAULT NULL,
-  `full_name` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
-  `file` varchar(255) NOT NULL,
-  `companyName` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `companyName` varchar(50) NOT NULL,
+  `file` varchar(200) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `cpassword` varchar(256) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `token`, `status`, `file`, `companyName`) VALUES
-(NULL, '', '', 'd41d8cd98f00b204e9800998ecf8427e', '406273b44311eba080f9262a7a584583', 1, '', ''),
-(NULL, 'Abenezer', 'abenrahel@gmail.com', '25f9e794323b453885f5181f1b624d0b', '7127a3fe8cb276a9bbd5761789bca307', 1, '01 LOGIN DETAILS & PROJECT INFO.txt', 'abena');
+INSERT INTO `users` (`id`, `FirstName`, `LastName`, `email`, `companyName`, `file`, `password`, `cpassword`, `status`) VALUES
+(0, 'Abena', ' Lulseged', 'abenrahel@gmail.com', 'abbar', 'test_result.txt', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 1);
 
 --
 -- Indexes for dumped tables
@@ -458,6 +463,12 @@ ALTER TABLE `tblterm`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -465,13 +476,13 @@ ALTER TABLE `tblterm`
 -- AUTO_INCREMENT for table `tbladmin`
 --
 ALTER TABLE `tbladmin`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbladmintype`
 --
 ALTER TABLE `tbladmintype`
-  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tblattendance`

@@ -10,75 +10,28 @@ if(isset($_POST['submit'])){
      $alertStyle ="";
       $statusMsg="";
 
-  $firstname=$_POST['firstname'];
-  $lastname=$_POST['lastname'];
-  $othername=$_POST['othername'];
-  $emailAddress=$_POST['emailAddress'];
-
+  $adminName=$_POST['adminName'];
+  $userName=$_POST['userName'];
   $phoneNo=$_POST['phoneNo'];
-  $staffId=$_POST['staffId'];
-  $roleId=2;
+  $emailAddress=$_POST['email'];
+
+  $adminTypeId=$_POST['adminTypeId'];
+  //$roleId=2;
   $dateCreated = date("Y-m-d");
 
-        $departmentId=$_POST['departmentId'];
-        $facultyId=$_POST['facultyId'];
-        $dateAssigned = date("Y-m-d");
-
-    $que=mysqli_query($con,"select * from tbladmin where staffId ='$staffId'");
-    $res=mysqli_fetch_array($que);
 
 
-    $queryi=mysqli_query($con,"select * from tblassignedadmin where facultyId = '$facultyId' and departmentId = '$departmentId'");
+
+
+    $queryi=mysqli_query($con,"select * from tbladmin where adminTypeId = '$adminTypeId'");
     $rets=mysqli_fetch_array($queryi);
 
-    if($res > 0){
 
-      $alertStyle ="alert alert-danger";
-      $statusMsg="Administrator with the StaffID already exist!";
 
-    }
+    $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','123456789','$adminTypeId','$dateCreated')");
 
-    else if($rets > 0){
-
-    $alertStyle ="alert alert-danger";
-    $statusMsg="An Administrator has been Assigned to this Department!";
-
-    }
-    else{
-
-    $query=mysqli_query($con,"insert into tbladmin(firstName,lastName,otherName,emailAddress,phoneNo,password,staffId,adminTypeId,isPasswordChanged,isAssigned,dateCreated) value('$firstname','$lastname','$othername','$emailAddress','$phoneNo','b925736a3b5c1800c3344f97b49b02db','$staffId','2','0','0','$dateCreated')");
-
-    if($query) {
-
-        $queryss=mysqli_query($con,"insert into tblassignedadmin(staffId,departmentId,facultyId,dateAssigned) value('$staffId','$departmentId','$facultyId','$dateAssigned')");
-        if($queryss){
-
-            $querys=mysqli_query($con,"update tbladmin set isAssigned='1' where staffId='$staffId'");
-
-            if($querys == True){
-
-                $alertStyle ="alert alert-success";
-                $statusMsg="Administrator Created and Assigned Successfully!";
-            }
-            else
-            {
-                $alertStyle ="alert alert-danger";
-                $statusMsg="An error Occurred!";
-            }
-        }
-        else
-        {
-            $alertStyle ="alert alert-danger";
-            $statusMsg="An error Occurred!";
-        }
-    }
-    else
-    {
-      $alertStyle ="alert alert-danger";
-      $statusMsg="An error Occurred!";
-    }
   }
-}
+
   ?>
 
 <!doctype html>
@@ -87,7 +40,7 @@ if(isset($_POST['submit'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Trainers</title>
+  <title>Create System Users</title>
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
@@ -219,13 +172,13 @@ function showRole(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Firstname</label>
-                                                        <input id="" name="firstname" type="tel" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Firstname">
+                                                        <label for="cc-exp" class="control-label mb-1">Admin Name</label>
+                                                        <input id="" name="adminName" type="tel" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">Lastname</label>
-                                                        <input id="" name="lastname" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Lastname">
+                                                    <label for="x_card_code" class="control-label mb-1">User Name</label>
+                                                        <input id="" name="userName" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="User Name">
                                                         </div>
                                                     </div>
                                                     <div>
@@ -233,51 +186,43 @@ function showRole(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Othername</label>
-                                                        <input id="" name="othername" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
+                                                        <label for="cc-exp" class="control-label mb-1">Mobile Number</label>
+                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Email Address</label>
-                                                    <input id="" name="emailAddress" type="email" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
+                                                    <input id="" name="email" type="email" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Phone Number</label>
-                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Phone Number">
-                                                    </div>
-                                                </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Staff ID</label>
-                                                    <input id="" name="staffId" type="text" class="form-control cc-cvc" value="" data-val="true" Required data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="StaffID">
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                            
 
                                          <div class="row">
-                                               <div class="col-6">
+                                               <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Faculty</label>
                                                 <?php 
-                                                $query=mysqli_query($con,"select * from tblfaculty ORDER BY facultyName ASC");                        
+                                                $query=mysqli_query($con,"select * from tbladmin"); 
+                                                $ad= mysqli_query($con, "select * from tbladmintype ORDER BY adminType ASC");                       
                                                 $count = mysqli_num_rows($query);
                                                 if($count > 0){                       
-                                                    echo ' <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">';
-                                                    echo'<option value="">--Select Faculty--</option>';
-                                                    while ($row = mysqli_fetch_array($query)) {
-                                                    echo'<option value="'.$row['Id'].'" >'.$row['facultyName'].'</option>';
+                                                    echo ' <select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
+                                                    echo'<option value="">--Select Admin Type--</option>';
+                                                    while (($row = mysqli_fetch_array($query)) && ($col = mysqli_fetch_array($ad)))  {
+                                                    echo'<option value="'.$row['adminTypeId'].'" >'.$col['adminType'].'</option>';
                                                         }
                                                             echo '</select>';
                                                         }
                                                 ?>                                                  
                                                 </div>
                                                 </div>
+                                            </div>
+
                                             <div class="col-6">
                                                 <div class="form-group">
                                              <?php
@@ -310,43 +255,33 @@ function showRole(str) {
                                     <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
-                                            <th>Staff ID</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Othername</th>
-                                            <th>EmailAddress</th>
-                                            <th>PhoneNo</th>
-                                            <th>Faculty</th>
-                                            <th>Department</th>
+                                            <th>Admin Name</th>
+                                            <th>User Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email Address</th>
+                                            <th>Admin Type ID</th>
                                             <th>Date Added</th>
+                                            <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                       
                             <?php
-        $ret=mysqli_query($con,"SELECT tblassignedadmin.dateAssigned,tblassignedadmin.staffId, tbladmin.staffId,tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,
-        tblfaculty.facultyName,tbldepartment.departmentName, tbladmin.staffId, tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,tbladmin.emailAddress, tbladmin.phoneNo, tbladmin.dateCreated
-        from tblassignedadmin 
-        INNER JOIN tbladmin ON tbladmin.staffId = tblassignedadmin.staffId
-        INNER JOIN tblfaculty ON tblfaculty.Id = tblassignedadmin.facultyId
-        INNER JOIN tbldepartment ON tbldepartment.Id = tblassignedadmin.departmentId");
+        $ret=mysqli_query($con,"SELECT  * from tbladmin");
         $cnt=1;
         while ($row=mysqli_fetch_array($ret)) {
                             ?>
                 <tr>
                 <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['staffId'];?></td>
-                <td><?php  echo $row['firstName'];?></td>
-                <td><?php  echo $row['lastName'];?></td>
-                <td><?php  echo $row['otherName'];?></td>
-                <td><?php  echo $row['emailAddress'];?></td>
-                <td><?php  echo $row['phoneNo'];?></td>
-                <td><?php  echo $row['facultyName'];?></td>
-                <td><?php  echo $row['departmentName'];?></td>
-                <td><?php  echo $row['dateCreated'];?></td>
-                 <td><a href="editAdmin.php?editid=<?php echo $row['staffId'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
-                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['staffId'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
+                <td><?php  echo $row['AdminName'];?></td>
+                <td><?php  echo $row['UserName'];?></td>
+                <td><?php  echo $row['MobileNumber'];?></td>
+                <td><?php  echo $row['Email'];?></td>
+                <td><?php  echo $row['adminTypeId'];?></td>
+                <td><?php  echo $row['AdminRegdate'];?></td>
+                 <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
+                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
                 </tr>
                 <?php 
                $cnt=$cnt+1;
