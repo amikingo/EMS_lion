@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
   $userName=$_POST['userName'];
   $phoneNo=$_POST['phoneNo'];
   $emailAddress=$_POST['emailAddress'];
-  $password =$_POST['password'];
+  $password =md5($_POST['password']);
   $adminTypeId=$_POST['adminTypeId'];
 
 
@@ -217,7 +217,7 @@ function showRole(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Password</label>
-                                                        <input id="" name="password" type="text" class="form-control cc-exp" value="<?php echo $rowi['Password']?>" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Enter a new Password">
+                                                        <input id="" name="password" type="text" class="form-control cc-exp" value="<?php echo ''?>" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Enter a new Password">
                                                     </div>
                                                 </div>
                                             </div>

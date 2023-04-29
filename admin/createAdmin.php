@@ -19,7 +19,8 @@ if(isset($_POST['submit'])){
   //$roleId=2;
   $dateCreated = date("Y-m-d H:i:s");
 
-
+    $sampPass = "123456789";
+    $sampPass_2 = md5($sampPass);
 
 
 
@@ -28,7 +29,7 @@ if(isset($_POST['submit'])){
 
 
 
-    $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','123456789','$adminTypeId','$dateCreated')");
+    $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','$sampPass_2','$adminTypeId','$dateCreated')");
 
   }
 
