@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 
   $adminTypeId=$_POST['adminTypeId'];
   //$roleId=2;
-  $dateCreated = date("Y-m-d");
+  $dateCreated = date("Y-m-d H:i:s");
 
 
 
