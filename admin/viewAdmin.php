@@ -44,7 +44,7 @@
       <div id="content">
         <!-- TopBar -->
 
-        <div class="breadcrumbs">
+        <!-- <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
@@ -66,7 +66,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">View  All Users</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">View  All Users</li>
+            </ol>
+          </div>
+          </div>
         </div>
 <section class="content">
         <div class="content">
@@ -80,57 +89,57 @@
                     </div><!--/.col-->
                 </div>
             </div>
-               
+               <div class="row">
+ 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title"><h2 align="center">All Administrator</h2></strong>
                             </div>
-                            <div class="card-body">
+                            <div class="table-responsive p-3">
                                 <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
-                                            <th>Staff ID</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Othername</th>
-                                            <th>EmailAddress</th>
-                                            <th>PhoneNo</th>
-                                            <th>Faculty</th>
-                                            <th>Department</th>
+                                            <th>Admin Name</th>
+                                            <th>User Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email Address</th>
+                                            <th>Admin Type ID</th>
                                             <th>Date Added</th>
+                                            <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                       
                             <?php
-        $ret=mysqli_query($con,"SELECT tblassignedadmin.dateAssigned,tblassignedadmin.staffId, tbladmin.staffId,tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,
-        tblfaculty.facultyName,tbldepartment.departmentName, tbladmin.staffId, tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,tbladmin.emailAddress, tbladmin.phoneNo, tbladmin.dateCreated
-        from tblassignedadmin 
-        INNER JOIN tbladmin ON tbladmin.staffId = tblassignedadmin.staffId
-        INNER JOIN tblfaculty ON tblfaculty.Id = tblassignedadmin.facultyId
-        INNER JOIN tbldepartment ON tbldepartment.Id = tblassignedadmin.departmentId");
+        $ret=mysqli_query($con,"SELECT  * from tbladmin");
         $cnt=1;
         while ($row=mysqli_fetch_array($ret)) {
                             ?>
                 <tr>
                 <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['staffId'];?></td>
-                <td><?php  echo $row['firstName'];?></td>
-                <td><?php  echo $row['lastName'];?></td>
-                <td><?php  echo $row['otherName'];?></td>
-                <td><?php  echo $row['emailAddress'];?></td>
-                <td><?php  echo $row['phoneNo'];?></td>
-                <td><?php  echo $row['facultyName'];?></td>
-                <td><?php  echo $row['departmentName'];?></td>
-                <td><?php  echo $row['dateCreated'];?></td>
-                 <td><a href="editAdmin.php?editid=<?php echo $row['staffId'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
-                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['staffId'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
+                <td><?php  echo $row['AdminName'];?></td>
+                <td><?php  echo $row['UserName'];?></td>
+                <td><?php  echo $row['MobileNumber'];?></td>
+                <td><?php  echo $row['Email'];?></td>
+                <td><?php if($row['adminTypeId'] == 1){
+                                echo 'Adminstrator';
+
+                        }else if($row['adminTypeId'] == 2){
+                                echo 'HR';
+
+                        }else if($row['adminTypeId'] == 3){
+                                echo 'Store Keeper';
+                        }
+                 ?></td>
+                <td><?php  echo $row['AdminRegdate'];?></td>
+                 <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
+                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
                 </tr>
                 <?php 
-            
+               $cnt=$cnt+1;
                 }?>
                                                                                 
                                     </tbody>
@@ -138,9 +147,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
 <!-- end of datatable -->
 
-        
+               </div>
         </div>
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -173,6 +183,17 @@
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
+    <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
 
     <script type="text/javascript">
         $(document).ready(function() {

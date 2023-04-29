@@ -10,75 +10,29 @@ if(isset($_POST['submit'])){
      $alertStyle ="";
       $statusMsg="";
 
-  $firstname=$_POST['firstname'];
-  $lastname=$_POST['lastname'];
-  $othername=$_POST['othername'];
-  $emailAddress=$_POST['emailAddress'];
-
+  $adminName=$_POST['adminName'];
+  $userName=$_POST['userName'];
   $phoneNo=$_POST['phoneNo'];
-  $staffId=$_POST['staffId'];
-  $roleId=2;
-  $dateCreated = date("Y-m-d");
+  $emailAddress=$_POST['email'];
 
-        $departmentId=$_POST['departmentId'];
-        $facultyId=$_POST['facultyId'];
-        $dateAssigned = date("Y-m-d");
+  $adminTypeId=$_POST['adminTypeId'];
+  //$roleId=2;
+  $dateCreated = date("Y-m-d H:i:s");
 
-    $que=mysqli_query($con,"select * from tbladmin where staffId ='$staffId'");
-    $res=mysqli_fetch_array($que);
+    $sampPass = "123456789";
+    $sampPass_2 = md5($sampPass);
 
 
-    $queryi=mysqli_query($con,"select * from tblassignedadmin where facultyId = '$facultyId' and departmentId = '$departmentId'");
+
+    $queryi=mysqli_query($con,"select * from tbladmin where adminTypeId = '$adminTypeId'");
     $rets=mysqli_fetch_array($queryi);
 
-    if($res > 0){
 
-      $alertStyle ="alert alert-danger";
-      $statusMsg="Administrator with the StaffID already exist!";
 
-    }
+    $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','$sampPass_2','$adminTypeId','$dateCreated')");
 
-    else if($rets > 0){
-
-    $alertStyle ="alert alert-danger";
-    $statusMsg="An Administrator has been Assigned to this Department!";
-
-    }
-    else{
-
-    $query=mysqli_query($con,"insert into tbladmin(firstName,lastName,otherName,emailAddress,phoneNo,password,staffId,adminTypeId,isPasswordChanged,isAssigned,dateCreated) value('$firstname','$lastname','$othername','$emailAddress','$phoneNo','b925736a3b5c1800c3344f97b49b02db','$staffId','2','0','0','$dateCreated')");
-
-    if($query) {
-
-        $queryss=mysqli_query($con,"insert into tblassignedadmin(staffId,departmentId,facultyId,dateAssigned) value('$staffId','$departmentId','$facultyId','$dateAssigned')");
-        if($queryss){
-
-            $querys=mysqli_query($con,"update tbladmin set isAssigned='1' where staffId='$staffId'");
-
-            if($querys == True){
-
-                $alertStyle ="alert alert-success";
-                $statusMsg="Administrator Created and Assigned Successfully!";
-            }
-            else
-            {
-                $alertStyle ="alert alert-danger";
-                $statusMsg="An error Occurred!";
-            }
-        }
-        else
-        {
-            $alertStyle ="alert alert-danger";
-            $statusMsg="An error Occurred!";
-        }
-    }
-    else
-    {
-      $alertStyle ="alert alert-danger";
-      $statusMsg="An error Occurred!";
-    }
   }
-}
+
   ?>
 
 <!doctype html>
@@ -87,7 +41,7 @@ if(isset($_POST['submit'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Trainers</title>
+  <title>Create Users</title>
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
@@ -167,7 +121,7 @@ function showRole(str) {
       <div id="content">
         <!-- TopBar -->
       
-      </div>
+      <!-- </div>
         <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
@@ -190,16 +144,25 @@ function showRole(str) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Add User</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Add User</li>
+            </ol>
+          </div>
+          </div>
         </div>
 <section class="content">
         <div class="content-fluid">
             
-                <div class="row">
+            
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">Add New Administrator</h2></strong>
+                                <strong class="card-title"><h2 align="center">Add New User</h2></strong>
                             </div>
                             <div class="card-body">
                                 <!-- Credit Card -->
@@ -210,13 +173,13 @@ function showRole(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Firstname</label>
-                                                        <input id="" name="firstname" type="tel" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Firstname">
+                                                        <label for="cc-exp" class="control-label mb-1">Admin Name</label>
+                                                        <input id="" name="adminName" type="tel" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">Lastname</label>
-                                                        <input id="" name="lastname" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Lastname">
+                                                    <label for="x_card_code" class="control-label mb-1">User Name</label>
+                                                        <input id="" name="userName" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="User Name">
                                                         </div>
                                                     </div>
                                                     <div>
@@ -224,51 +187,43 @@ function showRole(str) {
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Othername</label>
-                                                        <input id="" name="othername" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
+                                                        <label for="cc-exp" class="control-label mb-1">Mobile Number</label>
+                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
                                                     </div>
                                                 </div>
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Email Address</label>
-                                                    <input id="" name="emailAddress" type="email" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
+                                                    <input id="" name="email" type="email" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="Email Address">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="cc-exp" class="control-label mb-1">Phone Number</label>
-                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" Required data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Phone Number">
-                                                    </div>
-                                                </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Staff ID</label>
-                                                    <input id="" name="staffId" type="text" class="form-control cc-cvc" value="" data-val="true" Required data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="StaffID">
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                            
 
                                          <div class="row">
-                                               <div class="col-6">
+                                               <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Faculty</label>
+                                                    <label for="x_card_code" class="control-label mb-1">Admin Type</label>
                                                 <?php 
-                                                $query=mysqli_query($con,"select * from tblfaculty ORDER BY facultyName ASC");                        
+                                                $query=mysqli_query($con,"select * from tbladmin"); 
+                                                $ad= mysqli_query($con, "select * from tbladmintype ORDER BY adminType ASC");                       
                                                 $count = mysqli_num_rows($query);
                                                 if($count > 0){                       
-                                                    echo ' <select required name="facultyId" onchange="showValues(this.value)" class="custom-select form-control">';
-                                                    echo'<option value="">--Select Faculty--</option>';
-                                                    while ($row = mysqli_fetch_array($query)) {
-                                                    echo'<option value="'.$row['Id'].'" >'.$row['facultyName'].'</option>';
+                                                    echo ' <select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
+                                                    echo'<option value="">--Select Admin Type--</option>';
+                                                    while (($row = mysqli_fetch_array($query)) && ($col = mysqli_fetch_array($ad)))  {
+                                                    echo'<option value="'.$row['adminTypeId'].'" >'.$col['adminType'].'</option>';
                                                         }
                                                             echo '</select>';
                                                         }
                                                 ?>                                                  
                                                 </div>
                                                 </div>
+                                            </div>
+
                                             <div class="col-6">
                                                 <div class="form-group">
                                              <?php
@@ -277,7 +232,7 @@ function showRole(str) {
                                                      </div>
                                                 </div>
                                             </div>
-                                            <p><small><i>Note: By default ADMIN'S password is set to "<b>Admas@123</b>"</i></small></p>
+                                            <p><small><i>Note: By default Users password is set to "<b>123456789</b>"</i></small></p>
                                                 <button type="submit" name="submit" class="btn btn-success">Add Admin</button>
                                             </div>
                                         </form>
@@ -287,55 +242,56 @@ function showRole(str) {
                         </div> <!-- .card -->
                     </div><!--/.col-->
                
+                
 
                 <br><br>
+
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">All Administrator</h2></strong>
+                                <strong class="card-title"><h2 align="center">All Users</h2></strong>
                             </div>
-                            <div class="card-body">
+                            <div class="table-responsive p-3">
                                 <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
-                                            <th>Staff ID</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
-                                            <th>Othername</th>
-                                            <th>EmailAddress</th>
-                                            <th>PhoneNo</th>
-                                            <th>Faculty</th>
-                                            <th>Department</th>
+                                            <th>Admin Name</th>
+                                            <th>User Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email Address</th>
+                                            <th>Admin Type ID</th>
                                             <th>Date Added</th>
+                                            <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                       
                             <?php
-        $ret=mysqli_query($con,"SELECT tblassignedadmin.dateAssigned,tblassignedadmin.staffId, tbladmin.staffId,tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,
-        tblfaculty.facultyName,tbldepartment.departmentName, tbladmin.staffId, tbladmin.firstName, tbladmin.lastName, tbladmin.otherName,tbladmin.emailAddress, tbladmin.phoneNo, tbladmin.dateCreated
-        from tblassignedadmin 
-        INNER JOIN tbladmin ON tbladmin.staffId = tblassignedadmin.staffId
-        INNER JOIN tblfaculty ON tblfaculty.Id = tblassignedadmin.facultyId
-        INNER JOIN tbldepartment ON tbldepartment.Id = tblassignedadmin.departmentId");
+        $ret=mysqli_query($con,"SELECT  * from tbladmin");
         $cnt=1;
         while ($row=mysqli_fetch_array($ret)) {
                             ?>
                 <tr>
                 <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['staffId'];?></td>
-                <td><?php  echo $row['firstName'];?></td>
-                <td><?php  echo $row['lastName'];?></td>
-                <td><?php  echo $row['otherName'];?></td>
-                <td><?php  echo $row['emailAddress'];?></td>
-                <td><?php  echo $row['phoneNo'];?></td>
-                <td><?php  echo $row['facultyName'];?></td>
-                <td><?php  echo $row['departmentName'];?></td>
-                <td><?php  echo $row['dateCreated'];?></td>
-                 <td><a href="editAdmin.php?editid=<?php echo $row['staffId'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
-                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['staffId'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
+                <td><?php  echo $row['AdminName'];?></td>
+                <td><?php  echo $row['UserName'];?></td>
+                <td><?php  echo $row['MobileNumber'];?></td>
+                <td><?php  echo $row['Email'];?></td>
+                <td><?php if($row['adminTypeId'] == 1){
+                                echo 'Adminstrator';
+
+                        }else if($row['adminTypeId'] == 2){
+                                echo 'HR';
+
+                        }else if($row['adminTypeId'] == 3){
+                                echo 'Store Keeper';
+                        }
+                 ?></td>
+                <td><?php  echo $row['AdminRegdate'];?></td>
+                 <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
+                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
                 </tr>
                 <?php 
                $cnt=$cnt+1;
@@ -347,7 +303,7 @@ function showRole(str) {
                         </div>
                     </div>
 <!-- end of datatable -->
-
+    </div>
             </div>
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -383,6 +339,17 @@ function showRole(str) {
     <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="../assets/js/init/datatables-init.js"></script>
 
+    <script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
 
     <script type="text/javascript">
         $(document).ready(function() {
