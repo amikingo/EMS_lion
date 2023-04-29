@@ -226,7 +226,7 @@ function showRole(str) {
                                        <div class="row">
                                                <div class="col-6">
                                                 <div class="form-group">
-                                                    <label for="x_card_code" class="control-label mb-1">Faculty</label>
+                                                    <label for="x_card_code" class="control-label mb-1">Admin Type</label>
                                                 <?php 
                                                 $query=mysqli_query($con,"select * from tbladmin"); 
                                                 $ad= mysqli_query($con, "select * from tbladmintype ORDER BY adminType ASC");                       
