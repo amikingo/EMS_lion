@@ -207,28 +207,35 @@ function showRole(str) {
                                                <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Admin Type</label>
-                                                <?php 
-                                                $query=mysqli_query($con,"select * from tbladmin"); 
-                                                $ad= mysqli_query($con, "select * from tbladmintype ORDER BY adminType ASC");                       
-                                                $count = mysqli_num_rows($query);
-                                                if($count > 0){                       
-                                                    echo ' <select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-                                                    echo'<option value="">--Select Admin Type--</option>';
-                                                    while (($row = mysqli_fetch_array($query)) && ($col = mysqli_fetch_array($ad)))  {
-                                                    echo'<option value="'.$row['adminTypeId'].'" >'.$col['adminType'].'</option>';
-                                                        }
-                                                            echo '</select>';
-                                                        }
-                                                ?>                                                  
-                                                </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                             <?php
-                                            echo"<div id='txtHint'></div>";
-                                             ?>                                        
+<?php 
+    $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC"); 
+    $count_query = mysqli_query($con, "SELECT adminTypeId FROM tbladmin"); 
+    $count = mysqli_num_rows($count_query);
+    
+    if ($count > 0) {                       
+        echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
+        echo '<option value="">--Select Admin Type--</option>';
+        
+        while ($ad_row = mysqli_fetch_array($ad_query)) {
+            $admin_type_id = $ad_row['Id'];
+            $selected = "";
+            
+            while ($count_row = mysqli_fetch_array($count_query)) {
+                $admin_type_id_db = $count_row['adminTypeId'];
+                if ($admin_type_id == $admin_type_id_db) {
+                    $selected = "selected";
+                    break;
+                }
+            }
+            
+            echo '<option value="'.$admin_type_id.'" '.$selected.'>'.$ad_row['adminType'].'</option>';
+            
+            // Reset the $count_query pointer to the beginning
+            mysqli_data_seek($count_query, 0);
+        }
+        
+        echo '</select>'; 
+                                          
                                                      </div>
                                                 </div>
                                             </div>
