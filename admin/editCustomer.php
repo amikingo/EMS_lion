@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -8,18 +8,16 @@ if (strlen($_SESSION['osghsaid']==0)) {
     if(isset($_POST['submit']))
   {
 
-$eid=$_GET['editid'];
-$status=$_POST['status'];
+$eid = $_GET['editid'];
+$status = $_POST['status'];
 
-$sql="update users set status=:status, where id=:eid";
-$query=$dbh->prepare($sql);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
+$sql = "UPDATE users SET status=:status WHERE id=:eid";
+$query = $dbh->prepare($sql);
+$query->bindParam(':status', $status, PDO::PARAM_STR);
+$query->bindParam(':eid', $eid, PDO::PARAM_INT); // assuming id is an integer
+$query->execute();
 
-$query->bindParam(':eid',$eid,PDO::PARAM_STR);
- $query->execute();
-
-
-    echo '<script>alert("Customer Detail has been updated")</script>';
+echo '<script>alert("Customer Detail has been updated")</script>';
 
   }
   ?>
@@ -122,6 +120,13 @@ foreach($results as $row)
                     echo 'Account is on Pending';
                 } ?>" readonly>
                   </div>
+    <label for="status">Status:</label>
+    <select name="status" id="status"  class="form-control">
+        <option value="1">Approve</option>
+        <option value="0">Reject</option>
+        <option value="2">Pending</option>
+    </select>
+                
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
