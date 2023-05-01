@@ -57,6 +57,8 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $new_booking_row_count = $query->rowCount();
 
 ?>
+
+
           
  
 <style type="text/css">
@@ -157,13 +159,39 @@ $new_booking_row_count = $query->rowCount();
             </a>
         
           </li>
+<?php
 
+$sqlme="SELECT * from users where status = 2";
+$queryme = $dbh -> prepare($sqlme);
+$queryme->execute();
+$resultsme=$queryme->fetchAll(PDO::FETCH_OBJ);
+
+$new_users = $queryme->rowCount();
+
+?>
+<style type="text/css">
+.notify-badgem {
+    height: 5;
+    background: red;
+    color: white;
+    border-radius: 100px;
+    /* padding: 5px; */
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+</style>  
 
                     <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>
               <p>
-                Manage Customer Account
+                Manage Customer
+                 <?php if($new_users) {  echo "<span class='notify-badgem'>" . $new_users . "</span>"; } ?>
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
@@ -172,7 +200,7 @@ $new_booking_row_count = $query->rowCount();
               <li class="nav-item">
                 <a href="manageCustomer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View And Manage Account</p>
+                  <p>View And Manage </p>
                 </a>
               </li>
              </ul>
