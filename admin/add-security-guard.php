@@ -125,7 +125,7 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
 <option value="">Choose ID Type</option>
                                                         
-<option value="Kebele Card">ID Card</option>
+<option value="Kebele Card">Kebele Card</option>
 
 
             
