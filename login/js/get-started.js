@@ -28,97 +28,96 @@ $(document).ready(function() {
         'positionClass': 'toast-top-center',
         'progressBar': true
     }
-}
 
-//     $("#login-formm").validate({
-//         errorElement: "span",
-//         rules: {
-//             username: "required",
-//             password: "required"
-//         },
-//         messages: {
-//             username: "Please enter your username",
-//             password: "Please enter your password"
+    $("#login-formm").validate({
+        errorElement: "span",
+        rules: {
+            username: "required",
+            password: "required"
+        },
+        messages: {
+            username: "Please enter your username",
+            password: "Please enter your password"
 
-//         },
-//         submitHandler: function(form) {
-//             $.ajax({
-//                 type: 'POST',
-//                 url: "ajax_api/login.php",
-//                 data: $("#login-form").serialize(),
-//                 success: function(e) {
-//                     if (e.charAt(0) == '-') toastr.error(e.substr(1));
-//                     else window.location.href = e;
-//                 }
-//             });
-//         }
-//     });
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                type: 'POST',
+                url: "ajax_api/login.php",
+                data: $("#login-form").serialize(),
+                success: function(e) {
+                    if (e.charAt(0) == '-') toastr.error(e.substr(1));
+                    else window.location.href = e;
+                }
+            });
+        }
+    });
 
-//     $.validator.addMethod("my_equal_to", function(val, elem) {
-//         return $("#form_cpass").val() == $("#form_pass").val();
-//     });
+    $.validator.addMethod("my_equal_to", function(val, elem) {
+        return $("#form_cpass").val() == $("#form_pass").val();
+    });
 
-//     $("#sign-up-formm").validate({
-//         errorElement: "span",
-//         rules: {
-//             f_name: "required",
-//             f_lname: "required",
-//             f_username: "required",
-//             f_company: "required",
-//             f_file: "required",
-//             f_email: { required: true, email: true },
-//             f_pass: { required: true, minlength: 8 },
-//             f_cpass: { required: true, my_equal_to: true }
-//         },
-//         messages: {
-//             f_name: "Please enter your First-Name",
-//             f_lname: "Please enter your Last-Name",
-//             f_username: "Please enter your username",
-//             f_company: "Please enter company ",
-//             f_file: "Please attach the proper Document required",
-//             f_email: "Please enter valid email",
-//             f_pass: {
-//                 required: "Please enter password",
-//                 minlength: "Your password must be at least 8 characters long"
-//             },
-//             f_cpass: {
-//                 required: "Please Re-enter password",
-//                 my_equal_to: "Password doesn't match"
-//             }
-//         },
-//         submitHandler: function(form) {
-//             $.ajax({
-//                 type: 'POST',
-//                 url: "ajax_api/signup.php",
-//                 data: $(form).serialize(),
-//                 success: function(e) {
-//                     if (e.charAt(0) == '-') toastr.error(e.substr(1));
-//                     else {
-//                         $(form).trigger('reset');
-//                         toastr.success(
-//                             "Your account is not activated yet. you'll receive email when your account is activated!", "ACCOUNT INFO", { "timeOut": "10000" }
-//                         ).css("width", "500px");
-//                     }
-//                 }
-//             });
-//         }
-//     });
+    $("#sign-up-formm").validate({
+        errorElement: "span",
+        rules: {
+            f_name: "required",
+            f_lname: "required",
+            f_username: "required",
+            f_company: "required",
+            f_file: "required",
+            f_email: { required: true, email: true },
+            f_pass: { required: true, minlength: 8 },
+            f_cpass: { required: true, my_equal_to: true }
+        },
+        messages: {
+            f_name: "Please enter your First-Name",
+            f_lname: "Please enter your Last-Name",
+            f_username: "Please enter your username",
+            f_company: "Please enter company ",
+            f_file: "Please attach the proper Document required",
+            f_email: "Please enter valid email",
+            f_pass: {
+                required: "Please enter password",
+                minlength: "Your password must be at least 8 characters long"
+            },
+            f_cpass: {
+                required: "Please Re-enter password",
+                my_equal_to: "Password doesn't match"
+            }
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                type: 'POST',
+                url: "ajax_api/signup.php",
+                data: $(form).serialize(),
+                success: function(e) {
+                    if (e.charAt(0) == '-') toastr.error(e.substr(1));
+                    else {
+                        $(form).trigger('reset');
+                        toastr.success(
+                            "Your account is not activated yet. you'll receive email when your account is activated!", "ACCOUNT INFO", { "timeOut": "10000" }
+                        ).css("width", "500px");
+                    }
+                }
+            });
+        }
+    });
 
-//     $("#forget-pass-btn").click(function(e) {
-//         if ($("#forget-pass-input").val() == '') return true;
-//         $.ajax({
-//             type: 'POST',
-//             url: "ajax_api/forgot_password.php",
-//             data: { email: $("#forget-pass-input").val() },
-//             success: function(e) {
-//                 if (e.charAt(0) == '-') toastr.error(e.substr(1));
-//                 else {
-//                     toastr.success(e.substr(1));
-//                     $("#forget-pass-form").trigger('reset');
-//                 }
-//             }
-//         });
-//         e.preventDefault();
-//     });
+    $("#forget-pass-btn").click(function(e) {
+        if ($("#forget-pass-input").val() == '') return true;
+        $.ajax({
+            type: 'POST',
+            url:"login/forgot_password.php",
+            data: { email: $("#forget-pass-input").val() },
+            success: function(e) {
+                if (e.charAt(0) == '-') toastr.error(e.substr(1));
+                else {
+                    toastr.success(e.substr(1));
+                    $("#forget-pass-form").trigger('reset');
+                }
+            }
+        });
+        e.preventDefault();
+    });
 
-// });
+});
