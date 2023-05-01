@@ -97,15 +97,7 @@ $(document).ready(function() {
         if ($("#forget-pass-input").val() == '') return true;
         $.ajax({
             type: 'POST',
-            url:"login/forgot_password.php",
-            data: { email: $("#forget-pass-input").val() },
-            success: function(e) {
-                if (e.charAt(0) == '-') toastr.error(e.substr(1));
-                else {
-                    toastr.success(e.substr(1));
-                    $("#forget-pass-form").trigger('reset');
-                }
-            }
+           
         });
         e.preventDefault();
     });

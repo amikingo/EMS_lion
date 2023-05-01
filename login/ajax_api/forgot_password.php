@@ -1,5 +1,5 @@
 <?php
-include "../funcs.php";
+include "../config.php";
 connect_db();
 session_start();
 
