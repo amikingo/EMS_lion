@@ -88,17 +88,7 @@ $(document).ready(function() {
         submitHandler: function(form) {
             $.ajax({
                 type: 'POST',
-                url: "ajax_api/signup.php",
-                data: $(form).serialize(),
-                success: function(e) {
-                    if (e.charAt(0) == '-') toastr.error(e.substr(1));
-                    else {
-                        $(form).trigger('reset');
-                        toastr.success(
-                            "Your account is not activated yet. you'll receive email when your account is activated!", "ACCOUNT INFO", { "timeOut": "10000" }
-                        ).css("width", "500px");
-                    }
-                }
+                
             });
         }
     });

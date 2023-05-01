@@ -48,9 +48,15 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
+    if(empty($_POST["f_name"]) || empty($_POST["f_lname"]) || empty($_POST["f_email"]) || empty($_POST["f_pass"]) || empty($_POST["f_cpass"]) || empty($_POST["f_company"]) || empty($_POST["f_file"])) {
+  echo "<script>alert('Please fill all fields.');</script>";
+} else {
+  // existing code
+
+
     $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '1', '$file', '$companyName')";
     $result = mysqli_query($conn, $sql);
-
+}
     }
   }
 
@@ -321,7 +327,7 @@ if (isset($_POST["signin"])) {
 </script>
 
 <script>
-  document.getElementById("signup").addEventListener("submit", function(event) {
+  document.getElementById("signup").addEventListener("signup", function(event) {
     event.preventDefault();
 
     var isValid = true;
