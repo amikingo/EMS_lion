@@ -8,6 +8,18 @@ if (strlen($_SESSION['osghsaid']==0)) {
     
 
 ?>
+<?php 
+
+  $expireDate = mysqli_real_escape_string($conn, $_POST["fromdate"]);
+  $notMonth= mysqli_real_escape_string($conn, $_POST["todate"]);
+
+// $sql=mysqli_query(select * 
+// from uniformTable
+// where expireDate < DATEADD(month, 6, GETDATE()));
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +40,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
   <?php include_once('includes/header.php');?>
 
  
-<?php include_once('includes/sidebar.php');?>
+<?php include_once('includes/sidebar_store.php');?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -62,7 +74,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details.php">
+              <form role="form" method="post" name="bwdatesreport" action="">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">From Date:</label>
