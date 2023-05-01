@@ -53,10 +53,11 @@ if (isset($_POST["signup"])) {
 } else {
   // existing code
 
+    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '0', '$file', '$companyName')";
 
-    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '1', '$file', '$companyName')";
+
     $result = mysqli_query($conn, $sql);
-}
+    }
     }
   }
 
