@@ -53,7 +53,7 @@ if (isset($_POST["signup"])) {
 } else {
   // existing code
 
-    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '0', '$file', '$companyName')";
+    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$file', '$companyName')";
 
 
     $result = mysqli_query($conn, $sql);
@@ -67,12 +67,16 @@ if (isset($_POST["signin"])) {
   $password = mysqli_real_escape_string($conn, md5($_POST["password"]));
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
-
+  $app=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='2'");
   if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
     header("Location: ../customer/index.php");
-  } else {
+  }
+else if(mysqli_num_rows($app) == 1){
+  echo "<script>alert('Your Account is pending.');</script>";
+}
+   else {
     echo "<script>alert('Login details is incorrect. Please try again.');</script>";
   }
 }
