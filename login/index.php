@@ -85,6 +85,7 @@ if (isset($_POST["signin"])) {
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
   $app=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='2'");
+  $rej=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='0'");
   if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
@@ -92,6 +93,9 @@ if (isset($_POST["signin"])) {
   }
 else if(mysqli_num_rows($app) == 1){
   echo "<script>alert('Your Account is pending.');</script>";
+}
+else if(mysqli_num_rows($rej) == 1){
+  echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
 }
    else {
     echo "<script>alert('Login details is incorrect. Please try again.');</script>";
