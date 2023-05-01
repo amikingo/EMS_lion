@@ -38,9 +38,26 @@ if (isset($_POST["signup"])) {
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
-  $file = mysqli_real_escape_string($conn, $_POST["f_file"]);
+  $file = $_FILES['f_file'];
+
   //$token = md5(rand());
   //move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
+
+
+$extension = substr($file,strlen($file)-4,strlen($file));
+$allowed_extensions = array(".doc",".pdf");
+if(!in_array($extension,$allowed_extensions))
+{
+echo "<script>alert('Invalid Format');</script>";
+}
+else
+{
+
+$file=md5($file).time().$extension;
+ move_uploaded_file($_FILES['f_file']["tmp_name"],"CustomerFiles/".$file);
+
+
+
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
   
   if ($password !== $cpassword) {
@@ -60,7 +77,7 @@ if (isset($_POST["signup"])) {
     }
     }
   }
-
+}
 
 if (isset($_POST["signin"])) {
   $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -207,7 +224,7 @@ else if(mysqli_num_rows($app) == 1){
 
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
-                                  <input type="file" class="form-control" name="f_file" placeholder="Logo">
+                                  <input type="file" class="form-control" name="f_file" id="f_file" placeholder="Logo">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-paperclip"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
