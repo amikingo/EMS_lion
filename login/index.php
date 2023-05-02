@@ -38,23 +38,24 @@ if (isset($_POST["signup"])) {
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
- // $file = $_FILES['file'];
+ 
+ $targetfolder = "cfile/";
 
-  //$token = md5(rand());
-  //move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
+ $targetfolder = $targetfolder . basename( $_FILES['file']['name']) ;
 
+if(move_uploaded_file($_FILES['file']['tmp_name'], $targetfolder))
 
-//$extension = substr($file,strlen($file)-4,strlen($file));
-//$allowed_extensions = array(".doc",".pdf");
-// if(0)
-// {
-// echo "<script>alert('Invalid Format');</script>";
-// }
-// else
-// {
+ {
 
-// $file=md5($file).time().$extension;
-//  move_uploaded_file($_FILES['f_file']["tmp_name"],"cfile/".$file);
+ echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
+
+ }
+
+ else {
+
+ echo "Problem uploading file";
+
+ }
 
 
 
@@ -65,12 +66,12 @@ if (isset($_POST["signup"])) {
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
-    if(empty($_POST["f_name"]) || empty($_POST["f_lname"]) || empty($_POST["f_email"]) || empty($_POST["f_pass"]) || empty($_POST["f_cpass"]) || empty($_POST["f_company"]) || empty($_POST["f_file"])) {
+    if(empty($_POST["f_name"]) || empty($_POST["f_lname"]) || empty($_POST["f_email"]) || empty($_POST["f_pass"]) || empty($_POST["f_cpass"]) || empty($_POST["f_company"]) ) {
   echo "<script>alert('Please fill all fields.');</script>";
 } else {
   // existing code
 
-    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$file', '$companyName')";
+    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$targetfolder', '$companyName')";
 
 
     $result = mysqli_query($conn, $sql);
@@ -159,7 +160,7 @@ else if(mysqli_num_rows($rej) == 1){
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
                       
-                           <form id="login-form" method="post" action="upload_file.php" enctype="multipart/form-data">
+                           <form id="login-form" method="post">
                              <div class="form-group user-name-field my-3">
                                  <input type="text" class="form-control" name="email" placeholder="Email">
                                      <span class="error-message"></span>
@@ -193,7 +194,7 @@ else if(mysqli_num_rows($rej) == 1){
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign up</b></h3>
-                          <form id="sign-up-form" method="post" action="upload_file.php" enctype="multipart/form-data">
+                          <form id="sign-up-form" method="post" action="index.php" enctype="multipart/form-data">
 
                             <div class="row">
                               <div class="col">
@@ -315,7 +316,7 @@ else if(mysqli_num_rows($rej) == 1){
   <script src="lib/toastr/toastr.min.js"></script>
   <script src="js/get-started.js"></script>
 
-  <script>
+  <script type="text/javascript">
   document.getElementById("login-submit").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -352,7 +353,7 @@ else if(mysqli_num_rows($rej) == 1){
   }
 </script>
 
-<script>
+<script type="text/javascript">
   document.getElementById("signup").addEventListener("signup", function(event) {
     event.preventDefault();
 
