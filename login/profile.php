@@ -33,10 +33,10 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
-  $f_name = $row["first_name"];
-  $f_lname = $row["last_name"];
+  $f_name = $row["FirstName"];
+  $f_lname = $row["LastName"];
   $f_email = $row["email"];
-  $f_company = $row["company"];
+  $f_company = $row["companyName"];
 } else {
   // Redirect the user to the profile page
   header("Location: profile.php");
@@ -107,6 +107,7 @@ $conn->close();
       margin-top: 5px;
     }
   </style>
+  
 </head>
 <body>
   <h1>Profile Update</h1>
@@ -156,7 +157,7 @@ $conn->close();
 // Process the form data
 if (isset($_POST["submit"])) {
   // Connect to the database
-  $conn = new mysqli($servername, $username, $password, $dbname);
+  $conn = new mysqli($hostname, $username, $password, $database);
 
   // Check connection
   if ($conn->connect_error) {
@@ -190,7 +191,7 @@ if (isset($_POST["submit"])) {
       }
 
       // Update the user's profile in the database
-      $sql = "UPDATE users SET first_name = '$f_name', last_name = '$f_lname', email = '$f_email', company = '$f_company' WHERE id = $user_id";
+      $sql = "UPDATE users SET FirstName = '$f_name', LastName = '$f_lname', email = '$f_email', companyName = '$f_company' WHERE id = $user_id";
 
       if ($conn->query($sql) === TRUE) {
         // Redirect the user to the profile page
