@@ -38,23 +38,23 @@ if (isset($_POST["signup"])) {
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
-  $file = $_FILES['f_file'];
+ // $file = $_FILES['file'];
 
   //$token = md5(rand());
   //move_uploaded_file($_FILES["file"]["tmp_name"],"cfile/".$_FILES["file"]["name"]);
 
 
-$extension = substr($file,strlen($file)-4,strlen($file));
-$allowed_extensions = array(".doc",".pdf");
-if(!in_array($extension,$allowed_extensions))
-{
-echo "<script>alert('Invalid Format');</script>";
-}
-else
-{
+//$extension = substr($file,strlen($file)-4,strlen($file));
+//$allowed_extensions = array(".doc",".pdf");
+// if(0)
+// {
+// echo "<script>alert('Invalid Format');</script>";
+// }
+// else
+// {
 
-$file=md5($file).time().$extension;
- move_uploaded_file($_FILES['f_file']["tmp_name"],"CustomerFiles/".$file);
+// $file=md5($file).time().$extension;
+//  move_uploaded_file($_FILES['f_file']["tmp_name"],"cfile/".$file);
 
 
 
@@ -77,7 +77,7 @@ $file=md5($file).time().$extension;
     }
     }
   }
-}
+
 
 if (isset($_POST["signin"])) {
   $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -92,7 +92,7 @@ if (isset($_POST["signin"])) {
     header("Location: ../customer/index.php");
   }
 else if(mysqli_num_rows($app) == 1){
-  echo "<script>alert('Your Account is pending.');</script>";
+  echo "<script>alert('Your Account is pending. Please Wait Until its verified.');</script>";
 }
 else if(mysqli_num_rows($rej) == 1){
   echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
@@ -159,7 +159,7 @@ else if(mysqli_num_rows($rej) == 1){
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
                       
-                           <form id="login-form" method="post">
+                           <form id="login-form" method="post" action="upload_file.php" enctype="multipart/form-data">
                              <div class="form-group user-name-field my-3">
                                  <input type="text" class="form-control" name="email" placeholder="Username">
                                      <span class="error-message"></span>
@@ -193,7 +193,7 @@ else if(mysqli_num_rows($rej) == 1){
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign up</b></h3>
-                          <form id="sign-up-form" method="post">
+                          <form id="sign-up-form" method="post" action="upload_file.php" enctype="multipart/form-data">
 
                             <div class="row">
                               <div class="col">
@@ -228,7 +228,7 @@ else if(mysqli_num_rows($rej) == 1){
 
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
-                                  <input type="file" class="form-control" name="f_file" id="f_file" placeholder="Logo">
+                                  <input type="file" class="form-control" name="file" id="f_file" placeholder="Logo">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-paperclip"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
