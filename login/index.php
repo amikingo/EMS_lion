@@ -161,7 +161,7 @@ else if(mysqli_num_rows($rej) == 1){
                       
                            <form id="login-form" method="post">
                              <div class="form-group user-name-field my-3">
-                                 <input type="text" class="form-control" name="email" placeholder="Username">
+                                 <input type="text" class="form-control" name="email" placeholder="Email">
                                      <span class="error-message"></span>
                                        <div class="field-icon"><i class="fas fa-user"></i></div>
                                        </div>
