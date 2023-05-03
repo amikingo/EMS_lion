@@ -337,8 +337,14 @@ h6 {
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
         <ul>
           <li class="active"><a href="../index.php">Home</a></li>
-          <li><a href="../customer/index.php">Request Page</a></li>         
-          <li><a href="../customer/search-request.php">Request-Status</a></li>
+          <li class="drop-down">
+            <a href="">Request & complain </a> 
+            <ul >
+              <li><a href="../customer/index.php">Request Employee</a></li>
+              <li><a href="../customer/search-request.php">Check Request</a></li>
+              <li><a href="" >Complain</a></li>
+            </ul>
+          </li>
           <li class="drop-down">
             <a href="">My Account </a> 
             <ul >
