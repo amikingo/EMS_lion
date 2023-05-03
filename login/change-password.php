@@ -53,6 +53,7 @@ echo '<script>alert("Your current password is wrong")</script>';
   <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <script type="text/javascript">
 function checkpass()
 {

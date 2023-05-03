@@ -130,7 +130,7 @@ else if(mysqli_num_rows($rej) == 1){
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <span class="logo d-flex align-items-center">
-        <img src="images/logo.png" alt="">
+        <img src="../assets/img/LOGO.png" alt="">
         
       </span>
 
