@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>New Booking Request</title>
+  <title>New Request</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -42,12 +42,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New Booking Request</h1>
+            <h1>New Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">New Booking Request</li>
+              <li class="breadcrumb-item active">New Request</li>
             </ol>
           </div>
         </div>
@@ -61,7 +61,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">New Booking Request</h3>
+              <h3 class="card-title">New Request</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
