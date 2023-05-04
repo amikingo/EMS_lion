@@ -1,9 +1,26 @@
-<?php
+<?php 
+// DB credentials.
+define('DB_HOST','localhost');
+define('DB_USER','root');
+define('DB_PASS','');
+define('DB_NAME','osghsdb');
+// Establish database connection.
 
-$hostname = "localhost";
-$username = "root";
-$password = "";
-$database = "osghsdb";
+	$host = "localhost";
+	$user = "root";
+	$pass = "";
+	$db = "osghsdb";
+$conn = new mysqli($host, $user, $pass, $db);
+	if($conn->connect_error){
+		echo "Seems like you have not configured the database. Failed To Connect to database:" . $conn->connect_error;
+	}
+try
+{
+$dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME,DB_USER, DB_PASS,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 
-$conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
+}
+catch (PDOException $e)
+{
+exit("Error: " . $e->getMessage());
+}
 ?>

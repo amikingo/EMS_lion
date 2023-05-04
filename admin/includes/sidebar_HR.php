@@ -100,6 +100,12 @@ $new_booking_row_count = $query->rowCount();
                   <p>Manage Security Guard</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="manageUncertifiedGuards.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Training Personnel</p>
+                </a>
+              </li>
              </ul>
           </li>
   
@@ -200,7 +206,7 @@ $new_users = $queryme->rowCount();
               <li class="nav-item">
                 <a href="manageCustomer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View And Manage </p>
+                  <p>View And Manage ranier</p>
                 </a>
               </li>
              </ul>

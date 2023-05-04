@@ -11,6 +11,9 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $eid = $_GET['editid'];
 $status = $_POST['status'];
 
+
+
+
 $sql = "UPDATE users SET status=:status WHERE id=:eid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':status', $status, PDO::PARAM_STR);
@@ -78,6 +81,7 @@ echo '<script>alert("Customer Detail has been updated")</script>';
               <form role="form" method="post" enctype="multipart/form-data">
                 <?php
                    $eid=$_GET['editid'];
+
 $sql="SELECT * from users where id=$eid";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -108,7 +112,20 @@ foreach($results as $row)
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">About Company Attachable File</label>
-                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" readonly><?php echo htmlentities($row->file);?></textarea>
+                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" readonly><?php  
+                    $targetfolder = "cfile/";
+                    $filename = htmlentities($row->file);
+$file = fopen($filename, "r");
+
+if ($file) {
+    while (!feof($file)) {
+        $line = fgets($file);
+        echo $line;
+    }
+    fclose($file);
+} else {
+    echo "Error opening file!";
+};?></textarea>
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">Status</label>

@@ -6,21 +6,14 @@ if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
   } else{
 
-//Code for Deletion
- if ($_GET['delid']) {
-$gid=$_GET['delid'];
-$query=$dbh -> prepare("delete from tblguard where ID='$gid'");
-$query->execute();
-   echo '<script>alert("Record has been deleted")</script>';
-echo "<script>window.location.href ='manage-security-guard.php'</script>";
-    }   
+
 
   ?>
 <!DOCTYPE html>
 <html>
 <head>
  
-  <title>Security Guard</title>
+  <title>Trainee Listsr</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -49,12 +42,12 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Security Guard</h1>
+            <h1>Trainee Lists</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Manage Security Guard</li>
+              <li class="breadcrumb-item active">Trainee Lists</li>
             </ol>
           </div>
         </div>
@@ -68,23 +61,23 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Manage Security Guard</h3>
+              <h3 class="card-title">Trainee Lists</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Mobile Number</th>                  
-                  <th>Registration Date</th>
-                  <th>Action</th>
-                
-                </tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>ID Number</th>
+                    <th>Address</th>
+                    <th>Mobile Number</th>
+                    <th>Action</th>
+                  </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblguard where isTrainer= '1' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -95,16 +88,15 @@ if($query->rowCount() > 0)
 foreach($results as $row)
 {               ?>
                 <tr>
-                  <td><?php echo htmlentities($cnt);?></td>
-                  <td><?php  echo htmlentities($row->Name);?></td>
-                  <td><?php  echo htmlentities($row->MobileNumber);?></td>
-                  <td><?php  echo htmlentities($row->RegistrationDate);?></td>
-                  <td> <a href="edit-guard-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary">Edit</a>
+                    <td><?php echo htmlentities($cnt);?></td>
+                    <td><?php  echo htmlentities($row->Name);?></td>
+                    <td><?php  echo htmlentities($row->IDnumber);?></td>
+                    <td><?php  echo htmlentities($row->Address);?></td>
+                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
+                  
 
-<a href="manage-security-guard.php?delid=<?php echo htmlentities ($row->ID);?>" onClick="return confirm('Do you really want to delete?');" class="btn btn-danger">Delete</a>
-
-                  </td>
-                </tr>      
+                    <td><a href="viewTrainee.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"> View</td>
+                  </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
             </div>

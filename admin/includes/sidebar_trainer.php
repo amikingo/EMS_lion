@@ -51,7 +51,7 @@ foreach($results as $row)
 // $sql=mysqli_query(select * 
 // from uniformTable
 // where expireDate < DATEADD(month, 6, GETDATE()));
-$sql="SELECT * from tblguard where uniformAssigned='0' AND isAssigned= '1' ";
+$sql="SELECT * from tblguard where   isTrainer= '1' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -82,33 +82,20 @@ $new_uniform_row_count = $query->rowCount();
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Order
+                Trainee Lists
                 <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="newOrderLists.php" class="nav-link">
+                <a href="trainerLists.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Orders</p>
+                  <p>All Trainee Lists</p>
                   <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="employeeList.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Lists</p>
-                  
-                </a>
-              </li>
-             <li class="nav-item">
-                <a href="expir_date.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Expire Date</p>
-                  
-                </a>
-              </li>
+
             </ul>
           </li>
           <li class="nav-item has-treeview">

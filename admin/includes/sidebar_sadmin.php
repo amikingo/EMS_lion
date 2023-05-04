@@ -14,21 +14,21 @@
        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
 <?php
-//   session_start();
-//   include 'dbconnection.php';
-// $aid=$_SESSION['osghsaid'];
-// $sql="SELECT AdminName from  tbladmin where ID=:aid";
-// $query = $dbh -> prepare($sql);
-// $query->bindParam(':aid',$aid,PDO::PARAM_STR);
-// $query->execute();
-// $results=$query->fetchAll(PDO::FETCH_OBJ);
-// $cnt=1;
-// if($query->rowCount() > 0)
-// {
-// foreach($results as $row)
-// {               ?>
-          <!-- <a href="admin-profile.php" class="d-block">Welcome : <?php // echo $row->AdminName;?></a> -->
-          <?// $cnt=$cnt+1;}} ?>
+  session_start();
+  include 'dbconnection.php';
+$aid=$_SESSION['osghsaid'];
+$sql="SELECT AdminName from  tbladmin where ID=:aid";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+ {               ?>
+          <a href="admin-profile.php" class="d-block">Welcome : <?php  echo $row->AdminName;?></a>
+          <?php $cnt=$cnt+1;}} ?>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
-                Create Admin 
+                Create Users
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
@@ -53,53 +53,21 @@
               <li class="nav-item">
                 <a href="createAdmin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> Create Admin </p>
+                  <p> Create Users </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="viewAdmin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View All Admin</p>
+                  <p>View All Users</p>
                 </a>
               </li>
              </ul>
           </li> 
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-              Create Trainer
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="createClassTeacher.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Create Trainer </p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
         
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-friends"></i>
-              <p>
-              Create Trainee 
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="createStudents.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create Trainee</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          
        
 <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

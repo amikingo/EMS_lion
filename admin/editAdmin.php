@@ -232,6 +232,7 @@ function showRole(str) {
     $count_query = mysqli_query($con, "SELECT adminTypeId FROM tbladmin"); 
     $count = mysqli_num_rows($count_query);
     
+    
     if ($count > 0) {                       
         echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
         echo '<option value="">--Select Admin Type--</option>';

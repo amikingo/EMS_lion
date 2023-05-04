@@ -84,7 +84,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
                 </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblguard where isTrainer = '1'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

@@ -1,17 +1,37 @@
 <?php
-//session_start();
+session_start();
 //error_reporting(0);
 include('config.php');
-error_reporting(0);
-// if (strlen($_SESSION['osghsaid']==0)) {
-//   header('location:logout.php');
-//   } else{
-if(isset($_POST['submit']))
-{
-$adminid=$_SESSION['osghsaid'];
-$cpassword=md5($_POST['currentpassword']);
+//error_reporting(0);
+if (!isset($_SESSION["adminid"])) {
+  // Redirect the user to the login page
+  header("Location: logout.php");
+  exit();
+}
+
+// Connect to the database
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "osghsdb";
+
+
+$conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+
+// Get the user's current profile information
+$adminid = $_SESSION["adminid"];
+$sql = "SELECT * FROM users WHERE id = $adminid";
+$result = $conn->query($sql);
+$cpassword=($_POST['currentpassword']);
 $newpassword=md5($_POST['newpassword']);
-$sql ="SELECT ID FROM tbladmin WHERE ID=:adminid and Password=:cpassword";
+$sql ="SELECT * FROM users WHERE id=:adminid and password=:cpassword";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
 $query-> bindParam(':cpassword', $cpassword, PDO::PARAM_STR);
@@ -20,7 +40,7 @@ $results = $query -> fetchAll(PDO::FETCH_OBJ);
 
 if($query -> rowCount() > 0)
 {
-$con="update tbladmin set Password=:newpassword where ID=:adminid";
+$con="update users set password=:newpassword where id=:adminid";
 $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
@@ -34,7 +54,7 @@ echo '<script>alert("Your current password is wrong")</script>';
 
 
 
-}
+
 
   
   ?>

@@ -7,52 +7,39 @@ if (strlen($_SESSION['osghsaid']==0)) {
   } else{
     if(isset($_POST['submit']))
   {
+
+$eid=$_GET['editid'];
 $name=$_POST['name'];
+$remark=$_POST['remark'];
+$isTrainer=0;
 $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
-$propic=$_FILES["propic"]["name"];
-$extension = substr($propic,strlen($propic)-4,strlen($propic));
-$allowed_extensions = array(".jpg","jpeg",".png",".gif");
-if(!in_array($extension,$allowed_extensions))
-{
-echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-}
-else
-{
 
-$propic=md5($propic).time().$extension;
- move_uploaded_file($_FILES["propic"]["tmp_name"],"images/".$propic);
-$sql="insert into tblguard(Profilepic,Name,MobileNumber,Address,IDtype,IDnumber,isTrainer)values(:pics,:name,:mobilenumber,:address,:idtype,:idnum, 1)";
+
+$sql="update tblguard set Name=:name, remark=:remark,isTrainer=:isTrainer,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
 $query=$dbh->prepare($sql);
-$query->bindParam(':pics',$propic,PDO::PARAM_STR);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':remark',$remark,PDO::PARAM_STR);
+$query->bindParam(':isTrainer',$isTrainer,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
 $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
+$query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
 
-   $LastInsertId=$dbh->lastInsertId();
-   if ($LastInsertId>0) {
-    echo '<script>alert("Security Guard Detail has been added.")</script>';
-echo "<script>window.location.href ='add-security-guard.php'</script>";
-  }
-  else
-    {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
-    }
 
-  
-}
-}
-?>
+    echo '<script>alert("Security Guard Detail has been updated")</script>';
+
+  }
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
   
-  <title>Lion Security Services | Add Security Guard</title>
+  <title>Lion Security Services | View More</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -77,12 +64,12 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Security Guard</h1>
+            <h1>View More About Trainee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Add Security Guard</li>
+              <li class="breadcrumb-item active">View More About Trainee</li>
             </ol>
           </div>
         </div>
@@ -98,48 +85,79 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Security Guard</h3>
+                <h3 class="card-title">View More About Trainee</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
+                <?php
+                   $eid=$_GET['editid'];
+$sql="SELECT * from tblguard where ID=$eid";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+{               ?>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Profile Pics</label>
-                    <input type="file" class="form-control" id="propic" name="propic" required="true">
+                    <label for="exampleInputEmail1">Profile Pics</label><br>
+                    <img src="images/<?php echo $row->Profilepic;?>"class="img circle" width="100" height="100" value="<?php  echo $row->Profilepic;?>"><br>
+
                   </div>
                      <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required="true">
+                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true" readonly>
                   </div>
+
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Is Security Certified</label>
+                    <input type="text" class="form-control" id="UniformAssigned" name="UniformAssigned" value="<?php
+  $isTrainer = htmlentities($row->isTrainer);
+  $wasTrainer = ($isTrainer == 1) ? 'Not Certified' : 'is Certified';
+  echo $wasTrainer;
+?>" required="true" readonly>
+                  </div>
+                  
                   <div class="form-group">
                     <label for="exampleInputEmail1">Mobile Number</label>
-                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" placeholder="Mobile Number" maxlength="10" pattern="[0-9]+" required="true">
+                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->MobileNumber);?>" maxlength="10" pattern="[0-9]+" required="true" readonly>
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Address</label>
-                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true"></textarea>
-                  </div> 
+                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" readonly><?php echo htmlentities($row->Address);?></textarea>
+                  </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Type</label>
-                     <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
-<option value="">Choose ID Type</option>
-                                                        
-<option value="Kebele Card">Kebele Card</option>
 
+                                                        
+                    <textarea type="text" class="form-control" id="idtype"   required="true" readonly><?php echo htmlentities($row->IDtype);?></textarea>
 
             
                                                         
-                                                    </select>
+                                                  
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Number</label>
-                    <input type="text" class="form-control" id="idnum" name="idnum" placeholder="Enter ID Number" required="true">
+                    <input type="text" class="form-control" id="idnum" name="idnum" required="true" value="<?php echo htmlentities($row->IDnumber);?>"readonly>
                   </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Registration Date</label>
+                    <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">remark</label>
+                    <textarea type="text" class="form-control" id="address" name="remark" placeholder="remark" required="true" ><?php echo htmlentities($row->remark);?></textarea>
+                  </div>
+
                 </div>
-              
+              <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Add</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Approve</button>
                 </div>
               </form>
             </div>

@@ -1,21 +1,23 @@
 <?php
-//session_start();
+session_start();
 //error_reporting(0);
 include('config.php');
-// if (strlen($_SESSION['osghsaid']==0)) {
-//  // header('location:logout.php');
-//   } else{
+if (strlen($_SESSION['osghsaid']==0)) {
+  header('location:logout.php');
+  } else{
     if(isset($_POST['submit']))
   {
     $adminid=$_SESSION['osghsaid'];
-    $AName=$_POST['adminname'];
-  $mobno=$_POST['mobilenumber'];
+    $AName=$_POST['Fname'];
+  $mobno=$_POST['Lname'];
   $email=$_POST['email'];
-  $sql="update tbladmin set AdminName=:adminname,MobileNumber=:mobilenumber,Email=:email where ID=:aid";
+  $companyName=$_POST['cName'];
+  $sql="update users set FirstName=:Fname,LastName=:Lname,email=:email, companyName=:cName where id=:aid";
      $query = $dbh->prepare($sql);
-     $query->bindParam(':adminname',$AName,PDO::PARAM_STR);
-     $query->bindParam(':email',$email,PDO::PARAM_STR);
-     $query->bindParam(':mobilenumber',$mobno,PDO::PARAM_STR);
+     $query->bindParam(':Fname',$AName,PDO::PARAM_STR);
+     $query->bindParam(':Lname',$email,PDO::PARAM_STR);
+     $query->bindParam(':email',$mobno,PDO::PARAM_STR);
+     $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
      $query->bindParam(':aid',$adminid,PDO::PARAM_STR);
 $query->execute();
 echo '<script>alert("Your profile has been updated")</script>';
@@ -240,41 +242,55 @@ echo '<script>alert("Your profile has been updated")</script>';
               <form name="profile" method="post" action="">
                                 
                             <div class="card-body card-block">
- <?php
+<?php
+// Establish database connection (replace with your own credentials)
+$dbh = new PDO('mysql:host=localhost;dbname=osghsdb', 'root', '');
 
-$aid=$_SESSION['osghsaid'];
-$sql="SELECT * from  users where ID=:aid";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+// Retrieve user data from database
+$aid = $_SESSION['osghsaid'];
+$sql = "SELECT * FROM users WHERE id = :aid";
+$query = $dbh->prepare($sql);
+$query->bindParam(':aid', $aid, PDO::PARAM_STR);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                                <div class="form-group"><label for="company" class=" form-control-label">Admin Name</label><input type="text" name="adminname" value="<?php  echo $row->AdminName;?>" class="form-control" required='true'></div>
-                                    <div class="form-group"><label for="vat" class=" form-control-label">User Name</label><input type="text" name="username" value="<?php  echo $row->UserName;?>" class="form-control" ></div>
-                                        <div class="form-group"><label for="street" class=" form-control-label">Contact Number</label><input type="text" name="mobilenumber" value="<?php  echo $row->MobileNumber;?>"  class="form-control" maxlength='10' required='true'></div>
-                                            <div class="row form-group">
-                                                <div class="col-12">
-                                                    <div class="form-group"><label for="city" class=" form-control-label">Email</label><input type="email" name="email" value="<?php  echo $row->Email;?>" class="form-control" required='true'></div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group"><label for="postal-code" class=" form-control-label">Admin Registration Date</label><input type="text" name="" value="<?php  echo $row->AdminRegdate;?>" readonly="" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    </div>
-                                                     <?php $cnt=$cnt+1;}} ?>  
-                                                     <div class="card-footer">
-                                                       <p style="text-align: center;"><button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
-                                                            <i class="fa fa-dot-circle-o"></i> Update
-                                                        </button></p>
-                                                        
-                                                    </div>
-                                                </div>
-                                                </form>
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+
+// Display user data in form fields
+if ($query->rowCount() > 0) {
+  foreach ($results as $row) {
+?>
+<form method="post">
+  <div class="form-group">
+    <label for="Fname" class="form-control-label">First Name</label>
+    <input type="text" name="Fname" value="<?php echo $row->FirstName; ?>" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="Lname" class="form-control-label">Last Name</label>
+    <input type="text" name="Lname" value="<?php echo $row->LastName; ?>" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="email" class="form-control-label">Email</label>
+    <input type="email" name="email" value="<?php echo $row->email; ?>" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="mobilenumber" class="form-control-label">Contact Number</label>
+    <input type="text" name="mobilenumber" value="<?php echo $row->mobilenumber; ?>" class="form-control" maxlength="10" required>
+  </div>
+  <div class="form-group">
+    <label for="AdminRegdate" class="form-control-label">Admin Registration Date</label>
+    <input type="text" name="AdminRegdate" value="<?php echo $row->AdminRegdate; ?>" readonly class="form-control">
+  </div>
+  <div class="card-footer">
+    <p style="text-align: center;">
+      <button type="submit" class="btn btn-primary btn-sm" name="submit" id="submit">
+        <i class="fa fa-dot-circle-o"></i> Update
+      </button>
+    </p>
+  </div>
+</form>
+<?php
+  }
+}
+?>
             </div>
             <!-- /.card -->
 
@@ -358,4 +374,4 @@ $(document).ready(function () {
 </script>
 </body>
 </html>
-<?php   ?>
+<?php  } ?>
