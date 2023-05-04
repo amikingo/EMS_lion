@@ -100,6 +100,13 @@ $new_uniform_row_count = $query->rowCount();
                   
                 </a>
               </li>
+             <li class="nav-item">
+                <a href="expir_date.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Expire Date</p>
+                  
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
