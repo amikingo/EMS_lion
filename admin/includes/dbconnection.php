@@ -3,13 +3,13 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','osghsdb');
+define('DB_NAME','lion');
 // Establish database connection.
 
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
-	$db = "osghsdb";
+	$db = "lion";
 $conn = new mysqli($host, $user, $pass, $db);
 	if($conn->connect_error){
 		echo "Seems like you have not configured the database. Failed To Connect to database:" . $conn->connect_error;

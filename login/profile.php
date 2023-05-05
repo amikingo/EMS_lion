@@ -13,7 +13,7 @@ if (!isset($_SESSION["user_id"])) {
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "osghsdb";
+$database = "lion";
 
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 

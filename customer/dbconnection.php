@@ -3,7 +3,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','osghsdb');
+define('DB_NAME','lion');
 // Establish database connection.
 try
 {

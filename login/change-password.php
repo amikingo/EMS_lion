@@ -14,7 +14,7 @@ if (!isset($_SESSION["user_id"])) {
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "osghsdb";
+$database = "lion";
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
