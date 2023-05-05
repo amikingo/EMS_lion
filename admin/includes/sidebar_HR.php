@@ -82,7 +82,7 @@ $new_booking_row_count = $query->rowCount();
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Secuirty Guard
+                Secuirty Employee
                 <i class="fas fa-angle-left right"></i>
    
               </p>
@@ -91,13 +91,13 @@ $new_booking_row_count = $query->rowCount();
               <li class="nav-item">
                 <a href="add-security-guard.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Security Guard</p>
+                  <p>Add Security Employee</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="manage-security-guard.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Security Guard</p>
+                  <p>Manage Security Employee</p>
                 </a>
               </li>
               <li class="nav-item">
