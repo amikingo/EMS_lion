@@ -11,24 +11,72 @@
         <title>CAAZ | SECURITY - DASHBOARD</title>
 
          <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+       <link rel="stylesheet" href="css/bootstrap.min.css"/>
+           <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="css/nice-select.css"/>
+    <link rel="stylesheet" href="css/slicknav.min.css"/>
+    <!--<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/awesome/font-awesome.css">
         <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/header.css"/>
     </head>
     <body>
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="index.php"></a>
+   
+      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+      
 
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
+        <ul>
+          <li ><a href="Home.php">Home</a></li>
+          <li ><a href="About us.php">About Us</a></li>
+          <li ><a href="contact us.php">Contact Us</a></li>
+          <li class="drop-down">
+            <a href="">Request & complain </a> 
+            <ul >
+              <li ><a href="index.php">Request Employee</a></li>
+              <li><a href="search-request.php">Check Request</a></li>
+              <li class="active"><a href="invest.php" >Complain</a></li>
+            </ul>
+          </li>
+          <li class="drop-down">
+            <a href="">My Account </a> 
+            <ul >
+              <li><a href="login/profile.php">Profile</a></li>
+              <li><a href="login/change-password.php">Change Password</a></li>
+              <li><a href="login/logout.php" >Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <br><br>
 
-
-        <div class="wrapper">
+       <div class="wrapper">
             <!-- Sidebar Holder -->
             
 
             <!-- Page Content Holder -->
             <div id="content">
              
-
+                <section class="contact-page-section spad overflow-hidden">
+        <div class="container">
+            
+            <div class="row">
+         
+                <div class="col-lg-8">
+                    <form class="singup-form contact-form" method="post">
+                
                 <div class="line"></div>
 
                             <?php
@@ -62,8 +110,8 @@
             }
                 
                 ?>
-		<div class="panel panel-default sammacmedia">
-            <div class="panel-heading">CAAZ SMS Reports</div>
+        <div class="panel panel-default sammacmedia">
+           
         <div class="panel-body">
             <form method="post" action="invest.php">
         <div class="row form-group">
@@ -105,19 +153,54 @@
                   <button type="reset" class="btn btn-dan btn-block"><span class="fa fa-times"></span> Cancel</button>  
                 </div>
                 </div>
-            </form>
+            </form></div></div></form></div>
 
             </div>
                 </div>
                 <div class="line"></div>
-                <footer>
-            <p class="text-center">
-            CAAZ Security Matters System &copy;<?php echo date("Y ");?>Copyright. All Rights Reserved, Powered By SM Systems    
-            </p>
-            </footer>
-            </div>
-            
-        </div>
+                <br><br><br>
+        <footer id="footer">
+
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
+
+    <div class="col-lg-9 col-md-6 footer-contact">
+        <h3>Lion Security Services</h3>
+        <p>
+          Ethiopia Addis Ababa,<br>
+          Mekanisa,<br><br>
+          <strong>Phone:</strong> +251 116 683333 , +251 930 519202<br>
+          <strong>Email:</strong> www.lionsecurityservices.com<br>
+        </p>
+      </div>
+      <div class="col-lg-2 col-md-6 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="Home.php">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
+        </ul>
+      </div>
+    
+<div class="container d-md-flex py-4">
+
+  <div class="mr-md-auto text-center text-md-left">
+    <div class="copyright">
+      &copy; <strong><span>Lion Security Services PLC</span></strong> - <?php echo date('Y');?> - Developed By REHA TECH
+    </div>
+    <div class="credits">
+    </div>
+  </div>
+  <div class="social-links text-center text-md-right pt-3 pt-md-0">
+    <a href="#" class="twitter"><i  style="color:#fff;" class="bx bxl-twitter"></i></a>
+    <a href="#" class="facebook"><i style="color:#fff;" class="bx bxl-facebook"></i></a>
+    <a href="#" class="instagram"><i style="color:#fff;" class="bx bxl-instagram"></i></a>
+    <a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
+    <a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
+  </div>
+</div>
+</footer>
         <!-- jQuery CDN -->
          <script src="assets/js/jquery-1.10.2.js"></script>
          <!-- Bootstrap Js CDN -->
@@ -154,5 +237,8 @@
                 console.error( error );
 		} );
     </script>
+
     </body>
+
+</form></div></div></section>
 </html>

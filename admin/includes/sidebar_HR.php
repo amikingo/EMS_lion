@@ -155,7 +155,15 @@ $new_booking_row_count = $query->rowCount();
               </li>
             </ul>
           </li>
-
+          <li class="nav-item">
+            <a href="v_complain.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                View Complain
+               </p>
+            </a>
+        
+          </li>
           <li class="nav-item">
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
