@@ -1,5 +1,4 @@
 <?php
-//error_reporting(0);
 // Start the session
 session_start();
 
@@ -16,15 +15,12 @@ $username = "root";
 $password = "";
 $database = "osghsdb";
 
-
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
-
 
 // Get the user's current profile information
 $user_id = $_SESSION["user_id"];
@@ -33,20 +29,19 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
-  $f_name = $row["FirstName"];
-  $f_lname = $row["LastName"];
-  $f_email = $row["email"];
-  $f_company = $row["companyName"];
+  $f_name = $row['FirstName'];
+  $f_lname = $row['LastName'];
+  $f_email = $row['email'];
+  $f_company = $row['companyName'];
 } else {
   // Redirect the user to the profile page
-  header("Location: profile.php");
+  header("Location: index.php");
   exit();
 }
 
 // Close the database connection
 $conn->close();
-?>
-<?php
+
 // Process the form data
 if (isset($_POST["submit"])) {
   // Connect to the database
@@ -58,45 +53,31 @@ if (isset($_POST["submit"])) {
   }
 
   // Get the form data
-  $f_name = $_POST["f_name"];
-  $f_lname = $_POST["f_lname"];
-  $f_email = $_POST["f_email"];
-  $f_company = $_POST["f_company"];
-  $current_password = $_POST["current_password"];
-  $new_password = $_POST["new_password"];
-  $confirm_password = $_POST["confirm_password"];
+  $f_name = mysqli_real_escape_string($conn, $_POST['f_name']);
+  $f_lname = mysqli_real_escape_string($conn, $_POST['f_lname']);
+  $f_email = mysqli_real_escape_string($conn, $_POST['f_email']);
+  $f_company = mysqli_real_escape_string($conn, $_POST['f_company']);
+
+  $user_id = $_SESSION["user_id"];
 
   // Check if the current password is correct
-  $user_id = $_SESSION["user_id"];
   $sql = "SELECT password FROM users WHERE id = $user_id";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $password_hash = $row["password"];
-
-    if (password_verify($current_password, $password_hash)) {
-      // Check if the new password and confirm password match
-      if ($new_password != "" && $new_password == $confirm_password) {
-        $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET password = '$password_hash' WHERE id = $user_id";
-        $conn->query($sql);
-      }
-
-      // Update the user's profile in the database
-      $sqli = "UPDATE users SET FirstName = '$f_name', LastName = '$f_lname', email = '$f_email', companyName = '$f_company' WHERE id = $user_id";
-
-      if ($conn->query($sqli) === TRUE) {
-        // Redirect the user to the profile page
-        header("Location: profile.php");
-        exit();
-      } else {
-        echo "Error updating record: " . $conn->error;
-      }
+    $sql = "UPDATE users SET FirstName= '$f_name', LastName = '$f_lname', email = '$f_email', companyName = '$f_company' WHERE id = '$user_id'";
+    if ($conn->query($sql) === TRUE) {
+      // Redirect the user to the profile page
+        echo "<script>alert('Your Changes Have Been Made Successfully.');</script>";
+      
+      
     } else {
-      // Display an error message
-      $error_message = "Invalid current password.";
+      // Handle the error
+      echo "Error updating record: " . $conn->error;
     }
+  } else {
+    // Handle the error
+    echo "Error updating record: " . $conn->error;
   }
 
   // Close the database connection
@@ -562,21 +543,7 @@ h6 {
       <span class="error-message"></span>
     </div>
     <hr>
-    <div>
-      <label for="current_password">Current Password:</label>
-      <input type="password" name="current_password" id="current_password" required>
-      <span class="error-message"></span>
-    </div>
-    <div>
-      <label for="new_password">New Password:</label>
-      <input type="password" name="new_password" id="new_password">
-      <span class="error-message"></span>
-    </div>
-    <div>
-      <label for="confirm_password">Confirm Password:</label>
-      <input type="password" name="confirm_password" id="confirm_password">
-      <span class="error-message"></span>
-    </div>
+
     <button type="submit" name="submit">Update Profile</button>
   </form>
 </div>
@@ -585,6 +552,5 @@ h6 {
 </section>
 </body>
 </html>
-
 
 
