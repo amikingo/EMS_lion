@@ -193,7 +193,7 @@ $cnt=$cnt+1;
 	  <div class="col-lg-2 col-md-6 footer-links">
 		<h4>Useful Links</h4>
 		<ul>
-		  <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="Home.php">Home</a></li>
 		  <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
 		  <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
 		</ul>
