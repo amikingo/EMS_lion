@@ -64,13 +64,14 @@ echo "<script>window.location.href ='index.php'</script>";
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+	  <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
       
 
-      <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
         <ul>
-          <li ><a href="../index.php">Home</a></li>
-		  <li ><a href="../About us.php">About Us</a></li>
+          <li ><a href="Home.php">Home</a></li>
+		  <li ><a href="About us.php">About Us</a></li>
+		  <li ><a href="contact us.php">Contact Us</a></li>
           <li class="drop-down">
             <a href="">Request & complain </a> 
             <ul >
