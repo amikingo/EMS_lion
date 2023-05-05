@@ -4,7 +4,7 @@ $db = NULL;
 
 function connect_db(){
 	global $db;
-	$db = mysqli_connect("localhost", "root", "", "osghsdb");
+	$db = mysqli_connect("localhost", "root", "", "lion");
 }
 
 function close_db(){

@@ -331,7 +331,7 @@ h6 {
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="../assets/img/LOGO.png" style="width: 300px;height: 50px;">
+      <img alt="logo" src="../../assets/img/LOGO.png" style="width: 300px;height: 50px;">
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
@@ -340,17 +340,17 @@ h6 {
           <li class="drop-down">
             <a href="">Request & complain </a> 
             <ul >
-              <li><a href="../customer/index.php">Request Employee</a></li>
-              <li><a href="../customer/search-request.php">Check Request</a></li>
-              <li><a href="" >Complain</a></li>
+              <li><a href="index.php">Request Employee</a></li>
+              <li><a href="search-request.php">Check Request</a></li>
+              <li><a href="invest.php" >Complain</a></li>
             </ul>
           </li>
           <li class="drop-down">
             <a href="">My Account </a> 
             <ul >
-              <li><a href="../login/profile.php">Profile</a></li>
-              <li><a href="../login/change-password.php">Change Password</a></li>
-              <li><a href="../login/logout.php" >Logout</a></li>
+              <li><a href="profile.php">Profile</a></li>
+              <li><a href="change-password.php">Change Password</a></li>
+              <li><a href="logout.php" >Logout</a></li>
             </ul>
           </li>
         </ul>

@@ -16,6 +16,7 @@ error_reporting(0);
 	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/header.css"/>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -23,7 +24,39 @@ error_reporting(0);
 		<div class="loader"></div>
 	</div>
 	<!-- Header Section -->
-	<?php include_once('header.php');?>
+	</head>
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="index.php"></a>
+   
+      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+      
+
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
+        <ul>
+          <li ><a href="../index.php">Home</a></li>
+          <li class="drop-down">
+            <a href="">Request & complain </a> 
+            <ul >
+              <li ><a href="index.php">Request Employee</a></li>
+              <li class="active"><a href="search-request.php">Check Request</a></li>
+              <li><a href="invest.php" >Complain</a></li>
+            </ul>
+          </li>
+          <li class="drop-down">
+            <a href="">My Account </a> 
+            <ul >
+              <li><a href="login/profile.php">Profile</a></li>
+              <li><a href="login/change-password.php">Change Password</a></li>
+              <li><a href="login/logout.php" >Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+	<?php// include_once('header.php');?>
 	<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
 		<div class="container">
 			<div class="row">

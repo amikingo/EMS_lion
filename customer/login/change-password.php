@@ -81,14 +81,15 @@ if ($result->num_rows > 0) {
   <title>Lion Security Services | Change Password</title>
     
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/header.css"/>
   <script type="text/javascript">
 function checkpass()
 {
@@ -106,171 +107,43 @@ return true;
  .content-wrapper {
     background: #ffffff !important;
 }
-  #footer {
-    color: #37423b;
-    font-size: 14px;
-    background: #eef0ef;
-}
-
-#footer .footer-top {
-    padding: 60px 0 30px 0;
-    background: #f9faf9;
-}
-
-#footer .footer-top .footer-contact {
-    margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-contact h4 {
-    font-size: 22px;
-    margin: 0 0 30px 0;
-    padding: 2px 0 2px 0;
-    line-height: 1;
-    font-weight: 700;
-}
-
-#footer .footer-top .footer-contact p {
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 0;
-    font-family: "Raleway", sans-serif;
-    color: #777777;
-}
-
-#footer .footer-top h4 {
-    font-size: 16px;
-    font-weight: bold;
-    color: #444444;
-    position: relative;
-    padding-bottom: 12px;
-}
-
-#footer .footer-top .footer-links {
-    margin-bottom: 30px;
-}
-
-#footer .footer-top .footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#footer .footer-top .footer-links ul i {
-    padding-right: 2px;
-    color: black !important;
-    font-size: 18px;
-    line-height: 1;
-}
-
-#footer .footer-top .footer-links ul li {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-}
-
-#footer .footer-top .footer-links ul li:first-child {
-    padding-top: 0;
-}
-
-#footer .footer-top .footer-links ul a {
-    color: #777777;
-    transition: 0.3s;
-    display: inline-block;
-    line-height: 1;
-}
-
-#footer .footer-top .footer-links ul a:hover {
-    text-decoration: none;
-    color: #c358cb;
-}
-
-#footer .footer-newsletter {
-    font-size: 15px;
-}
-
-#footer .footer-newsletter h4 {
-    font-size: 16px;
-    font-weight: bold;
-    color: #444444;
-    position: relative;
-    padding-bottom: 12px;
-}
-
-#footer .footer-newsletter form {
-    margin-top: 30px;
-    background: #fff;
-    padding: 6px 10px;
-    position: relative;
-    border-radius: 50px;
-    text-align: left;
-    border: 1px solid #e0e5e2;
-}
-
-#footer .footer-newsletter form input[type="email"] {
-    border: 0;
-    padding: 4px 8px;
-    width: calc(100% - 100px);
-}
-
-#footer .footer-newsletter form input[type="submit"] {
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    bottom: -1px;
-    border: 0;
-    background: none;
-    font-size: 16px;
-    padding: 0 20px 2px 20px;
-    background: #c358cb;
-    color: #fff;
-    transition: 0.3s;
-    border-radius: 50px;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-}
-
-#footer .footer-newsletter form input[type="submit"]:hover {
-    background: #8b3f91;
-}
-
-#footer .credits {
-    padding-top: 5px;
-    font-size: 13px;
-}
-
-#footer .credits a {
-    color: #8b3f91;
-    transition: 0.3s;
-}
-
-#footer .credits a:hover {
-    color: #c358cb;
-}
-
-#footer .social-links a {
-    font-size: 18px;
-    display: inline-block;
-    background: #007bff !important;
-    color: #fff;
-    line-height: 1;
-    padding: 8px 0;
-    margin-right: 4px;
-    border-radius: 50%;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    transition: 0.3s;
-}
-
-#footer .social-links a:hover {
-    background: #095bb1 !important;
-    color: #fff;
-    text-decoration: none;
-}
-</style>
+ </style>
 </head>
 <body >
 <div class="wrapper">
-  <?php include_once('../customer/header.php');?>
+</head>
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="index.php"></a>
+   
+      <img alt="logo" src="../../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+      
+
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 510px;">
+        <ul>
+          <li ><a href="../../index.php">Home</a></li>
+          <li class="drop-down">
+            <a href="">Request & complain </a> 
+            <ul >
+              <li><a href="../index.php">Request Employee</a></li>
+              <li><a href="../search-request.php">Check Request</a></li>
+              <li><a href="" >Complain</a></li>
+            </ul>
+          </li>
+          <li class="drop-down">
+            <a href="">My Account </a> 
+            <ul >
+              <li ><a href="profile.php">Profile</a></li>
+              <li class="active"><a href="change-password.php">Change Password</a></li>
+              <li><a href="logout.php" >Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <?php// include_once('../header.php');?>
 
  <br><br><br><br><br>
 
@@ -383,15 +256,15 @@ return true;
 </div>
 </footer>
 <!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
+<script src="../../admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
-<script src="../adminplugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="../../adminplugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../admindist/js/adminlte.min.js"></script>
+<script src="../../admindist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../admin/dist/js/demo.js"></script>
+<script src="../../admin/dist/js/demo.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();
