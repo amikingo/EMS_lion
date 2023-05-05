@@ -25,4 +25,5 @@ if (isset($_GET['file_id'])) {
 
         exit;
     }
+}
 ?>
