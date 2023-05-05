@@ -90,7 +90,7 @@ if (isset($_POST["signin"])) {
   if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
-    header("Location: ../index.php");
+    header("Location: ../Home.php");
   }
 else if(mysqli_num_rows($app) == 1){
   echo "<script>alert('Your Account is pending. Please Wait Until its verified.');</script>";
