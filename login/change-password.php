@@ -1,11 +1,12 @@
 <?php
+// Start the session
 session_start();
-//error_reporting(0);
-include('config.php');
-//error_reporting(0);
-if (!isset($_SESSION["adminid"])) {
+error_reporting(0);
+
+// Check if the user is logged in
+if (!isset($_SESSION["user_id"])) {
   // Redirect the user to the login page
-  header("Location: logout.php");
+  header("Location: index.php");
   exit();
 }
 
@@ -15,49 +16,63 @@ $username = "root";
 $password = "";
 $database = "osghsdb";
 
-
-$conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
+$conn = new mysqli($hostname, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-
-
 // Get the user's current profile information
-$adminid = $_SESSION["adminid"];
-$sql = "SELECT * FROM users WHERE id = $adminid";
+$user_id = $_SESSION["user_id"];
+
+
+// Process the form data
+// Get the form data
+// Get the form data
+$newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
+$confirmPassword = mysqli_real_escape_string($conn, $_POST['confirmpassword']);
+$currentpassword = mysqli_real_escape_string($conn, $_POST['currentpassword']);
+
+// Hash the new password
+$newpassword = md5($newpassword);
+$confirmPassword = md5($confirmPassword);
+
+$user_id = $_SESSION["user_id"];
+
+// Check if the current password is correct
+$sql = "SELECT password FROM users WHERE id = $user_id";
 $result = $conn->query($sql);
-$cpassword=($_POST['currentpassword']);
-$newpassword=md5($_POST['newpassword']);
-$sql ="SELECT * FROM users WHERE id=:adminid and password=:cpassword";
-$query= $dbh -> prepare($sql);
-$query-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
-$query-> bindParam(':cpassword', $cpassword, PDO::PARAM_STR);
-$query-> execute();
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
 
-if($query -> rowCount() > 0)
-{
-$con="update users set password=:newpassword where id=:adminid";
-$chngpwd1 = $dbh->prepare($con);
-$chngpwd1-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
-$chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
-$chngpwd1->execute();
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $currentpassword_db = $row['password'];
 
-echo '<script>alert("Your password successully changed")</script>';
+  if ($currentpassword_db == md5($currentpassword)) {
+    // Update the password
+    $sql = "UPDATE users SET password = '$newpassword', cpassword = '$confirmPassword' WHERE id = '$user_id'";
+
+    if ($conn->query($sql) === TRUE) {
+      // Redirect the user to the profile page
+      echo "<script>alert('Your Changes Have Been Made Successfully. PLease Log in Again');</script>";
+   
+      
+    } else {
+      // Handle the error
+      echo "Error updating record: " . $conn->error;
+    }
+  } else {
+    // Handle the error
+    echo "<script>alert('The Current Password You Entered Is Incorrect.');</script>";
+  }
 } else {
-echo '<script>alert("Your current password is wrong")</script>';
-
+  // Handle the error
+  echo "Error updating record: " . $conn->error;
 }
 
+?>
 
 
-
-
-  
-  ?>
 
 <!DOCTYPE html>
 <html>
