@@ -206,7 +206,7 @@ $new_users = $queryme->rowCount();
               <li class="nav-item">
                 <a href="manageCustomer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View And Manage ranier</p>
+                  <p>Manage Customers</p>
                 </a>
               </li>
              </ul>
