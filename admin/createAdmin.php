@@ -298,6 +298,8 @@ function showRole(str) {
 
                         }else if($row['adminTypeId'] == 3){
                                 echo 'Store Keeper';
+                        }else if($row['adminTypeId'] == 4){
+                                echo 'Trainer';
                         }
                  ?></td>
                 <td><?php  echo $row['AdminRegdate'];?></td>

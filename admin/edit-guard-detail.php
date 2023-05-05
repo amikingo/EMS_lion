@@ -14,8 +14,9 @@ $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
+$remark=$_POST['remark'];
 
-$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
+$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,remark=:remark where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
@@ -23,6 +24,7 @@ $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
 $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
+$query->bindParam(':remark',$remark,PDO::PARAM_STR);
  $query->execute();
 
 
@@ -135,6 +137,10 @@ foreach($results as $row)
                   <div class="form-group">
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Remark from The Trainee</label>
+                    <textarea type="text" class="form-control" id="address" name="remark" placeholder="remark" required="true" readonly><?php echo htmlentities($row->remark);?></textarea>
                   </div>
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
