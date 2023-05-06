@@ -58,6 +58,23 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 
 $new_uniform_row_count = $query->rowCount();
 
+
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AND expir_date >= CURDATE()";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$pre_expire_uni_count = $query->rowCount();
+
+
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date < CURDATE()";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$expired_uni_count = $query->rowCount();
+
+
 ?>
           
  
@@ -83,7 +100,7 @@ $new_uniform_row_count = $query->rowCount();
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Order
-                <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
+                <?php if($new_uniform_row_count + $pre_expire_uni_count + $expired_uni_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count + $pre_expire_uni_count + $expired_uni_count. "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -100,6 +117,20 @@ $new_uniform_row_count = $query->rowCount();
                   <i class="far fa-circle nav-icon"></i>
                   <p>Employee Lists</p>
                   
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pre_expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Pre-Expire</p>
+                  <?php if($pre_expire_uni_count) {  echo "<span class='notify-badge'>" . $pre_expire_uni_count . "</span>"; } ?>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Expired</p>
+                  <?php if($expired_uni_count) {  echo "<span class='notify-badge'>" . $expired_uni_count . "</span>"; } ?>
                 </a>
               </li>
              <li class="nav-item">

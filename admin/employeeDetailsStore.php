@@ -15,11 +15,13 @@ $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
+$expir_date = $_POST['expir_date'];
 
-$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
+$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum, expir_date=:expir_date where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':UniformAssigned',$UniformAssigned,PDO::PARAM_STR);
+$query->bindParam(':expir_date',$expir_date,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
@@ -145,7 +147,10 @@ foreach($results as $row)
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
                   </div>
-
+                     <div class="form-group">
+                    <label for="exampleInputEmail1">Expire Date:</label>
+                    <input type="date" class="form-control" id="fromdate" name="expir_date" value="" required='true'>
+                  </div>
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">

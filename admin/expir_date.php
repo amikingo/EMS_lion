@@ -13,10 +13,9 @@ if (strlen($_SESSION['osghsaid']==0)) {
   $expireDate = mysqli_real_escape_string($conn, $_POST["fromdate"]);
   $notMonth= mysqli_real_escape_string($conn, $_POST["todate"]);
 
-// $sql=mysqli_query(select * 
-// from uniformTable
-// where expireDate < DATEADD(month, 6, GETDATE()));
+// select * from uniformTable where expireDate < DATEADD(month, 6, GETDATE());
 
+// SELECT * FROM tblguard WHERE expir_date <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH)
 
 
 ?>

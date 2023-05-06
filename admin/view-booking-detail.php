@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -11,7 +11,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $rid=$_GET['bookingid'];
     $ressta=$_POST['status'];
     $remark=$_POST['restremark'];
-
+    
 $guards=implode(',',$_POST['guards']);
 $sql="update tblhiring set Status=:ressta,Remark=:remark,GuardAssign=:guards where BookingNumber=:rid";
 $query=$dbh->prepare($sql);
@@ -25,8 +25,10 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 
 
    for($i = 0 ; $i < count($_POST['guards']); $i++){
-      $sql="update tblguard set isAssigned=1 where Name=:val";
+    $companyName=$_POST['companyName'];
+      $sql="update tblguard set isAssigned=1,companyName=:companyName where Name=:val";
       $query=$dbh->prepare($sql);
+      $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
       $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
       $query->execute();
    }
@@ -34,6 +36,7 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
     echo '<script>alert("Booking status has been updated")</script>';
 echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
   }
+  $companyName="-";
   ?>
 <!DOCTYPE html>
 <html>
@@ -104,10 +107,12 @@ $query-> bindParam(':rid', $rid, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
+
 if($query->rowCount() > 0)
 {
 foreach($results as $row)
-{               ?>
+{
+  $companyName = $row->companyName;             ?>
   <tr>
     <th>Booking Number</th>
     <td><?php  echo htmlentities($row->BookingNumber);?></td>
@@ -129,6 +134,7 @@ foreach($results as $row)
   <tr>
     <th>Booking Status</th>
     <td><?php $status= $row->Status;
+
 if($row->Status=="Accepted")
 {
   echo "Requirement Accepted";
@@ -174,7 +180,8 @@ if($row->Status=="")
 <?php
 
   if($status=="" ){ ?>
-<form name="submit" method="post"> 
+<form name="submit" method="post">
+<input type="hidden" name="companyName" value="<?= $companyName; ?>"> 
 <tr>
     <th>Remark :</th>
     <td colspan="6">

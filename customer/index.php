@@ -1,11 +1,17 @@
 <?php
 include('dbconnection.php');
 session_start();
-error_reporting(0);
+//error_reporting(0);
+
  if(isset($_POST['submit']))
   {
 
 $booknum=mt_rand(100000000, 999999999);
+$user_id = $_SESSION["user_id"];
+
+
+
+
      $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $email=$_POST['email'];
@@ -13,10 +19,13 @@ $booknum=mt_rand(100000000, 999999999);
     $add=$_POST['add'];
    $reqnum=$_POST['reqnum'];
    $gender=$_POST['gender'];
+   $companyName=$_POST['companyName'];
  
-$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Gender)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:gender)";
+
+$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Gender,companyName)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:gender,:companyName)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':booknum',$booknum,PDO::PARAM_STR);
+$query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
 $query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
@@ -127,6 +136,27 @@ echo "<script>window.location.href ='index.php'</script>";
 								<label style="padding-bottom: 10px;">Requirement Number<small style="color:red;">(Number of Guards)</small></label>
 								<input type="text" placeholder="Requirement Number" name="reqnum" class="form-control" required="true">
 							</div>
+
+						<?php	
+						$aid=$_SESSION['user_id'];
+						$sql="SELECT * from users Where id=:aid";
+						$query = $dbh -> prepare($sql);
+						$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$cnt=1;
+						if($query->rowCount() > 0)
+							{
+foreach($results as $row)
+{               ?>
+								<div class="col-md-6">
+								<label style="padding-bottom: 10px;">Company Name</label>
+								<input type="text" placeholder="Phone Number" class="form-control" name="companyName" required="true" maxlength="10" pattern="[0-9]+"  value="<?php  echo $row->companyName;?>"readonly>
+								
+							</div>
+							 <?php $cnt=$cnt+1;}} ?> 
+
+					
 							<!-- <div class="col-md-6">
 								<label style="padding-bottom: 10px;">Shift Requirement</label>
 							
