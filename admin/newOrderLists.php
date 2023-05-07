@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -99,7 +99,21 @@ foreach($results as $row)
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+              
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
               <br>
+       <section class="content">
+      <div class="row">
+        <div class="col-12">
               <div class="card">
             <div class="card-header">
               <h3 class="card-title">New Order</h3>
@@ -112,7 +126,6 @@ foreach($results as $row)
                 <tr>
                     <th>No</th>
                     <th>Company Name</th>
-
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -159,18 +172,13 @@ if ($query->rowCount() > 0) {
     }
 }
 ?>
-
-
-              </table>
+                 </table>
+                </div>
+              </div></div>
             </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
+              </section>
+  </div>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

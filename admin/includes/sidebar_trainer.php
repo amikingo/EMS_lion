@@ -64,7 +64,7 @@ $new_uniform_row_count = $query->rowCount();
 <style type="text/css">
 .notify-badge {
     height: 5;
-    background: red;
+    background: green;
     color: white;
     border-radius: 100px;
     /* padding: 5px; */

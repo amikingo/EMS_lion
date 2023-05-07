@@ -192,12 +192,14 @@ $new_users = $queryme->rowCount();
 }
 </style>  
 
-                    <li class="nav-item has-treeview">
+
+               <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>
               <p>
                 Manage Customer
                  <?php if($new_users) {  echo "<span class='notify-badgem'>" . $new_users . "</span>"; } ?>
+                 &nbsp; &nbsp; &nbsp;
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
