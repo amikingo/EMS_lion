@@ -169,11 +169,10 @@ if (isset($_POST["submit"])) {
 		  <li ><a href="../About us.php">About Us</a></li>
 		  <li ><a href="../contact us.php">Contact Us</a></li>
           <li class="drop-down">
-            <a href="">Request & complain </a> 
+            <a href="">Request</a> 
             <ul >
               <li><a href="../index.php">Request Employee</a></li>
               <li><a href="../search-request.php">Check Request</a></li>
-              <li><a href="" >Complain</a></li>
             </ul>
           </li>
           <li class="drop-down">

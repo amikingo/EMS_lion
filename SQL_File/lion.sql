@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 05:15 AM
+-- Generation Time: May 07, 2023 at 09:37 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -144,11 +144,11 @@ INSERT INTO `tblguard` (`ID`, `Profilepic`, `Name`, `MobileNumber`, `Address`, `
 (2, 'ad04ad2d96ae326a9ca9de47d9e2fc741666330795.jpg', 'Rakesh Chandra', 4554646545, 'J&K block Laxmi nagar', NULL, '6464kjkjk', '2022-10-21 05:39:55', 1, 1, 0, '', 'good', '2023-05-30'),
 (3, 'b64810fde7027715e614449aff1d595f1666676176.png', 'Harish Rawat', 1324546578, 'H-900, Vbghjg,\r\njhuiy,\r\nkjoujio', NULL, '689gj8h789', '2022-10-21 06:34:23', 1, 1, 0, '', 'fuuuhuhuhuhuh', NULL),
 (4, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334112.jpg', 'Kunal Singh', 6446464654, 'oiuoumnkjh\r\nkoiujio\r\nkoijiouo', NULL, '9798ioui', '2022-10-21 06:35:12', 1, 1, 0, '', '', '2023-05-27'),
-(5, 'ecebbecf28c2692aeb021597fbddb1741666334145.jpg', 'John', 9798787987, 'yuiyuiyuiyuiyiuyu\r\njhjjkjhkhhkjljljlklkl;k;l\'\r\nljiuiouoiuio', 'Adhar Card', 'hkhkjh799898', '2022-10-21 06:35:45', 1, 0, 0, '', '', NULL),
-(6, 'ecebbecf28c2692aeb021597fbddb1741666334189.jpg', 'Karuna Devi', 8979979879, 'tuytuytuytuytuytuytu\r\nyiutufukhk', 'Voter Card', 'khjhkjhkjhkj1235', '2022-10-21 06:36:29', 1, 0, 0, '', '', NULL),
-(7, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334224.jpg', 'Meena Sahani', 4564646464, 'jkhkhkhkhkjhkjhkjhkyhiu\r\nopiouiioyiuyuiy\r\noiuoiuoiuoiu', 'Adhar Card', 'jkljljkljl1213456', '2022-10-21 06:37:04', 1, 0, 0, 'Hilcoe', '', NULL),
-(8, 'ecebbecf28c2692aeb021597fbddb1741666334284.jpg', 'Meera Rajput', 8789797979, 'juoiyyiyiuyiuyifdiuv ntiyrh\r\nuifyciruc\r\njiuiouoiuo', 'Voter Card', 'opipiip1213', '2022-10-21 06:38:04', 1, 0, 0, 'Hilcoe', '', NULL),
-(13, '68052edd19db6043d8e04c8a51f32d5e1683232063.jpg', 'abene', 12122212, 'sxdvghnjkl', 'Kebele Card', '234567890', '2023-05-04 20:27:43', 1, 0, 1, 'Hilcoe', '', NULL);
+(5, 'ecebbecf28c2692aeb021597fbddb1741666334145.jpg', 'John', 9798787987, 'yuiyuiyuiyuiyiuyu\r\njhjjkjhkhhkjljljlklkl;k;l\'\r\nljiuiouoiuio', 'Adhar Card', 'hkhkjh799898', '2022-10-21 06:35:45', 1, 1, 0, '', '', NULL),
+(6, 'ecebbecf28c2692aeb021597fbddb1741666334189.jpg', 'Karuna Devi', 8979979879, 'tuytuytuytuytuytuytu\r\nyiutufukhk', 'Voter Card', 'khjhkjhkjhkj1235', '2022-10-21 06:36:29', 1, 0, 0, 'Gerard', '', NULL),
+(7, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334224.jpg', 'Meena Sahani', 4564646464, 'jkhkhkhkhkjhkjhkjhkyhiu\r\nopiouiioyiuyuiy\r\noiuoiuoiuoiu', 'Adhar Card', 'jkljljkljl1213456', '2022-10-21 06:37:04', 1, 1, 0, 'Hilcoe', '', NULL),
+(8, 'ecebbecf28c2692aeb021597fbddb1741666334284.jpg', 'Meera Rajput', 8789797979, 'juoiyyiyiuyiuyifdiuv ntiyrh\r\nuifyciruc\r\njiuiouoiuo', 'Voter Card', 'opipiip1213', '2022-10-21 06:38:04', 1, 1, 0, 'Hilcoe', '', NULL),
+(13, '68052edd19db6043d8e04c8a51f32d5e1683232063.jpg', 'abene', 12122212, 'sxdvghnjkl', 'Kebele Card', '234567890', '2023-05-04 20:27:43', 1, 1, 1, 'Hilcoe', '', NULL);
 
 -- --------------------------------------------------------
 

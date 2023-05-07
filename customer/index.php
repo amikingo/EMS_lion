@@ -82,11 +82,10 @@ echo "<script>window.location.href ='index.php'</script>";
 		  <li ><a href="About us.php">About Us</a></li>
 		  <li ><a href="contact us.php">Contact Us</a></li>
           <li class="drop-down">
-            <a href="">Request & complain </a> 
+            <a href="">Request</a> 
             <ul >
               <li class="active"><a href="index.php">Request Employee</a></li>
               <li><a href="search-request.php">Check Request</a></li>
-              <li><a href="invest.php" >Complain</a></li>
             </ul>
           </li>
           <li class="drop-down">
