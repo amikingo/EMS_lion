@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 08:33 AM
+-- Generation Time: May 07, 2023 at 05:15 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -131,6 +131,7 @@ CREATE TABLE `tblguard` (
   `isAssigned` int(11) NOT NULL DEFAULT 0,
   `UniformAssigned` int(11) NOT NULL DEFAULT 0,
   `isTrainer` int(11) NOT NULL DEFAULT 1,
+  `companyName` varchar(256) NOT NULL,
   `remark` longtext NOT NULL,
   `expir_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -139,15 +140,15 @@ CREATE TABLE `tblguard` (
 -- Dumping data for table `tblguard`
 --
 
-INSERT INTO `tblguard` (`ID`, `Profilepic`, `Name`, `MobileNumber`, `Address`, `IDtype`, `IDnumber`, `RegistrationDate`, `isAssigned`, `UniformAssigned`, `isTrainer`, `remark`, `expir_date`) VALUES
-(2, 'ad04ad2d96ae326a9ca9de47d9e2fc741666330795.jpg', 'Rakesh Chandra', 4554646545, 'J&K block Laxmi nagar', NULL, '6464kjkjk', '2022-10-21 05:39:55', 1, 1, 0, 'good', NULL),
-(3, 'b64810fde7027715e614449aff1d595f1666676176.png', 'Harish Rawat', 1324546578, 'H-900, Vbghjg,\r\njhuiy,\r\nkjoujio', NULL, '689gj8h789', '2022-10-21 06:34:23', 1, 1, 0, 'fuuuhuhuhuhuh', NULL),
-(4, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334112.jpg', 'Kunal Singh', 6446464654, 'oiuoumnkjh\r\nkoiujio\r\nkoijiouo', 'Adhar Card', '9798ioui', '2022-10-21 06:35:12', 1, 0, 0, '', '2026-12-12'),
-(5, 'ecebbecf28c2692aeb021597fbddb1741666334145.jpg', 'John', 9798787987, 'yuiyuiyuiyuiyiuyu\r\njhjjkjhkhhkjljljlklkl;k;l\'\r\nljiuiouoiuio', 'Adhar Card', 'hkhkjh799898', '2022-10-21 06:35:45', 0, 0, 0, '', NULL),
-(6, 'ecebbecf28c2692aeb021597fbddb1741666334189.jpg', 'Karuna Devi', 8979979879, 'tuytuytuytuytuytuytu\r\nyiutufukhk', 'Voter Card', 'khjhkjhkjhkj1235', '2022-10-21 06:36:29', 0, 0, 0, '', NULL),
-(7, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334224.jpg', 'Meena Sahani', 4564646464, 'jkhkhkhkhkjhkjhkjhkyhiu\r\nopiouiioyiuyuiy\r\noiuoiuoiuoiu', 'Adhar Card', 'jkljljkljl1213456', '2022-10-21 06:37:04', 0, 0, 0, '', NULL),
-(8, 'ecebbecf28c2692aeb021597fbddb1741666334284.jpg', 'Meera Rajput', 8789797979, 'juoiyyiyiuyiuyifdiuv ntiyrh\r\nuifyciruc\r\njiuiouoiuo', 'Voter Card', 'opipiip1213', '2022-10-21 06:38:04', 0, 0, 0, '', NULL),
-(13, '68052edd19db6043d8e04c8a51f32d5e1683232063.jpg', 'abene', 12122212, 'sxdvghnjkl', 'Kebele Card', '234567890', '2023-05-04 20:27:43', 0, 0, 1, '', NULL);
+INSERT INTO `tblguard` (`ID`, `Profilepic`, `Name`, `MobileNumber`, `Address`, `IDtype`, `IDnumber`, `RegistrationDate`, `isAssigned`, `UniformAssigned`, `isTrainer`, `companyName`, `remark`, `expir_date`) VALUES
+(2, 'ad04ad2d96ae326a9ca9de47d9e2fc741666330795.jpg', 'Rakesh Chandra', 4554646545, 'J&K block Laxmi nagar', NULL, '6464kjkjk', '2022-10-21 05:39:55', 1, 1, 0, '', 'good', '2023-05-30'),
+(3, 'b64810fde7027715e614449aff1d595f1666676176.png', 'Harish Rawat', 1324546578, 'H-900, Vbghjg,\r\njhuiy,\r\nkjoujio', NULL, '689gj8h789', '2022-10-21 06:34:23', 1, 1, 0, '', 'fuuuhuhuhuhuh', NULL),
+(4, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334112.jpg', 'Kunal Singh', 6446464654, 'oiuoumnkjh\r\nkoiujio\r\nkoijiouo', NULL, '9798ioui', '2022-10-21 06:35:12', 1, 1, 0, '', '', '2023-05-27'),
+(5, 'ecebbecf28c2692aeb021597fbddb1741666334145.jpg', 'John', 9798787987, 'yuiyuiyuiyuiyiuyu\r\njhjjkjhkhhkjljljlklkl;k;l\'\r\nljiuiouoiuio', 'Adhar Card', 'hkhkjh799898', '2022-10-21 06:35:45', 1, 0, 0, '', '', NULL),
+(6, 'ecebbecf28c2692aeb021597fbddb1741666334189.jpg', 'Karuna Devi', 8979979879, 'tuytuytuytuytuytuytu\r\nyiutufukhk', 'Voter Card', 'khjhkjhkjhkj1235', '2022-10-21 06:36:29', 1, 0, 0, '', '', NULL),
+(7, 'ad04ad2d96ae326a9ca9de47d9e2fc741666334224.jpg', 'Meena Sahani', 4564646464, 'jkhkhkhkhkjhkjhkjhkyhiu\r\nopiouiioyiuyuiy\r\noiuoiuoiuoiu', 'Adhar Card', 'jkljljkljl1213456', '2022-10-21 06:37:04', 1, 0, 0, 'Hilcoe', '', NULL),
+(8, 'ecebbecf28c2692aeb021597fbddb1741666334284.jpg', 'Meera Rajput', 8789797979, 'juoiyyiyiuyiuyifdiuv ntiyrh\r\nuifyciruc\r\njiuiouoiuo', 'Voter Card', 'opipiip1213', '2022-10-21 06:38:04', 1, 0, 0, 'Hilcoe', '', NULL),
+(13, '68052edd19db6043d8e04c8a51f32d5e1683232063.jpg', 'abene', 12122212, 'sxdvghnjkl', 'Kebele Card', '234567890', '2023-05-04 20:27:43', 1, 0, 1, 'Hilcoe', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,6 +171,7 @@ CREATE TABLE `tblhiring` (
   `Status` varchar(250) DEFAULT NULL,
   `Remark` varchar(250) DEFAULT NULL,
   `GuardAssign` mediumtext DEFAULT NULL,
+  `companyName` varchar(256) NOT NULL,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -177,18 +179,19 @@ CREATE TABLE `tblhiring` (
 -- Dumping data for table `tblhiring`
 --
 
-INSERT INTO `tblhiring` (`ID`, `BookingNumber`, `FirstName`, `LastName`, `Email`, `MobileNumber`, `Address`, `RequirementNumber`, `Shift`, `Gender`, `Dateofbooking`, `Status`, `Remark`, `GuardAssign`, `UpdationDate`) VALUES
-(1, '790106442', 'Gunjan', 'Singh', 'gun@gmail.com', 9879879797, 'gjhghjdgyegtyutrrvy', 10, '24hrs', 'Male', '2022-10-25 07:15:34', 'Accepted', 'Accepted', 'Rakesh Chandra,Harish Rawat,Kunal Singh', '2022-10-27 12:11:43'),
-(2, '733896436', 'Jhanvi', 'Sharma', 'janvi', 7897987987, 'yututyec76547w\r\ntyrc4ytw34', 25, 'Day', 'Female', '2022-10-25 07:24:50', 'Rejected', 'Rejected', 'dfh', '2022-10-27 12:25:08'),
-(3, '796114163', 'Komal', 'Singh', 'komal@gmail.com', 7979879879, 'hjkhjkhdjkfhjkerhget', 10, '24hrs', 'Female', '2022-10-27 12:34:15', 'Accepted', 'ouhu9uyiuouhnonojn', ',Rakesh Chandra,Harish Rawat', '2023-03-20 12:41:02'),
-(4, '310626930', 'Anuj', 'Kumar', 'ak@gmail.com', 1234567890, 'A 234 XYZ Street Mayur ViharDelhi 110092', 2, 'Day', 'Male', '2022-10-27 15:27:50', 'Rejected', 'Request Rejected', '', '2022-10-27 16:44:13'),
-(5, '545716697', 'Rahul', 'Singh', 'rhulk@gmail.com', 1425362514, 'H 911 ABC Apartment Rajnagar Extension Ghaziabad', 2, 'Day', 'Male', '2022-10-27 16:50:43', 'Accepted', 'Request Approved', 'Rakesh Chandra,Harish Rawat', '2022-10-27 16:51:26'),
-(6, '552641280', 'Sanjeev', 'Kumar', 'snjv@gmail.com', 1425363625, 'P 123 XYZ Apartment Indrapuram GZB', 1, 'Day', 'Male', '2022-10-27 16:59:40', 'Accepted', 'Request Accepted', 'Rakesh Chandra', '2022-10-27 17:00:15'),
-(7, '948685954', 'amin', 'sssk', 'kinddd@gmail.com', 5678909876, 'addis ababa', 5, '24hrs', 'Female', '2023-03-20 13:23:26', 'Accepted', '...', 'Kunal Singh,John', '2023-04-01 13:06:03'),
-(8, '730641991', 'ami', 'smask', 'liam@gmail.com', 911121314, 'addis a', 5, '24hrs', 'Male', '2023-03-21 17:18:49', 'Accepted', 'ok', 'Kunal Singh,John,Karuna Devi,Meena Sahani,Meera Rajput', '2023-03-21 17:20:54'),
-(9, '253846675', 'aminscasdf', 'asssd', 'kinddd@gmail.com', 123456789, 'alkfhkwoghkaorfk', 5, 'Night', 'Both', '2023-04-01 13:29:12', 'Rejected', 'no', 'Rakesh Chandra', '2023-04-04 16:35:29'),
-(10, '392190967', 'ami', 'aaa', 'jwood@mail.com', 123456789, 'kdasdfhquidfhasdi', 3, '123', 'Both', '2023-04-19 06:00:30', 'Accepted', 'ok', ',Rakesh Chandra,Harish Rawat', '2023-04-19 06:01:33'),
-(11, '725940116', 'ami', 'aaa', 'jwood@mail.com', 12345678, 'asdfghjkl', 2, NULL, 'Both', '2023-04-20 10:33:34', NULL, 'xc', 'Kunal Singh', '2023-05-01 09:43:30');
+INSERT INTO `tblhiring` (`ID`, `BookingNumber`, `FirstName`, `LastName`, `Email`, `MobileNumber`, `Address`, `RequirementNumber`, `Shift`, `Gender`, `Dateofbooking`, `Status`, `Remark`, `GuardAssign`, `companyName`, `UpdationDate`) VALUES
+(1, '790106442', 'Gunjan', 'Singh', 'gun@gmail.com', 9879879797, 'gjhghjdgyegtyutrrvy', 10, '24hrs', 'Male', '2022-10-25 07:15:34', 'Accepted', 'Accepted', 'Rakesh Chandra,Harish Rawat,Kunal Singh', '', '2022-10-27 12:11:43'),
+(2, '733896436', 'Jhanvi', 'Sharma', 'janvi', 7897987987, 'yututyec76547w\r\ntyrc4ytw34', 25, 'Day', 'Female', '2022-10-25 07:24:50', 'Rejected', 'Rejected', 'dfh', '', '2022-10-27 12:25:08'),
+(3, '796114163', 'Komal', 'Singh', 'komal@gmail.com', 7979879879, 'hjkhjkhdjkfhjkerhget', 10, '24hrs', 'Female', '2022-10-27 12:34:15', 'Accepted', 'ouhu9uyiuouhnonojn', ',Rakesh Chandra,Harish Rawat', '', '2023-03-20 12:41:02'),
+(4, '310626930', 'Anuj', 'Kumar', 'ak@gmail.com', 1234567890, 'A 234 XYZ Street Mayur ViharDelhi 110092', 2, 'Day', 'Male', '2022-10-27 15:27:50', 'Rejected', 'Request Rejected', '', '', '2022-10-27 16:44:13'),
+(5, '545716697', 'Rahul', 'Singh', 'rhulk@gmail.com', 1425362514, 'H 911 ABC Apartment Rajnagar Extension Ghaziabad', 2, 'Day', 'Male', '2022-10-27 16:50:43', 'Accepted', 'Request Approved', 'Rakesh Chandra,Harish Rawat', '', '2022-10-27 16:51:26'),
+(6, '552641280', 'Sanjeev', 'Kumar', 'snjv@gmail.com', 1425363625, 'P 123 XYZ Apartment Indrapuram GZB', 1, 'Day', 'Male', '2022-10-27 16:59:40', 'Accepted', 'Request Accepted', 'Rakesh Chandra', '', '2022-10-27 17:00:15'),
+(7, '948685954', 'amin', 'sssk', 'kinddd@gmail.com', 5678909876, 'addis ababa', 5, '24hrs', 'Female', '2023-03-20 13:23:26', 'Accepted', '...', 'Kunal Singh,John', '', '2023-04-01 13:06:03'),
+(8, '730641991', 'ami', 'smask', 'liam@gmail.com', 911121314, 'addis a', 5, '24hrs', 'Male', '2023-03-21 17:18:49', 'Accepted', 'ok', 'Kunal Singh,John,Karuna Devi,Meena Sahani,Meera Rajput', '', '2023-03-21 17:20:54'),
+(9, '253846675', 'aminscasdf', 'asssd', 'kinddd@gmail.com', 123456789, 'alkfhkwoghkaorfk', 5, 'Night', 'Both', '2023-04-01 13:29:12', 'Rejected', 'no', 'Rakesh Chandra', '', '2023-04-04 16:35:29'),
+(10, '392190967', 'ami', 'aaa', 'jwood@mail.com', 123456789, 'kdasdfhquidfhasdi', 3, '123', 'Both', '2023-04-19 06:00:30', 'Accepted', 'ok', ',Rakesh Chandra,Harish Rawat', '', '2023-04-19 06:01:33'),
+(11, '725940116', 'ami', 'aaa', 'jwood@mail.com', 12345678, 'asdfghjkl', 2, NULL, 'Both', '2023-04-20 10:33:34', NULL, 'xc', 'Kunal Singh', '', '2023-05-01 09:43:30'),
+(12, '637825644', 'test', 'test2', 'test@gmail.com', 1234668745, 'hfkjdhffasdhfqjasckamksdf', 2, NULL, 'Both', '2023-05-06 15:15:42', 'Accepted', 'hello', 'Meena Sahani,Meera Rajput,abene', 'Hilcoe', '2023-05-06 15:56:02');
 
 -- --------------------------------------------------------
 
@@ -217,8 +220,7 @@ INSERT INTO `users` (`id`, `FirstName`, `LastName`, `email`, `companyName`, `fil
 (1, 'Abena', 'Mussa', 'abenrahel@gmail.com', 'Hilcoe', 'cfile/ch-1 pdf.pdf', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 1, '2023-05-05 02:45:24'),
 (12, 'mira', ' non', 'mia@gmail.com', 'yab', '.gitconfig', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 0, '2023-05-05 02:45:24'),
 (13, 'rah', ' asa', 'hgh@gh.com', 'abbar', 'osghsdb (3).sql', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 2, '2023-05-05 02:45:24'),
-(16, 'MIraj', ' Yezid', 'bbgbg@bgbgb.bgb', 'abcd', 'cfile/p.pdf', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 2, '2023-05-05 02:45:24'),
-(17, 'rah', ' asa', 'uyggu22@fgh.c', 'abcd', 'p.pdf', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 2, '2023-05-05 02:45:24');
+(16, 'MIraj', ' Yezid', 'bbgbg@bgbgb.bgb', 'abcd', 'cfile/p.pdf', '25f9e794323b453885f5181f1b624d0b', '25f9e794323b453885f5181f1b624d0b', 1, '2023-05-05 02:45:24');
 
 --
 -- Indexes for dumped tables
@@ -287,7 +289,7 @@ ALTER TABLE `tblguard`
 -- AUTO_INCREMENT for table `tblhiring`
 --
 ALTER TABLE `tblhiring`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
