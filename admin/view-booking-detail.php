@@ -220,8 +220,10 @@ foreach($results as $row1)
      
    </select></td>
   </tr>
-    <tr align="center" style="text-align: center';">
-    <td><button type="submit" name="submit" class="btn btn-primary">Update</button></td>
+    <tr align="center" style="text-align: center;">
+    <td>
+    <button type="submit" name="submit" class="btn btn-primary">Update</button>
+    </td>
   </tr>
 </form>
 

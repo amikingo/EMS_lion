@@ -64,7 +64,7 @@ $new_booking_row_count = $query->rowCount();
 <style type="text/css">
 .notify-badge {
     height: 5;
-    background: red;
+    background: green;
     color: white;
     border-radius: 100px;
     /* padding: 5px; */
@@ -109,7 +109,7 @@ $new_booking_row_count = $query->rowCount();
              </ul>
           </li>
   
-<li class="nav-item has-treeview">
+           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -178,7 +178,7 @@ $new_users = $queryme->rowCount();
 <style type="text/css">
 .notify-badgem {
     height: 5;
-    background: red;
+    background: green;
     color: white;
     border-radius: 100px;
     /* padding: 5px; */
