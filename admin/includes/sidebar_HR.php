@@ -156,15 +156,7 @@ $new_booking_row_count = $query->rowCount();
             </ul>
           </li>
           
-          <li class="nav-item">
-            <a href="between-dates-report.php" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Generate Report
-               </p>
-            </a>
-        
-          </li>
+          
 <?php
 
 $sqlme="SELECT * from users where status = 2";
@@ -223,6 +215,15 @@ $new_users = $queryme->rowCount();
              </ul>
 
           </li> 
+          <li class="nav-item">
+            <a href="between-dates-report.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Generate Report
+               </p>
+            </a>
+        
+          </li>
       <!-- <li class="nav-item">
             <a href="search.php" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
