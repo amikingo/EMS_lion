@@ -1,8 +1,8 @@
 <?php
 include('dbconnection.php');
 session_start();
-error_reporting(0);
- 
+//error_reporting(0);
+ $user_id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -109,57 +109,68 @@ $sdata=$_POST['searchdata'];
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
+                    <th>Company Name</th>
                     <th>Status</th>
                     <th>Name of Guard</th>
+
                     
                   </tr>
                   </thead>
                   <tbody>
-                    <?php
-$sql="SELECT * from tblhiring where BookingNumber like '$sdata%'";
-$query = $dbh -> prepare($sql);
+      <?php
+$aid = $_SESSION['user_id'];
+//$companyName = $_POST['companyName'];
+
+$mema = "SELECT companyName FROM users WHERE id=:aid";
+$mema_query = $dbh->prepare($mema);
+$mema_query->bindParam(':aid', $aid, PDO::PARAM_STR);
+$mema_query->execute();
+$mema_result = $mema_query->fetch(PDO::FETCH_OBJ);
+$companyName = $mema_result->companyName;
+
+$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName AND BookingNumber LIKE '$sdata%'";
+$query = $dbh->prepare($sql);
+$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+$results = $query->fetchAll(PDO::FETCH_OBJ);
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                  <tr>
-                    <td><?php echo htmlentities($cnt);?></td>
-                    <td><?php  echo htmlentities($row->BookingNumber);?></td>
-                    <td><?php  echo htmlentities($row->FirstName);?> <?php  echo htmlentities($row->LastName);?>
-                    </td>
-                    <td><?php  echo htmlentities($row->Email);?></td>
-                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
-                    <?php if($row->Status==""){ ?>
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    foreach ($results as $row) {
+?>
+        <tr>
+            <td><?php echo htmlentities($cnt); ?></td>
+            <td><?php echo htmlentities($row->BookingNumber); ?></td>
+            <td><?php echo htmlentities($row->FirstName); ?> <?php echo htmlentities($row->LastName); ?></td>
+            <td><?php echo htmlentities($row->Email); ?></td>
+            <td><?php echo htmlentities($row->MobileNumber); ?></td>
+            <td><?php echo htmlentities($row->companyName); ?></td>
+            <?php if ($row->Status == "") { ?>
+                <td><?php echo "Not Updated Yet"; ?></td>
+            <?php } else { ?>
+                <td>
+                    <span class="badge badge-primary"><?php echo htmlentities($row->Status); ?></span>
+                </td>
+            <?php } ?>
+            <?php if ($row->Status == "") { ?>
+                <td><?php echo "Not Updated Yet"; ?></td>
+            <?php } elseif ($row->Status == "Rejected") { ?>
+                <td><?php echo "Rejected"; ?></td>
+            <?php } else { ?>
+                <td><?php echo htmlentities($row->GuardAssign); ?></td>
+            <?php } ?>
+        </tr>
+<?php
+        $cnt = $cnt + 1;
+    }
+}
+else {
+?>
+    <tr>
+        <td colspan="8"> No record found against this search</td>
+    </tr>
 
-                     <td><?php echo "Not Updated Yet"; ?></td>
 
-
-<?php } else { ?>
-                                        <td>
-                                            <span class="badge badge-primary"><?php  echo htmlentities($row->Status);?></span>
-                                        </td>
-<?php } ?> 
-<?php if($row->Status==""){ ?>
- 	 <td><?php echo "Not Updated Yet"; ?></td>
- 	<?php } ?>
- <?php if($row->Status=="Rejected"){ ?>
- 	 <td><?php echo "Rejected"; ?></td>
- 	 <?php } else { ?>
-                    <td> <?php  echo htmlentities($row->GuardAssign);?></td><?php } ?>
-                  </tr>
-                  </tbody>
-
-                  <?php 
-$cnt=$cnt+1;
-} } else { ?>
-  <tr>
-    <td colspan="8"> No record found against this search</td>
-
-  </tr>
   <?php } }?>
                  
 

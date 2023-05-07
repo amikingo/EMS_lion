@@ -155,7 +155,7 @@ $new_booking_row_count = $query->rowCount();
               </li>
             </ul>
           </li>
-        
+          
           <li class="nav-item">
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
@@ -206,12 +206,22 @@ $new_users = $queryme->rowCount();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+            <a href="search_com.php" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search request
+               </p>
+            </a>
+          </li>
+              <li class="nav-item">
                 <a href="manageCustomer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Manage Customers</p>
                 </a>
               </li>
+
              </ul>
+
           </li> 
       <!-- <li class="nav-item">
             <a href="search.php" class="nav-link">
