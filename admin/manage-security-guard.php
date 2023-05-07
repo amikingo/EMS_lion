@@ -20,7 +20,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
 <html>
 <head>
  
-  <title>Security Guard</title>
+  <title>Security Employee</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -49,12 +49,12 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Security Guard</h1>
+            <h1>Manage Security Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Manage Security Guard</li>
+              <li class="breadcrumb-item active">Manage Security Employee</li>
             </ol>
           </div>
         </div>
@@ -68,7 +68,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Manage Security Guard</h3>
+              <h3 class="card-title">Manage Security Employee</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

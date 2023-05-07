@@ -61,12 +61,12 @@ $query->bindParam(':remark',$remark,PDO::PARAM_STR);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Update Security Guard</h1>
+            <h1>Update Security Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Update Security Guard</li>
+              <li class="breadcrumb-item active">Update Security Employee</li>
             </ol>
           </div>
         </div>
@@ -82,7 +82,7 @@ $query->bindParam(':remark',$remark,PDO::PARAM_STR);
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Update Security Guard</h3>
+                <h3 class="card-title">Update Security Employee</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -123,8 +123,8 @@ foreach($results as $row)
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
 <option value="<?php echo htmlentities($row->IDtype);?>"><?php echo htmlentities($row->IDtype);?></option>
                                                         
-<option value="Adhar Card">Adhar Card</option>
-<option value="Voter Card">Voter Card</option>
+<option value="Kebele Card">Kebele Card</option>
+
 
             
                                                         

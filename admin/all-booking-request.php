@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>Lion Security Services | All Booking Request</title>
+  <title>Lion Security Services | All Requests</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
