@@ -110,7 +110,7 @@ $new_booking_row_count = $query->rowCount();
           </li>
   
            <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="all-booking-request.php" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Customer Request

@@ -110,6 +110,7 @@ $sdata=$_POST['searchdata'];
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Company Name</th>
+					<th>Remark</th>
                     <th>Status</th>
                     <th>Name of Guard</th>
 
@@ -145,6 +146,7 @@ if ($query->rowCount() > 0) {
             <td><?php echo htmlentities($row->Email); ?></td>
             <td><?php echo htmlentities($row->MobileNumber); ?></td>
             <td><?php echo htmlentities($row->companyName); ?></td>
+			<td><?php echo htmlentities($row->Remark); ?></td>
             <?php if ($row->Status == "") { ?>
                 <td><?php echo "Not Updated Yet"; ?></td>
             <?php } else { ?>
