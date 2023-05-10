@@ -36,7 +36,7 @@ setcookie ("userpassword","");
 $_SESSION['login']=$_POST['username'];
 echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
 } else{
-echo "<script>alert('Invalid Details');</script>";
+$errormsg="Invalid Email or Password Please Try Again. ";
 }
 }
 
@@ -68,11 +68,13 @@ echo "<script>alert('Invalid Details');</script>";
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-
                     <br><br>
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
+
                   <form class="user" method="Post" action="">
+              <p style="padding-left: 4%; padding-top:2%; color:red;"><?php if($errormsg){echo htmlentities($errormsg);}  ?></p>
+
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="User Name" required="true" name="username" value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>" >
                     </div>
