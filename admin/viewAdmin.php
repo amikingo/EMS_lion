@@ -37,7 +37,7 @@
     <!-- Sidebar -->
     <?php include "includes/header.php";?>
        <!-- <div > <h5>Teacher</h5></div> -->
-       <?php include "includes/sidebar_sadmin.php";?> 
+       <?php include "includes/sidebar.php";?> 
     <!-- Sidebar -->
     <div class="content-wrapper" > 
       <!-- class="d-flex flex-column" -->
