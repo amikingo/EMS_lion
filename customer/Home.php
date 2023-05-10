@@ -42,26 +42,27 @@
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 350px;">
-        <ul>
-          <li class="active"><a href="Home.php">Home</a></li>
-		  <li ><a href="About us.php">About Us</a></li>
-		  <li ><a href="contact us.php">Contact Us</a></li>
-          <li class="drop-down">
-            <a href="">Request</a> 
-            <ul >
-              <li ><a href="index.php">Request Employee</a></li>
-              <li><a href="search-request.php">Check Request</a></li>
-            </ul>
-          </li>
-          <li class="drop-down">
-            <a href="">My Account </a> 
-            <ul >
-              <li><a href="login/profile.php">Profile</a></li>
-              <li><a href="login/change-password.php">Change Password</a></li>
-              <li><a href="login/logout.php" >Logout</a></li>
-            </ul>
-          </li>
-        </ul>
+      <ul>
+  <li class="active"><a href="Home.php"><button type="button" class="btn btn-primary">Home</button></a></li>
+  <li><a href="About us.php"><button type="button" class="btn btn-primary">About Us</button></a></li>
+  <li><a href="contact us.php"><button type="button" class="btn btn-primary">Contact Us</button></a></li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">Request</button>
+    <ul class="submenu">
+      <li><a href="index.php">Request Employee</a></li>
+      <li><a href="search-request.php">Check Request</a></li>
+    </ul>
+  </li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">My Account</button>
+    <ul class="submenu">
+      <li><a href="login/profile.php">Profile</a></li>
+      <li><a href="login/change-password.php">Change Password</a></li>
+      <li><a href="login/logout.php">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+
       </nav>
     </div>
   </header><!-- End Header -->

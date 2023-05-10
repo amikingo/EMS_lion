@@ -322,6 +322,19 @@
     position: absolute;
     right: 15px;
 }
+ul li button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+ul li.active button {
+  background-color: #000;
+  color: #fff;
+}
 
 </style>
 </head>
@@ -337,15 +350,13 @@
       <img alt="logo" src="assets/img/LOGO.png" style="width: 800px;height: 50px;">     
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 500px;">
-        <ul>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="About us.php">About</a></li>         
-          <li class="active"><a href="contact us.php">Contact</a></li>
-          <li><a href="customer/login/index.php">Login </a> 
-          
-          </li>
+      <ul>
+      <li><a  href="index.php"><button type="button" class="btn btn-primary">Home</button></a></li>
+      <li><a href="About us.php"><button type="button" class="btn btn-primary">About</button></a></li>
+      <li class="active"><a  href="contact us.php"><button type="button" class="btn btn-primary">Contact</button></a></li>
+      <li><a href="customer/login/index.php"><button type="button" class="btn btn-primary">Login</button></a></li>
+      </ul>
 
-        </ul>
       </nav>
     </div>
   </header><!-- End Header -->

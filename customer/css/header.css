@@ -363,3 +363,38 @@
     color: #fff;
     margin: 0;
 }
+
+ul li button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+ul li.active button {
+    background-color: #000;
+    color: #fff;
+}
+
+ul li.drop-down button {
+    border: none;
+}
+
+ul li.drop-down ul {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 100px;
+    max-width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px 0 #ccc;
+}
+
+ul li.drop-down:hover ul {
+    display: block;
+}
