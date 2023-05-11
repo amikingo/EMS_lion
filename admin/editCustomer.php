@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -20,8 +20,9 @@ $query->bindParam(':status', $status, PDO::PARAM_STR);
 $query->bindParam(':eid', $eid, PDO::PARAM_INT); // assuming id is an integer
 $query->execute();
 
-echo '<script>alert("Customer Detail has been updated")</script>';
+//echo '<script type="text/javascript">toastr.success("Status has been updated")</script>';
 
+    echo '<script>alert("Customer Status has been updated")</script>';
   }
   ?>
 <!DOCTYPE html>
@@ -38,6 +39,9 @@ echo '<script>alert("Customer Detail has been updated")</script>';
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -111,21 +115,9 @@ foreach($results as $row)
                     <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->companyName);?>" required="true" readonly>
                   </div> 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">About Company Attachable File</label>
-                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" readonly><?php  
-                    $targetfolder = "cfile/";
-                    $filename = htmlentities($row->file);
-$file = fopen($filename, "r");
+                    <label for="exampleInputEmail1">About Company Attachable File </label>
+                    <button><a href="../customer/login/cfile/<?php echo htmlentities($row->file); ?>" target="_blank">View File</a></button>
 
-if ($file) {
-    while (!feof($file)) {
-        $line = fgets($file);
-        echo $line;
-    }
-    fclose($file);
-} else {
-    echo "Error opening file!";
-};?></textarea>
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">Status</label>
