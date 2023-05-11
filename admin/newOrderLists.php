@@ -126,6 +126,7 @@ foreach($results as $row)
                 <tr>
                     <th>No</th>
                     <th>Company Name</th>
+                    <th>PreExpire Month</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -157,7 +158,21 @@ if ($query->rowCount() > 0) {
             <tr>
                 <td><?php echo htmlentities($cnt);?></td>
                 <td><?php echo htmlentities($row->companyName);?></td>
-                <td>
+                <td>                        <select name="expiration_interval" id="status"  class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select></td>
+    <td>
                   <form method="POST">
                     <a href="groupOrder.php?editid=<?php echo htmlentities($row->ID);?>" class="btn btn-primary">View</a>
                     
@@ -165,6 +180,7 @@ if ($query->rowCount() > 0) {
                         <button type="submit" name="assignUniform" class="btn btn-primary">Assign Uniform</button>
                     </form>
                 </td>
+
             </tr>
 <?php 
             $cnt++;

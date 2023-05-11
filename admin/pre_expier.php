@@ -77,7 +77,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AND expir_date >= CURDATE() ";
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL expiration_interval MONTH) AND expir_date >= CURDATE() ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

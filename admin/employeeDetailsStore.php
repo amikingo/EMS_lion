@@ -15,9 +15,10 @@ $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
+$expiration_interval=$_POST['expiration_interval'];
 $expir_date = $_POST['expir_date'];
 
-$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum, expir_date=:expir_date where ID=:eid";
+$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,expiration_interval=:expiration_interval, expir_date=:expir_date where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':UniformAssigned',$UniformAssigned,PDO::PARAM_STR);
@@ -26,6 +27,7 @@ $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
 $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
+$query->bindParam(':expiration_interval',$expiration_interval,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
 
@@ -146,6 +148,23 @@ foreach($results as $row)
                   <div class="form-group">
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
+                  </div>
+                  <div>
+                    <label for="exampleInputEmail1">PreExpire</label>
+                        <select name="expiration_interval" id="status"  class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
                   </div>
                      <div class="form-group">
                     <label for="exampleInputEmail1">Expire Date:</label>
