@@ -42,12 +42,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New Ordert</h1>
+            <h1>New Order</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">New Ordert</li>
+              <li class="breadcrumb-item active">New Order</li>
             </ol>
           </div>
         </div>
@@ -132,13 +132,15 @@ foreach($results as $row)
                 </thead>
                 
 <?php
-if (isset($_POST['assignUniform'])) {
+if(isset($_POST['assignUniform'])) {
     $companyName = $_POST['companyName'];
     $UniformAssigned = 1;
+    $expiration_interval = $_POST['expiration_interval'];
 
-    $sql = "UPDATE tblguard SET UniformAssigned=:UniformAssigned WHERE companyName=:companyName AND isAssigned='1' AND UniformAssigned='0' AND isTrainer='0'";
+    $sql = "UPDATE tblguard SET UniformAssigned=:UniformAssigned, expiration_interval=:expiration_interval WHERE companyName=:companyName AND isAssigned='1' AND UniformAssigned='0' AND isTrainer='0'";
     $query = $dbh->prepare($sql);
     $query->bindParam(':UniformAssigned', $UniformAssigned, PDO::PARAM_INT);
+    $query->bindParam(':expiration_interval', $expiration_interval, PDO::PARAM_STR);
     $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
     $query->execute();
 
@@ -154,40 +156,42 @@ $cnt = 1;
 if ($query->rowCount() > 0) {
     foreach ($results as $row) {
         if (!empty(trim($row->companyName))) {
-?>
+            ?>
             <tr>
+              <form method="POST">
                 <td><?php echo htmlentities($cnt);?></td>
                 <td><?php echo htmlentities($row->companyName);?></td>
-                <td>                        <select name="expiration_interval" id="status"  class="form-control">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-    </select></td>
-    <td>
-                  <form method="POST">
-                    <a href="groupOrder.php?editid=<?php echo htmlentities($row->ID);?>" class="btn btn-primary">View</a>
+                <td>
+                    <select name="expiration_interval" id="status" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </td>
+                <td>
                     
+                        <a href="groupOrder.php?editid=<?php echo htmlentities($row->ID);?>" class="btn btn-primary">View</a>
                         <input type="hidden" name="companyName" value="<?php echo htmlentities($row->companyName);?>">
                         <button type="submit" name="assignUniform" class="btn btn-primary">Assign Uniform</button>
                     </form>
                 </td>
-
             </tr>
-<?php 
+            <?php
             $cnt++;
         }
     }
 }
 ?>
+
                  </table>
                 </div>
               </div></div>
