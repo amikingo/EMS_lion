@@ -138,6 +138,7 @@ else if(mysqli_num_rows($rej) == 1){
         <ul>
           <li><a class="nav-link login-form-slider login-click" href="javascript:;">Signin</a></li>
           <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;">Signup</a></li>
+          <li><a class="nav-link login-form-slider login-click" href="../../index.php">Home</a></li>
         </ul>
       </nav>
 
