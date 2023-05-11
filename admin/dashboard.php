@@ -173,6 +173,28 @@ $totalbooking=$query->rowCount();
               <a href="all-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <div class="col-lg-4 col-6">
+           <?php 
+$sql ="SELECT ID from users";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$totalusers=$query->rowCount();
+?>
+
+       
+            <div class="small-box bg-info" style="background-color: #cc9261 !important;">
+              <div class="inner">
+                <h3><?php echo htmlentities($totalusers);?></h3>
+
+                <p>Total Customers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-clipboard"></i>
+              </div>
+              <a href="manageCustomer.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
 
 
 
