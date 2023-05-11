@@ -116,7 +116,7 @@ foreach($results as $row)
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">About Company Attachable File </label>
-                    <button><a href="../customer/login/cfile/<?php echo htmlentities($row->file); ?>" target="_blank">View File</a></button>
+                    <button><a href="../customer/login/cfile/<?php echo htmlentities($row->file); ?>" target="_blank/">View File</a></button>
 
                   </div>  
                   <div class="form-group">

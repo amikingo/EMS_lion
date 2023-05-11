@@ -41,19 +41,20 @@ if (isset($_POST["signup"])) {
  
  $targetfolder = "cfile/";
 
- $targetfolder = basename( $_FILES['file']['name']) ;
+ $targetfolder = $targetfolder .basename( $_FILES['file']['name']) ;
+ $target = basename( $_FILES['file']['name']) ;
 
 if(move_uploaded_file($_FILES['file']['tmp_name'], $targetfolder))
 
  {
 
- echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
+ //echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
 
  }
 
  else {
 
- echo "Problem uploading file";
+// echo "Problem uploading file";
 
  }
 
@@ -71,7 +72,7 @@ if(move_uploaded_file($_FILES['file']['tmp_name'], $targetfolder))
 } else {
   // existing code
 
-    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$targetfolder', '$companyName')";
+    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$target', '$companyName')";
 
 
     $result = mysqli_query($conn, $sql);

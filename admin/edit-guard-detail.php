@@ -139,6 +139,17 @@ foreach($results as $row)
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>">
                   </div>
                   <div class="form-group">
+                    <label for="exampleInputEmail1"> is certified</label>
+                    <input type="text" class="form-control"  value="
+                    <?php 
+                    if(htmlentities($row->isTrainer) == 0){
+                      echo "Yes";
+                    }else if (htmlentities($row->isTrainer) == 1){
+                      echo "no";
+                    }
+                    ?> "readonly>
+                  </div> 
+                  <div class="form-group">
                     <label for="exampleInputEmail1">Remark from The Trainee</label>
                     <textarea type="text" class="form-control" id="address" name="remark" placeholder="remark" required="true" readonly><?php echo htmlentities($row->remark);?></textarea>
                   </div>
