@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-//error_reporting(0);
+error_reporting(0);
 
 if (isset($_SESSION["user_id"])) {
 
@@ -100,7 +100,7 @@ else if(mysqli_num_rows($rej) == 1){
   echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
 }
    else {
-    echo "<script>alert('Login details is incorrect. Please try again.');</script>";
+  $errormsg="Invalid Email or Password Please Try Again. ";
   }
 }
 
@@ -131,7 +131,7 @@ else if(mysqli_num_rows($rej) == 1){
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <span class="logo d-flex align-items-center">
-        <img src="../assets/img/LOGO.png" alt="">
+    <img src="../../assets/img/LOGO.png" alt="">
         
       </span>
 
@@ -163,13 +163,14 @@ else if(mysqli_num_rows($rej) == 1){
                           <h3><b>Sign In</b></h3>
                       
                            <form id="login-form" method="post">
+               <p style="padding-left: 1%; padding-top:2%; color:red;"><?php if($errormsg){echo htmlentities($errormsg);} ?></p>
                              <div class="form-group user-name-field my-3">
-                                 <input type="text" class="form-control" name="email" placeholder="Email">
+                   <input type="text" class="form-control" name="email" placeholder="Email" required="required">
                                      <span class="error-message"></span>
                                        <div class="field-icon"><i class="fas fa-user"></i></div>
                                        </div>
                                        <div class="form-group forgot-password-field my-3">
-                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                                         <span class="error-message"></span>
                                          <div class="field-icon"><i class="fas fa-key"></i></div>
                                         </div>
@@ -202,24 +203,24 @@ else if(mysqli_num_rows($rej) == 1){
                               <div class="col">
 
                                 <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_name" placeholder="First Name">
+                              <input type="text" class="form-control" name="f_name" placeholder="First Name" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_lname" placeholder="Last Name">
+                              <input type="text" class="form-control" name="f_lname" placeholder="Last Name" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_email" placeholder="Email">
+                              <input type="text" class="form-control" name="f_email" placeholder="Email" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
                                 <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_company" placeholder="company Name">
+                          <input type="text" class="form-control" name="f_company" placeholder="Company Name" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-university"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
@@ -231,7 +232,7 @@ else if(mysqli_num_rows($rej) == 1){
 
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
-                                  <input type="file" class="form-control" name="file" id="f_file" placeholder="Logo">
+                          <input type="file" class="form-control" name="file" id="f_file" placeholder="Logo" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-paperclip"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
@@ -242,12 +243,12 @@ else if(mysqli_num_rows($rej) == 1){
 
 
                                 <div class="form-group my-3">
-                                  <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password">
+                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                                 <div class="form-group my-3">
-                                  <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password">
+                              <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
@@ -318,7 +319,29 @@ else if(mysqli_num_rows($rej) == 1){
   <script src="lib/toastr/toastr.min.js"></script>
   <script src="js/get-started.js"></script>
 
-  <script type="text/javascript">
+<!-- <script>
+  $('input[name="email"], input[name="password"]').attr('required', 'required');
+
+// Add a validation function to the submit button
+$('#login-submit').on('click', function() {
+  // Check if the email and password fields are empty
+  if ($('input[name="email"]').val() == '') {
+    $('.error-message').html('Please enter your email address.');
+    return false;
+  }
+
+  else ($('input[name="password"]').val() == '')
+   {
+    $('.error-message').html('Please enter your password.');
+    return false;
+  }
+
+  // Submit the form
+  return true;
+});
+</script> -->
+
+   <script type="text/javascript">
   document.getElementById("login-submit").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -406,6 +429,6 @@ else if(mysqli_num_rows($rej) == 1){
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
   }
-</script>
+</script> 
 </body>
 </html>

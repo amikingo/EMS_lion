@@ -115,10 +115,24 @@ echo "<script>window.location.href ='index.php'</script>";
 				<div class="col-lg-8">
 					<form class="singup-form contact-form" method="post">
 						<div class="row">
+						<?php	
+						$aid=$_SESSION['user_id'];
+						$sql="SELECT * from users Where id=:aid";
+						$query = $dbh -> prepare($sql);
+						$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$cnt=1;
+						if($query->rowCount() > 0)
+							{
+foreach($results as $row)
+{               ?>
+						
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">First Name</label>
-								<input type="text" placeholder="First Name" name="fname"  class="form-control" required="true">
+					<input type="text" placeholder="First Name" name="fname"  class="form-control" required="true" value="<?php  echo $row->FirstName;?>"readonly>
 							</div>
+							<?php $cnt=$cnt+1;}} ?> 
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">Last Name</label>
 								<input type="text" placeholder="Last Name" name="lname" class="form-control" required="true">
