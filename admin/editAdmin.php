@@ -129,7 +129,7 @@ function showRole(str) {
     <!-- Sidebar -->
     <?php include "includes/header.php";?>
        <!-- <div > <h5>Teacher</h5></div> -->
-       <?php include "includes/sidebar_sadmin.php";?> 
+       <?php include "includes/sidebar.php";?> 
     <!-- Sidebar -->
     <div class="content-wrapper" > 
       <!-- class="d-flex flex-column" -->
@@ -162,10 +162,10 @@ function showRole(str) {
       </div> -->
       <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Edit Administrator</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Users</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Edit Administrator</li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Users</li>
             </ol>
           </div>
           </div>
@@ -177,7 +177,7 @@ function showRole(str) {
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title"><h2 align="center">Edit Administrator Details</h2></strong>
+                                <strong class="card-title"><h2 align="center">Edit Users Details</h2></strong>
                             </div>
                             <div class="card-body">
                                 <!-- Credit Card -->
@@ -235,7 +235,7 @@ function showRole(str) {
     
     if ($count > 0) {                       
         echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-        echo '<option value="">--Select Admin Type--</option>';
+        // echo '<option value="">--Select Admin Type--</option>';
         
         while ($ad_row = mysqli_fetch_array($ad_query)) {
             $admin_type_id = $ad_row['Id'];

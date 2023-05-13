@@ -135,11 +135,11 @@ foreach($results as $row)
 							<?php $cnt=$cnt+1;}} ?> 
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">Last Name</label>
-								<input type="text" placeholder="Last Name" name="lname" class="form-control" required="true">
+								<input type="text" placeholder="Last Name" name="lname" class="form-control" required="true" value="<?php  echo $row->LastName;?>" readonly>
 							</div>
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">Your Email</label>
-								<input type="text" placeholder="Your Email" name="email" class="form-control" required="true">
+								<input type="text" placeholder="Your Email" name="email" class="form-control" required="true" value="<?php  echo $row->email;?>" readonly>
 							</div>
 							<div class="col-md-6">
 								<label style="padding-bottom: 10px;">Phone Number</label>
