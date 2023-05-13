@@ -81,7 +81,7 @@ $totalguard=$query->rowCount();
               <div class="icon">
                 <i class="ion ion-person-stalker"></i>
               </div>
-              <a href="manage-security-guard.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="expier.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -102,7 +102,7 @@ $newbooking=$query->rowCount();
               <div class="icon">
                 <i class="ion ion-chatboxes"></i>
               </div>
-              <a href="new-booking-request.php" class="small-box-footer" style="color: white !important;">More info <i class="fas fa-arrow-circle-right" style="color: white !important;"></i></a>
+              <a href="pre_expier.php" class="small-box-footer" style="color: white !important;">More info <i class="fas fa-arrow-circle-right" style="color: white !important;"></i></a>
             </div>
           </div>
          <div class="col-lg-4 col-6">
