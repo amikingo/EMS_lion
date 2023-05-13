@@ -25,7 +25,7 @@ foreach($results as $row)
  }
  else if ($row->adminTypeId == 3){
   // For Store Keeper
-    include_once('dashboard.php');
+include_once('dashboard_store.php');
   }
   else if ($row->adminTypeId == 4){
     //For Trainer
