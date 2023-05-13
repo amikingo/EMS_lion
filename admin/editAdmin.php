@@ -235,7 +235,7 @@ function showRole(str) {
     
     if ($count > 0) {                       
         echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-        // echo '<option value="">--Select Admin Type--</option>';
+       // echo '<option value="">--Select Admin Type--</option>';
         
         while ($ad_row = mysqli_fetch_array($ad_query)) {
             $admin_type_id = $ad_row['Id'];

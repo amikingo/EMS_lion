@@ -34,7 +34,7 @@ setcookie ("userpassword","");
       }
 }
 $_SESSION['login']=$_POST['username'];
-echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
+echo "<script type='text/javascript'> document.location ='component.php'; </script>";
 } else{
 $errormsg="Invalid Email or Password Please Try Again. ";
 }
