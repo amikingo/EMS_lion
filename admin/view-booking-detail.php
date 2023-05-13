@@ -201,7 +201,7 @@ if($row->Status=="")
     <th>Assign Guard :</th>
     <td>
    <select name="guards[]" class="form-control"  multiple="multiple">
-    <option value="">Choose Guard</option>
+<option value="" disabled="disabled"><-- Choose Security Employee --> </option>
     <?php
 $sql="SELECT * from tblguard";
 $query = $dbh -> prepare($sql);
