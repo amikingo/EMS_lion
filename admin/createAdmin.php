@@ -3,12 +3,12 @@
 
     include('../includes/dbconnection.php');
     // include('../includes/session.php');
-    error_reporting(0);
+//error_reporting(0);
 
 if(isset($_POST['submit'])){
 
-     $alertStyle ="";
-      $statusMsg="";
+//  $alertStyle ="success";
+// $statusMsg="good job";
 
   $adminName=$_POST['adminName'];
   $userName=$_POST['userName'];
@@ -30,7 +30,34 @@ if(isset($_POST['submit'])){
 
 
     $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','$sampPass_2','$adminTypeId','$dateCreated')");
-
+    
+    if ($rets) {
+        
+        // Set the success message
+        $alertStyle = "success";
+        $statusMsg = "Your account has been created successfully.";
+        // Add CSS to the success message
+        echo "<style>
+         .success {
+           color: green;
+           font-weight: bold;
+         }
+        </style>";
+        // echo "<div class='success'>$statusMsg</div>";
+      } else {
+        // Set the error message
+        $alertStyle = "danger";
+        $statusMsg = "There was an error creating your account. Please try again later.";
+        // Add CSS to the error message
+        echo "<style>
+         .danger {
+           color: red;
+           font-weight: bold;
+         }
+        </style>";
+    // echo "<div class='danger'>$statusMsg</div>";
+      }
+    
   }
 
   ?>
@@ -121,30 +148,7 @@ function showRole(str) {
       <div id="content">
         <!-- TopBar -->
       
-      <!-- </div>
-        <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>Dashboard</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li ><a href="#">Administrator</a></li>
-                                    <li class="active">Add Administrator</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+      
             <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Add User</h1>
