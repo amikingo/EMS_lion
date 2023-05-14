@@ -31,8 +31,8 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
 
 
-    echo '<script>alert("Security Guard Detail has been updated")</script>';
-
+    // echo '<script>alert("Security Guard Detail has been updated")</script>';
+    $_SESSION['msg'] = "Security Employee Detail has been updated";
   }
   ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+      <li class="breadcrumb-item"><a href="trainerLists.php">Home</a></li>
               <li class="breadcrumb-item active">View More About Trainee</li>
             </ol>
           </div>
@@ -86,7 +86,14 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">View More About Trainee</h3>
+                
               </div>
+              <?php if (isset($_POST['submit'])) { ?>
+										<div class="alert alert-success">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											<strong>Well done!</strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?>
+										</div>
+									<?php } ?>
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">

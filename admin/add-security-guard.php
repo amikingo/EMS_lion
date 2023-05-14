@@ -36,16 +36,16 @@ $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 
    $LastInsertId=$dbh->lastInsertId();
    if ($LastInsertId>0) {
-    echo '<script>alert("Security Guard Detail has been added.")</script>';
-echo "<script>window.location.href ='add-security-guard.php'</script>";
-  }
-  else
-    {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
-    }
+$_SESSION['msg'] = " Security Employee has been added!!";
+// echo "<script>window.location.href ='add-security-guard.php'</script>";
+  
+  // else
+  //   {
+  // $_SESSION['delmsg'] = " Created !!";
+  //   }
 
   
-}
+  }}
 }
 ?>
 <!DOCTYPE html>
@@ -100,6 +100,13 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
               <div class="card-header">
                 <h3 class="card-title">Add Security Employee</h3>
               </div>
+              <?php if (isset($_POST['submit'])) { ?>
+										<div class="alert alert-success">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											<strong>Well done!</strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?>
+										</div>
+									<?php } ?>
+
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
