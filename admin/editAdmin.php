@@ -126,10 +126,12 @@ function showRole(str) {
 </head>
 <body class="hold-transition sidebar-mini" >
   <div class="wrapper" >
+
+    <?php include "includes/sidebar.php";?>
     <!-- Sidebar -->
     <?php include "includes/header.php";?>
        <!-- <div > <h5>Teacher</h5></div> -->
-       <?php include "includes/sidebar.php";?> 
+        
     <!-- Sidebar -->
     <div class="content-wrapper" > 
       <!-- class="d-flex flex-column" -->
@@ -316,6 +318,8 @@ function showRole(str) {
 
                         }else if($row['adminTypeId'] == 3){
                                 echo 'Store Keeper';
+                        }else if($row['adminTypeId'] == 4){
+                                echo 'Trainer';
                         }
                  ?></td>
                 
