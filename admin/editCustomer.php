@@ -19,10 +19,20 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':status', $status, PDO::PARAM_STR);
 $query->bindParam(':eid', $eid, PDO::PARAM_INT); // assuming id is an integer
 $query->execute();
+$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+ $statusMsg = "Customer Status has been updated";
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
 
 //echo '<script type="text/javascript">toastr.success("Status has been updated")</script>';
 
-    echo '<script>alert("Customer Status has been updated")</script>';
+    // echo '<script>alert("Customer Status has been updated")</script>';
   }
   ?>
 <!DOCTYPE html>
@@ -81,6 +91,7 @@ $query->execute();
                 <h3 class="card-title">Update Customer Details</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
                 <?php

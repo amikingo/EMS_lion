@@ -22,6 +22,17 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
  $query->execute();
 
    $query->execute();
+   $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+   $statusMsg = "Request status has been updated.";
+       // Add CSS to the success message
+       echo "<style>
+        .success {
+         background-color: #d4edda;
+          color: green;
+          font-weight: bold;
+        }
+       </style>";
+  
 
 
    for($i = 0 ; $i < count($_POST['guards']); $i++){
@@ -33,8 +44,8 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
       $query->execute();
    }
 
-    echo '<script>alert("Booking status has been updated")</script>';
-echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
+//     echo '<script>alert("Booking status has been updated")</script>';
+// echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
   }
   $companyName="-";
   ?>
@@ -91,6 +102,7 @@ echo "<script type='text/javascript'> document.location ='all-booking-request.ph
                 <h3 class="card-title">View Request Detail</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               
                 

@@ -30,9 +30,18 @@ $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 $query->bindParam(':expiration_interval',$expiration_interval,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
+ $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+ $statusMsg = "Security Employee Detail has been updated.";
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
 
-
-    echo '<script>alert("Security Guard Detail has been updated")</script>';
+    // echo '<script>alert("Security Guard Detail has been updated")</script>';
 
   }
   ?>
@@ -89,6 +98,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                 <h3 class="card-title">View More About Security Guard</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
                 <?php

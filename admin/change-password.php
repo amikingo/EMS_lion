@@ -26,9 +26,31 @@ $chngpwd1-> bindParam(':adminid', $adminid, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
 
-echo '<script>alert("Your password successully changed")</script>';
+$alertStyle = "success";
+$statusMsg = "Your password successully changed.";
+// Add CSS to the success message
+echo "<style>
+ .success {
+  background-color: #d4edda;
+   color: green;
+   font-weight: bold;
+ }
+</style>";
+// echo "<div class='success'>$statusMsg</div>";
 } else {
-echo '<script>alert("Your current password is wrong")</script>';
+// Set the error message
+$alertStyle = "danger";
+$statusMsg = "Your current password is wrong!!";
+// Add CSS to the error message
+echo "<style>
+ .danger {
+   color: red;
+   font-weight: bold;
+ }
+</style>";
+// echo '<script>alert("Your password successully changed")</script>';
+// } else {
+// echo '<script>alert("Your current password is wrong")</script>';
 
 }
 
@@ -105,6 +127,7 @@ return true;
                 <h3 class="card-title">Change Password</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
              <form name="changepassword" method="post" onsubmit="return checkpass();" action="">
                                 

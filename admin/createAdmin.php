@@ -39,6 +39,7 @@ if(isset($_POST['submit'])){
         // Add CSS to the success message
         echo "<style>
          .success {
+          background-color: #d4edda;
            color: green;
            font-weight: bold;
          }
@@ -173,7 +174,7 @@ function showRole(str) {
                                 <!-- Credit Card -->
                                 <div id="pay-invoice">
                                     <div class="card-body">
-                                       <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+                                    <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
                                        <form role="form" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col-6">

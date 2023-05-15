@@ -36,7 +36,18 @@ $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 
    $LastInsertId=$dbh->lastInsertId();
    if ($LastInsertId>0) {
-$_SESSION['msg'] = " Security Employee has been added!!";
+    $alertStyle = "success";
+$statusMsg = "Security Employee has been added!!";
+// Add CSS to the success message
+echo "<style>
+ .success {
+  background-color: #d4edda;
+   color: green;
+   font-weight: bold;
+ }
+</style>";
+    
+// $_SESSION['msg'] = " Security Employee has been added!!";
 // echo "<script>window.location.href ='add-security-guard.php'</script>";
   
   // else
@@ -100,12 +111,14 @@ $_SESSION['msg'] = " Security Employee has been added!!";
               <div class="card-header">
                 <h3 class="card-title">Add Security Employee</h3>
               </div>
-              <?php if (isset($_POST['submit'])) { ?>
-										<div class="alert alert-success">
+              <?php //if (isset($_POST['submit'])) { ?>
+										<!-- <div class="alert alert-success">
 											<button type="button" class="close" data-dismiss="alert">×</button>
-											<strong>Well done!</strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?>
-										</div>
-									<?php } ?>
+											<strong>Well done!</strong> <?//php// echo htmlentities($_SESSION['msg']); ?><?//php //echo htmlentities($_SESSION['msg'] = ""); ?>
+										</div> -->
+									<?//php //} ?>
+                  <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
+
 
               <!-- /.card-header -->
               <!-- form start -->

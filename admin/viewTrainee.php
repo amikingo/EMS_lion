@@ -30,9 +30,18 @@ $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
 
-
+ $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+ $statusMsg = "Security Employee Detail has been updated.";
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
     // echo '<script>alert("Security Guard Detail has been updated")</script>';
-    $_SESSION['msg'] = "Security Employee Detail has been updated";
+    // $_SESSION['msg'] = "Security Employee Detail has been updated";
   }
   ?>
 <!DOCTYPE html>
@@ -88,12 +97,13 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                 <h3 class="card-title">View More About Trainee</h3>
                 
               </div>
-              <?php if (isset($_POST['submit'])) { ?>
+              <!-- <?php //if (isset($_POST['submit'])) { ?>
 										<div class="alert alert-success">
 											<button type="button" class="close" data-dismiss="alert">×</button>
 											<strong>Well done!</strong> <?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?>
 										</div>
-									<?php } ?>
+									<?php //} ?> -->
+                  <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">

@@ -81,6 +81,7 @@ $errormsg="Invalid Email or Password Please Try Again. ";
                     <div class="form-group">
                       <input type="password" class="form-control" placeholder="Password" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
                     </div>
+                    <div><a href="forgot-password.php" style="margin-left: 77%;">Forgot-password ?</a></div>
                     <div class="form-group">
                       <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> />

@@ -39,9 +39,19 @@ if(isset($_POST['submit'])){
 
     if($ret == TRUE){
 
-        echo "<script type = \"text/javascript\">
-                window.location = (\"viewAdmin.php\");
-                </script>";
+        // echo "<script type = \"text/javascript\">
+        //         window.location = (\"viewAdmin.php\");
+        //         </script>";
+        $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+    $statusMsg = "User Detail has been updated.";
+        // Add CSS to the success message
+        echo "<style>
+         .success {
+          background-color: #d4edda;
+           color: green;
+           font-weight: bold;
+         }
+        </style>";
     }
     else {
 
@@ -182,6 +192,7 @@ function showRole(str) {
                                 <strong class="card-title"><h2 align="center">Edit Users Details</h2></strong>
                             </div>
                             <div class="card-body">
+                            <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
                                 <!-- Credit Card -->
                                 <div id="pay-invoice">
                                     <div class="card-body">

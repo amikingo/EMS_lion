@@ -18,7 +18,17 @@ if (strlen($_SESSION['osghsaid']==0)) {
      $query->bindParam(':mobilenumber',$mobno,PDO::PARAM_STR);
      $query->bindParam(':aid',$adminid,PDO::PARAM_STR);
 $query->execute();
-echo '<script>alert("Your profile has been updated")</script>';
+$alertStyle = "success";
+$statusMsg = "Your profile has been updated.";
+// Add CSS to the success message
+echo "<style>
+ .success {
+  background-color: #d4edda;
+   color: green;
+   font-weight: bold;
+ }
+</style>";
+// echo '<script>alert("Your profile has been updated")</script>';
  
   }
   ?>
@@ -76,6 +86,7 @@ echo '<script>alert("Your profile has been updated")</script>';
                 <h3 class="card-title">Admin Profile</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form name="profile" method="post" action="">
                                 
