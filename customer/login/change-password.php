@@ -53,22 +53,45 @@ if ($result->num_rows > 0) {
     $sql = "UPDATE users SET password = '$newpassword', cpassword = '$confirmPassword' WHERE id = '$user_id'";
 
     if ($conn->query($sql) === TRUE) {
+      $alertStyle = "success";
+      $statusMsg = "Your account has been created successfully.";
+      // Add CSS to the success message
+      echo "<style>
+       .success {
+        background-color: #d4edda;
+         color: green;
+         font-weight: bold;
+       }
+      </style>";
       // Redirect the user to the profile page
-      echo "<script>alert('Your Changes Have Been Made Successfully. PLease Log in Again');</script>";
-   
-      
+     // echo "<script>alert('Your Changes Have Been Made Successfully. PLease Log in Again');</script>";
     } else {
-      // Handle the error
-      echo "Error updating record: " . $conn->error;
+      // Set the error message
+      $alertStyle = "danger";
+      $statusMsg = "The Current Password You Entered Is Incorrect.";
+      // Add CSS to the error message
+      echo "<style>
+       .danger {
+  background-color: #f8d7da;
+         color: red;
+         font-weight: bold;
+       }
+      </style>";
+      
+     }
     }
-  } else {
-    // Handle the error
-    echo "<script>alert('The Current Password You Entered Is Incorrect.');</script>";
-  }
-} else {
-  // Handle the error
-  echo "Error updating record: " . $conn->error;
-}
+// else {
+//       // Handle the error
+//       echo "Error updating record: " . $conn->error;
+//     }
+//   } else {
+//     // Handle the error
+//     echo "<script>alert('The Current Password You Entered Is Incorrect.');</script>";
+//   }
+// } else {
+//   // Handle the error
+//   echo "Error updating record: " . $conn->error;
+// }
 
 ?>
 
@@ -144,7 +167,7 @@ return true;
       </nav>
     </div>
   </header>
-  <?php// include_once('../header.php');?>
+//php// include_once('../header.php');?>
 
  <br><br><br><br><br>
 
@@ -174,6 +197,7 @@ return true;
                 <h3 class="card-title">Change Password</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
              <form name="changepassword" method="post" onsubmit="return checkpass();" action="">
                                 
@@ -181,7 +205,7 @@ return true;
  
                                 <div class="form-group"><label for="company" class=" form-control-label">Current Password</label><input type="password" name="currentpassword" id="currentpassword" class="form-control" required=""></div>
                                     <div class="form-group"><label for="vat" class=" form-control-label">New Password</label><input type="password" name="newpassword"  class="form-control" required=""></div>
-                                        <div class="form-group"><label for="street" class=" form-control-label">Confirm Password</label><input type="password" name="confirmpassword" id="confirmpassword" value=""  class="form-control"></div>
+                                        <div class="form-group"><label for="street" class=" form-control-label">Confirm Password</label><input type="password" name="confirmpassword" id="confirmpassword" value=""  class="form-control" required=""></div>
                                                                                                 
                                                     </div>
                                                    
@@ -273,4 +297,4 @@ $(document).ready(function () {
 </script>
 </body>
 </html>
-<?php  ?>
+<?php } ?>
