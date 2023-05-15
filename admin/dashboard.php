@@ -64,7 +64,7 @@ include('includes/dbconnection.php');
         <div class="row">
           <div class="col-lg-4 col-6">
            <?php 
-$sql ="SELECT ID from tblguard ";
+$sql ="SELECT ID from tblguard where isTrainer = '0'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
