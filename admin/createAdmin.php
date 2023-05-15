@@ -52,6 +52,7 @@ if(isset($_POST['submit'])){
         // Add CSS to the error message
         echo "<style>
          .danger {
+    background-color: #f8d7da;
            color: red;
            font-weight: bold;
          }

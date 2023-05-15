@@ -11,8 +11,22 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $gid=$_GET['delid'];
 $query=$dbh -> prepare("delete from tblguard where ID='$gid'");
 $query->execute();
-   echo '<script>alert("Record has been deleted")</script>';
-echo "<script>window.location.href ='manage-security-guard.php'</script>";
+$alertStyle = "danger";
+$statusMsg = "Record has been deleted.";
+// Add CSS to the error message
+echo "<style>
+ .danger {
+background-color: #f8d7da;
+   color: red;
+   font-weight: bold;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   padding: 10px;
+ }
+</style>";
+  // echo '<script>alert("Record has been deleted")</script>';
+//echo "<script>window.location.href ='manage-security-guard.php'</script>";
     }   
 
   ?>
@@ -71,6 +85,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
               <h3 class="card-title">Manage Security Employee</h3>
             </div>
             <!-- /.card-header -->
+            <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
