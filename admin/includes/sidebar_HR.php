@@ -239,14 +239,34 @@ $new_users = $queryme->rowCount();
              </ul>
 
           </li> 
-          <li class="nav-item">
+          <li class="nav-item has-treeview">
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Generate Report
+                <i class="fas fa-angle-left right"></i>
                </p>
             </a>
-        
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="between-dates-report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Accepted Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rejected Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+            <a href=" " class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                <p>Companys</p>
+                </a>
+              </li>
+             </ul>
           </li>
       <!-- <li class="nav-item">
             <a href="search.php" class="nav-link">
