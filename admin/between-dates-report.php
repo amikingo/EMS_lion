@@ -75,6 +75,13 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <label for="exampleInputEmail1">To Date:</label>
                     <input type="date" class="form-control" id="todate" name="todate" value="" required='true'>
                   </div>
+                  <div class="form-group">
+                    <select class="form-control" name="selectName" id="product" required>
+                         <option value="">--Select Product--</option>
+                         <option name=""value="Accepted">Accepted</option>
+                          <option name=""value="Rejected">Rejected</option>
+                     </select>
+                  </div>
                         
                 </div>
                 <div class="card-footer">

@@ -68,8 +68,9 @@ if (strlen($_SESSION['osghsaid']==0)) {
               <?php
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
+$selectName=$_POST['selectName'];
 ?>
-<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?></h5>  
+<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5>  
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -83,7 +84,7 @@ $tdate=$_POST['todate'];
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblhiring where date(Dateofbooking) between '$fdate' and '$tdate'";
+$sql="SELECT * from tblhiring where date(Dateofbooking) between '$fdate' and '$tdate' AND Status = '$selectName'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
