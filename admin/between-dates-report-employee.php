@@ -62,7 +62,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details.php">
+              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-employee.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">From Date:</label>
@@ -77,9 +77,13 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </div>
                   <div class="form-group">
                     <select class="form-control" name="selectName" id="product" required>
-                         <option value="">--Select Product--</option>
-                         <option name=""value="Accepted">Accepted</option>
-                          <option name=""value="Rejected">Rejected</option>
+                         <option value="">--Select Employee--</option>
+                         <option value="1 1 0">All Employees</option>
+                          <option value="1 2 3">Assigned</option>
+                          <!-- REMARK: UNFINISHED OR CLAUSE FOR NOT ASSIGNED-->
+                          <option value="0 2 3">Not Assigned</option>
+                          <option value="2 1 3">is A Trainee</option>
+                          <option value="5 4 1">Uniform Assigned</option>
                      </select>
                   </div>
                         

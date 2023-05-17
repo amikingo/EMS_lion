@@ -69,22 +69,29 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
 $selectName=$_POST['selectName'];
+$selectNamesarr = (explode(" ", $selectName));
+
 ?>
-<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5>  
+<h5 align="center" style="color:blue">Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php if($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 1){
+echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 0) {
+  echo "Assigned Employees";
+}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 0) {
+  echo "Not Assigned Employee";
+}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 1) {
+  echo "Is Trainer";
+}?></h5>  
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>S.No</th>
-                    <th>Booking Number</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact Number</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Mobile Number</th>
+                    <th>ID Number</th>
+                    <th>Registration Date</th>
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblhiring where date(Dateofbooking) between '$fdate' and '$tdate' AND Status = '$selectName'";
+$sql="SELECT * from tblguard where date(RegistrationDate) between '$fdate' and '$tdate' AND isAssigned = '$selectNamesarr[0]' OR isTrainer = '$selectNamesarr[1]' OR UniformAssigned = '$selectNamesarr[2]'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -96,20 +103,11 @@ foreach($results as $row)
 {               ?>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>
-                    <td><?php  echo htmlentities($row->BookingNumber);?></td>
-                    <td><?php  echo htmlentities($row->FirstName);?> <?php  echo htmlentities($row->LastName);?>
-                    </td>
-                    <td><?php  echo htmlentities($row->Email);?></td>
-                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
-           <td>  <?php if($row->Status==""){ ?>
-
-                     <span class="badge badge-warning"><?php echo "Not Updated Yet"; ?></span>
-<?php } else if($row->Status=='Rejected') { ?>
-<span class="badge badge-danger"><?php  echo htmlentities($row->Status);?></span>
-<?php } else { ?> 
-<span class="badge badge-success"><?php  echo htmlentities($row->Status);?></span>
-<?php } ?></td>
-                    <td><a href="view-booking-detail.php?bookingid=<?php echo htmlentities ($row->BookingNumber);?>" class="btn btn-primary">View </a></td>
+                    <td><?php  echo htmlentities($row->Name);?></td>
+                    <td><?php  echo htmlentities($row->MobileNumber);?> </td>
+                    <td><?php  echo htmlentities($row->IDnumber);?></td>
+                    <td> <?php  echo htmlentities($row->RegistrationDate);?></td>
+          
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>

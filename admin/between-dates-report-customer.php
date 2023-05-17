@@ -62,7 +62,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details.php">
+              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-customer.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">From Date:</label>
@@ -78,8 +78,9 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   <div class="form-group">
                     <select class="form-control" name="selectName" id="product" required>
                          <option value="">--Select Product--</option>
-                         <option name=""value="Accepted">Accepted</option>
-                          <option name=""value="Rejected">Rejected</option>
+                         <option value="1">Accepted</option>
+                          <option value="0">Rejected</option>
+                          <option value="2">Pending</option>
                      </select>
                   </div>
                         
