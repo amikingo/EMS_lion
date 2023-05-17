@@ -55,6 +55,14 @@ $errormsg="Invalid Email or Password Please Try Again. ";
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="dist/css/ruang-admin.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
+  <style>
+body{
+background-image: url(dist/img/vecteezy_personal-data-security-privacy-concept-with-laptop-and_.jpg);
+margin-top: 3%;
+margin-right: 30%;
+
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-login">
@@ -81,7 +89,7 @@ $errormsg="Invalid Email or Password Please Try Again. ";
                     <div class="form-group">
                       <input type="password" class="form-control" placeholder="Password" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
                     </div>
-                    <div><a href="forgot-password.php" style="margin-left: 77%;">Forgot-password ?</a></div>
+                <div><a href="forgot-password.php" style="margin-left: 70%;">Forgot-password ?</a></div>
                     <div class="form-group">
                       <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> />
