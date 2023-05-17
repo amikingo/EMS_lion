@@ -20110,14 +20110,16 @@ html.maximized-card {
 
 .login-box,
 .register-box {
-    width: 360px
+    width: 550px;
+    margin-left: 40%;
+    margin-bottom: 20%;
 }
 
 @media (max-width:576px) {
     .login-box,
     .register-box {
         margin-top: 20px;
-        width: 90%
+        width: 100%
     }
 }
 
