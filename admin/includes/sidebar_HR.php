@@ -249,21 +249,21 @@ $new_users = $queryme->rowCount();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="between-dates-report.php" class="nav-link">
+        <a href="between-dates-report-customer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted Report</p>
+      <p>Customer Reports</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+    <a href="between-dates-report-employee.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected Report</p>
+          <p>Employee Reports</p>
                 </a>
               </li>
               <li class="nav-item">
-            <a href=" " class="nav-link">
+            <a href="between-dates-report.php " class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                <p>Companys</p>
+        <p>Request Reports</p>
                 </a>
               </li>
              </ul>
