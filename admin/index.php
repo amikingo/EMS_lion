@@ -57,8 +57,8 @@ $errormsg="Invalid Email or Password Please Try Again. ";
   <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
   <style>
 body{
-background-image: url(dist/img/vecteezy_personal-data-security-privacy-concept-with-laptop-and_.jpg);
-margin-top: 3%;
+background-image: url(dist/img/bb.jpg);
+margin-top: 13%;
 margin-right: 30%;
 
     }
