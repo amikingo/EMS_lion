@@ -64,7 +64,7 @@ return true;
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="login.php"> Admin</a>
+    
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -107,7 +107,7 @@ return true;
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-           <a href="login.php">signin</a>
+           <a href="index.php">Login</a>
              
             </div>
           </div>
