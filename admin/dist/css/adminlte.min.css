@@ -20100,7 +20100,7 @@ html.maximized-card {
 .register-page {
     -ms-flex-align: center;
     align-items: center;
-    background: #a9d3ff;
+    background: white;
     display: -ms-flexbox;
     display: flex;
     height: 100vh;
