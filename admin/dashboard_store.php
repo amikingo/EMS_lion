@@ -48,7 +48,7 @@ include('includes/dbconnection.php');
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard_store.php">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
@@ -105,96 +105,12 @@ $newbooking=$query->rowCount();
               <a href="pre_expier.php" class="small-box-footer" style="color: white !important;">More info <i class="fas fa-arrow-circle-right" style="color: white !important;"></i></a>
             </div>
           </div>
-         <div class="col-lg-4 col-6">
-           <?php 
-$sql ="SELECT ID from tblhiring where Status='Accepted'";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$accbooking=$query->rowCount();
-?>
-
-       
-            <div class="small-box bg-success"style="background-color: #7c9cb8 !important;">
-              <div class="inner">
-                <h3><?php echo htmlentities($accbooking);?></h3>
-
-                <p>Total Accepted Booking</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-document-text "></i>
-              </div>
-              <a href="accepted-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-6">
-           <?php 
-$sql ="SELECT ID from tblhiring where Status='Rejected'";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$rejbooking=$query->rowCount();
-?>
-
-       
-            <div class="small-box bg-danger" style="background-color: #5fa6f2 !important;">
-              <div class="inner">
-                <h3><?php echo htmlentities($rejbooking);?></h3>
-
-                <p>Total Rejected Booking</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-document"></i>
-              </div>
-              <a href="rejected-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+     
+      
 
 
-     <div class="col-lg-4 col-6">
-           <?php 
-$sql ="SELECT ID from tblhiring";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$totalbooking=$query->rowCount();
-?>
-
-       
-            <div class="small-box bg-info" style="background-color: #629b96 !important;">
-              <div class="inner">
-                <h3><?php echo htmlentities($totalbooking);?></h3>
-
-                <p>Total  Booking</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-clipboard"></i>
-              </div>
-              <a href="all-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-6">
-           <?php 
-$sql ="SELECT ID from users";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$totalusers=$query->rowCount();
-?>
-
-       
-            <div class="small-box bg-info" style="background-color: #cc9261 !important;">
-              <div class="inner">
-                <h3><?php echo htmlentities($totalusers);?></h3>
-
-                <p>Total Customers</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-clipboard"></i>
-              </div>
-              <a href="manageCustomer.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+   
+          
 
 
 

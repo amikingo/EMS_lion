@@ -88,7 +88,7 @@ $(document).ready(function() {
         submitHandler: function(form) {
             $.ajax({
                 type: 'POST',
-                
+
             });
         }
     });
@@ -97,7 +97,7 @@ $(document).ready(function() {
         if ($("#forget-pass-input").val() == '') return true;
         $.ajax({
             type: 'POST',
-           
+
         });
         e.preventDefault();
     });

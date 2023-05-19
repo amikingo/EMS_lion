@@ -1,7 +1,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-light-primary elevation-8">
     <!-- Brand Logo -->
-    <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
+<a href="dashboard_store.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
 
     <span class="brand-text font-weight-light"><img alt="logo" src="../assets/img/LOGO.png" style="width: 235px;height: 40px;"></span>
