@@ -59,7 +59,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $new_uniform_row_count = $query->rowCount();
 
 
-$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AND expir_date >= CURDATE()";
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL expiration_interval MONTH) AND expir_date >= CURDATE()";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -148,7 +148,7 @@ $expired_uni_count = $query->rowCount();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-       <a href="between-dates-report-new order.php" class="nav-link">
+       <a href="between-dates-report-new-order.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
        <p>New Order Reports</p>
                 </a>

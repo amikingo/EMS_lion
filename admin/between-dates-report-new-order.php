@@ -12,7 +12,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
   
-  <title>Lion Security Services | Between Dates Report of Expired Uniform Contracts</title>
+  <title>Lion Security Services | Between Dates Report of New Order</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -37,12 +37,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Between Dates Report Expired Uniform Contracts</h1>
+            <h1>Between Dates Report of New Order</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Between Dates Report of Expired Unifolrm Contracts</li>
+              <li class="breadcrumb-item active">Between Dates Report of New Order</li>
             </ol>
           </div>
         </div>
@@ -58,11 +58,11 @@ if (strlen($_SESSION['osghsaid']==0)) {
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Between Dates Report of Expired Uniform Contracts</h3>
+                <h3 class="card-title">Between Dates Report of New Order</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-expired.php">
+              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-new-order.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">From Date:</label>
@@ -75,8 +75,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <label for="exampleInputEmail1">To Date:</label>
                     <input type="date" class="form-control" id="todate" name="todate" value="" required='true'>
                   </div>
-                        
-                </div>
+
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
