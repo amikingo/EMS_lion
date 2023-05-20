@@ -14,8 +14,9 @@ $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
+$remark=$_POST['remark'];
 
-$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
+$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,remark=:remark where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
@@ -23,10 +24,23 @@ $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
 $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
+$query->bindParam(':remark',$remark,PDO::PARAM_STR);
  $query->execute();
+       
+$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+    $statusMsg = "Security Employee Detail has been updated.";
+        // Add CSS to the success message
+        echo "<style>
+         .success {
+          background-color: #d4edda;
+           color: green;
+           font-weight: bold;
+         }
+        </style>";
+        // Add success message
+        // echo "<div class=\"alert alert-$alertStyle alert-dismissible fade show\" role=\"alert\">
 
-
-    echo '<script>alert("Security Guard Detail has been updated")</script>';
+    // echo '<script>alert("Security Guard Detail has been updated")</script>';
 
   }
   ?>
@@ -59,12 +73,12 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Update Security Guard</h1>
+            <h1>Update Security Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Update Security Guard</li>
+              <li class="breadcrumb-item active">Update Security Employee</li>
             </ol>
           </div>
         </div>
@@ -80,8 +94,11 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Update Security Guard</h3>
+                <h3 class="card-title">Update Security Employee</h3>
               </div>
+         <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong>
+
+        </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
@@ -121,8 +138,8 @@ foreach($results as $row)
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
 <option value="<?php echo htmlentities($row->IDtype);?>"><?php echo htmlentities($row->IDtype);?></option>
                                                         
-<option value="Adhar Card">Adhar Card</option>
-<option value="Voter Card">Voter Card</option>
+<option value="Kebele Card">Kebele Card</option>
+
 
             
                                                         
@@ -135,6 +152,21 @@ foreach($results as $row)
                   <div class="form-group">
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1"> is certified</label>
+                    <input type="text" class="form-control"  value="
+                    <?php 
+                    if(htmlentities($row->isTrainer) == 0){
+                      echo "Yes";
+                    }else if (htmlentities($row->isTrainer) == 1){
+                      echo "no";
+                    }
+                    ?> "readonly>
+                  </div> 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Remark from The Trainee</label>
+                    <textarea type="text" class="form-control" id="address" name="remark" placeholder="remark" required="true" readonly><?php echo htmlentities($row->remark);?></textarea>
                   </div>
                 </div>
               <?php $cnt=$cnt+1;}} ?> 

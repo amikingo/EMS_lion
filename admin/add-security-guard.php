@@ -24,7 +24,7 @@ else
 
 $propic=md5($propic).time().$extension;
  move_uploaded_file($_FILES["propic"]["tmp_name"],"images/".$propic);
-$sql="insert into tblguard(Profilepic,Name,MobileNumber,Address,IDtype,IDnumber)values(:pics,:name,:mobilenumber,:address,:idtype,:idnum)";
+$sql="insert into tblguard(Profilepic,Name,MobileNumber,Address,IDtype,IDnumber,isTrainer)values(:pics,:name,:mobilenumber,:address,:idtype,:idnum, 1)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':pics',$propic,PDO::PARAM_STR);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
@@ -36,23 +36,34 @@ $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
 
    $LastInsertId=$dbh->lastInsertId();
    if ($LastInsertId>0) {
-    echo '<script>alert("Security Guard Detail has been added.")</script>';
-echo "<script>window.location.href ='add-security-guard.php'</script>";
-  }
-  else
-    {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
-    }
+    $alertStyle = "success";
+$statusMsg = "Security Employee has been added!!";
+// Add CSS to the success message
+echo "<style>
+ .success {
+  background-color: #d4edda;
+   color: green;
+   font-weight: bold;
+ }
+</style>";
+    
+// $_SESSION['msg'] = " Security Employee has been added!!";
+// echo "<script>window.location.href ='add-security-guard.php'</script>";
+  
+  // else
+  //   {
+  // $_SESSION['delmsg'] = " Created !!";
+  //   }
 
   
-}
+  }}
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   
-  <title>Lion Security Services | Add Security Guard</title>
+  <title>Lion Security Services | Add Security Employee</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -77,12 +88,12 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Security Guard</h1>
+            <h1>Add Security Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Add Security Guard</li>
+              <li class="breadcrumb-item active">Add Security Employee</li>
             </ol>
           </div>
         </div>
@@ -98,8 +109,17 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Security Guard</h3>
+                <h3 class="card-title">Add Security Employee</h3>
               </div>
+              <?php //if (isset($_POST['submit'])) { ?>
+										<!-- <div class="alert alert-success">
+											<button type="button" class="close" data-dismiss="alert">×</button>
+											<strong>Well done!</strong> <?//php// echo htmlentities($_SESSION['msg']); ?><?//php //echo htmlentities($_SESSION['msg'] = ""); ?>
+										</div> -->
+									<?//php //} ?>
+                  <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
+
+
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
@@ -125,8 +145,8 @@ echo "<script>window.location.href ='add-security-guard.php'</script>";
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
 <option value="">Choose ID Type</option>
                                                         
-<option value="Adhar Card">Adhar Card</option>
-<option value="Voter Card">Voter Card</option>
+<option value="Kebele Card">Kebele Card</option>
+
 
             
                                                         

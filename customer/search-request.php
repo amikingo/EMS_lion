@@ -1,8 +1,8 @@
 <?php
 include('dbconnection.php');
 session_start();
-error_reporting(0);
- 
+//error_reporting(0);
+ $user_id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -16,6 +16,7 @@ error_reporting(0);
 	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/header.css"/>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -23,7 +24,40 @@ error_reporting(0);
 		<div class="loader"></div>
 	</div>
 	<!-- Header Section -->
-	<?php include_once('header.php');?>
+	</head>
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="index.php"></a>
+   
+      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+      
+
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
+	  <ul>
+  <li><a href="Home.php"><button type="button" class="btn btn-primary">Home</button></a></li>
+  <li><a href="About us.php"><button type="button" class="btn btn-primary">About Us</button></a></li>
+  <li><a href="contact us.php"><button type="button" class="btn btn-primary">Contact Us</button></a></li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">Request</button>
+    <ul class="submenu">
+      <li><a href="index.php">Request Employee</a></li>
+      <li class="active"><a href="search-request.php">Check Request</a></li>
+    </ul>
+  </li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">My Account</button>
+    <ul class="submenu">
+      <li><a href="login/profile.php">Profile</a></li>
+      <li><a href="login/change-password.php">Change Password</a></li>
+      <li><a href="login/logout.php">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+      </nav>
+    </div>
+  </header>
+	<?php// include_once('header.php');?>
 	<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
 		<div class="container">
 			<div class="row">
@@ -75,57 +109,70 @@ $sdata=$_POST['searchdata'];
                     <th>Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
+                    <th>Company Name</th>
+					<th>Remark</th>
                     <th>Status</th>
                     <th>Name of Guard</th>
+
                     
                   </tr>
                   </thead>
                   <tbody>
-                    <?php
-$sql="SELECT * from tblhiring where BookingNumber like '$sdata%'";
-$query = $dbh -> prepare($sql);
+      <?php
+$aid = $_SESSION['user_id'];
+//$companyName = $_POST['companyName'];
+
+$mema = "SELECT companyName FROM users WHERE id=:aid";
+$mema_query = $dbh->prepare($mema);
+$mema_query->bindParam(':aid', $aid, PDO::PARAM_STR);
+$mema_query->execute();
+$mema_result = $mema_query->fetch(PDO::FETCH_OBJ);
+$companyName = $mema_result->companyName;
+
+$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName AND BookingNumber LIKE '$sdata%'";
+$query = $dbh->prepare($sql);
+$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+$results = $query->fetchAll(PDO::FETCH_OBJ);
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                  <tr>
-                    <td><?php echo htmlentities($cnt);?></td>
-                    <td><?php  echo htmlentities($row->BookingNumber);?></td>
-                    <td><?php  echo htmlentities($row->FirstName);?> <?php  echo htmlentities($row->LastName);?>
-                    </td>
-                    <td><?php  echo htmlentities($row->Email);?></td>
-                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
-                    <?php if($row->Status==""){ ?>
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    foreach ($results as $row) {
+?>
+        <tr>
+            <td><?php echo htmlentities($cnt); ?></td>
+            <td><?php echo htmlentities($row->BookingNumber); ?></td>
+            <td><?php echo htmlentities($row->FirstName); ?> <?php echo htmlentities($row->LastName); ?></td>
+            <td><?php echo htmlentities($row->Email); ?></td>
+            <td><?php echo htmlentities($row->MobileNumber); ?></td>
+            <td><?php echo htmlentities($row->companyName); ?></td>
+			<td><?php echo htmlentities($row->Remark); ?></td>
+            <?php if ($row->Status == "") { ?>
+                <td><?php echo "Not Updated Yet"; ?></td>
+            <?php } else { ?>
+                <td>
+                    <span class="badge badge-primary"><?php echo htmlentities($row->Status); ?></span>
+                </td>
+            <?php } ?>
+            <?php if ($row->Status == "") { ?>
+                <td><?php echo "Not Updated Yet"; ?></td>
+            <?php } elseif ($row->Status == "Rejected") { ?>
+                <td><?php echo "Rejected"; ?></td>
+            <?php } else { ?>
+                <td><?php echo htmlentities($row->GuardAssign); ?></td>
+            <?php } ?>
+        </tr>
+<?php
+        $cnt = $cnt + 1;
+    }
+}
+else {
+?>
+    <tr>
+        <td colspan="8"> No record found against this search</td>
+    </tr>
 
-                     <td><?php echo "Not Updated Yet"; ?></td>
 
-
-<?php } else { ?>
-                                        <td>
-                                            <span class="badge badge-primary"><?php  echo htmlentities($row->Status);?></span>
-                                        </td>
-<?php } ?> 
-<?php if($row->Status==""){ ?>
- 	 <td><?php echo "Not Updated Yet"; ?></td>
- 	<?php } ?>
- <?php if($row->Status=="Rejected"){ ?>
- 	 <td><?php echo "Rejected"; ?></td>
- 	 <?php } else { ?>
-                    <td> <?php  echo htmlentities($row->GuardAssign);?></td><?php } ?>
-                  </tr>
-                  </tbody>
-
-                  <?php 
-$cnt=$cnt+1;
-} } else { ?>
-  <tr>
-    <td colspan="8"> No record found against this search</td>
-
-  </tr>
   <?php } }?>
                  
 
@@ -158,7 +205,7 @@ $cnt=$cnt+1;
 	  <div class="col-lg-2 col-md-6 footer-links">
 		<h4>Useful Links</h4>
 		<ul>
-		  <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="Home.php">Home</a></li>
 		  <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
 		  <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
 		</ul>

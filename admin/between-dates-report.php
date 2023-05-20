@@ -37,12 +37,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Between Dates  Report</h1>
+            <h1>Between Dates Request Report</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Between Dates Report</li>
+              <li class="breadcrumb-item active">Between Dates Request Report</li>
             </ol>
           </div>
         </div>
@@ -58,7 +58,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Between Dates Report</h3>
+                <h3 class="card-title">Between Dates Request Report</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -74,6 +74,14 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   <div class="form-group">
                     <label for="exampleInputEmail1">To Date:</label>
                     <input type="date" class="form-control" id="todate" name="todate" value="" required='true'>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control" name="selectName" id="product" required>
+                         <option value="">--Select Report Type--</option>
+                         <option value="Accepted">Accepted</option>
+                          <option value="Rejected">Rejected</option>
+                          <!-- <option value="<?php// $a=0;//echo is_null($a); ?>">Pending</option> -->
+                     </select>
                   </div>
                         
                 </div>

@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-light-primary elevation-8">
 
     <!-- Brand Logo -->
-    <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
+<a href="viewAdmin.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
 
     <span class="brand-text font-weight-light"><img alt="logo" src="../assets/img/LOGO.png" style="width: 235px;height: 40px;"></span>
@@ -14,21 +14,21 @@
        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
 <?php
-//   session_start();
-//   include 'dbconnection.php';
-// $aid=$_SESSION['osghsaid'];
-// $sql="SELECT AdminName from  tbladmin where ID=:aid";
-// $query = $dbh -> prepare($sql);
-// $query->bindParam(':aid',$aid,PDO::PARAM_STR);
-// $query->execute();
-// $results=$query->fetchAll(PDO::FETCH_OBJ);
-// $cnt=1;
-// if($query->rowCount() > 0)
-// {
-// foreach($results as $row)
-// {               ?>
-          <!-- <a href="admin-profile.php" class="d-block">Welcome : <?php // echo $row->AdminName;?></a> -->
-          <?// $cnt=$cnt+1;}} ?>
+  session_start();
+  include 'dbconnection.php';
+$aid=$_SESSION['osghsaid'];
+$sql="SELECT AdminName from  tbladmin where ID=:aid";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+ {               ?>
+          <a href="admin-profile.php" class="d-block">Welcome : <?php  echo $row->AdminName;?></a>
+          <?php $cnt=$cnt+1;}} ?>
         </div>
       </div>
 
@@ -38,105 +38,64 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        
-          <li class="nav-item">
-            <a href="dashboard.php" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-               </p>
-            </a>
-        
-          </li>
+
           
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Secuirty Guard
-                <i class="fas fa-angle-left right"></i>
-   
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="add-security-guard.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Security Guard</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="manage-security-guard.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Security Guard</p>
-                </a>
-              </li>
-             </ul>
-          </li>
- 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-              Create Trainer
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="createClassTeacher.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Create Trainer </p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
-              Create Trainee 
-                <i class="right fas fa-angle-left"></i>
+                Create Users
+                <i class="fas fa-angle-left right"></i>
+                
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="createStudents.php" class="nav-link">
+                <a href="createAdmin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Trainee</p>
+                  <p> Create Users </p>
                 </a>
               </li>
-            </ul>
-          </li>
+              <li class="nav-item">
+                <a href="viewAdmin.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View All Users</p>
+                </a>
+              </li>
+             </ul>
+          </li> 
+
+          
+        
+          
        
-<li class="nav-item has-treeview">
+<!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Booking Request
+              create admin
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="accepted-booking-request.php" class="nav-link">
+                <a href="createAdmin.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted Booking</p>
+                  <p>create admin</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="between-dates-report.php" class="nav-link">
+           <li class="nav-item"> 
+            <a href="viewAdmin.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                B/W Report
+                view Admin
                </p>
             </a>
-          </li>
-      <li class="nav-item">
+          </li> -->
+    <!-- <--  <li class="nav-item">
             <a href="search.php" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
@@ -144,7 +103,8 @@
                </p>
             </a>
         
-          </li>
+          </li> --> 
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plus-square"></i>

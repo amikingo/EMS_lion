@@ -15,20 +15,33 @@ $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
+$expiration_interval=$_POST['expiration_interval'];
+$expir_date = $_POST['expir_date'];
 
-$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum where ID=:eid";
+$sql="update tblguard set Name=:name,UniformAssigned=:UniformAssigned,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,expiration_interval=:expiration_interval, expir_date=:expir_date where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':UniformAssigned',$UniformAssigned,PDO::PARAM_STR);
+$query->bindParam(':expir_date',$expir_date,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
 $query->bindParam(':idnum',$idnum,PDO::PARAM_STR);
+$query->bindParam(':expiration_interval',$expiration_interval,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
  $query->execute();
+ $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+ $statusMsg = "Security Employee Detail has been updated.";
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
 
-
-    echo '<script>alert("Security Guard Detail has been updated")</script>';
+    // echo '<script>alert("Security Guard Detail has been updated")</script>';
 
   }
   ?>
@@ -85,6 +98,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                 <h3 class="card-title">View More About Security Guard</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
                 <?php
@@ -145,7 +159,18 @@ foreach($results as $row)
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
                   </div>
-
+                  <div>
+                    <label for="exampleInputEmail1">PreExpire</label>
+                        <select name="expiration_interval" id="status"  class="form-control">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+                  </div>
+                     <div class="form-group">
+                    <label for="exampleInputEmail1">Expire Date:</label>
+                    <input type="date" class="form-control" id="fromdate" name="expir_date" value="" required='true'>
+                  </div>
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">

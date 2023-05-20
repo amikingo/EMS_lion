@@ -18,7 +18,17 @@ if (strlen($_SESSION['osghsaid']==0)) {
      $query->bindParam(':mobilenumber',$mobno,PDO::PARAM_STR);
      $query->bindParam(':aid',$adminid,PDO::PARAM_STR);
 $query->execute();
-echo '<script>alert("Your profile has been updated")</script>';
+$alertStyle = "success";
+$statusMsg = "Your profile has been updated.";
+// Add CSS to the success message
+echo "<style>
+ .success {
+  background-color: #d4edda;
+   color: green;
+   font-weight: bold;
+ }
+</style>";
+// echo '<script>alert("Your profile has been updated")</script>';
  
   }
   ?>
@@ -76,6 +86,7 @@ echo '<script>alert("Your profile has been updated")</script>';
                 <h3 class="card-title">Admin Profile</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form name="profile" method="post" action="">
                                 
@@ -94,7 +105,7 @@ if($query->rowCount() > 0)
 foreach($results as $row)
 {               ?>
                                 <div class="form-group"><label for="company" class=" form-control-label">Admin Name</label><input type="text" name="adminname" value="<?php  echo $row->AdminName;?>" class="form-control" required='true'></div>
-                                    <div class="form-group"><label for="vat" class=" form-control-label">User Name</label><input type="text" name="username" value="<?php  echo $row->UserName;?>" class="form-control" readonly=""></div>
+                                    <div class="form-group"><label for="vat" class=" form-control-label">User Name</label><input type="text" name="username" value="<?php  echo $row->UserName;?>" class="form-control" ></div>
                                         <div class="form-group"><label for="street" class=" form-control-label">Contact Number</label><input type="text" name="mobilenumber" value="<?php  echo $row->MobileNumber;?>"  class="form-control" maxlength='10' required='true'></div>
                                             <div class="row form-group">
                                                 <div class="col-12">

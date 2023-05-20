@@ -11,7 +11,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $rid=$_GET['bookingid'];
     $ressta=$_POST['status'];
     $remark=$_POST['restremark'];
-
+    
 $guards=implode(',',$_POST['guards']);
 $sql="update tblhiring set Status=:ressta,Remark=:remark,GuardAssign=:guards where BookingNumber=:rid";
 $query=$dbh->prepare($sql);
@@ -22,24 +22,38 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
  $query->execute();
 
    $query->execute();
+   $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+   $statusMsg = "Request status has been updated.";
+       // Add CSS to the success message
+       echo "<style>
+        .success {
+         background-color: #d4edda;
+          color: green;
+          font-weight: bold;
+        }
+       </style>";
+  
 
 
    for($i = 0 ; $i < count($_POST['guards']); $i++){
-      $sql="update tblguard set isAssigned=1 where Name=:val";
+    $companyName=$_POST['companyName'];
+      $sql="update tblguard set isAssigned=1,companyName=:companyName where Name=:val";
       $query=$dbh->prepare($sql);
+      $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
       $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
       $query->execute();
    }
 
-    echo '<script>alert("Booking status has been updated")</script>';
-echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
+//     echo '<script>alert("Booking status has been updated")</script>';
+// echo "<script type='text/javascript'> document.location ='all-booking-request.php'; </script>";
   }
+  $companyName="-";
   ?>
 <!DOCTYPE html>
 <html>
 <head>
   
-  <title>View Booking Detail</title>
+  <title>View Request Detail</title>
     
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -64,12 +78,12 @@ echo "<script type='text/javascript'> document.location ='all-booking-request.ph
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>View Booking Detail</h1>
+            <h1>View Request Detail</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">View Booking Detail</li>
+              <li class="breadcrumb-item active">View Request Detail</li>
             </ol>
           </div>
         </div>
@@ -85,9 +99,10 @@ echo "<script type='text/javascript'> document.location ='all-booking-request.ph
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">View Booking Detail</h3>
+                <h3 class="card-title">View Request Detail</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               
                 
@@ -104,10 +119,12 @@ $query-> bindParam(':rid', $rid, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
+
 if($query->rowCount() > 0)
 {
 foreach($results as $row)
-{               ?>
+{
+  $companyName = $row->companyName;             ?>
   <tr>
     <th>Booking Number</th>
     <td><?php  echo htmlentities($row->BookingNumber);?></td>
@@ -129,6 +146,7 @@ foreach($results as $row)
   <tr>
     <th>Booking Status</th>
     <td><?php $status= $row->Status;
+
 if($row->Status=="Accepted")
 {
   echo "Requirement Accepted";
@@ -174,7 +192,8 @@ if($row->Status=="")
 <?php
 
   if($status=="" ){ ?>
-<form name="submit" method="post"> 
+<form name="submit" method="post">
+<input type="hidden" name="companyName" value="<?= $companyName; ?>"> 
 <tr>
     <th>Remark :</th>
     <td colspan="6">
@@ -194,7 +213,7 @@ if($row->Status=="")
     <th>Assign Guard :</th>
     <td>
    <select name="guards[]" class="form-control"  multiple="multiple">
-    <option value="">Choose Guard</option>
+<option value="" disabled="disabled"><-- Choose Security Employee --> </option>
     <?php
 $sql="SELECT * from tblguard";
 $query = $dbh -> prepare($sql);
@@ -213,8 +232,10 @@ foreach($results as $row1)
      
    </select></td>
   </tr>
-    <tr align="center" style="text-align: center';">
-    <td><button type="submit" name="submit" class="btn btn-primary">Update</button></td>
+    <tr align="center" style="text-align: center;">
+    <td>
+    <button type="submit" name="submit" class="btn btn-primary">Update</button>
+    </td>
   </tr>
 </form>
 

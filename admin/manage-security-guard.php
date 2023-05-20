@@ -11,8 +11,22 @@ if (strlen($_SESSION['osghsaid']==0)) {
 $gid=$_GET['delid'];
 $query=$dbh -> prepare("delete from tblguard where ID='$gid'");
 $query->execute();
-   echo '<script>alert("Record has been deleted")</script>';
-echo "<script>window.location.href ='manage-security-guard.php'</script>";
+$alertStyle = "danger";
+$statusMsg = "Record has been deleted.";
+// Add CSS to the error message
+echo "<style>
+ .danger {
+background-color: #f8d7da;
+   color: red;
+   font-weight: bold;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   padding: 10px;
+ }
+</style>";
+  // echo '<script>alert("Record has been deleted")</script>';
+//echo "<script>window.location.href ='manage-security-guard.php'</script>";
     }   
 
   ?>
@@ -20,7 +34,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
 <html>
 <head>
  
-  <title>Security Guard</title>
+  <title>Security Employee</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -49,12 +63,12 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Security Guard</h1>
+            <h1>Manage Security Employee</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Manage Security Guard</li>
+              <li class="breadcrumb-item active">Manage Security Employee</li>
             </ol>
           </div>
         </div>
@@ -68,9 +82,10 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Manage Security Guard</h3>
+              <h3 class="card-title">Manage Security Employee</h3>
             </div>
             <!-- /.card-header -->
+            <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -84,7 +99,7 @@ echo "<script>window.location.href ='manage-security-guard.php'</script>";
                 </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard";
+$sql="SELECT * from tblguard where isTrainer = '0'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

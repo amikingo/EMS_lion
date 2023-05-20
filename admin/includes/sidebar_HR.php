@@ -57,12 +57,14 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $new_booking_row_count = $query->rowCount();
 
 ?>
+
+
           
  
 <style type="text/css">
 .notify-badge {
     height: 5;
-    background: red;
+    background: green;
     color: white;
     border-radius: 100px;
     /* padding: 5px; */
@@ -74,10 +76,65 @@ $new_booking_row_count = $query->rowCount();
     vertical-align: middle;
     font-size: 13px;
 }
-</style>          
-       
+</style>  
+        
 <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Secuirty Employee
+                <i class="fas fa-angle-left right"></i>
+   
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="add-security-guard.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Security Employee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="manage-security-guard.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Security Employee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="manageUncertifiedGuards.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Training Personnel</p>
+                </a>
+              </li>
+             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                Create Users
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="createAdmin.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Create Users </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="viewAdmin.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View All Users</p>
+                </a>
+              </li>
+             </ul>
+          </li> 
+  
+           <li class="nav-item has-treeview">
+            <a href="all-booking-request.php" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Customer Request
@@ -122,15 +179,94 @@ $new_booking_row_count = $query->rowCount();
               </li>
             </ul>
           </li>
+          
+          
+<?php
 
-          <li class="nav-item">
+$sqlme="SELECT * from users where status = 2";
+$queryme = $dbh -> prepare($sqlme);
+$queryme->execute();
+$resultsme=$queryme->fetchAll(PDO::FETCH_OBJ);
+
+$new_users = $queryme->rowCount();
+
+?>
+<style type="text/css">
+.notify-badgem {
+    height: 5;
+    background: green;
+    color: white;
+    border-radius: 100px;
+    /* padding: 5px; */
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+</style>  
+
+
+               <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-plus-square"></i>
+              <p>
+                Manage Customer
+                 <?php if($new_users) {  echo "<span class='notify-badgem'>" . $new_users . "</span>"; } ?>
+                 &nbsp; &nbsp; &nbsp;
+                <i class="fas fa-angle-left right"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+            <a href="search_com.php" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Search request
+               </p>
+            </a>
+          </li>
+              <li class="nav-item">
+                <a href="manageCustomer.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Customers</p>
+                </a>
+              </li>
+
+             </ul>
+
+          </li> 
+          <li class="nav-item has-treeview">
             <a href="between-dates-report.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Generate Report
+                <i class="fas fa-angle-left right"></i>
                </p>
             </a>
-        
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+        <a href="between-dates-report-customer.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+      <p>Customer Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+    <a href="between-dates-report-employee.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+          <p>Employee Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+            <a href="between-dates-report.php " class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+        <p>Request Reports</p>
+                </a>
+              </li>
+             </ul>
           </li>
       <!-- <li class="nav-item">
             <a href="search.php" class="nav-link">

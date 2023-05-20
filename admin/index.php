@@ -7,7 +7,7 @@ include('includes/dbconnection.php');
 if(isset($_POST['login'])) 
   {
     $username=$_POST['username'];
-    $password=($_POST['password']);
+    $password=md5($_POST['password']);
     $sql ="SELECT ID FROM tbladmin WHERE UserName=:username and Password=:password";
     $query=$dbh->prepare($sql);
     $query-> bindParam(':username', $username, PDO::PARAM_STR);
@@ -34,9 +34,9 @@ setcookie ("userpassword","");
       }
 }
 $_SESSION['login']=$_POST['username'];
-echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
+echo "<script type='text/javascript'> document.location ='component.php'; </script>";
 } else{
-echo "<script>alert('Invalid Details');</script>";
+$errormsg="Invalid Email or Password Please Try Again. ";
 }
 }
 
@@ -53,8 +53,23 @@ echo "<script>alert('Invalid Details');</script>";
   <meta name="author" content="">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="dist/css/ruang-admin.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
+  <style>
+body{
+background-image: url(dist/img/aa.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+margin-top: 10%;
+margin-right: 49%;
+
+    }
+    .login-form{
+background-color:#bfbfbf;
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-login">
@@ -62,23 +77,28 @@ echo "<script>alert('Invalid Details');</script>";
   <div class="container-login">
     <div class="row justify-content-center">
       <div class="col-xl-10 col-lg-12 col-md-9">
-        <div class="card shadow-sm my-5">
+    <div class="card shadow-sm my-7">
           <div class="card-body p-0">
             <div class="row">
-              <div class="col-lg-12">
+       <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-
                     <br><br>
+                    
+<span class="brand-text font-weight-light"><img alt="logo" src="../assets/img/LOGO.png" style="width: 235px;height: 40px;"></span>
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
+
                   <form class="user" method="Post" action="">
+              <p style="padding-left: 4%; padding-top:2%; color:red;"><?php if($errormsg){echo htmlentities($errormsg);}  ?></p>
+
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="User Name" required="true" name="username" value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>" >
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" placeholder="Password" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
                     </div>
+<div><a href="forgot-password.php" style="margin-left: 45%;">Forgot-password ?</a></div>
                     <div class="form-group">
                       <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> />

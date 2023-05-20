@@ -4,7 +4,7 @@ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
-  } else{
+  } else{   
 
 
 
@@ -42,12 +42,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>New Ordert</h1>
+            <h1>New Order</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">New Ordert</li>
+              <li class="breadcrumb-item"><a href="dashboard_store.php">Home</a></li>
+              <li class="breadcrumb-item active">New Order</li>
             </ol>
           </div>
         </div>
@@ -77,7 +77,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isAssigned='1' AND UniformAssigned='0' ";
+$sql="SELECT * from tblguard where isAssigned='1' AND UniformAssigned='0'  AND isTrainer='0' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -99,6 +99,8 @@ foreach($results as $row)
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+              
+              </table>
             </div>
             <!-- /.card-body -->
           </div>
@@ -108,6 +110,86 @@ foreach($results as $row)
       </div>
       <!-- /.row -->
     </section>
+              <br>
+       <section class="content">
+      <div class="row">
+        <div class="col-12">
+              <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">New Order</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <label>Group By Company Name</label>
+                            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Company Name</th>
+                    <th>PreExpire Month</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                
+<?php
+if(isset($_POST['assignUniform'])) {
+    $companyName = $_POST['companyName'];
+    $UniformAssigned = 1;
+    $expiration_interval = $_POST['expiration_interval'];
+
+    $sql = "UPDATE tblguard SET UniformAssigned=:UniformAssigned, expiration_interval=:expiration_interval WHERE companyName=:companyName AND isAssigned='1' AND UniformAssigned='0' AND isTrainer='0'";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':UniformAssigned', $UniformAssigned, PDO::PARAM_INT);
+    $query->bindParam(':expiration_interval', $expiration_interval, PDO::PARAM_STR);
+    $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
+    $query->execute();
+
+    echo '<script>alert("Security Guard Detail has been updated")</script>';
+}
+
+$sql = "SELECT * FROM tblguard WHERE isAssigned='1' AND UniformAssigned='0' AND isTrainer='0' GROUP BY companyName";
+$query = $dbh->prepare($sql);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    foreach ($results as $row) {
+        if (!empty(trim($row->companyName))) {
+            ?>
+            <tr>
+              <form method="POST">
+                <td><?php echo htmlentities($cnt);?></td>
+                <td><?php echo htmlentities($row->companyName);?></td>
+                <td>
+                    <select name="expiration_interval" id="status" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </td>
+                <td>
+                    
+                        <a href="groupOrder.php?editid=<?php echo htmlentities($row->ID);?>" class="btn btn-primary">View</a>
+                        <input type="hidden" name="companyName" value="<?php echo htmlentities($row->companyName);?>">
+                        <button type="submit" name="assignUniform" class="btn btn-primary">Assign Uniform</button>
+                    </form>
+                </td>
+            </tr>
+            <?php
+            $cnt++;
+        }
+    }
+}
+?>
+
+                 </table>
+                </div>
+              </div></div>
+            </div>
+              </section>
+  </div>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

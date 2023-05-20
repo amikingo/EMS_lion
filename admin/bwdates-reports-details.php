@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>Lion Security Services | Between dates reports of hiring guards</title>
+  <title>Lion Security Services | Between dates reports Request</title>
   <!-- Tell the browser to be responsive to screen width -->
 
 
@@ -42,12 +42,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Between dates reports of guards</h1>
+            <h1>Between dates reports Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Between dates reports of guards</li>
+              <li class="breadcrumb-item active">Between dates reports Request</li>
             </ol>
           </div>
         </div>
@@ -61,15 +61,20 @@ if (strlen($_SESSION['osghsaid']==0)) {
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Between dates reports of guards</h3>
+              <h3 class="card-title">Between dates reports Requests</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <form role="form" method="post" name="printReport" action="print/printRequestDetailsFromHR/print.php">
               <?php
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
+$selectName=$_POST['selectName'];
 ?>
-<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?></h5>  
+<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5> 
+<input type="hidden" class="form-control" id="formType" name="formType" value="<?php echo $selectName?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="fDate" value="<?php echo $fdate?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="tDate" value="<?php echo $tdate;?>" required='true'> 
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -83,7 +88,7 @@ $tdate=$_POST['todate'];
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblhiring where date(Dateofbooking) between '$fdate' and '$tdate'";
+$sql="SELECT * from tblhiring where date(Dateofbooking) between '$fdate' and '$tdate' AND Status = '$selectName'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -112,6 +117,10 @@ foreach($results as $row)
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+                 <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" name="submit">Print</button>
+                </div>              
+            </form>
             </div>
             <!-- /.card-body -->
           </div>

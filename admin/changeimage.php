@@ -27,8 +27,18 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':pic',$propic,PDO::PARAM_STR);
 $query->bindParam(':eid',$eid,PDO::PARAM_STR);
     $query->execute();
-
-    echo '<script>alert("Image has been updated")</script>';
+    $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+    $statusMsg = "Image has been updated";
+        // Add CSS to the success message
+        echo "<style>
+         .success {
+          background-color: #d4edda;
+           color: green;
+           font-weight: bold;
+         }
+        </style>";
+   
+    // echo '<script>alert("Image has been updated")</script>';
 
   }
 }
@@ -86,6 +96,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
                 <h3 class="card-title">Update Image</h3>
               </div>
               <!-- /.card-header -->
+              <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
               <!-- form start -->
               <form role="form" method="post" enctype="multipart/form-data">
                 <?php

@@ -1,7 +1,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-light-primary elevation-8">
     <!-- Brand Logo -->
-    <a href="dashboard.php" class="brand-link" style="font-weight:bold; font-size:22px;">
+<a href="dashboard_store.php" class="brand-link" style="font-weight:bold; font-size:22px;">
     
 
     <span class="brand-text font-weight-light"><img alt="logo" src="../assets/img/LOGO.png" style="width: 235px;height: 40px;"></span>
@@ -38,7 +38,7 @@ foreach($results as $row)
                with font-awesome or any other icon font library -->
         
           <li class="nav-item">
-            <a href="dashboard.php" class="nav-link">
+            <a href="dashboard_store.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -48,13 +48,32 @@ foreach($results as $row)
           </li>
           
 <?php
-
+// $sql=mysqli_query(select * 
+// from uniformTable
+// where expireDate < DATEADD(month, 6, GETDATE()));
 $sql="SELECT * from tblguard where uniformAssigned='0' AND isAssigned= '1' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 
 $new_uniform_row_count = $query->rowCount();
+
+
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AND expir_date >= CURDATE()";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$pre_expire_uni_count = $query->rowCount();
+
+
+$sql="SELECT * from tblguard where isAssigned='1' AND expir_date < CURDATE()";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$expired_uni_count = $query->rowCount();
+
 
 ?>
           
@@ -81,7 +100,7 @@ $new_uniform_row_count = $query->rowCount();
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Order
-                <?php if($new_uniform_row_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count . "</span>"; } ?>
+                <?php if($new_uniform_row_count + $pre_expire_uni_count + $expired_uni_count) {  echo "<span class='notify-badge'>" . $new_uniform_row_count + $pre_expire_uni_count + $expired_uni_count. "</span>"; } ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -100,7 +119,53 @@ $new_uniform_row_count = $query->rowCount();
                   
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="pre_expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Pre-Expire</p>
+                  <?php if($pre_expire_uni_count) {  echo "<span class='notify-badge'>" . $pre_expire_uni_count . "</span>"; } ?>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Expired</p>
+                  <?php if($expired_uni_count) {  echo "<span class='notify-badge'>" . $expired_uni_count . "</span>"; } ?>
+                </a>
+              </li>
+             <li class="nav-item">
+                
+              </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="between-dates-report.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Generate Report
+                <i class="fas fa-angle-left right"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+       <a href="between-dates-report-new order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+       <p>New Order Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+        <a href="between-dates-report-pre_expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+          <p>Pre-Expired Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+    <a href="between-dates-report-expierd.php " class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+        <p>Expired Reports</p>
+                </a>
+              </li>
+             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
