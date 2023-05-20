@@ -65,21 +65,41 @@ if (strlen($_SESSION['osghsaid']==0)) {
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+
+              <form role="form" method="post" name="printReport" action="print/printEmployeeDetailsFromHR/print.php">
               <?php
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
 $selectName=$_POST['selectName'];
 $selectNamesarr = (explode(" ", $selectName));
 
+
 ?>
 <h5 align="center" style="color:blue">Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php if($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 1){
-echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 0) {
+echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 2) {
   echo "Assigned Employees";
 }elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 0) {
   echo "Not Assigned Employee";
-}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 1) {
+}elseif ($selectNamesarr[0] == 2 AND $selectNamesarr[1] == 1) {
   echo "Is Trainer";
-}?></h5>  
+}elseif ($selectNamesarr[0] == 5 AND $selectNamesarr[1] == 4) {
+  echo "Uniform Assigned";
+}
+?></h5>  
+<input type="hidden" class="form-control" id="formType" name="formType" value="<?php if($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 1){
+echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 2) {
+  echo "Assigned Employees";
+}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 2) {
+  echo "Not Assigned Employees";
+}elseif ($selectNamesarr[0] == 2 AND $selectNamesarr[1] == 1) {
+  echo "Is Trainer";
+}elseif ($selectNamesarr[0] == 5 AND $selectNamesarr[1] == 4) {
+  echo "Uniform Assigned";
+}
+?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="fDate" value="<?php echo $fdate?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="tDate" value="<?php echo $tdate;?>" required='true'>
+
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -111,6 +131,10 @@ foreach($results as $row)
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+                 <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                </div>
+            </form>
             </div>
             <!-- /.card-body -->
           </div>

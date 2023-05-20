@@ -37,33 +37,44 @@
 	<br /> <br /> <br /> <br />
 	<b style="color:blue;">Date Prepared:</b>
 	<?php
+		$fdate=$_POST['fDate'];
+		$tdate=$_POST['tDate'];
+		$allEmp=$_POST['formType'];
 		$date = date("Y-m-d", strtotime("+6 HOURS"));
 		echo $date;
 	?>
+<p>The Following Table is A report of <?php echo $allEmp ?> Customers from <?php echo $fdate?> upto <?php echo $tdate;?></p>
 	<br /><br />
 	<table class="table table-striped">
 		<thead>
 			<tr>
-					<th>Booking Number</th>
 					<th>Company Name</th>
-					<th>Date Of Booking</th>
-					<th>Date of Acceptance</th>
+					<th>Email</th>
+					<th>Full Name</th>
+					
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-					require 'conn.php';
 					
-					$query = $conn->query("SELECT * FROM `tblhiring` where Status='Accepted'");
+					if($allEmp == "Pending"){
+						$sql = ("SELECT * from users where date(AdminRegdate) between '$fdate' and '$tdate' AND Status = '2' ");
+					}elseif ($allEmp == "Approved") {
+						$sql="SELECT * from users where date(AdminRegdate) between '$fdate' and '$tdate' AND Status = '1' ";
+					}elseif ($allEmp == "Rejected") {
+						$sql="SELECT * from users where date(AdminRegdate) between '$fdate' and '$tdate' AND Status = '0'";
+					}
+					
+					$query = $conn->query($sql);
 					while($fetch = $query->fetch_array()){
 						
 				?>
 			
 			<tr>
-					<td style="text-align:center;"><?php echo $fetch['BookingNumber']?></td>
 					<td style="text-align:center;"><?php echo $fetch['companyName']?></td>
-					<td style="text-align:center;"><?php echo $fetch['Dateofbooking']?></td>
-					<td style="text-align:center;"><?php echo $fetch['UpdationDate']?></td>
+					<td style="text-align:center;"><?php echo $fetch['email']?></td>
+					<td style="text-align:center;"><?php echo $fetch['FirstName']?> <?php echo $fetch['LastName']?></td>
+					
 			</tr>
 			
 			<?php

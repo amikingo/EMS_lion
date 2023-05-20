@@ -65,12 +65,16 @@ if (strlen($_SESSION['osghsaid']==0)) {
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <form role="form" method="post" name="printReport" action="print/printRequestDetailsFromHR/print.php">
               <?php
 $fdate=$_POST['fromdate'];
 $tdate=$_POST['todate'];
 $selectName=$_POST['selectName'];
 ?>
-<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5>  
+<h5 align="center" style="color:blue">Booking Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5> 
+<input type="hidden" class="form-control" id="formType" name="formType" value="<?php echo $selectName?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="fDate" value="<?php echo $fdate?>" required='true'>
+<input type="hidden" class="form-control" id="formType" name="tDate" value="<?php echo $tdate;?>" required='true'> 
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -113,6 +117,10 @@ foreach($results as $row)
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+                 <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                </div>              
+            </form>
             </div>
             <!-- /.card-body -->
           </div>
