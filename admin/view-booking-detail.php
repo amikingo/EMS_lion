@@ -200,37 +200,41 @@ if($row->Status=="")
     <textarea name="restremark" placeholder="" rows="5" cols="14" class="form-control" required="true"></textarea></td>
   </tr>
 
-  <tr>
-    <th>Status :</th>
-    <td>
-   <select name="status" class="form-control" required="true" >
-     <option value="Accepted" selected="true"> Accepted</option>
-          <option value="Rejected">Rejected</option>
-     
-   </select></td>
-  </tr>
-   <tr>
-    <th>Assign Guard :</th>
-    <td>
-   <select name="guards[]" class="form-control"  multiple="multiple">
-<option value="" disabled="disabled"><-- Choose Security Employee --> </option>
-    <?php
-$sql="SELECT * from tblguard";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+<tr>
+  <th>Status :</th>
+  <td>
+    <select name="status" class="form-control" required="true" onchange="toggleCheckboxes(this)">
+      <option value="Accepted" selected="true">Accepted</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>Assign Guard :</th>
+  <td>
+    <div id="checkboxes">
+      <?php
+        $sql = "SELECT * FROM tblguard where isTrainer = 0";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        if ($query->rowCount() > 0) {
+          foreach ($results as $row1) {
+            if ($row1->isAssigned == 0) {
+      ?>
+      <div>
+        <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->Name); ?>">
+        <label><?php echo htmlentities($row1->Name); ?></label>
+      </div>
+      <?php
+            }
+          }
+        }
+      ?>
+    </div>
+  </td>
+</tr>
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row1)
-{
-    if($row1->isAssigned == 0){
-               ?>
-     <option value="<?php echo htmlentities ($row1->Name);?>"> <?php echo htmlentities ($row1->Name);?></option>
-          <?php $cnt=$cnt+1;}}} ?>
-     
-   </select></td>
   </tr>
     <tr align="center" style="text-align: center;">
     <td>
@@ -280,6 +284,16 @@ foreach($results as $row1)
 $(document).ready(function () {
   bsCustomFileInput.init();
 });
+</script>
+<script>
+  function toggleCheckboxes(select) {
+    var checkboxes = document.getElementById("checkboxes");
+    if (select.value == "Accepted") {
+      checkboxes.style.display = "block";
+    } else {
+      checkboxes.style.display = "none";
+    }
+  }
 </script>
 </body>
 </html>
