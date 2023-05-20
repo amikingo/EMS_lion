@@ -134,13 +134,38 @@ $expired_uni_count = $query->rowCount();
                 </a>
               </li>
              <li class="nav-item">
-                <a href="expir_date.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Expire Date</p>
-                  
-                </a>
+                
               </li>
             </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="between-dates-report.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Generate Report
+                <i class="fas fa-angle-left right"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+       <a href="between-dates-report-new order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+       <p>New Order Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+        <a href="between-dates-report-pre_expier.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+          <p>Pre-Expired Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+    <a href="between-dates-report-expierd.php " class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+        <p>Expired Reports</p>
+                </a>
+              </li>
+             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
