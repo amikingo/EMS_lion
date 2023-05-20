@@ -33,7 +33,8 @@
 	</style>
 	</head>
 <body>
-	<h2>Lion Security Service PLC</h2>
+<h1 style="font-size:xxx-large; font-weight:bold; "><span class="brand-text font-weight-light"><img alt="logo" src="../../../assets/img/fav.jpg" style="width: 60px;height: 60px;"></span> &nbsp;Lion Security Service PLC</h1>
+
 	<br /> <br /> <br /> <br />
 	<b style="color:blue;">Date Prepared:</b>
 	<?php
