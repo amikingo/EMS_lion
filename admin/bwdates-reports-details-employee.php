@@ -132,7 +132,7 @@ foreach($results as $row)
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
                  <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Print</button>
                 </div>
             </form>
             </div>
