@@ -62,12 +62,12 @@ background-image: url(dist/img/aa.jpg);
   background-size: cover;
   background-position: center;
 
-margin-top: 10%;
-margin-right: 49%;
+margin-top: 15%;
+margin-right: 3%;
 
     }
     .login-form{
-background-color:#bfbfbf;
+background-color:white;
     }
   </style>
 </head>
