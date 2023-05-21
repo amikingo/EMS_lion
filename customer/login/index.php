@@ -123,23 +123,37 @@ else if(mysqli_num_rows($rej) == 1){
       font-size: 14px;
       margin-top: 5px;
     }
+    ul li button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+ul li.active button {
+background-color: black;
+  color: #fff;
+}
+
 </style>
 </head>
 
 <body>
   <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+<div class="container-fluid container-xl d-flex align-items-center justify-content-between" >
 
       <span class="logo d-flex align-items-center">
-    <img src="../../assets/img/LOGO.png" alt="">
+<img src="../../assets/img/LOGO.png" style="margin-right: 100%;">
         
       </span>
 
       <nav id="navbarr" class="navbarr">
-        <ul>
-          <li><a class="nav-link login-form-slider login-click" href="javascript:;">Signin</a></li>
-          <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;">Signup</a></li>
-          <li><a class="nav-link login-form-slider login-click" href="../../index.php">Home</a></li>
+<ul>
+      <li><a class="nav-link login-form-slider login-click" href="javascript:;"><button type="button" class="btn btn-primary">Signin</button></a></li>
+  <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;"><button type="button" class="btn btn-primary">Signup </button></a></li>
+      <li><a class="nav-link login-form-slider login-click" href="../../index.php"><button type="button" class="btn btn-primary">Home</button></a></li>
         </ul>
       </nav>
 
