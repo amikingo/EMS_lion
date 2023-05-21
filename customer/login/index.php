@@ -110,7 +110,7 @@ else if(mysqli_num_rows($rej) == 1){
 <head>
 
   <title>Welcome</title>
-
+  <link href="../assets/img/fav.png" rel="icon">
   <link rel="shortcut icon" href="images/logo.png">
   <link href="lib/bootstrap5/css/bootstrap.css" rel="stylesheet">
   <link href="css/get-started.css" rel="stylesheet">

@@ -66,7 +66,7 @@ echo "<style>
 <head>
   
   <title>Lion Security Services | Change Password</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

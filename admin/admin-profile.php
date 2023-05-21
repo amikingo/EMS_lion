@@ -38,7 +38,7 @@ echo "<style>
 <head>
   
   <title>Lion Security Services  | Admin Profile</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

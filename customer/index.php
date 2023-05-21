@@ -48,7 +48,8 @@ echo "<script>window.location.href ='index.php'</script>";
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>lion security services |Request Guard</title>	
+	<title>lion security services |Request Guard</title>
+	<link href="assets/img/fav.png" rel="icon">	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>

@@ -88,6 +88,7 @@ if (isset($_POST["submit"])) {
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../assets/img/fav.png" rel="icon">
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="stylesheet" href="../css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../css/font-awesome.min.css"/>

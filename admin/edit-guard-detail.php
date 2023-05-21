@@ -49,7 +49,7 @@ $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
 <head>
   
   <title>Lion Security Services | Update Security Guard</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

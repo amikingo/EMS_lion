@@ -45,7 +45,7 @@ $errormsg="Invalid Email or Password Please Try Again. ";
 <html lang="en">
 
 <head>
-
+<link href="dist/img/fav.png" rel="icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
 <head>
   
   <title>Lion Security Services | Change Password</title>
-    
+  <link href="../assets/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

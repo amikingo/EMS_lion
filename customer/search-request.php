@@ -7,6 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
+<link href="assets/img/fav.png" rel="icon">
 	<title>lion security services |Search Request</title>	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
@@ -57,7 +58,7 @@ session_start();
       </nav>
     </div>
   </header>
-	<?php// include_once('header.php');?>
+	
 	<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
 		<div class="container">
 			<div class="row">

@@ -54,7 +54,7 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 <head>
   
   <title>View Request Detail</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

@@ -17,7 +17,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
  
   <title>New Order</title>
   <!-- Tell the browser to be responsive to screen width -->
-
+  <link href="dist/img/fav.png" rel="icon">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
