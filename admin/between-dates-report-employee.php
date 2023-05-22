@@ -78,12 +78,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   <div class="form-group">
                     <select class="form-control" name="selectName" id="product" required>
                          <option value="">--Select Employee--</option>
-                         <option value="1 1 0">All Employees</option>
-                          <option value="1 2 3">Assigned</option>
+                         <option value="all">All Employees</option>
+                          <option value="assigned">Assigned</option>
                           <!-- REMARK: UNFINISHED OR CLAUSE FOR NOT ASSIGNED-->
-                          <option value="0 2 3">Not Assigned</option>
-                          <option value="2 1 3">is A Trainee</option>
-                          <option value="5 4 1">Uniform Assigned</option>
+                          <option value="notAssigned">Not Assigned</option>
+                          <option value="isTraine">is A Trainee</option>
+                          <option value="uniAssigned">Uniform Assigned</option>
                      </select>
                   </div>
                         

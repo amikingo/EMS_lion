@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -75,28 +75,8 @@ $selectNamesarr = (explode(" ", $selectName));
 
 
 ?>
-<h5 align="center" style="color:blue">Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php if($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 1){
-echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 2) {
-  echo "Assigned Employees";
-}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 0) {
-  echo "Not Assigned Employee";
-}elseif ($selectNamesarr[0] == 2 AND $selectNamesarr[1] == 1) {
-  echo "Is Trainer";
-}elseif ($selectNamesarr[0] == 5 AND $selectNamesarr[1] == 4) {
-  echo "Uniform Assigned";
-}
-?></h5>  
-<input type="hidden" class="form-control" id="formType" name="formType" value="<?php if($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 1){
-echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 2) {
-  echo "Assigned Employees";
-}elseif ($selectNamesarr[0] == 0 AND $selectNamesarr[1] == 2) {
-  echo "Not Assigned Employees";
-}elseif ($selectNamesarr[0] == 2 AND $selectNamesarr[1] == 1) {
-  echo "Is Trainer";
-}elseif ($selectNamesarr[0] == 5 AND $selectNamesarr[1] == 4) {
-  echo "Uniform Assigned";
-}
-?>" required='true'>
+<h5 align="center" style="color:blue">Report from <?php echo $fdate?> to <?php echo $tdate?> By <?php echo $selectName?></h5>  
+<input type="hidden" class="form-control" id="formType" name="formType" value="<?php echo $selectName?>" required='true'>
 <input type="hidden" class="form-control" id="formType" name="fDate" value="<?php echo $fdate?>" required='true'>
 <input type="hidden" class="form-control" id="formType" name="tDate" value="<?php echo $tdate;?>" required='true'>
 
@@ -109,13 +89,32 @@ echo "All Employees";}elseif ($selectNamesarr[0] == 1 AND $selectNamesarr[1] == 
                     <th>ID Number</th>
                     <th>Registration Date</th>
                   </tr>
-                </thead>
+                </thead> 
                  <?php
-$sql="SELECT * from tblguard where date(RegistrationDate) between '$fdate' and '$tdate' AND isAssigned = '$selectNamesarr[0]' OR isTrainer = '$selectNamesarr[1]' OR UniformAssigned = '$selectNamesarr[2]'";
+                 switch($selectName){
+                  case 'all':
+                    $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate'";
+                    //$sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '2015-01-14' AND '2023-05-22'";
+                    break;
+                  case 'assigned':
+                    $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isAssigned = '1'";
+                    break;
+                  case 'notAssigned':
+                    $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isAssigned = '0' AND isTrainer = '0'";
+                    break;
+                  case 'isTraine':
+                    $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isTrainer = '1'";
+                    break;
+                  case 'uniAssigned':
+                    $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND uniformAssigned = '1'";
+                    break;
+
+                 
+
+}
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-
 $cnt=1;
 if($query->rowCount() > 0)
 {
