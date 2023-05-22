@@ -98,7 +98,7 @@ background-color: #f8d7da;
                   <th>Comapny Name</th>
                   <th>Status Of Account</th>
                   <th>Edit</th>
-                  <th>Delete</th>
+                  <!-- <th>Delete</th> -->
                 
                 </tr>
                 </thead>
@@ -125,10 +125,13 @@ foreach($results as $row)
                     echo 'Account is Rejected';
                 }else if (htmlentities($row->status) == 2){
                     echo 'Account is on Pending';
-                } 
+                } else if (htmlentities($row->status) == 3){
+                    echo 'Account is Banned!!';
+                }
                   ?></td>
+                
      <td><a href="editCustomer.php?editid=<?php echo htmlentities ($row->id);?>" title="View"><i class="fa fa-edit fa-1x"></i></a></td>             
-<td><a onclick="return confirm('Are you sure you want to delete?')" href="manageCustomer.php?delid=<?php echo htmlentities($row->id);?>" title="Delete Customer"><i class="fa fa-trash fa-1x"></i></a></td>
+<!-- <td><a onclick="return confirm('Are you sure you want to delete?')" href="manageCustomer.php?delid=<?php// echo htmlentities($row->id);?>" title="Delete Customer"><i class="fa fa-trash fa-1x"></i></a></td> -->
                 </tr>
 
                   </td>

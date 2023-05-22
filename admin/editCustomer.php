@@ -138,19 +138,24 @@ foreach($results as $row)
                     echo 'Account is Rejected';
                 }else if (htmlentities($row->status) == 2){
                     echo 'Account is on Pending';
-                } ?>" readonly>
+                }else if (htmlentities($row->status) == 3){
+                    echo 'Account is Banned!!';
+                }
+
+                 ?>" readonly>
                   </div>
     <label for="status">Status:</label>
     <select name="status" id="status"  class="form-control">
         <option value="1">Approve</option>
         <option value="0">Reject</option>
         <option value="2">Pending</option>
+        <option value="3">Banned</option>
     </select>
                 
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+                  <button onclick="return confirm('Are you sure you want to Apply Changes?')" type="submit" class="btn btn-primary" name="submit">Update</button>
                 </div>
               </form>
             </div>

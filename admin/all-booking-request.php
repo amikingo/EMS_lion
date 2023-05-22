@@ -100,9 +100,12 @@ foreach($results as $row)
                      <span class="badge badge-warning"><?php echo "Not Updated Yet"; ?></span>
 <?php } else if($row->Status=='Rejected') { ?>
 <span class="badge badge-danger"><?php  echo htmlentities($row->Status);?></span>
-<?php } else { ?> 
+<?php } else if($row->Status=='Accepted') { ?> 
 <span class="badge badge-success"><?php  echo htmlentities($row->Status);?></span>
-<?php } ?></td>
+<?php } else { ?>
+<span class="badge badge-warning"><?php  echo htmlentities($row->Status);?></span>
+<?php }?>
+</td>
                     <td><a href="view-booking-detail.php?bookingid=<?php echo htmlentities ($row->BookingNumber);?>" class="btn btn-primary"> More </a></td>
                   </tr>     
                 <?php $cnt=$cnt+1;}} ?> 
