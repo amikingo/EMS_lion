@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-error_reporting(0);
+//error_reporting(0);
 
 if (isset($_SESSION["user_id"])) {
 
@@ -142,6 +142,21 @@ background-color: black;
 }
 
 </style>
+<script>
+    function userAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+        url: "check_availability.php",
+        data: "email=" + $("#email").val(),
+        type: "POST",
+        success: function(data) {
+          $("#user-availability-status1").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {},
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -233,8 +248,9 @@ background-color: black;
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="f_email" placeholder="Email" required="required">
-                                  <span class="error-message"></span>
+                              <input type="text" class="form-control" onBlur="userAvailability()" name="f_email" placeholder="Email" required="required" oninput="this.value = this.value.replace(/\s/g, '')" >
+                              <span id="user-availability-status1" style="font-size: 12px"></span>
+                              <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
                                 <div class="form-group user-name-field my-3">
@@ -261,12 +277,12 @@ background-color: black;
 
 
                                 <div class="form-group my-3">
-                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" required="required">
+                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" title="password must be alphanumeric 6 to 12 chars" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                                 <div class="form-group my-3">
-                              <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password" required="required">
+                              <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password"  required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
