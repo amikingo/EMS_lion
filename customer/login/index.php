@@ -248,7 +248,7 @@ background-color: black;
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" onBlur="userAvailability()" name="f_email" placeholder="Email" required="required" oninput="this.value = this.value.replace(/\s/g, '')" >
+              <input type="text" id="email" class="form-control" onBlur="userAvailability()" name="f_email" placeholder="Email" required="required" oninput="this.value = this.value.replace(/\s/g, '')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                               <span id="user-availability-status1" style="font-size: 12px"></span>
                               <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
@@ -277,7 +277,7 @@ background-color: black;
 
 
                                 <div class="form-group my-3">
-                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" title="password must be alphanumeric 6 to 12 chars" required="required">
+                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password"  required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
