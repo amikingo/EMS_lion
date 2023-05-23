@@ -95,6 +95,7 @@ session_start();
 			</div>
 <div class="form-body">
 	<br><br><br>
+	<form role="form" method="post" name="viewTrainees" action="viewGuardsList.php">
                   <?php
 if(isset($_POST['search']))
 { 
@@ -160,7 +161,7 @@ if ($query->rowCount() > 0) {
             <?php } elseif ($row->Status == "Rejected") { ?>
                 <td><?php echo "Rejected"; ?></td>
             <?php } else { ?>
-                <td><?php echo htmlentities($row->GuardAssign); ?></td>
+                <td><button type="submit" class="btn btn-primary" name="viewTrainees">View</button></td>
             <?php } ?>
         </tr>
 <?php
@@ -178,7 +179,7 @@ else {
                  
 
                 </table>
-
+            </form>
               </div>
 
 			</div>

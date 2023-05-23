@@ -87,8 +87,8 @@ if (isset($_POST["signin"])) {
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
   $app=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='2'");
-  $rej=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='0'");
-  $ban=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='3'");
+  $rej=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='0' OR status='3'");
+  //$bann=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='3'");
   if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
@@ -100,9 +100,9 @@ else if(mysqli_num_rows($app) == 1){
 else if(mysqli_num_rows($rej) == 1){
   echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
 }
-elseif (mysqli_num_rows($ban) == 1) {
-  echo "<script>alert('Your Account Have been Banned For certain Reasons Please Contact The Company For Further Details');</scrpit>";
-}
+// else if(mysqli_num_rows($bann) == 1){
+//   echo "<script>alert('Your Account Have been Banned For certain Reasons Please Contact The Company For Further Details');</scrpit>";
+// }
    else  {
   $errormsg="Invalid Email or Password Please Try Again. ";
   }
