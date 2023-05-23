@@ -1,10 +1,11 @@
 <?php
-session_start();
-error_reporting(0);
+//session_start();
+//error_reporting(0);
 //include('includes/dbconnection.php');
-if (strlen($_SESSION['osghsaid']==0)) {
-  header('location:logout.php');
-  } else{
+if ($user_id = $_SESSION["user_id"]) {
+header('location:logout.php');
+  }
+   else{
 
 
 
@@ -16,15 +17,15 @@ if (strlen($_SESSION['osghsaid']==0)) {
   <title>Lion Security Services | View Guards</title>
   <!-- Tell the browser to be responsive to screen width -->
 
-  <link href="dist/img/fav.png" rel="icon">
+  <link href="../admin/dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -57,7 +58,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                  <?php
-$aid = $_SESSION['user_id'];
+$user_id = $_SESSION["user_id"];
 //$companyName = $_POST['companyName'];
 
 $mema = "SELECT companyName FROM users WHERE id=:aid";
@@ -109,16 +110,16 @@ if ($query->rowCount() > 0) {
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="../admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="../admin/plugins/datatables/jquery.dataTables.js"></script>
+<script src="../admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="../admin/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
   $(function () {
