@@ -52,7 +52,7 @@ session_start();
       <li><a href="login/profile.php">Profile</a></li>
       <li><a href="login/change-password.php">Change Password</a></li>
       <li><a href="login/logout.php">Logout</a></li>
-    </ul>00
+    </ul>
 
   </li>
 </ul>

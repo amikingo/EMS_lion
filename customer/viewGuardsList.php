@@ -17,6 +17,29 @@
   <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    #footer .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #007bff !important;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+#footer .social-links a:hover {
+    background: #095bb1 !important;
+    color: #fff;
+    text-decoration: none;
+}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -52,7 +75,7 @@
                   </tr>
                 </thead>
                 <tr>
-                    <td><?php echo htmlentities($cnt);?></td>
+                    
                     <td><?php  echo htmlentities($row->Name);?></td>
                     <td><?php  echo htmlentities($row->Address);?></td>
                     <td><?php  echo htmlentities($row->IDnumber);?></td>
@@ -72,7 +95,49 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
- <?php include_once('includes/footer.php');?>
+  <br><br><br><br><br>
+  <footer id="footer">
+
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
+
+    <div class="col-lg-9 col-md-6 footer-contact">
+        <h3>Lion Security Services</h3>
+        <p>
+          Ethiopia Addis Ababa,<br>
+          Mekanisa,<br><br>
+          <strong>Phone:</strong> +251 116 683333 , +251 930 519202<br>
+          <strong>Email:</strong> www.lionsecurityservices.com<br>
+        </p>
+      </div>
+      <div class="col-lg-2 col-md-6 footer-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
+        </ul>
+      </div>
+    
+<div class="container d-md-flex py-4">
+
+  <div class="mr-md-auto text-center text-md-left">
+    <div class="copyright">
+      &copy; <strong><span>Lion Security Services PLC</span></strong> - <?php echo date('Y');?> - Developed By REHA TECH
+    </div>
+    <div class="credits">
+    </div>
+  </div>
+  <div class="social-links text-center text-md-right pt-3 pt-md-0">
+    <a href="#" class="twitter"><i  style="color:#fff;" class="bx bxl-twitter"></i></a>
+    <a href="#" class="facebook"><i style="color:#fff;" class="bx bxl-facebook"></i></a>
+    <a href="#" class="instagram"><i style="color:#fff;" class="bx bxl-instagram"></i></a>
+    <a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
+    <a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
+  </div>
+</div>
+</footer><!-- End Footer -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
