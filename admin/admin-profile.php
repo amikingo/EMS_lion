@@ -105,7 +105,7 @@ if($query->rowCount() > 0)
 foreach($results as $row)
 {               ?>
                                 <div class="form-group"><label for="company" class=" form-control-label">Admin Name</label><input type="text" name="adminname" value="<?php  echo $row->AdminName;?>" class="form-control" required='true'></div>
-                                    <div class="form-group"><label for="vat" class=" form-control-label">User Name</label><input type="text" name="username" value="<?php  echo $row->UserName;?>" class="form-control" ></div>
+                                    <div class="form-group"><label for="vat" class=" form-control-label">User Name</label><input type="text" name="username" value="<?php  echo $row->UserName;?>" class="form-control"readonly ></div>
                                         <div class="form-group"><label for="street" class=" form-control-label">Contact Number</label><input type="text" name="mobilenumber" value="<?php  echo $row->MobileNumber;?>"  class="form-control" maxlength='10' required='true'></div>
                                             <div class="row form-group">
                                                 <div class="col-12">
