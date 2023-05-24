@@ -222,6 +222,8 @@ if($row->Status=="")
           foreach ($results as $row1) {
             if ($row1->isAssigned == 0) {
       ?>
+<!-- TODO: Requirment number select Required guards[] button -->
+
       <div>
         <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->Name); ?>">
         <label><?php echo htmlentities($row1->Name); ?></label>
