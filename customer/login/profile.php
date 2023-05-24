@@ -201,7 +201,7 @@ if (isset($_POST["submit"])) {
   <form class="singup-form contact-form"  id="profile-update-form" method="post">
     <div>
       <label for="f_name">First Name:</label>
-      <input type="text" name="f_name" id="f_name" value="<?php echo $f_name; ?>">
+  <input type="text" name="f_name" id="f_name" value="<?php echo $f_name; ?>">
       <span class="error-message"></span>
     </div>
     <div>
@@ -211,12 +211,12 @@ if (isset($_POST["submit"])) {
     </div>
     <div>
       <label for="f_email">Email:</label>
-      <input type="email" name="f_email" id="f_email" value="<?php echo $f_email; ?>">
+  <input type="email" name="f_email" id="f_email" value="<?php echo $f_email; ?>"readonly>
       <span class="error-message"></span>
     </div>
     <div>
       <label for="f_company">Company:</label>
-      <input type="text" name="f_company" id="f_company" value="<?php echo $f_company; ?>">
+      <input type="text" name="f_company" id="f_company" value="<?php echo $f_company; ?>"readonly>
       <span class="error-message"></span>
     </div>
     <hr>

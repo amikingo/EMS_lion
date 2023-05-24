@@ -196,7 +196,7 @@ function showRole(str) {
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="cc-exp" class="control-label mb-1">Mobile Number</label>
-                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Othername">
+                                                        <input id="" name="phoneNo" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration" data-val-cc-exp="Please enter a valid month and year" placeholder="Mobile Number">
                                                     </div>
                                                 </div>
                                             <div class="col-6">
