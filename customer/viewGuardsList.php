@@ -18,6 +18,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/header.css"/>
   <style>
     #footer .social-links a {
     font-size: 18px;
@@ -46,12 +47,44 @@
  
   
   <!-- Content Wrapper. Contains page content -->
- 
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="index.php"></a>
+   
+      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+      
+
+      <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
+	  <ul>
+  <li><a href="Home.php"><button type="button" class="btn btn-primary">Home</button></a></li>
+  <li><a href="About us.php"><button type="button" class="btn btn-primary">About Us</button></a></li>
+  <li><a href="contact us.php"><button type="button" class="btn btn-primary">Contact Us</button></a></li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">Request</button>
+    <ul class="submenu">
+      <li><a href="index.php">Request Employee</a></li>
+      <li class="active"><a href="search-request.php">Check Request</a></li>
+    </ul>
+  </li>
+  <li class="drop-down">
+    <button type="button" class="btn btn-primary">My Account</button>
+    <ul class="submenu">
+      <li><a href="login/profile.php">Profile</a></li>
+      <li><a href="login/change-password.php">Change Password</a></li>
+      <li><a href="login/logout.php">Logout</a></li>
+    </ul>
+
+  </li>
+</ul>
+      </nav>
+    </div>
+  </header>
+  <br><br><br><br><br>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-12">
+    <div class="col-12">
         
           <div class="card">
             <div class="card-header">
