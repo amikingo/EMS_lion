@@ -59,30 +59,51 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <?php 
-              $Guards = $_POST['Guards'];
-              ?>
-              <input type="text" name="Guards" value="<?php echo $Guards;?>">
+
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>S.No</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>ID</th>
-                    <th>Contact Number</th>                    
-                  </tr>
-                </thead>
-                <tr>
-                    
-                    <td><?php  echo htmlentities($row->Name);?></td>
-                    <td><?php  echo htmlentities($row->Address);?></td>
-                    <td><?php  echo htmlentities($row->IDnumber);?></td>
-                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
-                  </tr>     
-                 
-              </table>
+                <?php 
+  $guards = $_POST['Guards'];
+  $guard_names = explode(',', $guards);
+?>
+<input type="hidden" name="Guards" value="<?php echo $guards;?>">
+
+<table id="example1" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>ID</th>
+      <th>Contact Number</th>                    
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+      $cnt = 1;
+      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
+      $sql = "SELECT * FROM tblguard WHERE Name IN ($placeholders)";
+      $query = $dbh->prepare($sql);
+      $query->execute($guard_names);
+      $results = $query->fetchAll(PDO::FETCH_OBJ);
+      if ($query->rowCount() > 0) {
+        foreach ($results as $row) {
+    ?>
+    <tr>
+      <td><?php echo htmlentities($cnt)?></td>
+      <td><?php echo htmlentities($row->Name);?></td>
+      <td><?php echo htmlentities($row->Address);?></td>
+      <td><?php echo htmlentities($row->IDnumber);?></td>
+      <td><?php echo htmlentities($row->MobileNumber);?></td>
+    </tr>
+    <?php
+          $cnt++;
+        }
+      }
+    ?>
+  </tbody>
+</table>
+
+              
             </div>
             <!-- /.card-body -->
           </div>
