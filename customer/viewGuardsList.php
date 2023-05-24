@@ -1,15 +1,4 @@
-<?php
-//session_start();
-//error_reporting(0);
-//include('includes/dbconnection.php');
-if ($user_id = $_SESSION["user_id"]) {
-header('location:logout.php');
-  }
-   else{
-
-
-
-  ?>
+<?php include 'dbconnection.php'?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +36,11 @@ header('location:logout.php');
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <?php 
+              $Guards = $_POST['Guards'];
+              ?>
+              <input type="text" name="Guards" value="<?php echo $Guards;?>">
+              <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -57,27 +51,6 @@ header('location:logout.php');
                     <th>Contact Number</th>                    
                   </tr>
                 </thead>
-                 <?php
-$user_id = $_SESSION["user_id"];
-//$companyName = $_POST['companyName'];
-
-$mema = "SELECT companyName FROM users WHERE id=:aid";
-$mema_query = $dbh->prepare($mema);
-$mema_query->bindParam(':aid', $aid, PDO::PARAM_STR);
-$mema_query->execute();
-$mema_result = $mema_query->fetch(PDO::FETCH_OBJ);
-$companyName = $mema_result->companyName;
-
-$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName AND BookingNumber LIKE '$sdata%'";
-$query = $dbh->prepare($sql);
-$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
-$query->execute();
-$results = $query->fetchAll(PDO::FETCH_OBJ);
-
-$cnt = 1;
-if ($query->rowCount() > 0) {
-    foreach ($results as $row) {
-?>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>
                     <td><?php  echo htmlentities($row->Name);?></td>
@@ -85,7 +58,7 @@ if ($query->rowCount() > 0) {
                     <td><?php  echo htmlentities($row->IDnumber);?></td>
                     <td> <?php  echo htmlentities($row->MobileNumber);?></td>
                   </tr>     
-                <?php $cnt=$cnt+1;}} ?> 
+                 
               </table>
             </div>
             <!-- /.card-body -->
@@ -136,4 +109,3 @@ if ($query->rowCount() > 0) {
 </script>
 </body>
 </html>
-<?php }  ?>

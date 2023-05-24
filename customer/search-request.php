@@ -52,7 +52,8 @@ session_start();
       <li><a href="login/profile.php">Profile</a></li>
       <li><a href="login/change-password.php">Change Password</a></li>
       <li><a href="login/logout.php">Logout</a></li>
-    </ul>
+    </ul>00
+
   </li>
 </ul>
       </nav>
@@ -95,7 +96,8 @@ session_start();
 			</div>
 <div class="form-body">
 	<br><br><br>
-	<form role="form" method="post" name="viewTrainees" action="viewGuardsList.php">
+	<form role="form" method="post" name="printReport" action="viewGuardsList.php">
+
                   <?php
 if(isset($_POST['search']))
 { 
@@ -122,6 +124,7 @@ $sdata=$_POST['searchdata'];
                   <tbody>
       <?php
 $aid = $_SESSION['user_id'];
+
 //$companyName = $_POST['companyName'];
 
 $mema = "SELECT companyName FROM users WHERE id=:aid";
@@ -161,9 +164,10 @@ if ($query->rowCount() > 0) {
             <?php } elseif ($row->Status == "Rejected") { ?>
                 <td><?php echo "Rejected"; ?></td>
             <?php } else { ?>
-                <td><button type="submit" class="btn btn-primary" name="viewTrainees">View</button></td>
+                <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
             <?php } ?>
         </tr>
+        <input type="text" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
 <?php
         $cnt = $cnt + 1;
     }
