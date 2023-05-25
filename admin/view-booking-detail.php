@@ -212,28 +212,57 @@ if($row->Status=="")
 <tr>
   <th>Assign Guard :</th>
   <td>
-    <div id="checkboxes">
-      <?php
-        $sql = "SELECT * FROM tblguard where isTrainer = 0";
-        $query = $dbh->prepare($sql);
-        $query->execute();
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
-        if ($query->rowCount() > 0) {
-          foreach ($results as $row1) {
-            if ($row1->isAssigned == 0) {
-      ?>
-<!-- TODO: Requirment number select Required guards[] button -->
+<!-- ...existing code... -->
 
-      <div>
-        <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->Name); ?>">
-        <label><?php echo htmlentities($row1->Name); ?></label>
-      </div>
-      <?php
-            }
+<div>
+  <input type="checkbox" id="select-all" onchange="selectAllGuards()">
+  <label for="select-all">Select All</label>
+</div>
+
+<!-- ...existing code... -->
+
+<div id="checkboxes">
+  <?php
+    $sql = "SELECT * FROM tblguard WHERE isTrainer = 0";
+    $query = $dbh->prepare($sql);
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    if ($query->rowCount() > 0) {
+      $count = 0;
+      foreach ($results as $row1) {
+        if ($row1->isAssigned == 0) {
+          $count++;
+  ?>
+  <!-- TODO: Requirement number select Required guards[] button -->
+  <div>
+    <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->Name); ?>">
+    <label><?php echo htmlentities($row1->Name); ?></label>
+  </div>
+  <?php
+        }
+      }
+      
+      $rid = $_GET['bookingid'];
+      echo $reqNumber;
+      $RequirementNumber = "SELECT * FROM tblhiring WHERE BookingNumber = :rid";
+      $query = $dbh->prepare($RequirementNumber);
+      $query->bindParam(':rid', $rid, PDO::PARAM_STR);
+      $query->execute();
+      $results = $query->fetchAll(PDO::FETCH_OBJ);
+      
+      if ($query->rowCount() > 0) {
+        foreach ($results as $row) {
+          $reqNumber = $row->RequirementNumber;
+          
+          if ($count >= $reqNumber) {
+            break; // Stop displaying checkboxes after reaching the requirement number
           }
         }
-      ?>
-    </div>
+      }
+    }
+  ?>
+</div>
+
   </td>
 </tr>
 
@@ -288,15 +317,31 @@ $(document).ready(function () {
 });
 </script>
 <script>
-  function toggleCheckboxes(select) {
-    var checkboxes = document.getElementById("checkboxes");
-    if (select.value == "Accepted") {
-      checkboxes.style.display = "block";
-    } else {
-      checkboxes.style.display = "none";
+function selectAllGuards() {
+  var checkboxes = document.getElementsByName('guards[]');
+  var selectAllCheckbox = document.getElementById('select-all');
+  var requirementNumber = <?php echo $reqNumber; ?>;
+
+  var count = 0;
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      count++;
     }
   }
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (count >= requirementNumber) {
+      checkboxes[i].checked = false;
+    } else {
+      checkboxes[i].checked = selectAllCheckbox.checked;
+      count++;
+    }
+  }
+}
 </script>
+
+
+
 </body>
 </html>
 <?php } ?>
