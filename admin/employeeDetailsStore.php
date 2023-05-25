@@ -159,7 +159,24 @@ foreach($results as $row)
                     <label for="exampleInputEmail1">Registration Date</label>
                     <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->RegistrationDate);?>"readonly>
                   </div>
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Expire Date of Uniform</label>
+                    <input type="text" class="form-control" readonly="true" value="<?php echo htmlentities($row->expir_date);?>"readonly>
+                  </div>
                   <div>
+
+                    <!-- TODO: Call The tblHiring database And Fetch The Remark Value and add to the text area -->
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Remark Of The Company Policy Regarding Uniform And Contract</label>
+
+                                                        
+                    <textarea type="text" class="form-control" id="idtype"   required="true" readonly></textarea>
+
+            
+                                                        
+                                                  
+                  </div>
+
                     <label for="exampleInputEmail1">PreExpire</label>
                         <select name="expiration_interval" id="status"  class="form-control">
         <option value="1">1</option>
