@@ -155,12 +155,11 @@ foreach($results as $row)
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1"> is certified</label>
-                    <input type="text" class="form-control"  value="
-                    <?php 
+                    <input type="text" class="form-control"  value="<?php 
                     if(htmlentities($row->isTrainer) == 0){
-                      echo "Yes";
+                      echo"Yes";
                     }else if (htmlentities($row->isTrainer) == 1){
-                      echo "no";
+                      echo"no";
                     }
                     ?> "readonly>
                   </div> 
