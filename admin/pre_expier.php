@@ -77,29 +77,65 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <th>Action</th>
                   </tr>
                 </thead>
-                 <?php
-$sql="SELECT * from tblguard where isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL expiration_interval MONTH) AND expir_date >= CURDATE() ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-                <tr>
-                    <td><?php echo htmlentities($cnt);?></td>
-                    <td><?php  echo htmlentities($row->Name);?></td>
-                    <td><?php  echo htmlentities($row->IDnumber);?></td>
-                    <td><?php  echo htmlentities($row->Address);?></td>
-                    <td><?php  echo htmlentities($row->MobileNumber);?></td>
-                    <td><?php echo htmlentities($row->expir_date)?></td>
+<?php
+$sql = "SELECT * FROM tblguard WHERE isAssigned='1' AND expir_date <= DATE_ADD(CURDATE(), INTERVAL expiration_interval MONTH) AND expir_date >= CURDATE()";
+$query = $dbh->prepare($sql);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+
+$cnt = 1;
+if ($query->rowCount() > 0) {
+    foreach ($results as $row) {
+        ?>
+        <tr>
+            <td><?php echo htmlentities($cnt); ?></td>
+            <td><?php echo htmlentities($row->Name); ?></td>
+            <td><?php echo htmlentities($row->IDnumber); ?></td>
+            <td><?php echo htmlentities($row->Address); ?></td>
+            <td><?php echo htmlentities($row->MobileNumber); ?></td>
+            <td>
+                <?php echo htmlentities($row->expir_date); ?>
+                <span id="countdown_<?php echo $cnt; ?>"></span>
+            </td>
+        <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"> View</td>
+                  </tr>
+        <script>
+            // Calculate countdown for each row
+            var expiryDate = new Date("<?php echo $row->expir_date; ?>").getTime();
+            var countdownElement = document.getElementById("countdown_<?php echo $cnt; ?>");
+
+            // Update countdown every second
+            var countdownInterval = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = expiryDate - now;
+
+                // Calculate days, hours, minutes, and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                countdownElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+                // If the countdown is finished, display expired message
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "Expired";
+                }
+            }, 1000);
+        </script>
+        <?php
+        $cnt++;
+    }
+}
+?>
+
                   
 
-                    <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"> View</td>
-                  </tr>     
-                <?php $cnt=$cnt+1;}} ?> 
+                         
+
               </table>
             </div>
             <!-- /.card-body -->
