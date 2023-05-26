@@ -33,7 +33,7 @@
 	</style>
 	</head>
 <body>
-<span class="brand-text font-weight-light"><img alt="logo" src="../../../assets/img/fav.jpg" style="width: 80px;height: 80px; margin-left:300px;"></span>
+<span class="brand-text font-weight-light"><img alt="logo" src="../../dist/img/fav.png" style="width: 80px;height: 80px; margin-left:300px;"></span>
 <h1 style="font-size:xxx-large; font-weight:bold;margin-left:80px; margin-top:-10px; ">Lion Security Service PLC</h1>
 
 	<br /> <br /> <br /> <br />
