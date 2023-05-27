@@ -69,6 +69,7 @@ if (strlen($_SESSION['osghsaid']) == 0) {
                     <th>Address</th>
                     <th>Mobile Number</th>
                     <th>Expire Date</th>
+                    <th>Remaining Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -91,8 +92,9 @@ if (strlen($_SESSION['osghsaid']) == 0) {
                     <td><?php echo htmlentities($row->MobileNumber); ?></td>
                     <td>
                         <?php echo htmlentities($row->expir_date); ?>
-                        <span id="countdown_<?php echo $cnt; ?>"></span>
+                       
                     </td>
+                    <td> <span id="countdown_<?php echo $cnt; ?>"></span></td>
                     <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities($row->ID);?>" class="btn btn-primary">View</a></td>
                 </tr>
                 <script>
