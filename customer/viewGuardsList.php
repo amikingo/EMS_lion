@@ -104,6 +104,7 @@
   <thead>
     <tr>
       <th>S.No</th>
+      <th>Photo</th>
       <th>Name</th>
       <th>Address</th>
       <th>ID</th>
@@ -114,7 +115,7 @@
     <?php
       $cnt = 1;
       $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
-      $sql = "SELECT * FROM tblguard WHERE Name IN ($placeholders)";
+      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
       $query = $dbh->prepare($sql);
       $query->execute($guard_names);
       $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -123,6 +124,7 @@
     ?>
     <tr>
       <td><?php echo htmlentities($cnt)?></td>
+      <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
       <td><?php echo htmlentities($row->Name);?></td>
       <td><?php echo htmlentities($row->Address);?></td>
       <td><?php echo htmlentities($row->IDnumber);?></td>
