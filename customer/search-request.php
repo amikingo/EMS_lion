@@ -167,7 +167,7 @@ if ($query->rowCount() > 0) {
                 <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
             <?php } ?>
         </tr>
-        <input type="text" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
+        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
 <?php
         $cnt = $cnt + 1;
     }
