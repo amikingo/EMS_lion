@@ -63,6 +63,8 @@ if (strlen($_SESSION['osghsaid']==0)) {
             <div class="card-header">
               <h3 class="card-title">New Order</h3>
             </div>
+            <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
+
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
@@ -143,8 +145,18 @@ if(isset($_POST['assignUniform'])) {
     $query->bindParam(':expiration_interval', $expiration_interval, PDO::PARAM_STR);
     $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
     $query->execute();
+    $alertStyle = "success";
+$statusMsg = "Uniform Successfully Ordered!";
+    // Add CSS to the success message
+    echo "<style>
+     .success {
+      background-color: #d4edda;
+       color: green;
+       font-weight: bold;
+     }
+    </style>";
 
-    echo '<script>alert("Security Guard Detail has been updated")</script>';
+    // echo '<script>alert("Security Guard Detail has been updated")</script>';
 }
 
 $sql = "SELECT * FROM tblguard WHERE isAssigned='1' AND UniformAssigned='0' AND isTrainer='0' GROUP BY companyName";
