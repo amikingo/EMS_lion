@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Users</title>
+  <title>View Employees</title>
   <link href="dist/img/fav.png" rel="icon">
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -71,10 +71,10 @@
             </div> -->
             <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">View  All Users</h1>
+            <h1 class="h3 mb-0 text-gray-800">View  All Employees</h1>
             <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="viewAdmin.php">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">View  All Users</li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">View  All Employees</li>
             </ol>
           </div>
           </div>
@@ -99,39 +99,50 @@
                             <strong class="card-title"><h2 align="center">All Guards</h2></strong>
                             </div>
                             <div class="table-responsive p-3">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Date Added</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      
-                            <?php
+                                <?php 
+  $GuardAssign = $_POST['GuardAssign'];
+  $guard_names = explode(',', $GuardAssign);
+?>
+<input type="hidden" name="GuardAssign" value="<?php echo $GuardAssign;?>">
 
-        $ret=mysqli_query($con,"SELECT  * from tbladmin");
-        $cnt=1;
-        while ($row=mysqli_fetch_array($ret)) {
-                            ?>
-                <tr>
-                <td><?php echo $cnt;?></td>
-                <td><?php  echo $row['AdminName'];?></td>
-                <td><?php  echo $row['MobileNumber'];?></td>
-                <td><?php  echo $row['AdminRegdate'];?></td>
-                 <td><a href="editAdmin.php?editid=<?php echo $row['ID'];?>" title="View Admin"><i class="fa fa-edit fa-1x"></i></a></td> 
-                <td><a onclick="return confirm('Are you sure you want to delete?')" href="deleteAdmin.php?delid=<?php echo $row['ID'];?>" title="Delete Admin"><i class="fa fa-trash fa-1x"></i></a></td>
-                </tr>
-                <?php 
-               $cnt=$cnt+1;
-                }?>
-                                                                                
-                                    </tbody>
-                                </table>
+<table id="example1" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>ID</th>
+      <th>Contact Number</th>                    
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+      $cnt = 1;
+      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
+      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
+      $query = $dbh->prepare($sql);
+      $query->execute($guard_names);
+      $results = $query->fetchAll(PDO::FETCH_OBJ);
+      if ($query->rowCount() > 0) {
+        foreach ($results as $row) {
+    ?>
+    <tr>
+      <td><?php echo htmlentities($cnt)?></td>
+      <!-- profile Picture read -->
+      <td><img src="images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
+      <td><?php echo htmlentities($row->Name);?></td>
+      <td><?php echo htmlentities($row->Address);?></td>
+      <td><?php echo htmlentities($row->IDnumber);?></td>
+      <td><?php echo htmlentities($row->MobileNumber);?></td>
+    </tr>
+    <?php
+          $cnt++;
+        }
+      }
+    ?>
+  </tbody>
+</table>
                             </div>
                         </div>
                     </div>
