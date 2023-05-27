@@ -181,8 +181,10 @@ if($row->Status=="")
 
                      <td><?php echo "Not Updated Yet"; ?></td>
     <?php } else { ?>
-
-    <td><?php  echo $row->GuardAssign;?></td>
+  <form role="form" method="post" name="printReport" action="viewEmployeeFromAssigned.php">
+<input type="hidden" name="GuardAssign" value="<?= $row->GuardAssign; ?>">
+    <td><button type="submit" name="submit" class="btn btn-primary">View Guards List</button></td>
+    </form>
     <?php } ?>
   </tr>
   
@@ -235,7 +237,7 @@ if($row->Status=="")
   ?>
   <!-- TODO: Requirement number select Required guards[] button -->
   <div>
-    <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->Name); ?>">
+    <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->ID); ?>">
     <label><?php echo htmlentities($row1->Name); ?></label>
   </div>
   <?php
