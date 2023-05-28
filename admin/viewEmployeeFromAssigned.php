@@ -105,7 +105,7 @@
 ?>
 <input type="hidden" name="GuardAssign" value="<?php echo $GuardAssign;?>">
 
-<table id="example1" class="table table-bordered table-striped">
+<table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
   <thead>
     <tr>
       <th>S.No</th>
