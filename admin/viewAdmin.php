@@ -46,29 +46,7 @@
       <div id="content">
         <!-- TopBar -->
 
-        <!-- <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>Dashboard</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="page-header float-right">
-                            <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Staff</a></li>
-                                    <li class="active">View Staff</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
             <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">View  All Users</h1>
@@ -99,7 +77,7 @@
                                 <strong class="card-title"><h2 align="center">All Users</h2></strong>
                             </div>
                             <div class="table-responsive p-3">
-                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered">
+                                <table id="bootstrap-data-table" class="table table-hover table-striped table-bordered"> 
                                     <thead class="thead-light">
                                         <tr>
                                             <th>#</th>
