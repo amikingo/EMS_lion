@@ -37,7 +37,7 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 
    for($i = 0 ; $i < count($_POST['guards']); $i++){
     $companyName=$_POST['companyName'];
-      $sql="update tblguard set isAssigned=1,companyName=:companyName where Name=:val";
+      $sql="update tblguard set isAssigned=1,companyName=:companyName where ID=:val";
       $query=$dbh->prepare($sql);
       $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
       $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);

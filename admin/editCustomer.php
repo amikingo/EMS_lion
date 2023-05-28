@@ -28,7 +28,7 @@ if (strlen($_SESSION['osghsaid']) == 0) {
       $updateHiringQuery->execute();
 
       // Update tblguard
-      $updateGuardSql = "UPDATE tblguard SET isAssigned = 0, UniformAssigned = 0, companyName = 'NULL', expiration_interval = 0, expir_date = 'NULL' WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
+      $updateGuardSql = "UPDATE tblguard SET isAssigned = 0, UniformAssigned = 0, companyName = '', expiration_interval = 0, expir_date = '' WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
       $updateGuardQuery = $dbh->prepare($updateGuardSql);
       $updateGuardQuery->bindParam(':eid', $eid, PDO::PARAM_INT);
       $updateGuardQuery->execute();
