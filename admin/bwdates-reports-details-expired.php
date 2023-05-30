@@ -87,7 +87,7 @@ $tdate=$_POST['todate'];
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isAssigned='1' AND expir_date < CURDATE()";
+$sql="SELECT * from tblguard where WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isAssigned='1' AND expir_date < CURDATE()";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

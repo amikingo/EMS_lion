@@ -87,7 +87,7 @@ $tdate=$_POST['todate'];
                   </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where uniformAssigned='0' AND isAssigned= '1'";
+$sql="SELECT * from tblguard where WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate'AND uniformAssigned='0' AND isAssigned= '1'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
