@@ -98,6 +98,7 @@ $query->bindParam(':gender',$gender,PDO::PARAM_STR);
     <ul class="submenu">
       <li class="active"><a href="index.php">Request Employee</a></li>
       <li><a href="search-request.php">Check Request</a></li>
+	  <li><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
