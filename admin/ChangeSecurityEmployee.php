@@ -1,43 +1,22 @@
 <?php
 session_start();
-error_reporting(0);
+// error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
   } else{
 
-//Code for Deletion
- if ($_GET['delid']) {
-$gid=$_GET['delid'];
-$query=$dbh -> prepare("delete from tblguard where ID='$gid'");
-$query->execute();
-$alertStyle = "danger";
-$statusMsg = "Record has been deleted.";
-// Add CSS to the error message
-echo "<style>
- .danger {
-background-color: #f8d7da;
-   color: red;
-   font-weight: bold;
-   align-items: center;
-   justify-content: center;
-   display: flex;
-   padding: 10px;
- }
-</style>";
-  // echo '<script>alert("Record has been deleted")</script>';
-//echo "<script>window.location.href ='manage-security-guard.php'</script>";
-    }   
+
 
   ?>
 <!DOCTYPE html>
 <html>
 <head>
  
-  <title>Security Employee</title>
+  <title>Lion Security Services | All Requests</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <link href="dist/img/fav.png" rel="icon">
 
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -63,12 +42,12 @@ background-color: #f8d7da;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Security Employee</h1>
+            <h1>All Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Manage Security Employee</li>
+              <li class="breadcrumb-item active">All Request</li>
             </ol>
           </div>
         </div>
@@ -82,25 +61,26 @@ background-color: #f8d7da;
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Manage Security Employee</h3>
+              <h3 class="card-title">All Request</h3>
             </div>
             <!-- /.card-header -->
-            <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
+            <form role="form" method="post" name="view" action="../customer/viewGuardsList.php">
             <div class="card-body">
+              
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Mobile Number</th>                  
-                  <th>Registration Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                
-                </tr>
+                    <th>S.No</th>
+                    <th>Booking Number</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblhiring";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -111,34 +91,32 @@ if($query->rowCount() > 0)
 foreach($results as $row)
 {               ?>
                 <tr>
-                  <td><?php echo htmlentities($cnt);?></td>
-                  <td><?php  echo htmlentities($row->Name);?></td>
-                  <td><?php  echo htmlentities($row->MobileNumber);?></td>
-              <td><?php  echo htmlentities($row->RegistrationDate);?></td>
-              <td><?php  if($row->isAssigned =="1")
+                    <td><?php echo htmlentities($cnt);?></td>
+                    <td><?php  echo htmlentities($row->BookingNumber);?></td>
+                    <td><?php  echo htmlentities($row->FirstName);?> <?php  echo htmlentities($row->LastName);?>
+                    </td>
+                    <td><?php  echo htmlentities($row->Email);?></td>
+                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
+                  <td>  <?php if($row->Status==""){ ?>
 
-{
-echo "Assigned";
-
-} else{
-
-
-
- ($row->isAssigned=="0");
- {
-echo "Unsigned";
- }
-
- ;}?> </td>
-                  <td> <a href="edit-guard-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary">Edit</a>
-
-<a href="manage-security-guard.php?delid=<?php echo htmlentities ($row->ID);?>" onClick="return confirm('Do you really want to delete?');" class="btn btn-danger">Delete</a>
-
-                  </td>
-                </tr>      
+                     <span class="badge badge-warning"><?php echo "Not Updated Yet"; ?></span>
+<?php } else if($row->Status=='Rejected') { ?>
+<span class="badge badge-danger"><?php  echo htmlentities($row->Status);?></span>
+<?php } else if($row->Status=='Accepted') { ?> 
+<span class="badge badge-success"><?php  echo htmlentities($row->Status);?></span>
+<?php } else { ?>
+<span class="badge badge-warning"><?php  echo htmlentities($row->Status);?></span>
+<?php }?>
+</td>
+                    
+                    <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
+                  </tr>  
+                  <input type="text" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">   
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
+            
             </div>
+            </form>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -187,5 +165,4 @@ echo "Unsigned";
 </script>
 </body>
 </html>
-<?php } ?>
-
+<?php }  ?>
