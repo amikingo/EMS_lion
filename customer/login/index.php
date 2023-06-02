@@ -157,6 +157,24 @@ else if(mysqli_num_rows($rej) == 1){
       });
     }
   </script>
+   <script>
+    function companyAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+    url: "availability.php",
+data: "companyName=" + $("#companyName").val(),
+        type: "POST",
+        success: function(data) {
+      $("#company-availability-status").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {},
+      });
+    }
+  </script>
+  
+
+
 </head>
 
 <body>
@@ -255,7 +273,8 @@ else if(mysqli_num_rows($rej) == 1){
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
                                 <div class="form-group user-name-field my-3">
-                                  <input type="text" class="form-control" name="f_company" placeholder="Company Name" required="required">
+                                  <input type="text" id="companyName" class="form-control" onBlur="companyAvailability()" name="f_company" placeholder="Company Name" required="required">
+                                <span id="company-availability-status" style="font-size: 12px"></span>
                                   <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-university"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
