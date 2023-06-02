@@ -22,7 +22,7 @@ require 'vendor/autoload.php';
 
 session_start();
 
-//error_reporting(0);
+error_reporting(0);
 
 if (isset($_SESSION["user_id"])) {
 
@@ -213,29 +213,30 @@ data: "companyName=" + $("#companyName").val(),
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
 
-                          <form id="login-form" method="post">
-               <p style="padding-left: 1%; padding-top:2%; color:red;"><?php if($errormsg){echo htmlentities($errormsg);} ?></p>
-                            <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="email" placeholder="Email" required="required">
-                              <span class="error-message"></span>
-                              <div class="field-icon"><i class="fas fa-user"></i></div>
-                            </div>
-                            <div class="form-group forgot-password-field my-3">
-                              <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-                              <span class="error-message"></span>
-                              <div class="field-icon"><i class="fas fa-key"></i></div>
-                            </div>
-                            <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
-                            <br>
-                            <div class="form-group sign-in-btn my-3">
-                              <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin">
-                                <span class="shadow"></span>
-                                <span class="edge"></span>
-                                <span class="front text"> Sign in
-                                </span>
-                              </button>
-                            </div>
-                          </form>
+                         <form id="login-form" method="post" novalidate>
+  <p style="padding-left: 1%; padding-top:2%; color:red;">
+    <?php if($errormsg){echo htmlentities($errormsg);} ?>
+  </p>
+  <div class="form-group user-name-field my-3">
+    <input type="text" class="form-control" name="email" placeholder="Email" required>
+    <span class="error-message"></span>
+    <div class="field-icon"><i class="fas fa-user"></i></div>
+  </div>
+  <div class="form-group forgot-password-field my-3">
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
+    <span class="error-message"></span>
+    <div class="field-icon"><i class="fas fa-key"></i></div>
+  </div>
+  <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
+  <br>
+  <div class="form-group sign-in-btn my-3">
+    <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front text">Sign in</span>
+    </button>
+  </div>
+</form>
 
                           <div class="sign-up-txt">
                             Don't have an account? <a href="javascript:;" name="signup"class="sign-up-click">Signup</a>
@@ -378,32 +379,37 @@ data: "companyName=" + $("#companyName").val(),
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <!-- <script>
+  <script>
 $(document).ready(function() {
-  $('#login-form').validate({
-    rules: {
-      email: {
-        required: true,
-        email: true,
-      },
-      password: {
-        required: true,
-        minlength: 8,
-      },
-    },
-    messages: {
-      email: {
-        required: "Please enter your email address",
-        email: "Please enter a valid email address",
-      },
-      password: {
-        required: "Please enter your password",
-        minlength: "Your password must be at least 8 characters long",
-      },
-    },
+  // Validate the email address
+  $('#login-form input[name="email"]').on('keyup', function() {
+    var email = $(this).val();
+    var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (regex.test(email)) {
+      $(this).parent().find('.error-message').hide();
+    } else {
+      $(this).parent().find('.error-message').show().text('Please enter a valid email address.');
+    }
+  });
+
+  // Validate the password
+  $('#login-form input[name="password"]').on('keyup', function() {
+    var password = $(this).val();
+    if (password.length < 6) {
+      $(this).parent().find('.error-message').show().text('Please enter a valid password ');
+    } else {
+      $(this).parent().find('.error-message').hide();
+    }
+  });
+
+  // Disable the submit button if the form is not valid
+  $('#login-form').on('submit', function() {
+    if ($(this).find('.error-message:visible').length) {
+      return false;
+    }
   });
 });
-</script> -->
+</script>
 
   <script>
     $(document).ready(function() {
