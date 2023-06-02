@@ -93,12 +93,15 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              
 
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
-                <?php 
+                <?php
+  
   $guards = $_POST['Guards'];
   $guard_names = explode(',', $guards);
 ?>
+
 <input type="hidden" name="Guards" value="<?php echo $guards;?>">
 
 <table id="example1" class="table table-bordered table-striped">
@@ -109,7 +112,8 @@
       <th>Name</th>
       <th>Address</th>
       <th>ID</th>
-      <th>Contact Number</th>                    
+      <th>Contact Number</th>
+      <th>Remove Guard</th>                    
     </tr>
   </thead>
   <tbody>
@@ -123,14 +127,17 @@
       if ($query->rowCount() > 0) {
         foreach ($results as $row) {
     ?>
-    <tr>
+    <tr>   
       <td><?php echo htmlentities($cnt)?></td>
       <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
       <td><?php echo htmlentities($row->Name);?></td>
       <td><?php echo htmlentities($row->Address);?></td>
-      <td><?php echo htmlentities($row->IDnumber);?></td>
+      <td><?php echo htmlentities($row->ID);?></td>
       <td><?php echo htmlentities($row->MobileNumber);?></td>
+      <td><a href="ChangeEmployee.php?editid=<?php echo urlencode($row->ID); ?>" title="View"> <button type="button" class="btn btn-primary">change</button></a></td>
+
     </tr>
+    
     <?php
           $cnt++;
         }
@@ -139,7 +146,8 @@
   </tbody>
 </table>
 
-              
+
+              </form>
             </div>
             <!-- /.card-body -->
           </div>

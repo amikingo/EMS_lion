@@ -55,7 +55,7 @@
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
-	  <ul>
+    <ul>
   <li><a href="Home.php"><button type="button" class="btn btn-primary">Home</button></a></li>
   <li><a href="About us.php"><button type="button" class="btn btn-primary">About Us</button></a></li>
   <li><a href="contact us.php"><button type="button" class="btn btn-primary">Contact Us</button></a></li>
@@ -94,50 +94,82 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-              <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
-                <?php 
-  $guards = $_POST['Guards'];
-  $guard_names = explode(',', $guards);
-?>
-<input type="hidden" name="Guards" value="<?php echo $guards;?>">
+              
+<?php
+$editId = $_GET['editid']; // Assuming you are passing the 'editid' parameter in the URL
 
-<table id="example1" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>S.No</th>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>ID</th>
-      <th>Contact Number</th>                    
-    </tr>
-  </thead>
-  <tbody>
-    <?php
+include 'dbconnection.php';
+
+$sql = "SELECT * FROM tblguard WHERE ID = $editId";
+$query = $dbh->prepare($sql);
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+
+if (isset($_POST['editid'])) {
+  $editid = $_POST['editid'];
+
+  // Remove the guard from the tblhiring table
+  $sql = "UPDATE tblhiring SET GuardAssign = REPLACE(CONCAT(',' ,GuardAssign, ','), ',$editid,', ',') WHERE GuardAssign LIKE '%,$editid,%' OR GuardAssign LIKE '$editid,%' OR GuardAssign LIKE '%,$editid'";
+  $query = $dbh->prepare($sql);
+  $query->execute();
+
+  // Redirect to the same page to reflect the changes
+  header("Location: search-request.php?editid=$editId");
+  exit;
+}
+?>
+
+<!-- Your HTML code -->
+
+<form method="POST" action="">
+  <input type="hidden" name="editid" value="<?php echo $editId; ?>">
+  <table id="example1" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>ID Number</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>ID</th>
+        <th>Contact Number</th>
+        <th>Action</th> <!-- Added a new column for the remove button -->
+      </tr>
+    </thead>
+    <tbody>
+      <?php
       $cnt = 1;
-      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
-      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
-      $query = $dbh->prepare($sql);
-      $query->execute($guard_names);
-      $results = $query->fetchAll(PDO::FETCH_OBJ);
-      if ($query->rowCount() > 0) {
-        foreach ($results as $row) {
-    ?>
-    <tr>
-      <td><?php echo htmlentities($cnt)?></td>
-      <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
-      <td><?php echo htmlentities($row->Name);?></td>
-      <td><?php echo htmlentities($row->Address);?></td>
-      <td><?php echo htmlentities($row->IDnumber);?></td>
-      <td><?php echo htmlentities($row->MobileNumber);?></td>
-    </tr>
-    <?php
-          $cnt++;
-        }
+      foreach ($results as $row) {
+      ?>
+      <tr>
+        <td><?php echo $cnt ?></td>
+        <td><?php echo $row->ID; ?></td>
+        <td><img src="../admin/images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
+        <td><?php echo $row->Name; ?></td>
+        <td><?php echo $row->Address; ?></td>
+        <td><?php echo $row->IDnumber; ?></td>
+        <td><?php echo $row->MobileNumber; ?></td>
+        <td>
+          <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button> <!-- Button to remove the guard -->
+        </td>
+      </tr>
+      <?php
+        $cnt++;
       }
-    ?>
-  </tbody>
-</table>
+      ?>
+    </tbody>
+  </table>
+</form>
+
+
+
+<!-- Rest of your HTML code -->
+
+
+
+
+<!-- Rest of your HTML code -->
+
 
               
             </div>

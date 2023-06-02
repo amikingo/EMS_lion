@@ -118,6 +118,7 @@ $sdata=$_POST['searchdata'];
 					<th>Remark</th>
                     <th>Status</th>
                     <th>Name of Guard</th>
+                    
 
                     
                   </tr>
@@ -166,6 +167,7 @@ if ($query->rowCount() > 0) {
                 <td><?php echo "Rejected"; ?></td>
             <?php } else { ?>
                 <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
+
             <?php } ?>
         </tr>
         <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
