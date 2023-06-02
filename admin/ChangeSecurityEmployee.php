@@ -64,7 +64,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
               <h3 class="card-title">All Request</h3>
             </div>
             <!-- /.card-header -->
-            <form role="form" method="post" name="view" action="../customer/viewGuardsList.php">
+            <form role="form" method="post" name="view" action="viewChangeEmployee.php">
             <div class="card-body">
               
               <table id="example1" class="table table-bordered table-striped">
@@ -79,7 +79,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <th>Action</th>
                   </tr>
                 </thead>
-                 <?php
+               <?php
 $sql="SELECT * from tblhiring";
 $query = $dbh -> prepare($sql);
 $query->execute();
