@@ -69,6 +69,10 @@ if (isset($_POST['editid'])) {
   $sql = "UPDATE tblhiring SET GuardAssign = REPLACE(CONCAT(',' ,GuardAssign, ','), ',$editid,', ',') WHERE GuardAssign LIKE '%,$editid,%' OR GuardAssign LIKE '$editid,%' OR GuardAssign LIKE '%,$editid'";
   $query = $dbh->prepare($sql);
   $query->execute();
+  
+$sqli = "UPDATE tblguard SET isAssigned = 0 WHERE ID = $editid";
+$query = $dbh->prepare($sqli);
+$query->execute();
 
   // Redirect to the same page to reflect the changes
   header("Location: search-request.php?editid=$editId");
