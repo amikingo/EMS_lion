@@ -43,4 +43,4 @@ The Above Browsers have been Tested With The System.
   
  ## PLEASE USE THE SYSTEM WISELY 
  <br/>
-Protected BY CopyRight© REHA TECH MARCH 2023.
+Protected BY Copyright© REHA TECH MARCH 2023.
