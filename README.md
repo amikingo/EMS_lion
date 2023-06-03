@@ -1,9 +1,8 @@
 # EMS_lion
-<br/>
 Employee managment system for lion security services
-<br/>
+<br/><br/>
 #TO RUN THE SYSTEM
-<br/>
+<br/><br/>
 -> Install Xampp Version 8.2.0
 <br/>
 -> Install PHP Version 8.2.0
