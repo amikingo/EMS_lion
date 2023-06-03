@@ -80,6 +80,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                <?php
+               $Guards = $_POST['Guards'];
 $sql="SELECT * from tblhiring Where Status = 'Accepted'";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -90,6 +91,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $row)
 {               ?>
+<input type="hidden" class="form-control" id="formType" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>" required='true'>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>
                     <td><?php  echo htmlentities($row->BookingNumber);?></td>
@@ -110,8 +112,7 @@ foreach($results as $row)
 </td>
                     
                     <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
-                  </tr>  
-                  <input type="text" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">   
+                  </tr>   
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
             
