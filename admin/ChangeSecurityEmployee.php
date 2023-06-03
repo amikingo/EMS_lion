@@ -80,7 +80,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   </tr>
                 </thead>
                <?php
-$sql="SELECT * from tblhiring";
+$sql="SELECT * from tblhiring Where Status = 'Accepted'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
