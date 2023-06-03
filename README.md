@@ -20,4 +20,4 @@ The Above Browsers have been Tested With The System.
   => Enter Vaild Login Details Given to You By The System Administrators of the Company
   
  ## PLEASE USE THE SYSTEM WISELY 
-Protected BY CopyRight© REHA TECH MARCH, 2023.
+Protected BY CopyRight© REHA TECH MARCH 2023.
