@@ -1,7 +1,7 @@
 <?php
 include('dbconnection.php');
 session_start();
-//error_reporting(0);
+error_reporting(0);
 
  if(isset($_POST['submit']))
   {
@@ -36,8 +36,19 @@ $query->bindParam(':gender',$gender,PDO::PARAM_STR);
  $query->execute();
    $LastInsertId=$dbh->lastInsertId();
    if ($LastInsertId>0) {
-   echo '<script>alert("Hiring request has been book successfully. Booking Number is "+"'.$booknum.'")</script>';
-echo "<script>window.location.href ='index.php'</script>";
+	$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+	$statusMsg = "request has been book successfully. Booking Number is " . $booknum;
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
+	
+//    echo '<script>alert("Hiring request has been book successfully. Booking Number is "+"'.$booknum.'")</script>';
+// echo "<script>window.location.href ='index.php'</script>";
   }
   else
     {
@@ -48,7 +59,8 @@ echo "<script>window.location.href ='index.php'</script>";
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>lion security services |Request Guard</title>	
+	<title>lion security services |Request Guard</title>
+	<link href="assets/img/fav.png" rel="icon">	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
@@ -86,6 +98,7 @@ echo "<script>window.location.href ='index.php'</script>";
     <ul class="submenu">
       <li class="active"><a href="index.php">Request Employee</a></li>
       <li><a href="search-request.php">Check Request</a></li>
+	  <li><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
@@ -111,9 +124,9 @@ echo "<script>window.location.href ='index.php'</script>";
 		<div class="container">
 			
 			<div class="row">
-		
 				<div class="col-lg-8">
 					<form class="singup-form contact-form" method="post">
+					 <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
 						<div class="row">
 						<?php	
 						$aid=$_SESSION['user_id'];

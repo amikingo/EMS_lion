@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../assets/img/FAV.png" rel="icon">
+  <link href="assets/img/fav.png" rel="icon">
   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -51,6 +51,7 @@
     <ul class="submenu">
       <li><a href="index.php">Request Employee</a></li>
       <li><a href="search-request.php">Check Request</a></li>
+<li><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">

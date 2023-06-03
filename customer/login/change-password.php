@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
 <head>
   
   <title>Lion Security Services | Change Password</title>
-    
+  <link href="../assets/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -153,6 +153,7 @@ return true;
     <ul class="submenu">
       <li><a href="../index.php">Request Employee</a></li>
       <li><a href="../search-request.php">Check Request</a></li>
+  <li><a href="../ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">

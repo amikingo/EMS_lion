@@ -20100,7 +20100,7 @@ html.maximized-card {
 .register-page {
     -ms-flex-align: center;
     align-items: center;
-    background: white;
+    background: url(../img/bb.jpg);
     display: -ms-flexbox;
     display: flex;
     height: 100vh;
@@ -20111,8 +20111,8 @@ html.maximized-card {
 .login-box,
 .register-box {
     width: 550px;
-    margin-left: 40%;
-    margin-bottom: 20%;
+    margin-left: 50%;
+    margin-bottom: 1%;
 }
 
 @media (max-width:576px) {
@@ -20126,6 +20126,8 @@ html.maximized-card {
 .login-card-body,
 .register-card-body {
     background: #fff;
+    width: 550px;
+    height: 350px;
     border-top: 0;
     color: #666;
     padding: 25px;
@@ -29595,4 +29597,5 @@ a.text-muted:hover {
 
 /*# sourceMappingURL=adminlte.min.css.map *
 
+/*# sourceMappingURL=adminlte.min.css.map *
 /*# sourceMappingURL=adminlte.min.css.map *

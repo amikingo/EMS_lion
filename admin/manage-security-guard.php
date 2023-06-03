@@ -36,7 +36,7 @@ background-color: #f8d7da;
  
   <title>Security Employee</title>
   <!-- Tell the browser to be responsive to screen width -->
-
+  <link href="dist/img/fav.png" rel="icon">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -94,6 +94,7 @@ background-color: #f8d7da;
                   <th>Name</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>
+                  <th>Status</th>
                   <th>Action</th>
                 
                 </tr>
@@ -113,7 +114,22 @@ foreach($results as $row)
                   <td><?php echo htmlentities($cnt);?></td>
                   <td><?php  echo htmlentities($row->Name);?></td>
                   <td><?php  echo htmlentities($row->MobileNumber);?></td>
-                  <td><?php  echo htmlentities($row->RegistrationDate);?></td>
+              <td><?php  echo htmlentities($row->RegistrationDate);?></td>
+              <td><?php  if($row->isAssigned =="1")
+
+{
+echo "Assigned";
+
+} else{
+
+
+
+ ($row->isAssigned=="0");
+ {
+echo "Unsigned";
+ }
+
+ ;}?> </td>
                   <td> <a href="edit-guard-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary">Edit</a>
 
 <a href="manage-security-guard.php?delid=<?php echo htmlentities ($row->ID);?>" onClick="return confirm('Do you really want to delete?');" class="btn btn-danger">Delete</a>
@@ -171,4 +187,5 @@ foreach($results as $row)
 </script>
 </body>
 </html>
-<?php }  ?>
+<?php } ?>
+

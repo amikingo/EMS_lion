@@ -33,7 +33,8 @@
 	</style>
 	</head>
 <body>
-	<h2>Lion Security Service PLC</h2>
+<span class="brand-text font-weight-light"><img alt="logo" src="../../dist/img/fav.png" style="width: 80px;height: 80px; margin-left:300px;"></span>
+<h1 style="font-size:xxx-large; font-weight:bold;margin-left:80px; margin-top:-10px; ">Lion Security Service PLC</h1>
 	<br /> <br /> <br /> <br />
 	<b style="color:blue;">Date Prepared:</b>
 	<?php
@@ -57,15 +58,15 @@
 		<tbody>
 			<?php
 					
-if ($allEmp == "Assigned Employees") {
+if ($allEmp == "assigned") {
     $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isAssigned = '1'";
-} elseif ($allEmp == "All Employees") {
+} elseif ($allEmp == "all") {
     $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isTrainer IN ('0', '1')";
-} elseif ($allEmp == "Not Assigned Employees") {
+} elseif ($allEmp == "notAssigned") {
     $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isAssigned = '0' AND isTrainer = '0'";
-} elseif ($allEmp == "Is Trainer") {
+} elseif ($allEmp == "isTraine") {
     $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND isTrainer = '1'";
-} elseif ($allEmp == "Uniform Assigned") {
+} elseif ($allEmp == "uniAssigned") {
     $sql = "SELECT * FROM tblguard WHERE date(RegistrationDate) BETWEEN '$fdate' AND '$tdate' AND uniformAssigned = '1'";
 }
 

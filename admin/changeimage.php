@@ -48,7 +48,7 @@ $query->bindParam(':eid',$eid,PDO::PARAM_STR);
 <head>
   
   <title>Lion Security Services | Update Image</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

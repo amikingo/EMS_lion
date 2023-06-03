@@ -2,45 +2,53 @@
 session_start();
 //error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['osghsaid']==0)) {
+
+if (strlen($_SESSION['osghsaid']) == 0) {
   header('location:logout.php');
-  } else{
-    if(isset($_POST['submit']))
-  {
+} else {
+  if (isset($_POST['submit'])) {
+    $eid = $_GET['editid'];
+    $status = $_POST['status'];
 
-$eid = $_GET['editid'];
-$status = $_POST['status'];
+    $sql = "UPDATE users SET status=:status WHERE id=:eid";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':status', $status, PDO::PARAM_STR);
+    $query->bindParam(':eid', $eid, PDO::PARAM_INT);
+    $query->execute();
 
+    $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+    $statusMsg = "Customer Status has been updated";
 
+    // Update other tables if status is "Banned"
+    if ($status == 3) {
+      // Update tblhiring
+      $updateHiringSql = "DELETE FROM tblhiring WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
+      $updateHiringQuery = $dbh->prepare($updateHiringSql);
+      $updateHiringQuery->bindParam(':eid', $eid, PDO::PARAM_INT);
+      $updateHiringQuery->execute();
 
+      // Update tblguard
+      $updateGuardSql = "UPDATE tblguard SET isAssigned = 0, UniformAssigned = 0, companyName = '', expiration_interval = 0, expir_date = '' WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
+      $updateGuardQuery = $dbh->prepare($updateGuardSql);
+      $updateGuardQuery->bindParam(':eid', $eid, PDO::PARAM_INT);
+      $updateGuardQuery->execute();
+    }
 
-$sql = "UPDATE users SET status=:status WHERE id=:eid";
-$query = $dbh->prepare($sql);
-$query->bindParam(':status', $status, PDO::PARAM_STR);
-$query->bindParam(':eid', $eid, PDO::PARAM_INT); // assuming id is an integer
-$query->execute();
-$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
- $statusMsg = "Customer Status has been updated";
-     // Add CSS to the success message
-     echo "<style>
+    echo "<style>
       .success {
-       background-color: #d4edda;
+        background-color: #d4edda;
         color: green;
         font-weight: bold;
       }
-     </style>";
-
-//echo '<script type="text/javascript">toastr.success("Status has been updated")</script>';
-
-    // echo '<script>alert("Customer Status has been updated")</script>';
+    </style>";
   }
-  ?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
   
   <title>Lion Security Services | Update Customer details</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -138,19 +146,24 @@ foreach($results as $row)
                     echo 'Account is Rejected';
                 }else if (htmlentities($row->status) == 2){
                     echo 'Account is on Pending';
-                } ?>" readonly>
+                }else if (htmlentities($row->status) == 3){
+                    echo 'Account is Banned!!';
+                }
+
+                 ?>" readonly>
                   </div>
     <label for="status">Status:</label>
     <select name="status" id="status"  class="form-control">
         <option value="1">Approve</option>
         <option value="0">Reject</option>
         <option value="2">Pending</option>
+        <option value="3">Banned</option>
     </select>
                 
                 </div>
               <?php $cnt=$cnt+1;}} ?> 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+                  <button onclick="return confirm('Are you sure you want to Apply Changes?')" type="submit" class="btn btn-primary" name="submit">Update</button>
                 </div>
               </form>
             </div>

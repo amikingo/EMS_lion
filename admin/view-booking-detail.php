@@ -37,7 +37,7 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 
    for($i = 0 ; $i < count($_POST['guards']); $i++){
     $companyName=$_POST['companyName'];
-      $sql="update tblguard set isAssigned=1,companyName=:companyName where Name=:val";
+      $sql="update tblguard set isAssigned=1,companyName=:companyName where ID=:val";
       $query=$dbh->prepare($sql);
       $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
       $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
@@ -54,7 +54,7 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 <head>
   
   <title>View Request Detail</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -181,8 +181,10 @@ if($row->Status=="")
 
                      <td><?php echo "Not Updated Yet"; ?></td>
     <?php } else { ?>
-
-    <td><?php  echo $row->GuardAssign;?></td>
+  <form role="form" method="post" name="printReport" action="viewEmployeeFromAssigned.php">
+<input type="hidden" name="GuardAssign" value="<?= $row->GuardAssign; ?>">
+    <td><button type="submit" name="submit" class="btn btn-primary">View Guards List</button></td>
+    </form>
     <?php } ?>
   </tr>
   
@@ -200,37 +202,72 @@ if($row->Status=="")
     <textarea name="restremark" placeholder="" rows="5" cols="14" class="form-control" required="true"></textarea></td>
   </tr>
 
-  <tr>
-    <th>Status :</th>
-    <td>
-   <select name="status" class="form-control" required="true" >
-     <option value="Accepted" selected="true"> Accepted</option>
-          <option value="Rejected">Rejected</option>
-     
-   </select></td>
-  </tr>
-   <tr>
-    <th>Assign Guard :</th>
-    <td>
-   <select name="guards[]" class="form-control"  multiple="multiple">
-<option value="" disabled="disabled"><-- Choose Security Employee --> </option>
-    <?php
-$sql="SELECT * from tblguard";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+<tr>
+  <th>Status :</th>
+  <td>
+    <select name="status" class="form-control" required="true" onchange="toggleCheckboxes(this)">
+      <option value="Accepted" selected="true">Accepted</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>Assign Guard :</th>
+  <td>
+<!-- ...existing code... -->
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row1)
-{
-    if($row1->isAssigned == 0){
-               ?>
-     <option value="<?php echo htmlentities ($row1->Name);?>"> <?php echo htmlentities ($row1->Name);?></option>
-          <?php $cnt=$cnt+1;}}} ?>
-     
-   </select></td>
+<div>
+  <input type="checkbox" id="select-all" onchange="selectAllGuards()">
+  <label for="select-all">Select All</label>
+</div>
+
+<!-- ...existing code... -->
+
+<div id="checkboxes">
+  <?php
+    $sql = "SELECT * FROM tblguard WHERE isTrainer = 0";
+    $query = $dbh->prepare($sql);
+    $query->execute();
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    if ($query->rowCount() > 0) {
+      $count = 0;
+      foreach ($results as $row1) {
+        if ($row1->isAssigned == 0) {
+          $count++;
+  ?>
+  <!-- TODO: Requirement number select Required guards[] button -->
+  <div>
+    <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->ID); ?>">
+    <label><?php echo htmlentities($row1->Name); ?></label>
+  </div>
+  <?php
+        }
+      }
+      
+      $rid = $_GET['bookingid'];
+      echo $reqNumber;
+      $RequirementNumber = "SELECT * FROM tblhiring WHERE BookingNumber = :rid";
+      $query = $dbh->prepare($RequirementNumber);
+      $query->bindParam(':rid', $rid, PDO::PARAM_STR);
+      $query->execute();
+      $results = $query->fetchAll(PDO::FETCH_OBJ);
+      
+      if ($query->rowCount() > 0) {
+        foreach ($results as $row) {
+          $reqNumber = $row->RequirementNumber;
+          
+          if ($count >= $reqNumber) {
+            break; // Stop displaying checkboxes after reaching the requirement number
+          }
+        }
+      }
+    }
+  ?>
+</div>
+
+  </td>
+</tr>
+
   </tr>
     <tr align="center" style="text-align: center;">
     <td>
@@ -281,6 +318,32 @@ $(document).ready(function () {
   bsCustomFileInput.init();
 });
 </script>
+<script>
+function selectAllGuards() {
+  var checkboxes = document.getElementsByName('guards[]');
+  var selectAllCheckbox = document.getElementById('select-all');
+  var requirementNumber = <?php echo $reqNumber; ?>;
+
+  var count = 0;
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      count++;
+    }
+  }
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (count >= requirementNumber) {
+      checkboxes[i].checked = false;
+    } else {
+      checkboxes[i].checked = selectAllCheckbox.checked;
+      count++;
+    }
+  }
+}
+</script>
+
+
+
 </body>
 </html>
 <?php } ?>

@@ -45,7 +45,7 @@ $errormsg="Invalid Email or Password Please Try Again. ";
 <html lang="en">
 
 <head>
-
+<link href="dist/img/fav.png" rel="icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,12 +62,12 @@ background-image: url(dist/img/aa.jpg);
   background-size: cover;
   background-position: center;
 
-margin-top: 10%;
-margin-right: 49%;
+margin-top: 16%;
+margin-right: 3%;
 
     }
     .login-form{
-background-color:#bfbfbf;
+background-color:white;
     }
   </style>
 </head>
@@ -98,7 +98,7 @@ background-color:#bfbfbf;
                     <div class="form-group">
                       <input type="password" class="form-control" placeholder="Password" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
                     </div>
-<div><a href="forgot-password.php" style="margin-left: 45%;">Forgot-password ?</a></div>
+           <div><a href="forgot-password.php" style="margin-left: 75%;">Forgot-password ?</a></div>
                     <div class="form-group">
                       <div class="icheck-primary">
               <input type="checkbox" id="remember" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> />

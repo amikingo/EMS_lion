@@ -17,7 +17,21 @@ $extension = substr($propic,strlen($propic)-4,strlen($propic));
 $allowed_extensions = array(".jpg","jpeg",".png",".gif");
 if(!in_array($extension,$allowed_extensions))
 {
-echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+  $alertStyle = "danger";
+$statusMsg = "Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed";
+// Add CSS to the error message
+echo "<style>
+ .danger {
+background-color: #f8d7da;
+   color: red;
+   font-weight: bold;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   padding: 10px;
+ }
+</style>";
+// echo "<script>alert('Profile Pics has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
 }
 else
 {
@@ -64,7 +78,7 @@ echo "<style>
 <head>
   
   <title>Lion Security Services | Add Security Employee</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

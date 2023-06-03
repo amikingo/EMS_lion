@@ -7,6 +7,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
+<link href="assets/img/fav.png" rel="icon">
 	<title>lion security services |Search Request</title>	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
@@ -43,6 +44,7 @@ session_start();
     <ul class="submenu">
       <li><a href="index.php">Request Employee</a></li>
       <li class="active"><a href="search-request.php">Check Request</a></li>
+	  <li><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
@@ -52,12 +54,13 @@ session_start();
       <li><a href="login/change-password.php">Change Password</a></li>
       <li><a href="login/logout.php">Logout</a></li>
     </ul>
+
   </li>
 </ul>
       </nav>
     </div>
   </header>
-	<?php// include_once('header.php');?>
+	
 	<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
 		<div class="container">
 			<div class="row">
@@ -94,6 +97,8 @@ session_start();
 			</div>
 <div class="form-body">
 	<br><br><br>
+	<form role="form" method="post" name="printReport" action="viewGuardsList.php">
+
                   <?php
 if(isset($_POST['search']))
 { 
@@ -113,6 +118,7 @@ $sdata=$_POST['searchdata'];
 					<th>Remark</th>
                     <th>Status</th>
                     <th>Name of Guard</th>
+                    
 
                     
                   </tr>
@@ -120,6 +126,7 @@ $sdata=$_POST['searchdata'];
                   <tbody>
       <?php
 $aid = $_SESSION['user_id'];
+
 //$companyName = $_POST['companyName'];
 
 $mema = "SELECT companyName FROM users WHERE id=:aid";
@@ -159,9 +166,11 @@ if ($query->rowCount() > 0) {
             <?php } elseif ($row->Status == "Rejected") { ?>
                 <td><?php echo "Rejected"; ?></td>
             <?php } else { ?>
-                <td><?php echo htmlentities($row->GuardAssign); ?></td>
+                <td><button type="submit" class="btn btn-primary" name="submit">View Guards</button></td>
+
             <?php } ?>
         </tr>
+        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
 <?php
         $cnt = $cnt + 1;
     }
@@ -177,7 +186,7 @@ else {
                  
 
                 </table>
-
+            </form>
               </div>
 
 			</div>

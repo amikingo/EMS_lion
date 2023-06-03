@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/FAV.png" rel="icon">
+  <link href="assets/img/fav.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -412,7 +412,7 @@ Lion Security Service PLC commenced its service with very few customers (which w
         </div>
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/MISSION.jpg" style="height:400px;" class="img-fluid" alt="">
+        <img src="assets/img/MISSION.jpg" style="height:400px;" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <p>

@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <head>
   
   <title>Lion Security Services | Between Dates Report</title>
-    
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -80,7 +80,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                          <option value="">--Select Report Type--</option>
                          <option value="Accepted">Accepted</option>
                           <option value="Rejected">Rejected</option>
-                          <!-- <option value="<?php// $a=0;//echo is_null($a); ?>">Pending</option> -->
+                          <!-- <option value="<?//php// $a=0;//echo is_null($a); ?>">Pending</option> -->
                      </select>
                   </div>
                         

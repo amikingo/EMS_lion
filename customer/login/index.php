@@ -1,11 +1,11 @@
 <!-- <?php
-//include "funcs.php";
-//connect_db();
-//session_start();
+      //include "funcs.php";
+      //connect_db();
+      //session_start();
 
-//if(isset($_SESSION["user_id"])) redirect_to("index.php");
+      //if(isset($_SESSION["user_id"])) redirect_to("index.php");
 
-?> -->
+      ?> -->
 
 <?php
 
@@ -38,8 +38,8 @@ if (isset($_POST["signup"])) {
   $password = mysqli_real_escape_string($conn, md5($_POST["f_pass"]));
   $cpassword = mysqli_real_escape_string($conn, md5($_POST["f_cpass"]));
   $companyName = mysqli_real_escape_string($conn, $_POST["f_company"]);
- 
- $targetfolder = "cfile/";
+
+  $targetfolder = "cfile/";
 
  $targetfolder = $targetfolder .basename( $_FILES['file']['name']) ;
  $target = basename( $_FILES['file']['name']) ;
@@ -48,37 +48,37 @@ if(move_uploaded_file($_FILES['file']['tmp_name'], $targetfolder))
 
  {
 
- //echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
+    //echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
 
  }
 
  else {
 
-// echo "Problem uploading file";
+    // echo "Problem uploading file";
 
- }
+  }
 
 
 
   $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
-  
+
   if ($password !== $cpassword) {
     echo "<script>alert('Password did not match.');</script>";
   } elseif ($check_email > 0) {
     echo "<script>alert('Email already exists in out database.');</script>";
   } else {
     if(empty($_POST["f_name"]) || empty($_POST["f_lname"]) || empty($_POST["f_email"]) || empty($_POST["f_pass"]) || empty($_POST["f_cpass"]) || empty($_POST["f_company"]) ) {
-  echo "<script>alert('Please fill all fields.');</script>";
-} else {
-  // existing code
+      echo "<script>alert('Please fill all fields.');</script>";
+    } else {
+      // existing code
 
-    $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$target', '$companyName')";
+      $sql = "INSERT INTO users (firstName,lastName, email, password, cpassword, status, file, companyName) VALUES ('$first_name',' $last_name', '$email', '$password', '$cpassword',  '2', '$target', '$companyName')";
 
 
-    $result = mysqli_query($conn, $sql);
-    }
+      $result = mysqli_query($conn, $sql);
     }
   }
+}
 
 
 if (isset($_POST["signin"])) {
@@ -87,19 +87,23 @@ if (isset($_POST["signin"])) {
 
   $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='1'");
   $app=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='2'");
-  $rej=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='0'");
+  $rej=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='0' OR status='3'");
+  //$bann=mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password' AND status='3'");
   if (mysqli_num_rows($check_email) > 0) {
     $row = mysqli_fetch_assoc($check_email);
     $_SESSION["user_id"] = $row['id'];
     header("Location: ../Home.php");
   }
 else if(mysqli_num_rows($app) == 1){
-  echo "<script>alert('Your Account is pending. Please Wait Until its verified.');</script>";
+    echo "<script>alert('Your Account is pending. Please Wait Until its verified.');</script>";
 }
 else if(mysqli_num_rows($rej) == 1){
-  echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
-}
-   else {
+    echo "<script>alert('Your Account is Rejected Please Contact The Company For further Details.');</script>";
+  }
+  // else if(mysqli_num_rows($bann) == 1){
+  //   echo "<script>alert('Your Account Have been Banned For certain Reasons Please Contact The Company For Further Details');</scrpit>";
+  // }
+   else  {
   $errormsg="Invalid Email or Password Please Try Again. ";
   }
 }
@@ -110,20 +114,67 @@ else if(mysqli_num_rows($rej) == 1){
 <head>
 
   <title>Welcome</title>
-
+  <link href="../assets/img/fav.png" rel="icon">
   <link rel="shortcut icon" href="images/logo.png">
   <link href="lib/bootstrap5/css/bootstrap.css" rel="stylesheet">
   <link href="css/get-started.css" rel="stylesheet">
   <link href="lib/mdb-ui-kit/css/mdb.min.css" rel="stylesheet">
   <link href="css/fontawesome6/css/all.min.css" rel="stylesheet">
   <link href="lib/toastr/toastr.min.css" rel="stylesheet">
-<style>
-  .error-message {
+  <style>
+    .error-message {
       color: red;
       font-size: 14px;
       margin-top: 5px;
     }
-</style>
+    ul li button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #333;
+      cursor: pointer;
+    }
+
+    ul li.active button {
+      background-color: black;
+      color: #fff;
+    }
+
+  </style>
+  <script>
+    function userAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+        url: "check_availability.php",
+        data: "email=" + $("#email").val(),
+        type: "POST",
+        success: function(data) {
+          $("#user-availability-status1").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {},
+      });
+    }
+  </script>
+   <script>
+    function companyAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+    url: "availability.php",
+data: "companyName=" + $("#companyName").val(),
+        type: "POST",
+        success: function(data) {
+      $("#company-availability-status").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {},
+      });
+    }
+  </script>
+  
+
+
 </head>
 
 <body>
@@ -131,15 +182,15 @@ else if(mysqli_num_rows($rej) == 1){
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <span class="logo d-flex align-items-center">
-    <img src="../../assets/img/LOGO.png" alt="">
-        
+        <img src="../../assets/img/LOGO.png" style="margin-right: 100%;">
+
       </span>
 
       <nav id="navbarr" class="navbarr">
         <ul>
-          <li><a class="nav-link login-form-slider login-click" href="javascript:;">Signin</a></li>
-          <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;">Signup</a></li>
-          <li><a class="nav-link login-form-slider login-click" href="../../index.php">Home</a></li>
+          <li><a class="nav-link login-form-slider login-click" href="javascript:;"><button type="button" class="btn btn-primary">Signin</button></a></li>
+          <li><a class="nav-link login-form-slider sign-up-click" href="javascript:;"><button type="button" class="btn btn-primary">Signup </button></a></li>
+          <li><a class="nav-link login-form-slider login-click" href="../../index.php"><button type="button" class="btn btn-primary">Home</button></a></li>
         </ul>
       </nav>
 
@@ -161,30 +212,31 @@ else if(mysqli_num_rows($rej) == 1){
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign In</b></h3>
-                      
-                           <form id="login-form" method="post">
-               <p style="padding-left: 1%; padding-top:2%; color:red;"><?php if($errormsg){echo htmlentities($errormsg);} ?></p>
-                             <div class="form-group user-name-field my-3">
-                   <input type="text" class="form-control" name="email" placeholder="Email" required="required">
-                                     <span class="error-message"></span>
-                                       <div class="field-icon"><i class="fas fa-user"></i></div>
-                                       </div>
-                                       <div class="form-group forgot-password-field my-3">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-                                        <span class="error-message"></span>
-                                         <div class="field-icon"><i class="fas fa-key"></i></div>
-                                        </div>
-                                        <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
-                                        <br>
-                                        <div class="form-group sign-in-btn my-3">
-                                          <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin">
-                                            <span class="shadow"></span>
-                                            <span class="edge"></span>
-                                            <span class="front text"> Sign in
-                                            </span>
-                                          </button>
-                                        </div>
-                                      </form>
+
+                         <form id="login-form" method="post" novalidate>
+  <p style="padding-left: 1%; padding-top:2%; color:red;">
+    <?php if($errormsg){echo htmlentities($errormsg);} ?>
+  </p>
+  <div class="form-group user-name-field my-3">
+    <input type="text" class="form-control" name="email" placeholder="Email" required>
+    <span class="error-message"></span>
+    <div class="field-icon"><i class="fas fa-user"></i></div>
+  </div>
+  <div class="form-group forgot-password-field my-3">
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
+    <span class="error-message"></span>
+    <div class="field-icon"><i class="fas fa-key"></i></div>
+  </div>
+  <a href="javascript:;" class="forgot-password-click">Forgot Password?</a>
+  <br>
+  <div class="form-group sign-in-btn my-3">
+    <button type="submit" id="login-submit" class="submit sign-in-btn" name="signin">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front text">Sign in</span>
+    </button>
+  </div>
+</form>
 
                           <div class="sign-up-txt">
                             Don't have an account? <a href="javascript:;" name="signup"class="sign-up-click">Signup</a>
@@ -197,59 +249,61 @@ else if(mysqli_num_rows($rej) == 1){
                       <div class="d-flex height-100-percentage">
                         <div class="align-self-center width-100-percentage">
                           <h3><b>Sign up</b></h3>
-                          <form id="sign-up-form" method="post" action="index.php" enctype="multipart/form-data">
+
+                          <form id="form" method="post" action="index.php" enctype="multipart/form-data" novalidate>
 
                             <div class="row">
                               <div class="col">
 
                                 <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="f_name" placeholder="First Name" required="required">
+                                  <input type="text" class="form-control" name="f_name" placeholder="First Name" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="f_lname" placeholder="Last Name" required="required">
+                                  <input type="text" class="form-control" name="f_lname" placeholder="Last Name" required="required">
                                   <span class="error-message"></span>
                                   <div class="field-icon"><i class="fas fa-user"></i></div>
                                 </div>
 
                                 <div class="form-group user-name-field my-3">
-                              <input type="text" class="form-control" name="f_email" placeholder="Email" required="required">
-                                  <span class="error-message"></span>
+                                  <input type="text" id="email" class="form-control" onBlur="userAvailability()" name="f_email" placeholder="Email" required="required" oninput="this.value = this.value.replace(/\s/g, '')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                  <span id="user-availability-status1" style="font-size: 12px"></span>
+                                  <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-envelope"></i></div>
                                 </div>
                                 <div class="form-group user-name-field my-3">
-                          <input type="text" class="form-control" name="f_company" placeholder="Company Name" required="required">
-                                  <span class="error-message"></span>
+                                  <input type="text" id="companyName" class="form-control" onBlur="companyAvailability()" name="f_company" placeholder="Company Name" required="required">
+                                <span id="company-availability-status" style="font-size: 12px"></span>
+                                  <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-university"></i></div>
                                   <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
                                 </div>
 
                               </div>
                               <div class="col">
-                              
+
 
                                 <div class="form-group user-name-field my-3">
                                   <!-- attach file input  -->
-                          <input type="file" class="form-control" name="file" id="f_file" placeholder="Logo" required="required">
-                                  <span class="error-message"></span>
+                                  <input type="file" class="form-control" name="file" id="f_file" placeholder="Logo" required="required">
+                                  <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-paperclip"></i></div>
-                                  <div class="field-icon" style="right: 15px;height: 0px;pointer-events: none;"></i></div>
-                                  
-                                <!-- end attach file input  -->
-                                  
+
+                                  <!-- end attach file input  -->
+
                                 </div>
 
 
                                 <div class="form-group my-3">
-                              <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" required="required">
-                                  <span class="error-message"></span>
+                                  <input type="password" class="form-control" id="form_pass" name="f_pass" placeholder="Password" required="required">
+                                  <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                                 <div class="form-group my-3">
-                              <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password" required="required">
-                                  <span class="error-message"></span>
+                                  <input type="password" class="form-control" id="form_cpass" name="f_cpass" placeholder="Confirm Password" required="required">
+                                  <span class="error-message invalid-feedback"></span>
                                   <div class="field-icon"><i class="fas fa-key"></i></div>
                                 </div>
                               </div>
@@ -257,9 +311,10 @@ else if(mysqli_num_rows($rej) == 1){
 
                             <div class="form-group sign-in-btn my-3">
 
-                              <button id = "signup" type="submit" class="submit sign-in-btn" name="signup">
+                              <button id="signup" type="submit" class="submit sign-in-btn" name="signup">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
+
                                 <span class="front text"> Sign up
                                 </span>
                               </button>
@@ -280,7 +335,7 @@ else if(mysqli_num_rows($rej) == 1){
                             <label class="label" style="text-align: left">Enter your email address to reset your password</label>
                             <div class="form-group user-name-field my-3">
                               <input type="text" id="forget-pass-input" class="form-control" placeholder="Email" required>
-                              <div class="field-icon"><i class="fas fa-envelope"></i></div> 
+                              <div class="field-icon"><i class="fas fa-envelope"></i></div>
                             </div>
                             <div class="form-group sign-in-btn my-5">
 
@@ -319,7 +374,121 @@ else if(mysqli_num_rows($rej) == 1){
   <script src="lib/toastr/toastr.min.js"></script>
   <script src="js/get-started.js"></script>
 
-<!-- <script>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+$(document).ready(function() {
+  // Validate the email address
+  $('#login-form input[name="email"]').on('keyup', function() {
+    var email = $(this).val();
+    var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (regex.test(email)) {
+      $(this).parent().find('.error-message').hide();
+    } else {
+      $(this).parent().find('.error-message').show().text('Please enter a valid email address.');
+    }
+  });
+
+  // Validate the password
+  $('#login-form input[name="password"]').on('keyup', function() {
+    var password = $(this).val();
+    if (password.length < 6) {
+      $(this).parent().find('.error-message').show().text('Please enter a valid password ');
+    } else {
+      $(this).parent().find('.error-message').hide();
+    }
+  });
+
+  // Disable the submit button if the form is not valid
+  $('#login-form').on('submit', function() {
+    if ($(this).find('.error-message:visible').length) {
+      return false;
+    }
+  });
+});
+</script>
+
+  <script>
+    $(document).ready(function() {
+      // Add validation to the form
+      $("#form").validate({
+        rules: {
+          f_name: {
+            required: true,
+          },
+          f_lname: {
+            required: true,
+          },
+          f_email: {
+            required: true,
+            email: true,
+          },
+          f_company: {
+            required: true,
+          },
+          f_pass: {
+            required: true,
+            minlength: 8,
+          },
+          f_cpass: {
+            required: true,
+            equalTo: "#form_pass",
+          },
+        },
+        messages: {
+          f_name: {
+            required: "Please enter your first name",
+          },
+          f_lname: {
+            required: "Please enter your last name",
+          },
+          f_email: {
+            required: "Please enter your email address",
+            email: "Please enter a valid email address",
+          },
+          f_company: {
+            required: "Please enter your company name",
+          },
+          f_pass: {
+            required: "Please enter your password",
+            minlength: "Your password must be at least 8 characters long",
+          },
+          f_cpass: {
+            required: "Please confirm your password",
+            equalTo: "Your passwords do not match",
+          },
+        },
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <script>
   $('input[name="email"], input[name="password"]').attr('required', 'required');
 
 // Add a validation function to the submit button
@@ -341,7 +510,14 @@ $('#login-submit').on('click', function() {
 });
 </script> -->
 
-   <script type="text/javascript">
+
+
+
+
+
+
+
+  <!-- <script type="text/javascript">
   document.getElementById("login-submit").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -429,6 +605,7 @@ $('#login-submit').on('click', function() {
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
   }
-</script> 
+</script>  -->
 </body>
+
 </html>

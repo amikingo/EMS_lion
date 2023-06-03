@@ -8,7 +8,7 @@ include('includes/dbconnection.php');
 <head>
  
   <title>Lion Security Services | Dashboard</title>
- 
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->

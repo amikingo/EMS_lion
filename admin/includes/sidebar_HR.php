@@ -106,6 +106,12 @@ $new_booking_row_count = $query->rowCount();
                   <p>Manage Training Personnel</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="ChangeSecurityEmployee.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+          <p>Change Security Employee</p>
+                </a>
+              </li>
              </ul>
           </li>
           <li class="nav-item has-treeview">

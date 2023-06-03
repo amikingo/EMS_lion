@@ -88,6 +88,7 @@ if (isset($_POST["submit"])) {
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../assets/img/fav.png" rel="icon">
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="stylesheet" href="../css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../css/font-awesome.min.css"/>
@@ -173,6 +174,7 @@ if (isset($_POST["submit"])) {
     <ul class="submenu">
       <li><a href="../index.php">Request Employee</a></li>
       <li><a href="../search-request.php">Check Request</a></li>
+  <li><a href="../ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
@@ -200,7 +202,7 @@ if (isset($_POST["submit"])) {
   <form class="singup-form contact-form"  id="profile-update-form" method="post">
     <div>
       <label for="f_name">First Name:</label>
-      <input type="text" name="f_name" id="f_name" value="<?php echo $f_name; ?>">
+  <input type="text" name="f_name" id="f_name" value="<?php echo $f_name; ?>">
       <span class="error-message"></span>
     </div>
     <div>
@@ -210,12 +212,12 @@ if (isset($_POST["submit"])) {
     </div>
     <div>
       <label for="f_email">Email:</label>
-      <input type="email" name="f_email" id="f_email" value="<?php echo $f_email; ?>">
+  <input type="email" name="f_email" id="f_email" value="<?php echo $f_email; ?>"readonly>
       <span class="error-message"></span>
     </div>
     <div>
       <label for="f_company">Company:</label>
-      <input type="text" name="f_company" id="f_company" value="<?php echo $f_company; ?>">
+      <input type="text" name="f_company" id="f_company" value="<?php echo $f_company; ?>"readonly>
       <span class="error-message"></span>
     </div>
     <hr>

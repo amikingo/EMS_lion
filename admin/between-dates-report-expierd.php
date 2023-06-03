@@ -12,8 +12,8 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
   
-  <title>Lion Security Services | Between Dates Report</title>
-    
+  <title>Lion Security Services | Between Dates Report of Expired Uniform Contracts</title>
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -37,12 +37,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Between Dates  Report</h1>
+            <h1>Between Dates Report Expired Uniform Contracts</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Between Dates Report</li>
+              <li class="breadcrumb-item active">Between Dates Report of Expired Unifolrm Contracts</li>
             </ol>
           </div>
         </div>
@@ -58,11 +58,11 @@ if (strlen($_SESSION['osghsaid']==0)) {
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Between Dates Report</h3>
+                <h3 class="card-title">Between Dates Report of Expired Uniform Contracts</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-employee.php">
+              <form role="form" method="post" name="bwdatesreport" action="bwdates-reports-details-expired.php">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">From Date:</label>
@@ -74,17 +74,6 @@ if (strlen($_SESSION['osghsaid']==0)) {
                   <div class="form-group">
                     <label for="exampleInputEmail1">To Date:</label>
                     <input type="date" class="form-control" id="todate" name="todate" value="" required='true'>
-                  </div>
-                  <div class="form-group">
-                    <select class="form-control" name="selectName" id="product" required>
-                         <option value="">--Select Employee--</option>
-                         <option value="1 1 0">All Employees</option>
-                          <option value="1 2 3">Assigned</option>
-                          <!-- REMARK: UNFINISHED OR CLAUSE FOR NOT ASSIGNED-->
-                          <option value="0 2 3">Not Assigned</option>
-                          <option value="2 1 3">is A Trainee</option>
-                          <option value="5 4 1">Uniform Assigned</option>
-                     </select>
                   </div>
                         
                 </div>

@@ -16,7 +16,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
   <title>All Employee List</title>
   <!-- Tell the browser to be responsive to screen width -->
 
-
+  <link href="dist/img/fav.png" rel="icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -73,6 +73,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <th>ID Number</th>
                     <th>Address</th>
                     <th>Mobile Number</th>
+                    <th>Expire Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -92,7 +93,8 @@ foreach($results as $row)
                     <td><?php  echo htmlentities($row->Name);?></td>
                     <td><?php  echo htmlentities($row->IDnumber);?></td>
                     <td><?php  echo htmlentities($row->Address);?></td>
-                    <td> <?php  echo htmlentities($row->MobileNumber);?></td>
+                    <td><?php  echo htmlentities($row->MobileNumber);?></td>
+                    <td><?php echo htmlentities($row->expir_date);?></td>
                   
 
                     <td><a href="employeeDetailsStore.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary"> View</td>
