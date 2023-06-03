@@ -87,7 +87,7 @@ if (strlen($_SESSION['osghsaid']) == 0) {
                 <tr>
                     <td><?php echo htmlentities($cnt); ?></td>
                     <td><?php echo htmlentities($row->Name); ?></td>
-                    <td><?php echo htmlentities($row->IDnumber); ?></td>
+                    <td><?php echo htmlentities($row->ID); ?></td>
                     <td><?php echo htmlentities($row->Address); ?></td>
                     <td><?php echo htmlentities($row->MobileNumber); ?></td>
                     <td>
