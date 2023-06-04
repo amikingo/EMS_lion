@@ -370,4 +370,3 @@ function toggleCheckboxes(select) {
 
 </body>
 </html>
-<?php } ?>
