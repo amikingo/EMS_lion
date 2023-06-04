@@ -241,36 +241,54 @@ function showRole(str) {
                                                <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Admin Type</label>
-<?php 
-    $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC"); 
-    $count_query = mysqli_query($con, "SELECT adminTypeId FROM tbladmin"); 
-    $count = mysqli_num_rows($count_query);
-    
-    
-    if ($count > 0) {                       
+                                                    <?php
+
+
+// Check if the connection was successful
+if ($con) {
+
+    // Get the total number of admin types
+    $count_query = mysqli_query($con, "SELECT COUNT(*) AS total_count FROM tbladmintype");
+    $count_row = mysqli_fetch_assoc($count_query);
+    $total_count = $count_row['total_count'];
+
+    // Check if there are any admin types
+    if ($total_count > 0) {
+
+        // Get the list of admin types
+        $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC");
+
+        // Initialize the select element
         echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-       // echo '<option value="">--Select Admin Type--</option>';
-        
-        while ($ad_row = mysqli_fetch_array($ad_query)) {
+
+        // Add the empty option
+        // echo '<option value="" disabled>--Select Admin Type--</option>';
+
+        // Loop through the admin types and add them as options
+        while ($ad_row = mysqli_fetch_assoc($ad_query)) {
+
+            // Get the admin type id and name
             $admin_type_id = $ad_row['Id'];
-            $selected = "";
-            
-            while ($count_row = mysqli_fetch_array($count_query)) {
-                $admin_type_id_db = $count_row['adminTypeId'];
-                if ($admin_type_id == $admin_type_id_db) {
-                    $selected = "selected";
-                    break;
-                }
+            $admin_type_name = $ad_row['adminType'];
+
+            // Check if the admin type is selected
+            if ($admin_type_id == $_GET['adminTypeId']) {
+                $selected = 'selected';
+            } else {
+                $selected = '';
             }
-            
-            echo '<option value="'.$admin_type_id.'" '.$selected.'>'.$ad_row['adminType'].'</option>';
-            
-            // Reset the $count_query pointer to the beginning
-            mysqli_data_seek($count_query, 0);
+
+            // Add the option to the select element
+            echo '<option value="' . $admin_type_id . '" ' . $selected . '>' . $admin_type_name . '</option>';
         }
-        
-        echo '</select>'; 
+
+        // Close the select element
+        echo '</select>';
     }
+}
+
+
+
 ?>
                                                   
                                                 </div>
