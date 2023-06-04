@@ -341,7 +341,16 @@ function selectAllGuards() {
   }
 }
 </script>
-
+<script>
+  function toggleCheckboxes(select) {
+    var checkboxes = document.getElementById("checkboxes");
+    if (select.value == "Accepted") {
+      checkboxes.style.display = "block";
+    } else {
+      checkboxes.style.display = "none";
+    }
+  }
+</script>
 
 
 </body>
