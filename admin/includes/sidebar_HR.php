@@ -125,13 +125,13 @@ $new_booking_row_count = $query->rowCount();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="createAdmin.php" class="nav-link">
+                <a href="createAdminHr.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Create Users </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="viewAdmin.php" class="nav-link">
+                <a href="viewAdminHr.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View All Users</p>
                 </a>
