@@ -88,7 +88,21 @@ if(isset($_POST['submit'])){
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!-- <link href="css/ruang-admin.min.css" rel="stylesheet"> -->
 
-
+  <script>
+    function userAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+        url: "check_availability.php",
+        data: "UserName=" + $("#UserName").val(),
+        type: "POST",
+        success: function(data) {
+          $("#user-availability-status1").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {},
+      });
+    }
+  </script>
 <script>
 function showValues(str) {
     if (str == "") {
@@ -187,8 +201,9 @@ function showRole(str) {
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="x_card_code" class="control-label mb-1">User Name</label>
-                                                        <input id="" name="userName" type="tel" class="form-control cc-cvc" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="User Name">
-                                                        </div>
+                                                <input id="UserName" name="userName" type="tel" class="form-control cc-cvc" onBlur="userAvailability()" value="" Required data-val="true" data-val-required="Please enter the security code" data-val-cc-cvc="Please enter a valid security code" placeholder="User Name">
+                                                        <span id="user-availability-status1" style="font-size: 12px"></span>
+                                                    </div>
                                                     </div>
                                                     <div>
 
@@ -215,39 +230,50 @@ function showRole(str) {
                                                <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Admin Type</label>
-<?php 
-    $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC"); 
-    $count_query = mysqli_query($con, "SELECT adminTypeId FROM tbladmin"); 
-    $count = mysqli_num_rows($count_query);
-    
-    if ($count > 0) {                       
-        echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-        echo '<option value="">--Select Admin Type--</option>';
-        
-        while ($ad_row = mysqli_fetch_array($ad_query)) {
-            $admin_type_id = $ad_row['Id'];
-            $selected = "";
-            
-            while ($count_row = mysqli_fetch_array($count_query)) {
-                $admin_type_id_db = $count_row['adminTypeId'];
-                if ($admin_type_id == $admin_type_id_db) {
-                    $selected = "selected";
-                    break;
-                }
-            }
-            
-            echo '<option value="'.$admin_type_id.'" '.$selected.'>'.$ad_row['adminType'].'</option>';
-            
-            // Reset the $count_query pointer to the beginning
+                                                    <?php
 
-            mysqli_data_seek($count_query, 0);
+
+
+// Get the list of admin types
+$ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC");
+
+// Get the number of admin types
+$count = mysqli_num_rows($ad_query);
+
+// Check if there are any admin types
+if ($count > 0) {
+
+    // Create a select element
+    echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
+
+    // Add an option for each admin type
+    echo '<option value="">--Select Admin Type--</option>';
+    while ($ad_row = mysqli_fetch_array($ad_query)) {
+        $admin_type_id = $ad_row['Id'];
+        $admin_type = $ad_row['adminType'];
+
+        // Check if the admin type is selected
+        $selected = '';
+        if (isset($_POST['adminTypeId']) && $_POST['adminTypeId'] == $admin_type_id) {
+            $selected = 'selected';
         }
-        
-        echo '</select>'; 
+
+        // Add an option for the admin type
+        echo '<option value="' . $admin_type_id . '" ' . $selected . '>' . $admin_type . '</option>';
     }
+
+    // Close the select element
+    echo '</select>';
+
+} else {
+
+    // There are no admin types
+    echo '<p>No admin types found.</p>';
+
+}
+
 ?>
-</div>
-                                          
+                                                </div>
                                                      </div>
                                                 </div>
                                             </div>

@@ -62,7 +62,7 @@ include('includes/dbconnection.php');
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
            <?php 
 $sql ="SELECT ID from tblguard where isTrainer = '0'";
 $query = $dbh -> prepare($sql);
@@ -85,7 +85,53 @@ $totalguard=$query->rowCount();
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
+           <?php 
+$sql ="SELECT ID from tblguard where isAssigned = '1'";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$totalguard=$query->rowCount();
+?>
+
+       
+            <div class="small-box bg-info " style="background-color:#9494b8 !important;">
+              <div class="inner">
+                <h3><?php echo htmlentities($totalguard);?></h3>
+
+                <p>Total Assigned Guard</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-stalker"></i>
+              </div>
+              <a href="manage-security-guard.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+           <?php 
+$sql ="SELECT ID from tblguard where isAssigned = '0'";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$totalguard=$query->rowCount();
+?>
+
+       
+            <div class="small-box bg-info " style="background-color:#00cccc !important;">
+              <div class="inner">
+                <h3><?php echo htmlentities($totalguard);?></h3>
+
+<p>Total Unassigned Guard</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-stalker"></i>
+              </div>
+              <a href="manage-security-guard.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
             <?php 
 $sql ="SELECT ID from tblhiring where Status is null ";
 $query = $dbh -> prepare($sql);
@@ -97,7 +143,7 @@ $newbooking=$query->rowCount();
               <div class="inner" style="color: white !important;">
                 <h3><?php echo htmlentities($newbooking);?><sup style="font-size: 20px"></sup></h3>
 
-                <p>New Booking Request</p>
+            <p>New Request</p>
               </div>
               <div class="icon">
                 <i class="ion ion-chatboxes"></i>
@@ -105,7 +151,7 @@ $newbooking=$query->rowCount();
               <a href="new-booking-request.php" class="small-box-footer" style="color: white !important;">More info <i class="fas fa-arrow-circle-right" style="color: white !important;"></i></a>
             </div>
           </div>
-         <div class="col-lg-4 col-6">
+         <div class="col-lg-3 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring where Status='Accepted'";
 $query = $dbh -> prepare($sql);
@@ -119,7 +165,7 @@ $accbooking=$query->rowCount();
               <div class="inner">
                 <h3><?php echo htmlentities($accbooking);?></h3>
 
-                <p>Total Accepted Booking</p>
+                <p>Total Accepted Request</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document-text "></i>
@@ -127,7 +173,7 @@ $accbooking=$query->rowCount();
               <a href="accepted-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring where Status='Rejected'";
 $query = $dbh -> prepare($sql);
@@ -141,7 +187,7 @@ $rejbooking=$query->rowCount();
               <div class="inner">
                 <h3><?php echo htmlentities($rejbooking);?></h3>
 
-                <p>Total Rejected Booking</p>
+                <p>Total Rejected Request</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document"></i>
@@ -151,7 +197,7 @@ $rejbooking=$query->rowCount();
           </div>
 
 
-     <div class="col-lg-4 col-6">
+     <div class="col-lg-3 col-6">
            <?php 
 $sql ="SELECT ID from tblhiring";
 $query = $dbh -> prepare($sql);
@@ -165,7 +211,7 @@ $totalbooking=$query->rowCount();
               <div class="inner">
                 <h3><?php echo htmlentities($totalbooking);?></h3>
 
-                <p>Total  Booking</p>
+                <p>Total  Request</p>
               </div>
               <div class="icon">
                 <i class="ion ion-clipboard"></i>
@@ -173,7 +219,7 @@ $totalbooking=$query->rowCount();
               <a href="all-booking-request.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
            <?php 
 $sql ="SELECT ID from users";
 $query = $dbh -> prepare($sql);
