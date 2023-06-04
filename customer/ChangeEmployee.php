@@ -127,7 +127,24 @@ $query->bindParam(':gender',$gender,PDO::PARAM_STR);
 				<div class="col-lg-8">
 					<form class="singup-form contact-form" method="post">
 					 <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
-						
+						<?php	
+						$aid=$_SESSION['user_id'];
+						$sql="SELECT * from users Where id=:aid";
+						$query = $dbh -> prepare($sql);
+						$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+						$query->execute();
+						$results=$query->fetchAll(PDO::FETCH_OBJ);
+						$cnt=1;
+						if($query->rowCount() > 0)
+							{
+foreach($results as $row)
+{               ?>
+								<div class="col-md-6">
+								<label style="padding-bottom: 10px;">Company Name</label>
+								<input type="text" placeholder="Phone Number" class="form-control" name="companyName" required="true" maxlength="10" pattern="[0-9]+"  value="<?php  echo $row->companyName;?>"readonly>
+								
+							</div>
+							 <?php $cnt=$cnt+1;}} ?> 
 							<div class="col-md-6">
 							<label style="padding-top: 10px;">Guard Name</label>
 								<select name="gender" required="true" class="form-control">

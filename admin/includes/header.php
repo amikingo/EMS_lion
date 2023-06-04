@@ -26,7 +26,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <li class="nav-item d-none d-sm-inline-block" >
-<a href="logout.php" class="nav-link" style="font-weight: bold;" >Logout</a>
+<a href="logout.php" class="nav-link" style="font-weight: bold; color: #000" >Logout</a>
       </li>
     </ul>
 

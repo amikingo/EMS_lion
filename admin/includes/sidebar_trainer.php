@@ -91,9 +91,9 @@ $new_uniform_row_count = $query->rowCount();
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-plus-square"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
-                Admin Setting
+              Setting
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
@@ -113,7 +113,7 @@ $new_uniform_row_count = $query->rowCount();
               </li>
               <li class="nav-item">
                 <a href="logout.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-sign-out-alt nav-icon"></i>
                   <p>Logout</p>
                 </a>
               </li>
