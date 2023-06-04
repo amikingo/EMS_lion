@@ -27,8 +27,13 @@ if(isset($_POST['submit'])){
     $queryi=mysqli_query($con,"select * from tbladmin where adminTypeId = '$adminTypeId'");
     $rets=mysqli_fetch_array($queryi);
 
+   
+    $ret = mysqli_query($con, "SELECT * FROM tbladmin");
+            $cnt=1;
+            while ($row=mysqli_fetch_array($ret)) {
+                               
 
-
+if ($row == 0) {
     $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','$sampPass_2','$adminTypeId','$dateCreated')");
     
     if ($rets) {
@@ -59,7 +64,23 @@ if(isset($_POST['submit'])){
         </style>";
     // echo "<div class='danger'>$statusMsg</div>";
       }
-    
+} else {
+    // The username exists in the database
+    $alertStyle = "danger";
+$statusMsg = "The User Name Exists.";
+        // Add CSS to the error message
+        echo "<style>
+         .danger {
+    background-color: #f8d7da;
+           color: red;
+           font-weight: bold;
+         }
+        </style>";
+}
+}
+
+   
+ 
   }
 
   ?>

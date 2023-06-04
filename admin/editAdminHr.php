@@ -32,31 +32,70 @@ if(isset($_POST['submit'])){
   $emailAddress=$_POST['emailAddress'];
   $adminTypeId=$_POST['adminTypeId'];
 
+  $sql = "SELECT * FROM tbladmin WHERE ID != '$_SESSION[editId]' AND ID <> @current_id";
 
-    $ret=mysqli_query($con,"update tbladmin set AdminName='$adminName', UserName='$userName', Email='$emailAddress', 
-    MobileNumber='$phoneNo', Password='$password', adminTypeId='$adminTypeId'  where ID='$_SESSION[editId]'");
-
-    if($ret == TRUE){
-
-        // echo "<script type = \"text/javascript\">
-        //         window.location = (\"viewAdmin.php\");
-        //         </script>";
-        $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
-    $statusMsg = "User Detail has been updated.";
-        // Add CSS to the success message
-        echo "<style>
-         .success {
-          background-color: #d4edda;
-           color: green;
-           font-weight: bold;
-         }
-        </style>";
-    }
-    else {
-
-      $alertStyle ="alert alert-danger";
-      $statusMsg="An Error Occurred!";
-    }
+  // Bind the current ID to the SQL query
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param('s', $current_id);
+  
+  // Execute the SQL query
+  $stmt->execute();
+  
+  // Get the result set
+  $result = $stmt->get_result();
+  
+  // Loop through the result set
+  while ($row = $result->fetch_assoc()) {
+  
+      // Check if the row is empty
+      if (empty($row)) {
+          continue;
+      }
+  
+      // Check if the username already exists in the database
+      if ($row['username'] == $userName) {
+  
+          // The username exists in the database
+          $alertStyle = "danger";
+          $statusMsg = "The User Name Exists.";
+  
+          // Add CSS to the error message
+          echo "<style>
+           .danger {
+              background-color: #f8d7da;
+              color: red;
+              font-weight: bold;
+           }
+          </style>";
+  
+          continue;
+      }
+  
+      // Update the admin details in the database
+      $ret = mysqli_query($con, "update tbladmin set AdminName='$adminName', UserName='$userName', Email='$emailAddress', 
+      MobileNumber='$phoneNo', Password='$password', adminTypeId='$adminTypeId' where ID='$_SESSION[editId]'");
+  
+      if ($ret == TRUE) {
+  
+          // The admin details have been updated successfully
+          $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+          $statusMsg = "User Detail has been updated.";
+  
+          // Add CSS to the success message
+          echo "<style>
+           .success {
+              background-color: #d4edda;
+              color: green;
+              font-weight: bold;
+           }
+          </style>";
+      } else {
+  
+          // An error occurred while updating the admin details
+          $alertStyle = "alert alert-danger";
+          $statusMsg = "An Error Occurred!";
+      }
+  }
 
 }
 
