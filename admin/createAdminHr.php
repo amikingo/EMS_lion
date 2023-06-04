@@ -1,89 +1,71 @@
-
 <?php
-
-    include('../includes/dbconnection.php');
-    // include('../includes/session.php');
+include('../includes/dbconnection.php');
+// include('../includes/session.php');
 error_reporting(0);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+    $adminName = $_POST['adminName'];
+    $userName = $_POST['userName'];
+    $phoneNo = $_POST['phoneNo'];
+    $emailAddress = $_POST['email'];
 
-//  $alertStyle ="success";
-// $statusMsg="good job";
+    $adminTypeId = $_POST['adminTypeId'];
+    //$roleId=2;
+    $dateCreated = date("Y-m-d H:i:s");
 
-  $adminName=$_POST['adminName'];
-  $userName=$_POST['userName'];
-  $phoneNo=$_POST['phoneNo'];
-  $emailAddress=$_POST['email'];
+    // Check if the username already exists in the database
+    $stmt = $con->prepare("SELECT * FROM tbladmin WHERE username = ?");
+    $stmt->bind_param('s', $userName);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-  $adminTypeId=$_POST['adminTypeId'];
-  //$roleId=2;
-  $dateCreated = date("Y-m-d H:i:s");
-
-    $sampPass = "123456789";
-    $sampPass_2 = md5($sampPass);
-
-
-
-    $queryi=mysqli_query($con,"select * from tbladmin where adminTypeId = '$adminTypeId'");
-    $rets=mysqli_fetch_array($queryi);
-
-   
-    $ret = mysqli_query($con, "SELECT * FROM tbladmin");
-            $cnt=1;
-            while ($row=mysqli_fetch_array($ret)) {
-                               
-
-if ($row == 0) {
-    $query=mysqli_query($con,"insert into tbladmin(AdminName,UserName,MobileNumber,Email,Password,adminTypeId,AdminRegdate) value('$adminName','$userName','$phoneNo','$emailAddress','$sampPass_2','$adminTypeId','$dateCreated')");
-    
-    if ($rets) {
-        
-        // Set the success message
-        $alertStyle = "success";
-        $statusMsg = "Your account has been created successfully.";
-        // Add CSS to the success message
-        echo "<style>
-         .success {
-          background-color: #d4edda;
-           color: green;
-           font-weight: bold;
-         }
-        </style>";
-        // echo "<div class='success'>$statusMsg</div>";
-      } else {
-        // Set the error message
+    if ($result->num_rows > 0) {
+        // The username already exists
         $alertStyle = "danger";
-        $statusMsg = "There was an error creating your account. Please try again later.";
+        $statusMsg = "The username already exists. Please choose a different username.";
         // Add CSS to the error message
         echo "<style>
          .danger {
-    background-color: #f8d7da;
-           color: red;
-           font-weight: bold;
+            background-color: #f8d7da;
+            color: red;
+            font-weight: bold;
          }
         </style>";
-    // echo "<div class='danger'>$statusMsg</div>";
-      }
-} else {
-    // The username exists in the database
-    $alertStyle = "danger";
-$statusMsg = "The User Name Exists.";
-        // Add CSS to the error message
-        echo "<style>
-         .danger {
-    background-color: #f8d7da;
-           color: red;
-           font-weight: bold;
-         }
-        </style>";
-}
-}
+    } else {
+        // Insert the new admin record into the database
+        $sampPass = "123456789";
+        $sampPass_2 = md5($sampPass);
 
-   
- 
-  }
+        $query = mysqli_query($con, "INSERT INTO tbladmin(AdminName, UserName, MobileNumber, Email, Password, adminTypeId, AdminRegdate) VALUES ('$adminName', '$userName', '$phoneNo', '$emailAddress', '$sampPass_2', '$adminTypeId', '$dateCreated')");
 
-  ?>
+        if ($query) {
+            // Set the success message
+            $alertStyle = "success";
+            $statusMsg = "Your account has been created successfully.";
+            // Add CSS to the success message
+            echo "<style>
+             .success {
+                background-color: #d4edda;
+                color: green;
+                font-weight: bold;
+             }
+            </style>";
+        } else {
+            // Set the error message
+            $alertStyle = "danger";
+            $statusMsg = "There was an error creating your account. Please try again later.";
+            // Add CSS to the error message
+            echo "<style>
+             .danger {
+                background-color: #f8d7da;
+                color: red;
+                font-weight: bold;
+             }
+            </style>";
+        }
+    }
+}
+?>
 
 <!doctype html>
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->

@@ -1,67 +1,96 @@
-
 <?php
+session_start(); // Start the session
 
-    include('../includes/dbconnection.php');
-    // include('../includes/session.php');
-   // error_reporting(0);
+include('../includes/dbconnection.php');
+// include('../includes/session.php');
+// error_reporting(0);
 
-if(isset($_GET['editid'])){
+if (isset($_GET['editid'])) {
+    $_SESSION['editId'] = $_GET['editid'];
 
-$_SESSION['editId'] = $_GET['editid'];
-
-$query = mysqli_query($con,"select * from tbladmin where ID='$_SESSION[editId]'");
-$rowi = mysqli_fetch_array($query);
-
+    $query = mysqli_query($con, "SELECT * FROM tbladmin WHERE ID = '{$_SESSION['editId']}'");
+    $rowi = mysqli_fetch_array($query);
+} else {
+    echo "<script type=\"text/javascript\">
+    window.location = \"index.php\";
+    </script>";
+    exit; // Add an exit statement to stop further execution
 }
 
-else{
+if (isset($_POST['submit'])) {
+    $alertStyle = "";
+    $statusMsg = "";
 
-echo "<script type = \"text/javascript\">
-    window.location = (\"index.php\")
-    </script>"; 
-}
+    $adminName = $_POST['adminName'];
+    $userName = $_POST['userName'];
+    $password = $_POST['password'];
+    $phoneNo = $_POST['phoneNo'];
+    $emailAddress = $_POST['emailAddress'];
+    $adminTypeId = $_POST['adminTypeId'];
 
-if(isset($_POST['submit'])){
+    // Check if the username already exists in the database
+    $stmt = $con->prepare("SELECT * FROM tbladmin WHERE ID != ? AND username = ?");
+    $stmt->bind_param('ss', $_SESSION['editId'], $userName);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-     $alertStyle ="";
-      $statusMsg="";
+    if ($result->num_rows > 0) {
+        // The username already exists
+        $alertStyle = "danger";
+        $statusMsg = "The User Name already exists.";
+    } else {
+        // Update the admin details in the database
+        $stmt = $con->prepare("UPDATE tbladmin SET AdminName=?, UserName=?, Password=?, Email=?, MobileNumber=?, adminTypeId=? WHERE ID=?");
+        $stmt->bind_param('sssssss', $adminName, $userName, $password, $emailAddress, $phoneNo, $adminTypeId, $_SESSION['editId']);
+        $ret = $stmt->execute();
 
-  $adminName=$_POST['adminName'];
-  $userName=$_POST['userName'];
-  $phoneNo=$_POST['phoneNo'];
-  $emailAddress=$_POST['emailAddress'];
-  $password =md5($_POST['password']);
-  $adminTypeId=$_POST['adminTypeId'];
-
-
-    $ret=mysqli_query($con,"update tbladmin set AdminName='$adminName', UserName='$userName', Email='$emailAddress', 
-    MobileNumber='$phoneNo', Password='$password', adminTypeId='$adminTypeId'  where ID='$_SESSION[editId]'");
-
-    if($ret == TRUE){
-
-        // echo "<script type = \"text/javascript\">
-        //         window.location = (\"viewAdmin.php\");
-        //         </script>";
-        $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
-    $statusMsg = "User Detail has been updated.";
-        // Add CSS to the success message
-        echo "<style>
-         .success {
-          background-color: #d4edda;
-           color: green;
-           font-weight: bold;
-         }
-        </style>";
+        if ($ret === TRUE) {
+            // The admin details have been updated successfully
+            $alertStyle = "success";
+            $statusMsg = "User Detail has been updated.";
+        } else {
+            // An error occurred while updating the admin details
+            $alertStyle = "danger";
+            $statusMsg = "An Error Occurred!";
+        }
     }
-    else {
+}
+?>
 
-      $alertStyle ="alert alert-danger";
-      $statusMsg="An Error Occurred!";
+<!-- Add CSS to display the error/success message -->
+<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
     }
 
-}
+    .success {
+        background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+    }
+</style>
 
-  ?>
+
+
+<!-- Add your HTML form and input fields here -->
+
+
+<!-- Add CSS to display the error/success message -->
+<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+    }
+</style>
 
 <!doctype html>
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
