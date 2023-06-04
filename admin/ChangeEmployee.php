@@ -12,7 +12,6 @@ $editId = isset($_GET['editid']) ? $_GET['editid'] : '';
 
 if (isset($_POST['remove'])) {
   $removeId = $_POST['remove'];
-
   
   // Retrieve an unassigned guard from tblguard
   $sql = "SELECT * FROM tblguard WHERE isAssigned = 0 AND isTrainer = 0 LIMIT 1";
@@ -23,10 +22,11 @@ if (isset($_POST['remove'])) {
   if ($guard) {
     $guardId = $guard->ID;
 
-    // Update the guard as assigned
-    $sql = "UPDATE tblguard SET isAssigned = 1 WHERE ID = :guardId";
+    // Update the guard as assigned and update the companyName
+    $sql = "UPDATE tblguard SET isAssigned = 1, companyName = (SELECT companyName FROM tblhiring WHERE GuardAssign LIKE CONCAT('%,', :removeId, ',%') OR GuardAssign LIKE CONCAT(:removeId, ',%') OR GuardAssign LIKE CONCAT('%,', :removeId) LIMIT 1) WHERE ID = :guardId";
     $query = $dbh->prepare($sql);
     $query->bindParam(':guardId', $guardId, PDO::PARAM_INT);
+    $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
     $query->execute();
 
     // Update the tblhiring table to include the new guard in GuardAssign column
@@ -47,12 +47,11 @@ if (isset($_POST['remove'])) {
   $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
   $query->execute();
 
-  // Update the tblguard table to mark the guard as unassigned
-  $sql = "UPDATE tblguard SET isAssigned = 0 WHERE ID = :removeId";
+  // Update the tblguard table to mark the guard as unassigned and update the companyName
+  $sql = "UPDATE tblguard SET isAssigned = 0, companyName = NULL WHERE ID = :removeId";
   $query = $dbh->prepare($sql);
   $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
   $query->execute();
-
 
   // Redirect to the same page to reflect the changes
   header("Location: viewChangeEmployee.php?editid=$editId");
