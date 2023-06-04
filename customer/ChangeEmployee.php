@@ -1,70 +1,104 @@
-<?php include 'dbconnection.php'?>
+<?php
+include('dbconnection.php');
+session_start();
+error_reporting(0);
+
+ if(isset($_POST['submit']))
+  {
+
+$booknum=mt_rand(100000000, 999999999);
+$user_id = $_SESSION["user_id"];
+
+
+
+
+     $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $email=$_POST['email'];
+    $mobnum=$_POST['mobnum'];
+    $add=$_POST['add'];
+   $reqnum=$_POST['reqnum'];
+   $gender=$_POST['gender'];
+   $companyName=$_POST['companyName'];
+ 
+
+$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Gender,companyName)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:gender,:companyName)";
+$query=$dbh->prepare($sql);
+$query->bindParam(':booknum',$booknum,PDO::PARAM_STR);
+$query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
+$query->bindParam(':fname',$fname,PDO::PARAM_STR);
+$query->bindParam(':lname',$lname,PDO::PARAM_STR);
+$query->bindParam(':email',$email,PDO::PARAM_STR);
+$query->bindParam(':mobnum',$mobnum,PDO::PARAM_STR);
+$query->bindParam(':add',$add,PDO::PARAM_STR);
+$query->bindParam(':reqnum',$reqnum,PDO::PARAM_STR);
+$query->bindParam(':gender',$gender,PDO::PARAM_STR);
+ $query->execute();
+   $LastInsertId=$dbh->lastInsertId();
+   if ($LastInsertId>0) {
+	$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
+	$statusMsg = "request has been book successfully. Booking Number is " . $booknum;
+     // Add CSS to the success message
+     echo "<style>
+      .success {
+       background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+      }
+     </style>";
+	
+//    echo '<script>alert("Hiring request has been book successfully. Booking Number is "+"'.$booknum.'")</script>';
+// echo "<script>window.location.href ='index.php'</script>";
+  }
+  else
+    {
+         echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    }
+}
+?>
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 <head>
- 
-  <title>Lion Security Services | View Guards</title>
-  <!-- Tell the browser to be responsive to screen width -->
-
-  <link href="../admin/dist/img/fav.png" rel="icon">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../admin/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/header.css"/>
-  <style>
-    #footer .social-links a {
-    font-size: 18px;
-    display: inline-block;
-    background: #007bff !important;
-    color: #fff;
-    line-height: 1;
-    padding: 8px 0;
-    margin-right: 4px;
-    border-radius: 50%;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    transition: 0.3s;
-}
-
-#footer .social-links a:hover {
-    background: #095bb1 !important;
-    color: #fff;
-    text-decoration: none;
-}
-  </style>
+	<title>lion security services |Request Guard</title>
+	<link href="assets/img/fav.png" rel="icon">	
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="css/nice-select.css"/>
+	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<!--<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
+	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/header.css"/>
+	
 </head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
- 
-  
-  <!-- Content Wrapper. Contains page content -->
-  <header id="header" class="fixed-top">
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	<!-- Header Section -->
+	</head>
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+	  <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
-    <ul>
+	  <ul>
   <li><a href="Home.php"><button type="button" class="btn btn-primary">Home</button></a></li>
   <li><a href="About us.php"><button type="button" class="btn btn-primary">About Us</button></a></li>
   <li><a href="contact us.php"><button type="button" class="btn btn-primary">Contact Us</button></a></li>
   <li class="drop-down">
     <button type="button" class="btn btn-primary">Request</button>
     <ul class="submenu">
-      <li><a href="index.php">Request Employee</a></li>
-      <li class="active"><a href="search-request.php">Check Request</a></li>
-      <li><a href="ChangeEmployee.php">Change Security</a></li>
+      <li ><a href="index.php">Request Employee</a></li>
+      <li><a href="search-request.php">Check Request</a></li>
+	  <li class="active"><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
@@ -74,192 +108,108 @@
       <li><a href="login/change-password.php">Change Password</a></li>
       <li><a href="login/logout.php">Logout</a></li>
     </ul>
-
   </li>
 </ul>
       </nav>
     </div>
   </header>
-  <br><br><br><br><br>
+	<?php //include_once('header.php');?>
+	<section class="page-top-section set-bg" data-setbg="">
+		
+	</section>
+	<!-- Page top Section end -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-    <div class="col-12">
-        
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">All Gurads List</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
+	<!-- Contact Section -->
+	<section class="contact-page-section spad overflow-hidden">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-lg-8">
+					<form class="singup-form contact-form" method="post">
+					 <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+						
+							<div class="col-md-6">
+							<label style="padding-top: 10px;">Guard Name</label>
+								<select name="gender" required="true" class="form-control">
+									<option value="">Choose Guard</option>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option vlaue="Both">Both</option>
+								</select>
+							</div>
+							<br>
+							<div class="col-md-12">
+					<label style="padding-top: 10px;">comment (Remark)</label>
+								<textarea placeholder="Enter comment(Remark)" name="add" required="true"></textarea>
+								 <input type="submit" class="btn btn-primary" value="send" name="submit">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Trainers Section end -->
 
-              
-<?php
-$editId = $_GET['editid']; // Assuming you are passing the 'editid' parameter in the URL
-
-include 'dbconnection.php';
-
-$sql = "SELECT * FROM tblguard WHERE ID = $editId";
-$query = $dbh->prepare($sql);
-$query->execute();
-$results = $query->fetchAll(PDO::FETCH_OBJ);
-
-if (isset($_POST['editid'])) {
-  $editid = $_POST['editid'];
-
-  // Remove the guard from the tblhiring table
-  $sql = "UPDATE tblhiring SET GuardAssign = REPLACE(CONCAT(',' ,GuardAssign, ','), ',$editid,', ',') WHERE GuardAssign LIKE '%,$editid,%' OR GuardAssign LIKE '$editid,%' OR GuardAssign LIKE '%,$editid'";
-  $query = $dbh->prepare($sql);
-  $query->execute();
-
-  // Redirect to the same page to reflect the changes
-  header("Location: search-request.php?editid=$editId");
-  exit;
-}
-?>
-
-<!-- Your HTML code -->
-
-<form method="POST" action="">
-  <input type="hidden" name="editid" value="<?php echo $editId; ?>">
-  <table id="example1" class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>ID Number</th>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>ID</th>
-        <th>Contact Number</th>
-        <th>Action</th> <!-- Added a new column for the remove button -->
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $cnt = 1;
-      foreach ($results as $row) {
-      ?>
-      <tr>
-        <td><?php echo $cnt ?></td>
-        <td><?php echo $row->ID; ?></td>
-        <td><img src="../admin/images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
-        <td><?php echo $row->Name; ?></td>
-        <td><?php echo $row->Address; ?></td>
-        <td><?php echo $row->IDnumber; ?></td>
-        <td><?php echo $row->MobileNumber; ?></td>
-        <td>
-          <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button> <!-- Button to remove the guard -->
-        </td>
-      </tr>
-      <?php
-        $cnt++;
-      }
-      ?>
-    </tbody>
-  </table>
-</form>
-
-
-
-<!-- Rest of your HTML code -->
-
-
-
-
-<!-- Rest of your HTML code -->
-
-
-              
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <br><br><br><br><br>
-  <footer id="footer">
+	
+	<!-- Footer Section -->
+	<footer id="footer">
 
 <div class="footer-top">
   <div class="container">
-    <div class="row">
+	<div class="row">
 
-    <div class="col-lg-9 col-md-6 footer-contact">
-        <h3>Lion Security Services</h3>
-        <p>
-          Ethiopia Addis Ababa,<br>
-          Mekanisa,<br><br>
-          <strong>Phone:</strong> +251 116 683333 , +251 930 519202<br>
-          <strong>Email:</strong> www.lionsecurityservices.com<br>
-        </p>
-      </div>
-      <div class="col-lg-2 col-md-6 footer-links">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
-        </ul>
-      </div>
-    
+	<div class="col-lg-9 col-md-6 footer-contact">
+		<h3>Lion Security Services</h3>
+		<p>
+		  Ethiopia Addis Ababa,<br>
+		  Mekanisa,<br><br>
+		  <strong>Phone:</strong> +251 116 683333 , +251 930 519202<br>
+		  <strong>Email:</strong> www.lionsecurityservices.com<br>
+		</p>
+	  </div>
+	  <div class="col-lg-2 col-md-6 footer-links">
+		<h4>Useful Links</h4>
+		<ul>
+		  <li><i class="bx bx-chevron-right"></i> <a href="Home.php">Home</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="About us.php" style="color:black !important;">About us</a></li>
+		  <li><i class="bx bx-chevron-right"></i> <a href="contact us.php" style="color:black !important;">Contact us</a></li>
+		</ul>
+	  </div>
+	
 <div class="container d-md-flex py-4">
 
   <div class="mr-md-auto text-center text-md-left">
-    <div class="copyright">
-      &copy; <strong><span>Lion Security Services PLC</span></strong> - <?php echo date('Y');?> - Developed By REHA TECH
-    </div>
-    <div class="credits">
-    </div>
+	<div class="copyright">
+	  &copy; <strong><span>Lion Security Services PLC</span></strong> - <?php echo date('Y');?> - Developed By REHA TECH
+	</div>
+	<div class="credits">
+	</div>
   </div>
   <div class="social-links text-center text-md-right pt-3 pt-md-0">
-    <a href="#" class="twitter"><i  style="color:#fff;" class="bx bxl-twitter"></i></a>
-    <a href="#" class="facebook"><i style="color:#fff;" class="bx bxl-facebook"></i></a>
-    <a href="#" class="instagram"><i style="color:#fff;" class="bx bxl-instagram"></i></a>
-    <a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
-    <a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
+	<a href="#" class="twitter"><i  style="color:#fff;" class="bx bxl-twitter"></i></a>
+	<a href="#" class="facebook"><i style="color:#fff;" class="bx bxl-facebook"></i></a>
+	<a href="#" class="instagram"><i style="color:#fff;" class="bx bxl-instagram"></i></a>
+	<a href="#" class="google-plus"><i style="color:#fff;" class="bx bxl-skype"></i></a>
+	<a href="#" class="linkedin"><i style="color:#fff;" class="bx bxl-linkedin"></i></a>
   </div>
 </div>
-</footer><!-- End Footer -->
+</footer>
+	<!-- Footer Section end -->
+	
+	<div class="back-to-top"><img src="img/icons/up-arrow.png" alt=""></div>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+	<!-- Search model -->
+	
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/vendor/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/main.js"></script>
 
-<!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../admin/plugins/datatables/jquery.dataTables.js"></script>
-<script src="../admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<!-- AdminLTE App -->
-<script src="../admin/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../admin/dist/js/demo.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-</script>
-</body>
+	</body>
 </html>
