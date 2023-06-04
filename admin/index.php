@@ -1,46 +1,54 @@
-
-<?php 
+<?php
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 
-if(isset($_POST['login'])) 
-  {
-    $username=$_POST['username'];
-    $password=md5($_POST['password']);
-    $sql ="SELECT ID FROM tbladmin WHERE UserName=:username and Password=:password";
-    $query=$dbh->prepare($sql);
-    $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':password', $password, PDO::PARAM_STR);
-    $query-> execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    if($query->rowCount() > 0)
-{
-foreach ($results as $result) {
-$_SESSION['osghsaid']=$result->ID;
-}
+if (isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = md5($_POST['password']);
 
-  if(!empty($_POST["remember"])) {
-//COOKIES for username
-setcookie ("user_login",$_POST["username"],time()+ (10 * 365 * 24 * 60 * 60));
-//COOKIES for password
-setcookie ("userpassword",$_POST["password"],time()+ (10 * 365 * 24 * 60 * 60));
-} else {
-if(isset($_COOKIE["user_login"])) {
-setcookie ("user_login","");
-if(isset($_COOKIE["userpassword"])) {
-setcookie ("userpassword","");
+  $sql = "SELECT ID, FirstTime FROM tbladmin WHERE UserName = :username AND Password = :password";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':username', $username, PDO::PARAM_STR);
+  $query->bindParam(':password', $password, PDO::PARAM_STR);
+  $query->execute();
+  $result = $query->fetch(PDO::FETCH_OBJ);
+
+  if ($query->rowCount() > 0) {
+    if ($result->FirstTime == 0) {
+      // User's first-time login, redirect to change password page
+      $_SESSION['osghsaid'] = $result->ID;
+      $_SESSION['login'] = $_POST['username'];
+      echo "<script type='text/javascript'> document.location ='change-password.php'; </script>";
+      exit;
+    } else {
+      // User has already changed their password
+      $_SESSION['osghsaid'] = $result->ID;
+
+      if (!empty($_POST["remember"])) {
+        // COOKIES for username
+        setcookie("user_login", $_POST["username"], time() + (10 * 365 * 24 * 60 * 60));
+        // COOKIES for password
+        setcookie("userpassword", $_POST["password"], time() + (10 * 365 * 24 * 60 * 60));
+      } else {
+        if (isset($_COOKIE["user_login"])) {
+          setcookie("user_login", "");
+          if (isset($_COOKIE["userpassword"])) {
+            setcookie("userpassword", "");
+          }
         }
       }
-}
-$_SESSION['login']=$_POST['username'];
-echo "<script type='text/javascript'> document.location ='component.php'; </script>";
-} else{
-$errormsg="Invalid Email or Password Please Try Again. ";
-}
-}
 
+      $_SESSION['login'] = $_POST['username'];
+      echo "<script type='text/javascript'> document.location ='component.php'; </script>";
+      exit;
+    }
+  } else {
+    $errormsg = "Invalid Email or Password. Please try again.";
+  }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
