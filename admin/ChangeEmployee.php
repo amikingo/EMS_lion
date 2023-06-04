@@ -6,20 +6,14 @@ include 'includes/dbconnection.php';
 
 $editId = isset($_GET['editid']) ? $_GET['editid'] : '';
 
+// ...
+
+// ...
+
 if (isset($_POST['remove'])) {
   $removeId = $_POST['remove'];
 
-  // Remove the guard from the tblhiring table
-  $sql = "UPDATE tblhiring SET GuardAssign = REPLACE(CONCAT(',' ,GuardAssign, ','), ',$removeId,', ',') WHERE GuardAssign LIKE '%,$removeId,%' OR GuardAssign LIKE '$removeId,%' OR GuardAssign LIKE '%,$removeId'";
-  $query = $dbh->prepare($sql);
-  $query->execute();
-
-  // Update the tblguard table to mark the guard as unassigned
-  $sqli = "UPDATE tblguard SET isAssigned = 0 WHERE ID = :removeId";
-  $query = $dbh->prepare($sqli);
-  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
-  $query->execute();
-
+  
   // Retrieve an unassigned guard from tblguard
   $sql = "SELECT * FROM tblguard WHERE isAssigned = 0 AND isTrainer = 0 LIMIT 1";
   $query = $dbh->prepare($sql);
@@ -40,14 +34,38 @@ if (isset($_POST['remove'])) {
     $query = $dbh->prepare($sql);
     $query->bindParam(':guardId', $guardId, PDO::PARAM_INT);
     $query->execute();
+  } else {
+    // If no unassigned guard is available, handle the appropriate action (e.g., display an error message).
+    // You can customize this part based on your requirements.
+    echo "No unassigned guard available";
+    exit;
   }
+
+  // Remove the guard from the tblhiring table
+  $sql = "UPDATE tblhiring SET GuardAssign = TRIM(BOTH ',' FROM REPLACE(CONCAT(',', GuardAssign, ','), ',$removeId,', ',')) WHERE GuardAssign LIKE CONCAT('%,', :removeId, ',%') OR GuardAssign LIKE CONCAT(:removeId, ',%') OR GuardAssign LIKE CONCAT('%,', :removeId)";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->execute();
+
+  // Update the tblguard table to mark the guard as unassigned
+  $sql = "UPDATE tblguard SET isAssigned = 0 WHERE ID = :removeId";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->execute();
+
 
   // Redirect to the same page to reflect the changes
   header("Location: viewChangeEmployee.php?editid=$editId");
   exit;
 }
 
+// ...
+
+// Rest of your code goes here
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
