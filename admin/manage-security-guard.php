@@ -106,7 +106,7 @@ if (empty($_SESSION['osghsaid'])) {
                 </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblguard where isTrainer = '0' AND trash = '0'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
