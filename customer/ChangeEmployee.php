@@ -1,23 +1,50 @@
 <?php
-include('dbconnection.php');
-session_start();
-//error_reporting(0);
- $user_id = $_SESSION["user_id"];
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include 'dbconnection.php';
+
+$editId = isset($_GET['editid']) ? $_GET['editid'] : '';
+
+// ...
+
+// ...
+
+if (isset($_POST['remove'])) {
+  $removeId = $_POST['remove'];
+  $data = $_POST['data'];
+  // Retrieve an unassigned guard from tblguard
+  $sql = "UPDATE tblhiring SET data = '$data' WHERE ID = :removeId";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->execute();
+
+  // Redirect to the same page to reflect the changes
+header("Location: viewGuardsList.php?editid=$editId");
+  exit;
+}
+
+// ...
+
+// Rest of your code goes here
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<link href="assets/img/fav.png" rel="icon">
-	<title>lion security services |Search Request</title>	
+	<title>lion security services |Request Guard</title>
+	<link href="assets/img/fav.png" rel="icon">	
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
 	<link rel="stylesheet" href="css/nice-select.css"/>
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<!--<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
 	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/header.css"/>
+	
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -31,7 +58,7 @@ session_start();
     <div class="container d-flex align-items-center">
       <a class="navbar-brand" href="index.php"></a>
    
-      <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
+	  <img alt="logo" src="../assets/img/LOGO.png" style="width: 800px;height: 50px;">
       
 
       <nav class="nav-menu d-none d-lg-block"style="margin-left: 400px;">
@@ -42,9 +69,9 @@ session_start();
   <li class="drop-down">
     <button type="button" class="btn btn-primary">Request</button>
     <ul class="submenu">
-      <li><a href="index.php">Request Employee</a></li>
-      <li ><a href="search-request.php">Check Request</a></li>
-  <li class="active"><a href="ChangeEmployee.php">Change Security</a></li>
+      <li ><a href="index.php">Request Employee</a></li>
+      <li><a href="search-request.php">Check Request</a></li>
+	  <li class="active"><a href="ChangeEmployee.php">Change Security</a></li>
     </ul>
   </li>
   <li class="drop-down">
@@ -54,114 +81,107 @@ session_start();
       <li><a href="login/change-password.php">Change Password</a></li>
       <li><a href="login/logout.php">Logout</a></li>
     </ul>
-
   </li>
 </ul>
       </nav>
     </div>
   </header>
-	
-	<section class="page-top-section set-bg" data-setbg="img/page-top-bg.jpg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-7 m-auto text-white">
-					<h2>Search Request</h2>
-				</div>
-			</div>
-		</div>
+	<?php //include_once('header.php');?>
+	<section class="page-top-section set-bg" data-setbg="">
+		
 	</section>
 	<!-- Page top Section end -->
 
 	<!-- Contact Section -->
 	<section class="contact-page-section spad overflow-hidden">
 		<div class="container">
-<div class="form-body">
-	<br><br><br>
-	<form role="form" method="post" name="printReport" action="">
+			
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>View More About Trainee</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="trainerLists.php">Home</a></li>
+              <li class="breadcrumb-item active">View More About Trainee</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-
-  
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">All Request</h3>
+            </div>
+            <div class="card-body">
+              <form method="POST" action="">
+                <input type="hidden" name="editid" value="<?php echo $editId; ?>">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>S.No</th>
-                    <th>Booking Number</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Contact Number</th>
-                    <th>Company Name</th>
-					<th>Remark</th>
-                    <th>Guard Ids</th>
-                <th>Remark for the change of Guard</th>
-    <th>Change Guard</th>
-                    
-
-                    
-                  </tr>
+                    <tr>
+                      <th>S.No</th>
+                      <th>ID Number</th>
+                      <th>Photo</th>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>ID</th>
+                      <th>Contact Number</th>
+                      <th>Action</th>
+                    </tr>
                   </thead>
                   <tbody>
-      <?php
-$aid = $_SESSION['user_id'];
-
-//$companyName = $_POST['companyName'];
-
-$mema = "SELECT companyName FROM users WHERE id=:aid";
-$mema_query = $dbh->prepare($mema);
-$mema_query->bindParam(':aid', $aid, PDO::PARAM_STR);
-$mema_query->execute();
-$mema_result = $mema_query->fetch(PDO::FETCH_OBJ);
-$companyName = $mema_result->companyName;
-
-$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName ";
-$query = $dbh->prepare($sql);
-$query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
-$query->execute();
-$results = $query->fetchAll(PDO::FETCH_OBJ);
-
-$cnt = 1;
-if ($query->rowCount() > 0) {
-    foreach ($results as $row) {
-?>
-        <tr>
-            <td><?php echo htmlentities($cnt); ?></td>
-            <td><?php echo htmlentities($row->BookingNumber); ?></td>
-            <td><?php echo htmlentities($row->FirstName); ?> <?php echo htmlentities($row->LastName); ?></td>
-            <td><?php echo htmlentities($row->Email); ?></td>
-            <td><?php echo htmlentities($row->MobileNumber); ?></td>
-            <td><?php echo htmlentities($row->companyName); ?></td>
-			<td><?php echo htmlentities($row->Remark); ?></td>
-
-            <td><?php echo htmlentities($row->GuardAssign)?></td>
-<td><textarea name="data" rows="5" cols="50"></textarea></td>
-<td><button name="submit" type="submit" class="btn btn-primary">Update</button></td>
-
-           
-        </tr>
-        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
-<?php
-        $cnt = $cnt + 1;
-    }
-}
-else {
-?>
-    <tr>
-        <td colspan="8"> No record found against this search</td>
-    </tr>
-
-
-  <?php } ?>
-                 
-
+                    <?php
+                    $sql = "SELECT * FROM tblguard WHERE ID = :editId";
+                    $query = $dbh->prepare($sql);
+                    $query->bindParam(':editId', $editId, PDO::PARAM_INT);
+                    $query->execute();
+                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                    $cnt = 1;
+                    if ($results) {
+                      foreach ($results as $row) {
+                        ?>
+            <input type="hidden" name="data" value="<?php echo $row->ID; ?>">
+                        <tr>
+                          <td><?php echo $cnt ?></td>
+                          <td><?php echo $row->ID; ?></td>
+                          <td><img src="..images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
+                          <td><?php echo $row->Name; ?></td>
+                          <td><?php echo $row->Address; ?></td>
+                          <td><?php echo $row->IDnumber; ?></td>
+                          <td><?php echo $row->MobileNumber; ?></td>
+                          <td>
+                            <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button>
+                          </td>
+                        </tr>
+                        <?php
+                        $cnt++;
+                      }
+                    } else {
+                      echo '<tr><td colspan="8">No data available</td></tr>';
+                    }
+                    ?>
+                  </tbody>
                 </table>
-            </form>
-              </div>
-
-			</div>
-		</div>
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
 	</section>
 	<!-- Trainers Section end -->
 
-	<br><br>
+	
 	<!-- Footer Section -->
 	<footer id="footer">
 
