@@ -57,6 +57,7 @@
                 <?php
   $Customer = $_POST['Customer'];
   $guards = $_POST['Guards'];
+  $Remark = $_POST['Remark'];
   $guard_names = explode('<DATA>', $guards);
 ?>
 <input type="hidden" name="Customer" value="<?php echo $Customer;?>">
@@ -71,6 +72,7 @@
       <th>Address</th>
       <th>ID</th>
       <th>Contact Number</th>
+      <th>Remark Sent By The Customer</th>
       <th>Remove Guard</th>                    
     </tr>
   </thead>
@@ -92,6 +94,7 @@
       <td><?php echo htmlentities($row->Address);?></td>
       <td><?php echo htmlentities($row->ID);?></td>
       <td><?php echo htmlentities($row->MobileNumber);?></td>
+      <td><?php echo $Remark;?></td>
       <td><a href="ChangeEmployee.php?editid=<?php echo urlencode($row->ID); ?>" title="View"> <button type="button" class="btn btn-primary">change</button></a></td>
 
     </tr>
