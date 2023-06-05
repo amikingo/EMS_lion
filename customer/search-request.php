@@ -145,7 +145,10 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 $cnt = 1;
 if ($query->rowCount() > 0) {
     foreach ($results as $row) {
+
 ?>
+        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
+        <input type="hidden" name="Customer" value="<?php echo htmlentities($row->ID);?>">
         <tr>
             <td><?php echo htmlentities($cnt); ?></td>
             <td><?php echo htmlentities($row->BookingNumber); ?></td>
@@ -170,12 +173,11 @@ if ($query->rowCount() > 0) {
 
             <?php } ?>
         </tr>
-        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
-        <input type="hidden" name="Customer" value="<?php echo htmlentities($row->ID);?>">
+
 <?php
-        $cnt = $cnt + 1;
+        $cnt = $cnt + 1; break;
     }
-}
+} 
 else {
 ?>
     <tr>
