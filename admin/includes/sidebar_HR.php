@@ -112,6 +112,12 @@ $new_booking_row_count = $query->rowCount();
           <p>Change Security Employee</p>
                 </a>
               </li>
+              <li class="nav-item">
+            <a href="DeletedEmployee.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Deleted Employee</p>
+                </a>
+              </li>
              </ul>
           </li>
           <li class="nav-item has-treeview">
