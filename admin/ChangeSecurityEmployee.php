@@ -98,6 +98,7 @@ foreach($results as $row)
 
    ?>
   <input type="text" class="form-control" id="formType" name="Customer" value="<?php echo $dataArray[0]?>">
+  <input type="text" class="form-control" id="formType" name="Remark" value="<?php echo $dataArray[1]?>">
 <input type="hidden" class="form-control" id="formType" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>" required='true'>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>
