@@ -78,20 +78,7 @@ session_start();
 			
 			<div class="row">
 		
-				<div class="col-lg-8">
-					<form class="singup-form contact-form" method="post">
-						<div class="row">
-							<div class="col-md-12">
-								<label style="padding-bottom: 10px;">Search Booking</label>
-								<input id="searchdata" type="text" name="searchdata" required="true" class="form-control" placeholder="Enter Your Booking Number">
-							</div>
-							<br>
-							<div class="col-md-12">
-								 <button type="submit" class="btn btn-primary" name="search" id="submit">Search</button>
-							</div>
-						</div>
-					</form>
-				</div>
+
 				
 				
 			</div>
@@ -99,13 +86,7 @@ session_start();
 	<br><br><br>
 	<form role="form" method="post" name="printReport" action="viewGuardsList.php">
 
-                  <?php
-if(isset($_POST['search']))
-{ 
 
-$sdata=$_POST['searchdata'];
-  ?>
-  <h4 align="center">Result against "<?php echo $sdata;?>" keyword </h4>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -136,7 +117,7 @@ $mema_query->execute();
 $mema_result = $mema_query->fetch(PDO::FETCH_OBJ);
 $companyName = $mema_result->companyName;
 
-$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName AND BookingNumber LIKE '$sdata%'";
+$sql = "SELECT * FROM tblhiring WHERE  companyName=:companyName";
 $query = $dbh->prepare($sql);
 $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
 $query->execute();
@@ -182,7 +163,7 @@ else {
     </tr>
 
 
-  <?php } }?>
+  <?php } ?>
                  
 
                 </table>
