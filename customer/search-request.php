@@ -175,7 +175,8 @@ if ($query->rowCount() > 0) {
         </tr>
 
 <?php
-        $cnt = $cnt + 1; break;
+break;
+        $cnt = $cnt + 1; 
     }
 } 
 else {
@@ -185,7 +186,7 @@ else {
     </tr>
 
 
-  <?php } }?>
+  <?php } } ?>
                  
 
                 </table>

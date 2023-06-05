@@ -95,7 +95,7 @@
             <div class="card-body">
       
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
-                <<?php
+                <?php
 $Customer = $_POST['Customer'];
 $guards = $_POST['Guards'];
 $guard_names = explode(',', $guards);
