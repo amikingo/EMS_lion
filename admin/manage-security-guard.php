@@ -1,35 +1,41 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
-error_reporting(0);
+
 include('includes/dbconnection.php');
-if (strlen($_SESSION['osghsaid']==0)) {
-  header('location:logout.php');
-  } else{
+if (empty($_SESSION['osghsaid'])) {
+    header('location:logout.php');
+} else {
+    // Code for Deletion
+    if (isset($_GET['delid'])) {
+        $gid = $_GET['delid'];
+        $query = $dbh->prepare("UPDATE tblguard SET isAssigned = '0', trash = '1', companyName = '', expiration_interval = '0', expir_date = '0000-00-00'  WHERE ID = :gid");
+        $query->bindParam(':gid', $gid, PDO::PARAM_STR);
+        if ($query->execute()) {
+            $alertStyle = "success";
+            $statusMsg = "Record has been deleted.";
+        } else {
+            $alertStyle = "danger";
+            $statusMsg = "Failed to delete record.";
+        }
+    }
 
-//Code for Deletion
- if ($_GET['delid']) {
-$gid=$_GET['delid'];
-$query=$dbh -> prepare("delete from tblguard where ID='$gid'");
-$query->execute();
-$alertStyle = "danger";
-$statusMsg = "Record has been deleted.";
-// Add CSS to the error message
-echo "<style>
- .danger {
-background-color: #f8d7da;
-   color: red;
-   font-weight: bold;
-   align-items: center;
-   justify-content: center;
-   display: flex;
-   padding: 10px;
- }
-</style>";
-  // echo '<script>alert("Record has been deleted")</script>';
-//echo "<script>window.location.href ='manage-security-guard.php'</script>";
-    }   
+    // Add CSS to the error message
+    echo "<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 10px;
+    }
+    </style>";
 
-  ?>
+    // Rest of the code
+?>
 <!DOCTYPE html>
 <html>
 <head>
