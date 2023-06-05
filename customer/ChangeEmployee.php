@@ -1,60 +1,44 @@
 <?php
 include('dbconnection.php');
 session_start();
-error_reporting(0);
-
- if(isset($_POST['submit']))
-  {
-
-$booknum=mt_rand(100000000, 999999999);
-$user_id = $_SESSION["user_id"];
 
 
+if(isset($_POST['submit'])) {
+    // Get the selected guard and remark from the form
+    $guardId = $_POST['gender'];
+    $remark = $_POST['add'];
 
+    // Fetch the guard name based on the selected guardId
+    $sql = "SELECT Name FROM tblguard WHERE ID = :guardId";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':guardId', $guardId, PDO::PARAM_STR);
+    $query->execute();
+    $guard = $query->fetch(PDO::FETCH_ASSOC);
+    $guardName = $guard['Name'];
 
-     $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $email=$_POST['email'];
-    $mobnum=$_POST['mobnum'];
-    $add=$_POST['add'];
-   $reqnum=$_POST['reqnum'];
-   $gender=$_POST['gender'];
-   $companyName=$_POST['companyName'];
- 
+    // Get the current session's companyName
+    $companyName = $_SESSION['user_id'];
 
-$sql="insert into tblhiring(BookingNumber,FirstName,LastName,Email,MobileNumber,Address,RequirementNumber,Gender,companyName)values(:booknum,:fname,:lname,:email,:mobnum,:add,:reqnum,:gender,:companyName)";
-$query=$dbh->prepare($sql);
-$query->bindParam(':booknum',$booknum,PDO::PARAM_STR);
-$query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':lname',$lname,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
-$query->bindParam(':mobnum',$mobnum,PDO::PARAM_STR);
-$query->bindParam(':add',$add,PDO::PARAM_STR);
-$query->bindParam(':reqnum',$reqnum,PDO::PARAM_STR);
-$query->bindParam(':gender',$gender,PDO::PARAM_STR);
- $query->execute();
-   $LastInsertId=$dbh->lastInsertId();
-   if ($LastInsertId>0) {
-	$alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
-	$statusMsg = "request has been book successfully. Booking Number is " . $booknum;
-     // Add CSS to the success message
-     echo "<style>
-      .success {
-       background-color: #d4edda;
-        color: green;
-        font-weight: bold;
-      }
-     </style>";
-	
-//    echo '<script>alert("Hiring request has been book successfully. Booking Number is "+"'.$booknum.'")</script>';
-// echo "<script>window.location.href ='index.php'</script>";
-  }
-  else
-    {
-         echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    // Combine the guard name and remark as comma-separated values
+    $data = $guardName . ', ' . $remark;
+
+    // Update the data in the database for the current session's companyName
+    $sql = "UPDATE tblhiring SET data = CONCAT(data, ', ', :data) WHERE companyName = :companyName";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':data', $data, PDO::PARAM_STR);
+    $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
+    $query->execute();
+
+    // Check if the update was successful
+    if($query) {
+        $statusMsg = "Data updated successfully!";
+        $alertStyle = "alert alert-success";
+    } else {
+        $statusMsg = "Error updating data!";
+        $alertStyle = "alert alert-danger";
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -144,14 +128,57 @@ foreach($results as $row)
 								<input type="text" placeholder="Phone Number" class="form-control" name="companyName" required="true" maxlength="10" pattern="[0-9]+"  value="<?php  echo $row->companyName;?>"readonly>
 								
 							</div>
-							 <?php $cnt=$cnt+1;}} ?> 
+							  
+<div class="col-md-6">
+							<label style="padding-top: 10px;">Booking Number</label>
+								<select name="bookingNumber" required="true" class="form-control">
+									<option value="">Choose Booking Number</option>
+									        <?php
+        include('dbconnection.php');
+        // Fetch the guards from tblguard where isAssigned = 0 and isTrainer = 0
+        $companyName = $row->companyName;
+        $sql = "SELECT * FROM tblhiring WHERE companyName = '$companyName'";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $booking = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // Loop through the guards and create the options
+        foreach ($booking as $bookingNumber) {
+            $bookingNumber = $bookingNumber['BookingNumber'];
+            
+            ?>
+            <option value="<?php echo $bookingNumber; ?>"><?php echo $bookingNumber; ?></option>
+                   <?php
+        }
+        ?>
+									</select>
+							</div>
+
+
 							<div class="col-md-6">
 							<label style="padding-top: 10px;">Guard Name</label>
 								<select name="gender" required="true" class="form-control">
 									<option value="">Choose Guard</option>
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-									<option vlaue="Both">Both</option>
+        <?php
+        include('dbconnection.php');
+        // Fetch the guards from tblguard where isAssigned = 0 and isTrainer = 0
+        $companyName = $row->companyName;
+        $sql = "SELECT * FROM tblguard WHERE isAssigned = 1 AND companyName = '$companyName'";
+        $query = $dbh->prepare($sql);
+        $query->execute();
+        $guards = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        // Loop through the guards and create the options
+        foreach ($guards as $guard) {
+            $guardId = $guard['ID'];
+            $guardName = $guard['Name'];
+            ?>
+            <option value="<?php echo $guardId; ?>"><?php echo $guardName; ?></option>
+
+             <?php
+        }
+        ?>
+        <?php $cnt=$cnt+1;}} ?>
 								</select>
 							</div>
 							<br>
