@@ -106,10 +106,42 @@ $new_booking_row_count = $query->rowCount();
                   <p>Manage Training Personnel</p>
                 </a>
               </li>
+              <?php
+
+$sql="SELECT * FROM tblhiring WHERE data IS NOT NULL";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$change_employee_sec = $query->rowCount();
+
+?>
+
+
+          
+ 
+<style type="text/css">
+.notify-badge {
+    height: 5;
+    background: green;
+    color: white;
+    border-radius: 100px;
+    /* padding: 5px; */
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+</style> 
               <li class="nav-item">
                 <a href="ChangeSecurityEmployee.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-          <p>Change Security Employee</p>
+       <p>Change Security Employee 
+       <?php if($$change_employee_sec) {  echo "<span class='notify-badge'>" . $change_employee_sec . "</span>"; } ?>
+       </p>
                 </a>
               </li>
               <li class="nav-item">
