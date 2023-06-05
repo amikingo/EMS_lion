@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('dbconnection.php');
 session_start();
 
@@ -108,79 +110,96 @@ if(isset($_POST['submit'])) {
 		<div class="container">
 			
 			<div class="row">
-				<div class="col-lg-8">
-					<form class="singup-form contact-form" method="post">
-					 <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
-						<?php	
-						$aid=$_SESSION['user_id'];
-						$sql="SELECT * from users Where id=:aid";
-						$query = $dbh -> prepare($sql);
-						$query->bindParam(':aid',$aid,PDO::PARAM_STR);
-						$query->execute();
-						$results=$query->fetchAll(PDO::FETCH_OBJ);
-						$cnt=1;
-						if($query->rowCount() > 0)
-							{
-foreach($results as $row)
-{               ?>
-								<div class="col-md-6">
-								<label style="padding-bottom: 10px;">Company Name</label>
-								<input type="text" placeholder="Phone Number" class="form-control" name="companyName" required="true" maxlength="10" pattern="[0-9]+"  value="<?php  echo $row->companyName;?>"readonly>
-								
-							</div>
-							  
-<div class="col-md-6">
-							<label style="padding-top: 10px;">Booking Number</label>
-								<select name="bookingNumber" required="true" class="form-control">
-									<option value="">Choose Booking Number</option>
-									        <?php
-        include('dbconnection.php');
-        // Fetch the guards from tblguard where isAssigned = 0 and isTrainer = 0
-        $companyName = $row->companyName;
-        $sql = "SELECT * FROM tblhiring WHERE companyName = '$companyName'";
-        $query = $dbh->prepare($sql);
-        $query->execute();
-        $booking = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        // Loop through the guards and create the options
-        foreach ($booking as $bookingNumber) {
-            $bookingNumber = $bookingNumber['BookingNumber'];
-            
+    <div class="col-lg-8">
+        <form class="singup-form contact-form" method="post">
+            <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></div>
+            <?php	
+            $aid=$_SESSION['user_id'];
+            $sql="SELECT * from users Where id=:aid";
+            $query = $dbh -> prepare($sql);
+            $query->bindParam(':aid',$aid,PDO::PARAM_STR);
+            $query->execute();
+            $results=$query->fetchAll(PDO::FETCH_OBJ);
+            $cnt=1;
+            if($query->rowCount() > 0) {
+                foreach($results as $row) {               
             ?>
-            <option value="<?php echo $bookingNumber; ?>"><?php echo $bookingNumber; ?></option>
-                   <?php
-        }
-        ?>
-									</select>
-							</div>
+                <div class="col-md-6">
+                    <label style="padding-bottom: 10px;">Company Name</label>
+                    <input type="text" placeholder="Phone Number" class="form-control" name="companyName" required="true" maxlength="10" pattern="[0-9]+"  value="<?php echo $row->companyName;?>" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label style="padding-top: 10px;">Booking Number</label>
+                    <select name="bookingNumber" required="true" class="form-control">
+                        <option value="">Choose Booking Number</option>
+                        <?php
+                        include('dbconnection.php');
+                        // Fetch the booking numbers for the current companyName
+                        $companyName = $row->companyName; // Assuming $row->companyName is available
+                        $sql = "SELECT * FROM tblhiring WHERE companyName = :companyName";
+                        $query = $dbh->prepare($sql);
+                        $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
+                        $query->execute();
+                        $bookings = $query->fetchAll(PDO::FETCH_ASSOC);
 
+                        // Loop through the bookings and create the options
+                        foreach ($bookings as $booking) {
+                            $bookingNumberValue = $booking['BookingNumber'];
+                        ?>
+                        <option value="<?php echo $bookingNumberValue; ?>"><?php echo $bookingNumberValue; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
 
-							<div class="col-md-6">
-							<label style="padding-top: 10px;">Guard Name</label>
-								<select name="gender" required="true" class="form-control">
-									<option value="">Choose Guard</option>
-        <?php
-        include('dbconnection.php');
-        // Fetch the guards from tblguard where isAssigned = 0 and isTrainer = 0
-        $companyName = $row->companyName;
-        $sql = "SELECT * FROM tblguard WHERE isAssigned = 1 AND companyName = '$companyName'";
-        $query = $dbh->prepare($sql);
-        $query->execute();
-        $guards = $query->fetchAll(PDO::FETCH_ASSOC);
+                <div class="col-md-6">
+                    <label style="padding-top: 10px;">Guard Name</label>
+                    <select name="guardName" required="true" class="form-control">
+                        <option value="">Choose Guard</option>
+                        <?php
+                        include('dbconnection.php');
+                        // Fetch the guard IDs from tblhiring based on the selected booking number
+                        if(isset($_POST['bookingNumber'])){
+                            $selectedBookingNumber = $_POST['bookingNumber'];
+                            $sql = "SELECT GuardAssign FROM tblhiring WHERE BookingNumber = :selectedBookingNumber";
+                            $query = $dbh->prepare($sql);
+                            $query->bindParam(':selectedBookingNumber', $selectedBookingNumber, PDO::PARAM_STR);
+                            $query->execute();
+                            $row = $query->fetch(PDO::FETCH_ASSOC);
 
-        // Loop through the guards and create the options
-        foreach ($guards as $guard) {
-            $guardId = $guard['ID'];
-            $guardName = $guard['Name'];
+                            if($row){
+                                // Fetch the guards from tblguard where isAssigned = 1 and ID is in the parsed GuardAssign
+                                $guardIds = explode(',', $row['GuardAssign']);
+                                $placeholders = implode(',', array_fill(0, count($guardIds), '?'));
+                                $sql = "SELECT * FROM tblguard WHERE isAssigned = 1 AND ID IN ($placeholders)";
+                                $query = $dbh->prepare($sql);
+                                $query->execute($guardIds);
+                                $guards = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                                // Loop through the guards and create the options
+                                foreach ($guards as $guard) {
+                                    $guardId = $guard['ID'];
+                                    $guardName = $guard['Name'];
+                                ?>
+                                <option value="<?php echo $guardId; ?>"><?php echo $guardName; ?></option>
+                                <?php
+                                }
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            <?php
+                } // End of foreach($results as $row)
+            } // End of if($query->rowCount() > 0)
             ?>
-            <option value="<?php echo $guardId; ?>"><?php echo $guardName; ?></option>
+        </form>
+    </div>
+</div>
 
-             <?php
-        }
-        ?>
-        <?php $cnt=$cnt+1;}} ?>
-								</select>
-							</div>
+
+
 							<br>
 							<div class="col-md-12">
 					<label style="padding-top: 10px;">comment (Remark)</label>
