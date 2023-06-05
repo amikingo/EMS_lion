@@ -94,13 +94,12 @@ background-color: #f8d7da;
                   <th>Name</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
+              
                 
                 </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblguard where trash = '1'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -115,26 +114,6 @@ foreach($results as $row)
                   <td><?php  echo htmlentities($row->Name);?></td>
                   <td><?php  echo htmlentities($row->MobileNumber);?></td>
               <td><?php  echo htmlentities($row->RegistrationDate);?></td>
-              <td><?php  if($row->isAssigned =="1")
-
-{
-echo "Assigned";
-
-} else{
-
-
-
- ($row->isAssigned=="0");
- {
-echo "Unsigned";
- }
-
- ;}?> </td>
-                  <td> <a href="edit-guard-detail.php?editid=<?php echo htmlentities ($row->ID);?>" class="btn btn-primary">Edit</a>
-
-<a href="manage-security-guard.php?delid=<?php echo htmlentities ($row->ID);?>" onClick="return confirm('Do you really want to delete?');" class="btn btn-danger">Delete</a>
-
-                  </td>
                 </tr>      
                 <?php $cnt=$cnt+1;}} ?> 
               </table>
