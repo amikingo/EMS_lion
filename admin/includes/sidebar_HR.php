@@ -247,7 +247,12 @@ $new_users = $queryme->rowCount();
                   <p>Manage Customers</p>
                 </a>
               </li>
-
+              <li class="nav-item">
+                <a href="manageCustomerDetaile.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+               <p>Edit Customers Detaile </p>
+                </a>
+              </li>
              </ul>
 
           </li> 
