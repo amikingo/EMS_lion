@@ -81,7 +81,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                 </thead>
                <?php
                $Guards = $_POST['Guards'];
-$sql="SELECT * from tblhiring Where Status = 'Accepted'";
+$sql = "SELECT * FROM tblhiring WHERE data IS NOT NULL";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -91,6 +91,13 @@ if($query->rowCount() > 0)
 {
 foreach($results as $row)
 {               ?>
+  <?php 
+  $data = $row->data;
+ $dataArray = explode('<DATA>', $data);
+
+
+   ?>
+  <input type="text" class="form-control" id="formType" name="Customer" value="<?php echo $dataArray[0]?>">
 <input type="hidden" class="form-control" id="formType" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>" required='true'>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>

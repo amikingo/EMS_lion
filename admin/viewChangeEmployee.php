@@ -55,11 +55,11 @@
 
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
                 <?php
-  
+  $Customer = $_POST['Customer'];
   $guards = $_POST['Guards'];
-  $guard_names = explode(',', $guards);
+  $guard_names = explode('<DATA>', $guards);
 ?>
-
+<input type="hidden" name="Customer" value="<?php echo $Customer;?>">
 <input type="hidden" name="Guards" value="<?php echo $guards;?>">
 <div class="card-body">
 <table id="example1" class="table table-bordered table-striped">
@@ -77,10 +77,10 @@
   <tbody>
     <?php
       $cnt = 1;
-      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
-      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
+      // $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
+      $sql = "SELECT * FROM tblguard WHERE ID = $Customer ";
       $query = $dbh->prepare($sql);
-      $query->execute($guard_names);
+      $query->execute();
       $results = $query->fetchAll(PDO::FETCH_OBJ);
       if ($query->rowCount() > 0) {
         foreach ($results as $row) {

@@ -93,16 +93,15 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              
-
+      
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
-                <?php
-  
-  $guards = $_POST['Guards'];
-  $guard_names = explode(',', $guards);
+                <<?php
+$Customer = $_POST['Customer'];
+$guards = $_POST['Guards'];
+$guard_names = explode(',', $guards);
 ?>
-
-<input type="hidden" name="Guards" value="<?php echo $guards;?>">
+<input type="hidden" name="Customer" value="<?php echo $Customer; ?>">
+<input type="hidden" name="Guards" value="<?php echo $guards; ?>">
 
 <table id="example1" class="table table-bordered table-striped">
   <thead>
@@ -118,30 +117,32 @@
   </thead>
   <tbody>
     <?php
-      $cnt = 1;
-      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
-      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
-      $query = $dbh->prepare($sql);
-      $query->execute($guard_names);
-      $results = $query->fetchAll(PDO::FETCH_OBJ);
-      if ($query->rowCount() > 0) {
-        foreach ($results as $row) {
-    ?>
-    <tr>   
-      <td><?php echo htmlentities($cnt)?></td>
-      <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
-      <td><?php echo htmlentities($row->Name);?></td>
-      <td><?php echo htmlentities($row->Address);?></td>
-      <td><?php echo htmlentities($row->ID);?></td>
-      <td><?php echo htmlentities($row->MobileNumber);?></td>
-      <td><a href="ChangeEmployee.php?editid=<?php echo urlencode($row->ID); ?>" title="View"> <button type="button" class="btn btn-primary">change</button></a></td>
-
-    </tr>
-    
-    <?php
-          $cnt++;
-        }
+    $cnt = 1;
+    $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
+    $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
+    $query = $dbh->prepare($sql);
+    $query->execute($guard_names);
+    $results = $query->fetchAll(PDO::FETCH_OBJ);
+    if ($query->rowCount() > 0) {
+      foreach ($results as $row) {
+        ?>
+        <tr>   
+          <td><?php echo htmlentities($cnt) ?></td>
+          <td><img src="../admin/images/<?php echo $row->Profilepic; ?>" class="img circle" width="100"></td>
+          <td><?php echo htmlentities($row->Name); ?></td>
+          <td><?php echo htmlentities($row->Address); ?></td>
+          <td><?php echo htmlentities($row->ID); ?></td>
+          <td><?php echo htmlentities($row->MobileNumber); ?></td>
+          <td>
+            <a href="ChangeEmployee.php?editid=<?php echo urlencode($row->ID); ?>&Customer=<?php echo $Customer; ?>" title="View">
+              <button type="button" class="btn btn-primary">Change</button>
+            </a>
+          </td>
+        </tr>
+        <?php
+        $cnt++;
       }
+    }
     ?>
   </tbody>
 </table>

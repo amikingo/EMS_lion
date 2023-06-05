@@ -171,6 +171,7 @@ if ($query->rowCount() > 0) {
             <?php } ?>
         </tr>
         <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
+        <input type="hidden" name="Customer" value="<?php echo htmlentities($row->ID);?>">
 <?php
         $cnt = $cnt + 1;
     }

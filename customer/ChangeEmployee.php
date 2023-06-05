@@ -5,30 +5,40 @@ ini_set('display_errors', 1);
 include 'dbconnection.php';
 
 $editId = isset($_GET['editid']) ? $_GET['editid'] : '';
+$Customer = isset($_GET['Customer']) ? $_GET['Customer'] : '';
 
 // ...
 
 // ...
 
-if (isset($_POST['remove'])) {
-  $removeId = $_POST['remove'];
-  $data = $_POST['data'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['remove'])) {
+    // Code to update data
+      $removeId = $_POST['remove'];
+  $datas = $_POST['datas'];
+  //$data = $editId . $datas;
+  $data = implode('<DATA>', [$editId, $datas]);
   // Retrieve an unassigned guard from tblguard
-  $sql = "UPDATE tblhiring SET data = '$data' WHERE ID = :removeId";
+  $sql = "UPDATE tblhiring SET data = :data WHERE ID = :Customer";
   $query = $dbh->prepare($sql);
-  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->bindParam(':data', $data, PDO::PARAM_STR);
+  $query->bindParam(':Customer', $Customer, PDO::PARAM_STR);
   $query->execute();
 
   // Redirect to the same page to reflect the changes
-header("Location: viewGuardsList.php?editid=$editId");
+  header("Location: ChangeEmployee.php?Customer=" . urlencode($Customer));
   exit;
+  }
 }
+
+
 
 // ...
 
 // Rest of your code goes here
 
 ?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -44,6 +54,11 @@ header("Location: viewGuardsList.php?editid=$editId");
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/header.css"/>
+	<style>
+		.textarea{
+			align-items: center;
+		}
+	</style>
 	
 </head>
 <body>
@@ -87,18 +102,16 @@ header("Location: viewGuardsList.php?editid=$editId");
     </div>
   </header>
 	<?php //include_once('header.php');?>
-	<section class="page-top-section set-bg" data-setbg="">
-		
-	</section>
+	
 	<!-- Page top Section end -->
 
 	<!-- Contact Section -->
 	<section class="contact-page-section spad overflow-hidden">
 		<div class="container">
 			
-    <div class="content-wrapper">
+    <!-- <div class="content-wrapper"> -->
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <!-- <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -111,8 +124,9 @@ header("Location: viewGuardsList.php?editid=$editId");
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+      </div> --> 
+      <!-- /.container-fluid -->        
+    <!-- </section> -->
 
     <!-- Main content -->
     <section class="content">
@@ -120,11 +134,12 @@ header("Location: viewGuardsList.php?editid=$editId");
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">All Request</h3>
+              <h3 class="card-title">Changing Reason</h3>
             </div>
             <div class="card-body">
-              <form method="POST" action="">
-                <input type="hidden" name="editid" value="<?php echo $editId; ?>">
+             <form method="POST" action="">
+
+
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -135,10 +150,13 @@ header("Location: viewGuardsList.php?editid=$editId");
                       <th>Address</th>
                       <th>ID</th>
                       <th>Contact Number</th>
-                      <th>Action</th>
+                      <th>Reason</th>
+                    
                     </tr>
                   </thead>
                   <tbody>
+
+              	<input type="hidden" name="Customer" value="<?php echo $Customer; ?>">
                     <?php
                     $sql = "SELECT * FROM tblguard WHERE ID = :editId";
                     $query = $dbh->prepare($sql);
@@ -149,18 +167,22 @@ header("Location: viewGuardsList.php?editid=$editId");
                     if ($results) {
                       foreach ($results as $row) {
                         ?>
-            <input type="hidden" name="data" value="<?php echo $row->ID; ?>">
+           
                         <tr>
                           <td><?php echo $cnt ?></td>
                           <td><?php echo $row->ID; ?></td>
-                          <td><img src="..images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
+                          <td><img src="../admin/images/<?php echo $row->Profilepic; ?>" class="img-circle" width="80"></td>
                           <td><?php echo $row->Name; ?></td>
                           <td><?php echo $row->Address; ?></td>
                           <td><?php echo $row->IDnumber; ?></td>
                           <td><?php echo $row->MobileNumber; ?></td>
-                          <td>
-                            <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button>
-                          </td>
+                       
+                            <td><textarea rows="5" cols="50" name="datas" placeholder="Please Enter The Reason!!!"></textarea>
+                            	<br>
+                <br>
+								<button type="submit" name="remove"class="btn btn-primary">Send</button>
+</td>
+                    
                         </tr>
                         <?php
                         $cnt++;
@@ -171,6 +193,7 @@ header("Location: viewGuardsList.php?editid=$editId");
                     ?>
                   </tbody>
                 </table>
+                
               </form>
             </div>
             <!-- /.card-body -->
@@ -181,7 +204,7 @@ header("Location: viewGuardsList.php?editid=$editId");
 	</section>
 	<!-- Trainers Section end -->
 
-	
+	<br><br><br>
 	<!-- Footer Section -->
 	<footer id="footer">
 
