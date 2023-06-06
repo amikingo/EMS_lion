@@ -71,6 +71,13 @@ if (isset($_POST['guards']) && !empty($_POST['guards'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+  .scrollable-td {
+    height: 200px; /* Adjust the height as per your requirement */
+    overflow: auto;
+  }
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -224,6 +231,7 @@ if($row->Status=="")
 <tr>
   <th>Assign Guard :</th>
   <td>
+    <div class="scrollable-td">
 <!-- ...existing code... -->
 
 <div id="select-alls">
@@ -248,7 +256,11 @@ if($row->Status=="")
   <!-- TODO: Requirement number select Required guards[] button -->
   <div>
     <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->ID); ?>">
-    <label><?php echo htmlentities($row1->Name); ?></label>
+    <label><?php echo htmlentities($row1->Name); if ($row1->gender == '0') {
+      echo "                                  (Male)";
+    } else if ($row1->gender == '1') {
+      echo "                                 (Female)";
+    }?></label>
   </div>
   <?php
         }
@@ -273,6 +285,7 @@ if($row->Status=="")
       }
     }
   ?>
+</div>
 </div>
 
   </td>
