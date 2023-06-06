@@ -69,6 +69,7 @@
       <th>S.No</th>
       <th>Photo</th>
       <th>Name</th>
+      <th>Gender</th>
       <th>Address</th>
       <th>ID</th>
       <th>Contact Number</th>
@@ -91,6 +92,15 @@
       <td><?php echo htmlentities($cnt)?></td>
       <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
       <td><?php echo htmlentities($row->Name);?></td>
+      <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+
+      ;?></td>
       <td><?php echo htmlentities($row->Address);?></td>
       <td><?php echo htmlentities($row->ID);?></td>
       <td><?php echo htmlentities($row->MobileNumber);?></td>

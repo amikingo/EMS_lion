@@ -122,6 +122,7 @@ if (isset($_POST['remove'])) {
                       <th>ID Number</th>
                       <th>Photo</th>
                       <th>Name</th>
+               <th>Gender</th>
                       <th>Address</th>
                       <th>ID</th>
                       <th>Contact Number</th>
@@ -144,6 +145,15 @@ if (isset($_POST['remove'])) {
                           <td><?php echo $row->ID; ?></td>
                           <td><img src="..images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
                           <td><?php echo $row->Name; ?></td>
+                          <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+
+      ;?></td>
                           <td><?php echo $row->Address; ?></td>
                           <td><?php echo $row->IDnumber; ?></td>
                           <td><?php echo $row->MobileNumber; ?></td>

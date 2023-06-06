@@ -98,6 +98,7 @@ if (empty($_SESSION['osghsaid'])) {
                 <tr>
                   <th>S.No</th>
                   <th>Name</th>
+                <th>Gender</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>
                   <th>Status</th>
@@ -119,6 +120,17 @@ foreach($results as $row)
                 <tr>
                   <td><?php echo htmlentities($cnt);?></td>
                   <td><?php  echo htmlentities($row->Name);?></td>
+  <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+      
+      
+
+      ;?></td>
                   <td><?php  echo htmlentities($row->MobileNumber);?></td>
               <td><?php  echo htmlentities($row->RegistrationDate);?></td>
               <td><?php  if($row->isAssigned =="1")
