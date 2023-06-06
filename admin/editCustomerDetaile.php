@@ -8,31 +8,24 @@ if (strlen($_SESSION['osghsaid']) == 0) {
 } else {
   if (isset($_POST['submit'])) {
     $eid = $_GET['editid'];
-    $status = $_POST['status'];
+    $FirstName = $_POST['FirstName'];
+    $LastName = $_POST['LastName'];
+    $email = $_POST['email'];
+    $companyName = $_POST['companyName'];
 
-    $sql = "UPDATE users SET status=:status WHERE id=:eid";
+    $sql = "UPDATE users SET FirstName=:FirstName, LastName=:LastName, email=:email, companyName=:companyName WHERE id=:eid";
     $query = $dbh->prepare($sql);
-    $query->bindParam(':status', $status, PDO::PARAM_STR);
+    $query->bindParam(':FirstName', $FirstName, PDO::PARAM_STR);
+    $query->bindParam(':LastName', $LastName, PDO::PARAM_STR);
+    $query->bindParam(':email', $email, PDO::PARAM_STR);
+    $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
     $query->bindParam(':eid', $eid, PDO::PARAM_INT);
     $query->execute();
 
     $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
     $statusMsg = "Customer Status has been updated";
 
-    // Update other tables if status is "Banned"
-    if ($status == 3) {
-      // Update tblhiring
-      $updateHiringSql = "DELETE FROM tblhiring WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
-      $updateHiringQuery = $dbh->prepare($updateHiringSql);
-      $updateHiringQuery->bindParam(':eid', $eid, PDO::PARAM_INT);
-      $updateHiringQuery->execute();
-
-      // Update tblguard
-      $updateGuardSql = "UPDATE tblguard SET isAssigned = 0, UniformAssigned = 0, companyName = '', expiration_interval = 0, expir_date = '' WHERE companyName IN (SELECT companyName FROM users WHERE id=:eid)";
-      $updateGuardQuery = $dbh->prepare($updateGuardSql);
-      $updateGuardQuery->bindParam(':eid', $eid, PDO::PARAM_INT);
-      $updateGuardQuery->execute();
-    }
+    
 
     echo "<style>
       .success {
@@ -118,20 +111,20 @@ foreach($results as $row)
                 <div class="card-body">
                      <div class="form-group">
                     <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->FirstName);?>" required="true" >
+                    <input type="text" class="form-control" id="name" name="FirstName" value="<?php echo htmlentities($row->FirstName);?>" required="true" >
                   </div>
                   
                   <div class="form-group">
                     <label for="exampleInputEmail1">Last Name</label>
-                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->LastName);?>" required="true" >
+                    <input type="text" class="form-control" id="mobilenumber" name="LastName" value="<?php echo htmlentities($row->LastName);?>" required="true" >
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email Address</label>
-                    <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" ><?php echo htmlentities($row->email);?></textarea>
+                    <textarea type="text" class="form-control" id="address" name="email" placeholder="Address" required="true" ><?php echo htmlentities($row->email);?></textarea>
                   </div>  
                   <div class="form-group">
                     <label for="exampleInputEmail1">Company Name</label>
-                    <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->companyName);?>" required="true" >
+                    <input type="text" class="form-control" id="mobilenumber" name="companyName" value="<?php echo htmlentities($row->companyName);?>" required="true" >
                   </div> 
                   <div class="form-group">
                     <label for="exampleInputEmail1">About Company Attachable File </label>
