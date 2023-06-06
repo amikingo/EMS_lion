@@ -1,4 +1,5 @@
 <!-- <?php
+error_reporting(0);
 //include('includes/dbconnection.php');
 ?> -->
 <!DOCTYPE html>
@@ -68,7 +69,7 @@
     <tr>
       <th>S.No</th>
       <th>Photo</th>
-      <th>Name</th>
+  <th>Full Name</th>
       <th>Gender</th>
       <th>Address</th>
       <th>ID</th>

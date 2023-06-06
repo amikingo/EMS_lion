@@ -69,7 +69,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Name</th>
+        <th>Full Name</th>
                 <th>Gender</th>
                     <th>ID Number</th>
                     <th>Address</th>

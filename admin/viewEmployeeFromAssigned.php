@@ -1,6 +1,6 @@
 
 <?php
-
+error_reporting(0);
     include('../includes/dbconnection.php');
     // include('../includes/session.php');
 
@@ -88,7 +88,7 @@
     <tr>
       <th>S.No</th>
       <th>Picture</th>
-      <th>Name</th>
+  <th>Full Name</th>
       <th>Gender</th>
       <th>Address</th>
       <th>ID</th>

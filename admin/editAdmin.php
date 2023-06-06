@@ -3,7 +3,7 @@ session_start(); // Start the session
 
 include('../includes/dbconnection.php');
 // include('../includes/session.php');
-// error_reporting(0);
+ error_reporting(0);
 
 if (isset($_GET['editid'])) {
     $_SESSION['editId'] = $_GET['editid'];

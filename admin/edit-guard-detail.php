@@ -123,7 +123,7 @@ foreach($results as $row)
                     <a href="changeimage.php?editid=<?php echo $row->ID;?>"> &nbsp; Edit Image</a>
                   </div>
                      <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                    <label for="exampleInputEmail1">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true">
                   </div>
                   

@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+error_reporting(0);
 
 include 'includes/dbconnection.php';
 
@@ -121,7 +122,7 @@ if (isset($_POST['remove'])) {
                       <th>S.No</th>
                       <th>ID Number</th>
                       <th>Photo</th>
-                      <th>Name</th>
+                  <th>Full Name</th>
                <th>Gender</th>
                       <th>Address</th>
                       <th>ID</th>
@@ -143,7 +144,7 @@ if (isset($_POST['remove'])) {
                         <tr>
                           <td><?php echo $cnt ?></td>
                           <td><?php echo $row->ID; ?></td>
-                          <td><img src="..images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
+                          <td><img src="images/<?php echo $row->Profilepic; ?>" width="100"></td>
                           <td><?php echo $row->Name; ?></td>
                           <td><?php  if($row->gender =="0")
   {
@@ -158,7 +159,7 @@ if (isset($_POST['remove'])) {
                           <td><?php echo $row->IDnumber; ?></td>
                           <td><?php echo $row->MobileNumber; ?></td>
                           <td>
-                            <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button>
+                        <button type="submit" name="remove" class="btn btn-primary" value="<?php echo $row->ID; ?>">Remove</button>
                           </td>
                         </tr>
                         <?php

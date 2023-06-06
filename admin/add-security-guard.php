@@ -145,7 +145,7 @@ echo "<style>
                     <input type="file" class="form-control" id="propic" name="propic" required="true">
                   </div>
                      <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" required="true">
                   </div>
                   <div class="form-group">
@@ -166,7 +166,7 @@ echo "<style>
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Type</label>
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
-<option value="">Choose ID Type</option>
+<option value="" disabled selected>Choose ID Type</option>
                                                         
 <option value="Kebele Card">Kebele Card</option>
 

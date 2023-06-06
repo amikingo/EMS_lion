@@ -91,7 +91,7 @@ background-color: #f8d7da;
                 <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Name</th>
+              <th>Full Name</th>
               <th>Gender</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>

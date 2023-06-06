@@ -126,7 +126,7 @@ foreach($results as $row)
 
                   </div>
                      <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+            <label for="exampleInputEmail1">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true" readonly>
                   </div>
 

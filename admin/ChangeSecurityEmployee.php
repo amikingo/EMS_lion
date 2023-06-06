@@ -1,6 +1,6 @@
 <?php
 session_start();
-// error_reporting(0);
+ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-<tiitle>Lion Security Services | Change Security Employee</tiitle>
+<title>Lion Security Services | Change Security Employee</title>
   <!-- Tell the browser to be responsive to screen width -->
 
   <link href="dist/img/fav.png" rel="icon">
@@ -72,7 +72,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                 <tr>
                     <th>S.No</th>
                     <th>Booking Number</th>
-                    <th>Name</th>
+                <th>Full Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Status</th>
@@ -97,8 +97,8 @@ foreach($results as $row)
 
 
    ?>
-  <input type="text" class="form-control" id="formType" name="Customer" value="<?php echo $dataArray[0]?>">
-  <input type="text" class="form-control" id="formType" name="Remark" value="<?php echo $dataArray[1]?>">
+  <input type="hidden" class="form-control" id="formType" name="Customer" value="<?php echo $dataArray[0]?>">
+  <input type="hidden" class="form-control" id="formType" name="Remark" value="<?php echo $dataArray[1]?>">
 <input type="hidden" class="form-control" id="formType" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>" required='true'>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>

@@ -1,6 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+error_reporting(0);
 session_start();
 
 include('includes/dbconnection.php');
@@ -97,7 +98,7 @@ if (empty($_SESSION['osghsaid'])) {
                 <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Name</th>
+              <th>Full Name</th>
                 <th>Gender</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>
@@ -144,7 +145,7 @@ echo "Assigned";
 
  ($row->isAssigned=="0");
  {
-echo "Unsigned";
+echo "Unassigned";
  }
 
  ;}?> </td>

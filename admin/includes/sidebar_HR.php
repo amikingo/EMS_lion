@@ -46,6 +46,36 @@ foreach($results as $row)
             </a>
         
           </li>
+
+          <?php
+
+$sql="SELECT * FROM tblhiring WHERE data IS NOT NULL";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$new_data = $query->rowCount();
+
+?>
+<style type="text/css">
+.notify-badge {
+    height: 5;
+    background: green;
+    color: white;
+    border-radius: 100px;
+    /* padding: 5px; */
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+</style> 
+
+
+
           
 <?php
 
@@ -82,7 +112,8 @@ $new_booking_row_count = $query->rowCount();
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Secuirty Employee
+                Security Employee
+                <?php if($new_data) {  echo "<span class='notify-badge'>" . $new_data . "</span>"; } ?>
                 <i class="fas fa-angle-left right"></i>
    
               </p>
@@ -106,41 +137,12 @@ $new_booking_row_count = $query->rowCount();
                   <p>Manage Training Personnel</p>
                 </a>
               </li>
-              <?php
 
-$sql="SELECT * FROM tblhiring WHERE data IS NOT NULL";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-
-$change_employee_sec = $query->rowCount();
-
-?>
-
-
-          
- 
-<style type="text/css">
-.notify-badge {
-    height: 5;
-    background: green;
-    color: white;
-    border-radius: 100px;
-    /* padding: 5px; */
-    width: 20px;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    height: 20px;
-    vertical-align: middle;
-    font-size: 13px;
-}
-</style> 
               <li class="nav-item">
                 <a href="ChangeSecurityEmployee.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-       <p>Change Security Employee 
-       <?php if($$change_employee_sec) {  echo "<span class='notify-badge'>" . $change_employee_sec . "</span>"; } ?>
+   <p>Change Employee 
+   <?php if($new_data) {  echo "<span class='notify-badge'>" . $new_data . "</span>"; } ?>
        </p>
                 </a>
               </li>
@@ -282,7 +284,7 @@ $new_users = $queryme->rowCount();
               <li class="nav-item">
                 <a href="manageCustomerDetaile.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-               <p>Edit Customers Detaile </p>
+               <p>Edit Customers Detail </p>
                 </a>
               </li>
              </ul>
