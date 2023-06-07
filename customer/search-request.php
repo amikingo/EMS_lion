@@ -44,7 +44,7 @@ session_start();
     <ul class="submenu">
       <li><a href="index.php">Request Employee</a></li>
       <li class="active"><a href="search-request.php">Check Request</a></li>
-	  <li><a href="ChangeEmployee.php">Change Security</a></li>
+	
     </ul>
   </li>
   <li class="drop-down">
@@ -145,7 +145,10 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 $cnt = 1;
 if ($query->rowCount() > 0) {
     foreach ($results as $row) {
+
 ?>
+        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
+        <input type="hidden" name="Customer" value="<?php echo htmlentities($row->ID);?>">
         <tr>
             <td><?php echo htmlentities($cnt); ?></td>
             <td><?php echo htmlentities($row->BookingNumber); ?></td>
@@ -170,11 +173,12 @@ if ($query->rowCount() > 0) {
 
             <?php } ?>
         </tr>
-        <input type="hidden" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>">
+
 <?php
-        $cnt = $cnt + 1;
+break;
+        $cnt = $cnt + 1; 
     }
-}
+} 
 else {
 ?>
     <tr>
@@ -182,7 +186,7 @@ else {
     </tr>
 
 
-  <?php } }?>
+  <?php } } ?>
                  
 
                 </table>

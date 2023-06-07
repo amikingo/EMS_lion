@@ -1,6 +1,72 @@
-<!-- <?php
-//include('includes/dbconnection.php');
-?> -->
+<?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+error_reporting(0);
+
+include 'includes/dbconnection.php';
+
+$editId = isset($_GET['editid']) ? $_GET['editid'] : '';
+
+// ...
+
+// ...
+
+if (isset($_POST['remove'])) {
+  $removeId = $_POST['remove'];
+  
+  // Retrieve an unassigned guard from tblguard
+  $sql = "SELECT * FROM tblguard WHERE isAssigned = 0 AND isTrainer = 0 LIMIT 1";
+  $query = $dbh->prepare($sql);
+  $query->execute();
+  $guard = $query->fetch(PDO::FETCH_OBJ);
+
+  if ($guard) {
+    $guardId = $guard->ID;
+
+    // Update the guard as assigned and update the companyName
+    $sql = "UPDATE tblguard SET isAssigned = 1, companyName = (SELECT companyName FROM tblhiring WHERE GuardAssign LIKE CONCAT('%,', :removeId, ',%') OR GuardAssign LIKE CONCAT(:removeId, ',%') OR GuardAssign LIKE CONCAT('%,', :removeId) LIMIT 1) WHERE ID = :guardId";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':guardId', $guardId, PDO::PARAM_INT);
+    $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+    $query->execute();
+
+    // Update the tblhiring table to include the new guard in GuardAssign column
+    $sql = "UPDATE tblhiring SET GuardAssign = CONCAT(GuardAssign, ',', :guardId) WHERE GuardAssign IS NOT NULL";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':guardId', $guardId, PDO::PARAM_INT);
+    $query->execute();
+  } else {
+    // If no unassigned guard is available, handle the appropriate action (e.g., display an error message).
+    // You can customize this part based on your requirements.
+    echo "No unassigned guard available";
+    exit;
+  }
+
+  // Remove the guard from the tblhiring table
+  $sql = "UPDATE tblhiring SET GuardAssign = TRIM(BOTH ',' FROM REPLACE(CONCAT(',', GuardAssign, ','), ',$removeId,', ',')) WHERE GuardAssign LIKE CONCAT('%,', :removeId, ',%') OR GuardAssign LIKE CONCAT(:removeId, ',%') OR GuardAssign LIKE CONCAT('%,', :removeId)";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->execute();
+
+  // Update the tblguard table to mark the guard as unassigned and update the companyName
+  $sql = "UPDATE tblguard SET isAssigned = 0, companyName = NULL WHERE ID = :removeId";
+  $query = $dbh->prepare($sql);
+  $query->bindParam(':removeId', $removeId, PDO::PARAM_INT);
+  $query->execute();
+
+  // Redirect to the same page to reflect the changes
+  header("Location: viewChangeEmployee.php?editid=$editId");
+  exit;
+}
+
+// ...
+
+// Rest of your code goes here
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,132 +107,93 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-          <div class="col-12">
-          <!-- left column -->
-         
+      <div class="row">
+        <div class="col-12">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">All Request</h3>
             </div>
             <div class="card-body">
-
-              
-<?php
-$editId = $_GET['editid']; // Assuming you are passing the 'editid' parameter in the URL
-
-include 'dbconnection.php';
-
-$sql = "SELECT * FROM tblguard WHERE ID = $editId";
-$query = $dbh->prepare($sql);
-$query->execute();
-$results = $query->fetchAll(PDO::FETCH_OBJ);
-
-if (isset($_POST['editid'])) {
-  $editid = $_POST['editid'];
-
-  // Remove the guard from the tblhiring table
-  $sql = "UPDATE tblhiring SET GuardAssign = REPLACE(CONCAT(',' ,GuardAssign, ','), ',$editid,', ',') WHERE GuardAssign LIKE '%,$editid,%' OR GuardAssign LIKE '$editid,%' OR GuardAssign LIKE '%,$editid'";
-  $query = $dbh->prepare($sql);
-  $query->execute();
-  
-$sqli = "UPDATE tblguard SET isAssigned = 0 WHERE ID = $editid";
-$query = $dbh->prepare($sqli);
-$query->execute();
-
-  // Redirect to the same page to reflect the changes
-  header("Location: search-request.php?editid=$editId");
-  exit;
-}
-?>
-
-<!-- Your HTML code -->
-
-<form method="POST" action="">
-  <input type="hidden" name="editid" value="<?php echo $editId; ?>">
-  <table id="example1" class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>ID Number</th>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>ID</th>
-        <th>Contact Number</th>
-        <th>Action</th> <!-- Added a new column for the remove button -->
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $cnt = 1;
-      foreach ($results as $row) {
-      ?>
-      <tr>
-        <td><?php echo $cnt ?></td>
-        <td><?php echo $row->ID; ?></td>
-        <td><img src="../admin/images/<?php echo $row->Profilepic; ?>" class="img-circle" width="100"></td>
-        <td><?php echo $row->Name; ?></td>
-        <td><?php echo $row->Address; ?></td>
-        <td><?php echo $row->IDnumber; ?></td>
-        <td><?php echo $row->MobileNumber; ?></td>
-        <td>
-          <button type="submit" name="remove" value="<?php echo $row->ID; ?>">Remove</button> <!-- Button to remove the guard -->
-        </td>
-      </tr>
-      <?php
-        $cnt++;
+              <form method="POST" action="">
+                <input type="hidden" name="editid" value="<?php echo $editId; ?>">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>ID Number</th>
+                      <th>Photo</th>
+                  <th>Full Name</th>
+               <th>Gender</th>
+                      <th>Address</th>
+                      <th>ID</th>
+                      <th>Contact Number</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sql = "SELECT * FROM tblguard WHERE ID = :editId";
+                    $query = $dbh->prepare($sql);
+                    $query->bindParam(':editId', $editId, PDO::PARAM_INT);
+                    $query->execute();
+                    $results = $query->fetchAll(PDO::FETCH_OBJ);
+                    $cnt = 1;
+                    if ($results) {
+                      foreach ($results as $row) {
+                        ?>
+                        <tr>
+                          <td><?php echo $cnt ?></td>
+                          <td><?php echo $row->ID; ?></td>
+                          <td><img src="images/<?php echo $row->Profilepic; ?>" width="100"></td>
+                          <td><?php echo $row->Name; ?></td>
+                          <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
       }
-      ?>
-    </tbody>
-  </table>
-</form>
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
 
-
-
-<!-- Rest of your HTML code -->
-
-
-
-
-<!-- Rest of your HTML code -->
-
-
-              
+      ;?></td>
+                          <td><?php echo $row->Address; ?></td>
+                          <td><?php echo $row->IDnumber; ?></td>
+                          <td><?php echo $row->MobileNumber; ?></td>
+                          <td>
+                        <button type="submit" name="remove" class="btn btn-primary" value="<?php echo $row->ID; ?>">Remove</button>
+                          </td>
+                        </tr>
+                        <?php
+                        $cnt++;
+                      }
+                    } else {
+                      echo '<tr><td colspan="8">No data available</td></tr>';
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </form>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
         </div>
+      </div>
+    </section>
+  </div>
 
-        </div>
+  <?php include_once('includes/footer.php');?>
+</div>
 
-
-
-
-
-            </div>
-           
-           </div>
-         </div>
-       </div>
-     </section>
-   </div>
- 
-   <?php include_once('includes/footer.php');?>
- </div>
- 
- <!-- jQuery -->
- <script src="plugins/jquery/jquery.min.js"></script>
- <!-- Bootstrap 4 -->
- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
- <!-- AdminLTE App -->
- <script src="dist/js/adminlte.min.js"></script>
- <script>
-   $(function () {
-     $("#example1").DataTable();
-   });
- </script>
- </body>
- </html>
- 
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+  });
+</script>
+</body>
+</html>

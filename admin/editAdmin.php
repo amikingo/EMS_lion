@@ -1,67 +1,96 @@
-
 <?php
+session_start(); // Start the session
 
-    include('../includes/dbconnection.php');
-    // include('../includes/session.php');
-   // error_reporting(0);
+include('../includes/dbconnection.php');
+// include('../includes/session.php');
+ error_reporting(0);
 
-if(isset($_GET['editid'])){
+if (isset($_GET['editid'])) {
+    $_SESSION['editId'] = $_GET['editid'];
 
-$_SESSION['editId'] = $_GET['editid'];
-
-$query = mysqli_query($con,"select * from tbladmin where ID='$_SESSION[editId]'");
-$rowi = mysqli_fetch_array($query);
-
+    $query = mysqli_query($con, "SELECT * FROM tbladmin WHERE ID = '{$_SESSION['editId']}'");
+    $rowi = mysqli_fetch_array($query);
+} else {
+    echo "<script type=\"text/javascript\">
+    window.location = \"index.php\";
+    </script>";
+    exit; // Add an exit statement to stop further execution
 }
 
-else{
+if (isset($_POST['submit'])) {
+    $alertStyle = "";
+    $statusMsg = "";
 
-echo "<script type = \"text/javascript\">
-    window.location = (\"index.php\")
-    </script>"; 
-}
+    $adminName = $_POST['adminName'];
+    $userName = $_POST['userName'];
+    $password = $_POST['password'];
+    $phoneNo = $_POST['phoneNo'];
+    $emailAddress = $_POST['emailAddress'];
+    $adminTypeId = $_POST['adminTypeId'];
 
-if(isset($_POST['submit'])){
+    // Check if the username already exists in the database
+    $stmt = $con->prepare("SELECT * FROM tbladmin WHERE ID != ? AND username = ?");
+    $stmt->bind_param('ss', $_SESSION['editId'], $userName);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-     $alertStyle ="";
-      $statusMsg="";
+    if ($result->num_rows > 0) {
+        // The username already exists
+        $alertStyle = "danger";
+        $statusMsg = "The User Name already exists.";
+    } else {
+        // Update the admin details in the database
+        $stmt = $con->prepare("UPDATE tbladmin SET AdminName=?, UserName=?, Password=?, Email=?, MobileNumber=?, adminTypeId=? WHERE ID=?");
+        $stmt->bind_param('sssssss', $adminName, $userName, $password, $emailAddress, $phoneNo, $adminTypeId, $_SESSION['editId']);
+        $ret = $stmt->execute();
 
-  $adminName=$_POST['adminName'];
-  $userName=$_POST['userName'];
-  $phoneNo=$_POST['phoneNo'];
-  $emailAddress=$_POST['emailAddress'];
-  $password =md5($_POST['password']);
-  $adminTypeId=$_POST['adminTypeId'];
-
-
-    $ret=mysqli_query($con,"update tbladmin set AdminName='$adminName', UserName='$userName', Email='$emailAddress', 
-    MobileNumber='$phoneNo', Password='$password', adminTypeId='$adminTypeId'  where ID='$_SESSION[editId]'");
-
-    if($ret == TRUE){
-
-        // echo "<script type = \"text/javascript\">
-        //         window.location = (\"viewAdmin.php\");
-        //         </script>";
-        $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
-    $statusMsg = "User Detail has been updated.";
-        // Add CSS to the success message
-        echo "<style>
-         .success {
-          background-color: #d4edda;
-           color: green;
-           font-weight: bold;
-         }
-        </style>";
+        if ($ret === TRUE) {
+            // The admin details have been updated successfully
+            $alertStyle = "success";
+            $statusMsg = "User Detail has been updated.";
+        } else {
+            // An error occurred while updating the admin details
+            $alertStyle = "danger";
+            $statusMsg = "An Error Occurred!";
+        }
     }
-    else {
+}
+?>
 
-      $alertStyle ="alert alert-danger";
-      $statusMsg="An Error Occurred!";
+<!-- Add CSS to display the error/success message -->
+<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
     }
 
-}
+    .success {
+        background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+    }
+</style>
 
-  ?>
+
+
+<!-- Add your HTML form and input fields here -->
+
+
+<!-- Add CSS to display the error/success message -->
+<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #d4edda;
+        color: green;
+        font-weight: bold;
+    }
+</style>
 
 <!doctype html>
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
@@ -241,36 +270,55 @@ function showRole(str) {
                                                <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="x_card_code" class="control-label mb-1">Admin Type</label>
-<?php 
-    $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC"); 
-    $count_query = mysqli_query($con, "SELECT adminTypeId FROM tbladmin"); 
-    $count = mysqli_num_rows($count_query);
-    
-    
-    if ($count > 0) {                       
+                                                    <?php
+
+
+
+// Check if the connection was successful
+if ($con) {
+
+    // Get the total number of admin types
+    $count_query = mysqli_query($con, "SELECT COUNT(*) AS total_count FROM tbladmintype");
+    $count_row = mysqli_fetch_assoc($count_query);
+    $total_count = $count_row['total_count'];
+
+    // Check if there are any admin types
+    if ($total_count > 0) {
+
+        // Get the list of admin types
+        $ad_query = mysqli_query($con, "SELECT * FROM tbladmintype ORDER BY adminType ASC");
+
+        // Initialize the select element
         echo '<select required name="adminTypeId" onchange="showValues(this.value)" class="custom-select form-control">';
-       // echo '<option value="">--Select Admin Type--</option>';
-        
-        while ($ad_row = mysqli_fetch_array($ad_query)) {
+
+        // Add the empty option
+        // echo '<option value="" disabled>--Select Admin Type--</option>';
+
+        // Loop through the admin types and add them as options
+        while ($ad_row = mysqli_fetch_assoc($ad_query)) {
+
+            // Get the admin type id and name
             $admin_type_id = $ad_row['Id'];
-            $selected = "";
-            
-            while ($count_row = mysqli_fetch_array($count_query)) {
-                $admin_type_id_db = $count_row['adminTypeId'];
-                if ($admin_type_id == $admin_type_id_db) {
-                    $selected = "selected";
-                    break;
-                }
+            $admin_type_name = $ad_row['adminType'];
+
+            // Check if the admin type is selected
+            if ($admin_type_id == $_GET['adminTypeId']) {
+                $selected = 'selected';
+            } else {
+                $selected = '';
             }
-            
-            echo '<option value="'.$admin_type_id.'" '.$selected.'>'.$ad_row['adminType'].'</option>';
-            
-            // Reset the $count_query pointer to the beginning
-            mysqli_data_seek($count_query, 0);
+
+            // Add the option to the select element
+            echo '<option value="' . $admin_type_id . '" ' . $selected . '>' . $admin_type_name . '</option>';
         }
-        
-        echo '</select>'; 
+
+        // Close the select element
+        echo '</select>';
     }
+}
+
+
+
 ?>
                                                   
                                                 </div>

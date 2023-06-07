@@ -1,35 +1,42 @@
 <?php
-session_start();
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 error_reporting(0);
+session_start();
+
 include('includes/dbconnection.php');
-if (strlen($_SESSION['osghsaid']==0)) {
-  header('location:logout.php');
-  } else{
+if (empty($_SESSION['osghsaid'])) {
+    header('location:logout.php');
+} else {
+    // Code for Deletion
+    if (isset($_GET['delid'])) {
+        $gid = $_GET['delid'];
+        $query = $dbh->prepare("UPDATE tblguard SET isAssigned = '0', trash = '1', companyName = '', expiration_interval = '0', expir_date = '0000-00-00'  WHERE ID = :gid");
+        $query->bindParam(':gid', $gid, PDO::PARAM_STR);
+        if ($query->execute()) {
+            $alertStyle = "success";
+            $statusMsg = "Record has been deleted.";
+        } else {
+            $alertStyle = "danger";
+            $statusMsg = "Failed to delete record.";
+        }
+    }
 
-//Code for Deletion
- if ($_GET['delid']) {
-$gid=$_GET['delid'];
-$query=$dbh -> prepare("delete from tblguard where ID='$gid'");
-$query->execute();
-$alertStyle = "danger";
-$statusMsg = "Record has been deleted.";
-// Add CSS to the error message
-echo "<style>
- .danger {
-background-color: #f8d7da;
-   color: red;
-   font-weight: bold;
-   align-items: center;
-   justify-content: center;
-   display: flex;
-   padding: 10px;
- }
-</style>";
-  // echo '<script>alert("Record has been deleted")</script>';
-//echo "<script>window.location.href ='manage-security-guard.php'</script>";
-    }   
+    // Add CSS to the error message
+    echo "<style>
+    .danger {
+        background-color: #f8d7da;
+        color: red;
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 10px;
+    }
+    </style>";
 
-  ?>
+    // Rest of the code
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +98,8 @@ background-color: #f8d7da;
                 <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Name</th>
+              <th>Full Name</th>
+                <th>Gender</th>
                   <th>Mobile Number</th>                  
                   <th>Registration Date</th>
                   <th>Status</th>
@@ -100,7 +108,7 @@ background-color: #f8d7da;
                 </tr>
                 </thead>
                  <?php
-$sql="SELECT * from tblguard where isTrainer = '0'";
+$sql="SELECT * from tblguard where isTrainer = '0' AND trash = '0'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -113,6 +121,17 @@ foreach($results as $row)
                 <tr>
                   <td><?php echo htmlentities($cnt);?></td>
                   <td><?php  echo htmlentities($row->Name);?></td>
+  <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+      
+      
+
+      ;?></td>
                   <td><?php  echo htmlentities($row->MobileNumber);?></td>
               <td><?php  echo htmlentities($row->RegistrationDate);?></td>
               <td><?php  if($row->isAssigned =="1")
@@ -126,7 +145,7 @@ echo "Assigned";
 
  ($row->isAssigned=="0");
  {
-echo "Unsigned";
+echo "Unassigned";
  }
 
  ;}?> </td>

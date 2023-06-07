@@ -1,4 +1,5 @@
 <!-- <?php
+error_reporting(0);
 //include('includes/dbconnection.php');
 ?> -->
 <!DOCTYPE html>
@@ -55,11 +56,12 @@
 
               <!-- Split The Guards In terms of Comma ',' And Display it in the Table -->
                 <?php
-  
+  $Customer = $_POST['Customer'];
   $guards = $_POST['Guards'];
-  $guard_names = explode(',', $guards);
+  $Remark = $_POST['Remark'];
+  $guard_names = explode('<DATA>', $guards);
 ?>
-
+<input type="hidden" name="Customer" value="<?php echo $Customer;?>">
 <input type="hidden" name="Guards" value="<?php echo $guards;?>">
 <div class="card-body">
 <table id="example1" class="table table-bordered table-striped">
@@ -67,20 +69,22 @@
     <tr>
       <th>S.No</th>
       <th>Photo</th>
-      <th>Name</th>
+  <th>Full Name</th>
+      <th>Gender</th>
       <th>Address</th>
       <th>ID</th>
       <th>Contact Number</th>
+      <th>Remark Sent By The Customer</th>
       <th>Remove Guard</th>                    
     </tr>
   </thead>
   <tbody>
     <?php
       $cnt = 1;
-      $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
-      $sql = "SELECT * FROM tblguard WHERE ID IN ($placeholders)";
+      // $placeholders = implode(',', array_fill(0, count($guard_names), '?'));
+      $sql = "SELECT * FROM tblguard WHERE ID = $Customer ";
       $query = $dbh->prepare($sql);
-      $query->execute($guard_names);
+      $query->execute();
       $results = $query->fetchAll(PDO::FETCH_OBJ);
       if ($query->rowCount() > 0) {
         foreach ($results as $row) {
@@ -89,9 +93,19 @@
       <td><?php echo htmlentities($cnt)?></td>
       <td><img src="../admin/images/<?php echo $row->Profilepic;?>" class="img circle" width="100"></td>
       <td><?php echo htmlentities($row->Name);?></td>
+      <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+
+      ;?></td>
       <td><?php echo htmlentities($row->Address);?></td>
       <td><?php echo htmlentities($row->ID);?></td>
       <td><?php echo htmlentities($row->MobileNumber);?></td>
+      <td><?php echo $Remark;?></td>
       <td><a href="ChangeEmployee.php?editid=<?php echo urlencode($row->ID); ?>" title="View"> <button type="button" class="btn btn-primary">change</button></a></td>
 
     </tr>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-// error_reporting(0);
+ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -13,7 +13,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
 <html>
 <head>
  
-  <title>Lion Security Services | All Requests</title>
+<title>Lion Security Services | Change Security Employee</title>
   <!-- Tell the browser to be responsive to screen width -->
 
   <link href="dist/img/fav.png" rel="icon">
@@ -42,12 +42,12 @@ if (strlen($_SESSION['osghsaid']==0)) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>All Request</h1>
+        <h1>Change Security Employee Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">All Request</li>
+          <li class="breadcrumb-item active">Change Security Employee Request</li>
             </ol>
           </div>
         </div>
@@ -61,7 +61,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
         
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">All Request</h3>
+              <h3 class="card-title">Change Security Employee Request</h3>
             </div>
             <!-- /.card-header -->
             <form role="form" method="post" name="view" action="viewChangeEmployee.php">
@@ -72,7 +72,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                 <tr>
                     <th>S.No</th>
                     <th>Booking Number</th>
-                    <th>Name</th>
+                <th>Full Name</th>
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Status</th>
@@ -81,7 +81,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                 </thead>
                <?php
                $Guards = $_POST['Guards'];
-$sql="SELECT * from tblhiring Where Status = 'Accepted'";
+$sql = "SELECT * FROM tblhiring WHERE data IS NOT NULL";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -91,6 +91,14 @@ if($query->rowCount() > 0)
 {
 foreach($results as $row)
 {               ?>
+  <?php 
+  $data = $row->data;
+ $dataArray = explode('<DATA>', $data);
+
+
+   ?>
+  <input type="hidden" class="form-control" id="formType" name="Customer" value="<?php echo $dataArray[0]?>">
+  <input type="hidden" class="form-control" id="formType" name="Remark" value="<?php echo $dataArray[1]?>">
 <input type="hidden" class="form-control" id="formType" name="Guards" value="<?php echo htmlentities($row->GuardAssign);?>" required='true'>
                 <tr>
                     <td><?php echo htmlentities($cnt);?></td>

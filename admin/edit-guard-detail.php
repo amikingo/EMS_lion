@@ -10,15 +10,17 @@ if (strlen($_SESSION['osghsaid']==0)) {
 
 $eid=$_GET['editid'];
 $name=$_POST['name'];
+$gender=$_POST['gender'];
 $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
 $idnum=$_POST['idnum'];
 $remark=$_POST['remark'];
 
-$sql="update tblguard set Name=:name,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,remark=:remark where ID=:eid";
+$sql="update tblguard set Name=:name,gender=:gender,MobileNumber=:mobilenumber,Address=:address,IDtype=:idtype,IDnumber=:idnum,remark=:remark where ID=:eid";
 $query=$dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':gender',$gender,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
@@ -121,10 +123,18 @@ foreach($results as $row)
                     <a href="changeimage.php?editid=<?php echo $row->ID;?>"> &nbsp; Edit Image</a>
                   </div>
                      <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                    <label for="exampleInputEmail1">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlentities($row->Name);?>" required="true">
                   </div>
                   
+                  <div class="form-group">
+                  <label for="gender">Gender:</label>
+   <input type="radio" name="gender" value="0" id="0" >
+                   <label for="male">Male</label>
+       <input type="radio" name="gender" value="1" id="1"  >
+                     <label for="female">Female</label>
+                  </div>
+
                   <div class="form-group">
                     <label for="exampleInputEmail1">Mobile Number</label>
                     <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value="<?php echo htmlentities($row->MobileNumber);?>" maxlength="10" pattern="[0-9]+" required="true">

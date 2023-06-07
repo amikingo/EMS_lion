@@ -8,6 +8,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
     if(isset($_POST['submit']))
   {
 $name=$_POST['name'];
+$gender=$_POST['gender'];
 $mobnum=$_POST['mobilenumber'];
 $address=$_POST['address'];
 $idtype=$_POST['idtype'];
@@ -38,10 +39,11 @@ else
 
 $propic=md5($propic).time().$extension;
  move_uploaded_file($_FILES["propic"]["tmp_name"],"images/".$propic);
-$sql="insert into tblguard(Profilepic,Name,MobileNumber,Address,IDtype,IDnumber,isTrainer)values(:pics,:name,:mobilenumber,:address,:idtype,:idnum, 1)";
+$sql="insert into tblguard(Profilepic,Name,gender,MobileNumber,Address,IDtype,IDnumber,isTrainer)values(:pics,:name,:gender,:mobilenumber,:address,:idtype,:idnum, 1)";
 $query=$dbh->prepare($sql);
 $query->bindParam(':pics',$propic,PDO::PARAM_STR);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
+$query->bindParam(':gender',$gender,PDO::PARAM_STR);
 $query->bindParam(':mobilenumber',$mobnum,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':idtype',$idtype,PDO::PARAM_STR);
@@ -143,8 +145,15 @@ echo "<style>
                     <input type="file" class="form-control" id="propic" name="propic" required="true">
                   </div>
                      <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" required="true">
+                  </div>
+                  <div class="form-group">
+                  <label for="gender">Gender:</label>
+               <input type="radio" name="gender" value="0" id="0">
+                   <label for="male">Male</label>
+           <input type="radio" name="gender" value="1" id="1">
+                     <label for="female">Female</label>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Mobile Number</label>
@@ -157,7 +166,7 @@ echo "<style>
                   <div class="form-group">
                     <label for="exampleInputEmail1">ID Type</label>
                      <select type="text" name="idtype" id="idtype" value="" class="form-control" required="true">
-<option value="">Choose ID Type</option>
+<option value="" disabled selected>Choose ID Type</option>
                                                         
 <option value="Kebele Card">Kebele Card</option>
 

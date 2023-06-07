@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 include('includes/dbconnection.php');
 
 if(isset($_POST['submit']))
@@ -22,10 +22,31 @@ $chngpwd1-> bindParam(':email', $email, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':mobile', $mobile, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
-echo "<script>alert('Your Password succesfully changed');</script>";
+  
+$alertStyle = "success";
+$statusMsg = "Your Password succesfully changed";
+// Add CSS to the success message
+echo "<style>
+ .success {
+    background-color: #d4edda;
+    color: green;
+    font-weight: bold;
+ }
+</style>";
+// echo "<script>alert('Your Password succesfully changed');</script>";
 }
 else {
-echo "<script>alert('Email id or Mobile no is invalid');</script>"; 
+  $alertStyle = "danger";
+  $statusMsg = "Email id or Mobile no is invalid";
+  // Add CSS to the error message
+  echo "<style>
+   .danger {
+      background-color: #f8d7da;
+      color: red;
+      font-weight: bold;
+   }
+  </style>";
+// echo "<script>alert('Email id or Mobile no is invalid');</script>"; 
 }
 }
 
@@ -72,6 +93,7 @@ return true;
       <p class="login-box-msg">Forgot Password</p>
 
       <form action="" method="post" name="chngpwd" onSubmit="return valid();">
+      <strong> <div class="<?php echo $alertStyle;?>" role="alert"><?php echo $statusMsg;?></strong></div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Email Address" required="true" name="email">
           <div class="input-group-append">

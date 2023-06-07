@@ -72,6 +72,7 @@ if (strlen($_SESSION['osghsaid']==0)) {
                     <th>Booking Number</th>
                     <th>Name</th>
                     <th>Email</th>
+                <th>Company Name</th>
                     <th>Contact Number</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -94,6 +95,7 @@ foreach($results as $row)
                     <td><?php  echo htmlentities($row->FirstName);?> <?php  echo htmlentities($row->LastName);?>
                     </td>
                     <td><?php  echo htmlentities($row->Email);?></td>
+                <td><?php  echo htmlentities($row->companyName);?></td>
                     <td> <?php  echo htmlentities($row->MobileNumber);?></td>
               
 <td>

@@ -1,6 +1,10 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 session_start();
 error_reporting(0);
+
+
 include('includes/dbconnection.php');
 if (strlen($_SESSION['osghsaid']==0)) {
   header('location:logout.php');
@@ -12,14 +16,15 @@ $rid=$_GET['bookingid'];
     $ressta=$_POST['status'];
     $remark=$_POST['restremark'];
     
-$guards=implode(',',$_POST['guards']);
-$sql="update tblhiring set Status=:ressta,Remark=:remark,GuardAssign=:guards where BookingNumber=:rid";
-$query=$dbh->prepare($sql);
-$query->bindParam(':ressta',$ressta,PDO::PARAM_STR);
-$query->bindParam(':remark',$remark,PDO::PARAM_STR);
-$query->bindParam(':guards',$guards,PDO::PARAM_STR);
-$query->bindParam(':rid',$rid,PDO::PARAM_STR);
- $query->execute();
+$guards = isset($_POST['guards']) ? implode(',', $_POST['guards']) : '';
+$sql = "UPDATE tblhiring SET Status = :ressta, Remark = :remark, GuardAssign = :guards WHERE BookingNumber = :rid";
+$query = $dbh->prepare($sql);
+$query->bindParam(':ressta', $ressta, PDO::PARAM_STR);
+$query->bindParam(':remark', $remark, PDO::PARAM_STR);
+$query->bindParam(':guards', $guards, PDO::PARAM_STR);
+$query->bindParam(':rid', $rid, PDO::PARAM_STR);
+$query->execute();
+
 
    $query->execute();
    $alertStyle = "success alert-dismissible fade show\" role=\"alert\"";
@@ -35,13 +40,18 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
   
 
 
-   for($i = 0 ; $i < count($_POST['guards']); $i++){
-    $companyName=$_POST['companyName'];
-      $sql="update tblguard set isAssigned=1,companyName=:companyName where ID=:val";
-      $query=$dbh->prepare($sql);
-      $query->bindParam(':companyName',$companyName,PDO::PARAM_STR);
-      $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
-      $query->execute();
+if (isset($_POST['guards']) && !empty($_POST['guards'])) {
+    $companyName = $_POST['companyName'];
+    
+    for ($i = 0; $i < count($_POST['guards']); $i++) {
+        $sql = "UPDATE tblguard SET isAssigned = 1, companyName = :companyName WHERE ID = :val";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':companyName', $companyName, PDO::PARAM_STR);
+        $query->bindParam(":val", $_POST['guards'][$i], PDO::PARAM_STR);
+        $query->execute();
+    }
+}
+
    }
 
 //     echo '<script>alert("Booking status has been updated")</script>';
@@ -63,6 +73,13 @@ $query->bindParam(':rid',$rid,PDO::PARAM_STR);
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+  .scrollable-td {
+    height: 200px; /* Adjust the height as per your requirement */
+    overflow: auto;
+  }
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -205,18 +222,21 @@ if($row->Status=="")
 <tr>
   <th>Status :</th>
   <td>
-    <select name="status" class="form-control" required="true" onchange="toggleCheckboxes(this)">
-      <option value="Accepted" selected="true">Accepted</option>
-      <option value="Rejected">Rejected</option>
-    </select>
+<select name="status" class="form-control" required="true" onchange="toggleCheckboxes(this)">
+  <option value="Accepted" selected="true">Accepted</option>
+  <option value="Rejected">Rejected</option>
+</select>
+
+
   </td>
 </tr>
 <tr>
   <th>Assign Guard :</th>
   <td>
+    <div class="scrollable-td">
 <!-- ...existing code... -->
 
-<div>
+<div id="select-alls">
   <input type="checkbox" id="select-all" onchange="selectAllGuards()">
   <label for="select-all">Select All</label>
 </div>
@@ -238,7 +258,11 @@ if($row->Status=="")
   <!-- TODO: Requirement number select Required guards[] button -->
   <div>
     <input type="checkbox" name="guards[]" value="<?php echo htmlentities($row1->ID); ?>">
-    <label><?php echo htmlentities($row1->Name); ?></label>
+    <label><?php echo htmlentities($row1->Name); if ($row1->gender == '0') {
+      echo "                                  (Male)";
+    } else if ($row1->gender == '1') {
+      echo "                                 (Female)";
+    }?></label>
   </div>
   <?php
         }
@@ -263,6 +287,7 @@ if($row->Status=="")
       }
     }
   ?>
+</div>
 </div>
 
   </td>
@@ -341,9 +366,22 @@ function selectAllGuards() {
   }
 }
 </script>
+<script>
+function toggleCheckboxes(select) {
+  var checkboxes = document.getElementById("checkboxes");
+  var selectAll = document.getElementById("select-all").parentNode;
+  
+  if (select.value === "Accepted") {
+    checkboxes.style.display = "block";
+    selectAll.style.display = "block";
+  } else {
+    checkboxes.style.display = "none";
+    selectAll.style.display = "none";
+  }
+}
+</script>
 
 
 
 </body>
 </html>
-<?php } ?>

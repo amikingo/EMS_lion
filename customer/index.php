@@ -98,7 +98,7 @@ $query->bindParam(':gender',$gender,PDO::PARAM_STR);
     <ul class="submenu">
       <li class="active"><a href="index.php">Request Employee</a></li>
       <li><a href="search-request.php">Check Request</a></li>
-	  <li><a href="ChangeEmployee.php">Change Security</a></li>
+
     </ul>
   </li>
   <li class="drop-down">
@@ -199,10 +199,11 @@ foreach($results as $row)
 								<label style="padding-top: 10px;">Gender</label>
 								<select name="gender" required="true" class="form-control">
 									<option value="">Choose Gender</option>
-									<option value="Male">Male</option>
+					  				<option value="Male">Male</option>
 									<option value="Female">Female</option>
 									<option vlaue="Both">Both</option>
 								</select>
+                   <p>when you select both gender please specify the number in the address bar   </p>
 							</div>
 							<br>
 							<div class="col-md-12">

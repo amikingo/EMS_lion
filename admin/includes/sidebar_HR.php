@@ -46,6 +46,36 @@ foreach($results as $row)
             </a>
         
           </li>
+
+          <?php
+
+$sql="SELECT * FROM tblhiring WHERE data IS NOT NULL";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+$new_data = $query->rowCount();
+
+?>
+<style type="text/css">
+.notify-badge {
+    height: 5;
+    background: green;
+    color: white;
+    border-radius: 100px;
+    /* padding: 5px; */
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 20px;
+    vertical-align: middle;
+    font-size: 13px;
+}
+</style> 
+
+
+
           
 <?php
 
@@ -82,7 +112,8 @@ $new_booking_row_count = $query->rowCount();
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Secuirty Employee
+                Security Employee
+                <?php if($new_data) {  echo "<span class='notify-badge'>" . $new_data . "</span>"; } ?>
                 <i class="fas fa-angle-left right"></i>
    
               </p>
@@ -106,10 +137,19 @@ $new_booking_row_count = $query->rowCount();
                   <p>Manage Training Personnel</p>
                 </a>
               </li>
+
               <li class="nav-item">
                 <a href="ChangeSecurityEmployee.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-          <p>Change Security Employee</p>
+   <p>Change Employee 
+   <?php if($new_data) {  echo "<span class='notify-badge'>" . $new_data . "</span>"; } ?>
+       </p>
+                </a>
+              </li>
+              <li class="nav-item">
+            <a href="DeletedEmployee.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Deleted Employee</p>
                 </a>
               </li>
              </ul>
@@ -125,13 +165,13 @@ $new_booking_row_count = $query->rowCount();
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="createAdmin.php" class="nav-link">
+                <a href="createAdminHr.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> Create Users </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="viewAdmin.php" class="nav-link">
+                <a href="viewAdminHr.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View All Users</p>
                 </a>
@@ -241,7 +281,12 @@ $new_users = $queryme->rowCount();
                   <p>Manage Customers</p>
                 </a>
               </li>
-
+              <li class="nav-item">
+                <a href="manageCustomerDetaile.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+               <p>Edit Customers Detail </p>
+                </a>
+              </li>
              </ul>
 
           </li> 
@@ -285,9 +330,9 @@ $new_users = $queryme->rowCount();
           </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-plus-square"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
-                Admin Setting
+                Setting
                 <i class="fas fa-angle-left right"></i>
                 
               </p>
@@ -307,7 +352,7 @@ $new_users = $queryme->rowCount();
               </li>
               <li class="nav-item">
                 <a href="logout.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-sign-out-alt nav-icon"></i>
                   <p>Logout</p>
                 </a>
               </li>

@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(0);
 
     include('../includes/dbconnection.php');
     // include('../includes/session.php');

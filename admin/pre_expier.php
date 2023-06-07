@@ -64,7 +64,8 @@ if (strlen($_SESSION['osghsaid']) == 0) {
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>Name</th>
+                <th>Full Name</th>
+                    <th>Gender</th>
                     <th>ID Number</th>
                     <th>Address</th>
                     <th>Mobile Number</th>
@@ -87,6 +88,15 @@ if (strlen($_SESSION['osghsaid']) == 0) {
                 <tr>
                     <td><?php echo htmlentities($cnt); ?></td>
                     <td><?php echo htmlentities($row->Name); ?></td>
+                    <td><?php  if($row->gender =="0")
+  {
+        echo "Male";
+      }
+  elseif($row->gender =="1"){
+    echo "Female";
+  }
+
+      ;?></td>
                     <td><?php echo htmlentities($row->ID); ?></td>
                     <td><?php echo htmlentities($row->Address); ?></td>
                     <td><?php echo htmlentities($row->MobileNumber); ?></td>
